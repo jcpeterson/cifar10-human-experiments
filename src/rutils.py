@@ -34,7 +34,7 @@ def return_dataset(option='aggregated'):
         y_sparse, x_idx = cifarH10_load.load_sparse(d_path)
         return x_test, y_test, y_sparse, x_idx
 
-data = return_dataset('sparse')
+#data = return_dataset('sparse')
 
 
 
