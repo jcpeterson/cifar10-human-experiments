@@ -2,7 +2,7 @@ from __future__ import print_function
 
 import os.path
 
-import densenet
+import models.densenet as densenet
 import numpy as np
 import sklearn.metrics as metrics
 
