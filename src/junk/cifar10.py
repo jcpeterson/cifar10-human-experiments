@@ -32,7 +32,8 @@ model = densenet.DenseNet(img_dim, classes=nb_classes, depth=depth, nb_dense_blo
 print("Model created")
 
 model.summary()
-optimizer = Adam(lr=1e-3) # Using Adam instead of SGD to speed up training
+# optimizer = Adam(lr=1e-3) # Using Adam instead of SGD to speed up training
+optimizer = Adam(lr=1e-6)
 model.compile(loss='categorical_crossentropy', optimizer=optimizer, metrics=["accuracy"])
 print("Finished compiling")
 print("Building model...")
@@ -56,9 +57,9 @@ generator = ImageDataGenerator(rotation_range=15,
 generator.fit(trainX, seed=0)
 
 # Load model
-weights_file="weights/DenseNet-40-12-CIFAR10.h5"
+weights_file="weights/densenet-40-12.h5"
 if os.path.exists(weights_file):
-    #model.load_weights(weights_file, by_name=True)
+    model.load_weights(weights_file, by_name=True)
     print("Model loaded.")
 
 out_dir="weights/"
@@ -68,13 +69,17 @@ lr_reducer      = ReduceLROnPlateau(monitor='val_acc', factor=np.sqrt(0.1),
 model_checkpoint= ModelCheckpoint(weights_file, monitor="val_acc", save_best_only=True,
                                   save_weights_only=True, verbose=1)
 
-callbacks=[lr_reducer, model_checkpoint]
+callbacks=[lr_reducer] #, model_checkpoint]
 
-model.fit_generator(generator.flow(trainX, Y_train, batch_size=batch_size),
-                    steps_per_epoch=len(trainX) // batch_size, epochs=nb_epoch,
-                    callbacks=callbacks,
-                    validation_data=(testX, Y_test),
-                    validation_steps=testX.shape[0] // batch_size, verbose=1)
+for i in range(nb_epoch):
+
+    print(model.evaluate(testX, Y_test))
+
+    model.fit_generator(generator.flow(trainX, Y_train, batch_size=batch_size),
+                        steps_per_epoch=len(trainX) // batch_size, epochs=1,
+                        callbacks=callbacks,
+                        validation_data=(testX, Y_test),
+                        validation_steps=testX.shape[0] // batch_size, verbose=1)
 
 yPreds = model.predict(testX)
 yPred = np.argmax(yPreds, axis=1)
