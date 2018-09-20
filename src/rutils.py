@@ -36,7 +36,5 @@ def return_dataset(option='aggregated'):
 
 data = return_dataset('sparse')
 
-print('print test')
-print([x.shape for x in data])
 
 
