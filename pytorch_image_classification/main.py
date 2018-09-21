@@ -24,6 +24,9 @@ except Exception:
 from dataloader import get_loader
 from utils import (str2bool, load_model, save_checkpoint, create_optimizer,
                    AverageMeter, mixup, CrossEntropyLoss)
+
+from rutils_run import save_checkpoint_epoch
+
 from argparser import get_config
 
 torch.backends.cudnn.benchmark = True
@@ -147,8 +150,6 @@ def train(epoch, model, optimizer, scheduler, criterion, train_loader, config,
 
     run_config = config['run_config']
     
-#    run_config['use_gpu'] = False
-
     optim_config = config['optim_config']
     data_config = config['data_config']
 
@@ -324,6 +325,7 @@ def main():
 
     # create output directory
     outdir = run_config['outdir']
+    print('outdir: ', outdir)
     if not os.path.exists(outdir):
         os.makedirs(outdir)
 
@@ -379,7 +381,7 @@ def main():
 
         # update state dictionary
         state = update_state(state, epoch, accuracy, model, optimizer)
-
+        print('outdir 2: ', outdir)
         # save model
         save_checkpoint(state, outdir)
         save_checkpoint_epoch(state, epoch, outdir)

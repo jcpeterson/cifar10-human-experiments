@@ -30,10 +30,6 @@ def save_checkpoint(state, outdir):
     if state['best_epoch'] == state['epoch']:
         shutil.copy(model_path, best_model_path)
 
-def save_checkpoint(state, epoch, outdir):
-    model_path = os.path.join(outdir, 'model_state_' + str(epoch) + '.pth')
-    torch.save(state, model_path)
-
 class AverageMeter(object):
     def __init__(self):
         self.reset()

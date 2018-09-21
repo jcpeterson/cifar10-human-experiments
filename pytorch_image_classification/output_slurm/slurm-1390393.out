@@ -990,3 +990,288 @@ Files already downloaded and verified
 [2018/09/21 14:57:33 __main__ INFO] - Test 101
 [2018/09/21 14:57:36 __main__ INFO] - Epoch 101 Loss 0.3628 Accuracy 0.9249
 [2018/09/21 14:57:36 __main__ INFO] - Elapsed 2.71
+[2018/09/21 14:57:36 __main__ INFO] - Train 102
+[2018/09/21 14:57:36 __main__ INFO] - Epoch 102 Step 0/390 Loss 0.0025 (0.0025) Accuracy 1.0000 (1.0000)
+[2018/09/21 14:57:41 __main__ INFO] - Epoch 102 Step 100/390 Loss 0.0022 (0.0099) Accuracy 1.0000 (0.9971)
+[2018/09/21 14:57:45 __main__ INFO] - Epoch 102 Step 200/390 Loss 0.0016 (0.0114) Accuracy 1.0000 (0.9964)
+[2018/09/21 14:57:50 __main__ INFO] - Epoch 102 Step 300/390 Loss 0.0202 (0.0128) Accuracy 0.9922 (0.9959)
+[2018/09/21 14:57:53 __main__ INFO] - Elapsed 17.39
+[2018/09/21 14:57:53 __main__ INFO] - Test 102
+[2018/09/21 14:57:56 __main__ INFO] - Epoch 102 Loss 0.3599 Accuracy 0.9221
+[2018/09/21 14:57:56 __main__ INFO] - Elapsed 2.82
+[2018/09/21 14:57:57 __main__ INFO] - Train 103
+[2018/09/21 14:57:57 __main__ INFO] - Epoch 103 Step 0/390 Loss 0.0028 (0.0028) Accuracy 1.0000 (1.0000)
+[2018/09/21 14:58:02 __main__ INFO] - Epoch 103 Step 100/390 Loss 0.0017 (0.0106) Accuracy 1.0000 (0.9963)
+[2018/09/21 14:58:06 __main__ INFO] - Epoch 103 Step 200/390 Loss 0.0137 (0.0101) Accuracy 0.9922 (0.9967)
+[2018/09/21 14:58:10 __main__ INFO] - Epoch 103 Step 300/390 Loss 0.0128 (0.0105) Accuracy 1.0000 (0.9966)
+[2018/09/21 14:58:14 __main__ INFO] - Elapsed 17.36
+[2018/09/21 14:58:14 __main__ INFO] - Test 103
+[2018/09/21 14:58:17 __main__ INFO] - Epoch 103 Loss 0.3615 Accuracy 0.9227
+[2018/09/21 14:58:17 __main__ INFO] - Elapsed 2.79
+[2018/09/21 14:58:17 __main__ INFO] - Train 104
+[2018/09/21 14:58:17 __main__ INFO] - Epoch 104 Step 0/390 Loss 0.0455 (0.0455) Accuracy 0.9844 (0.9844)
+[2018/09/21 14:58:22 __main__ INFO] - Epoch 104 Step 100/390 Loss 0.0116 (0.0126) Accuracy 0.9922 (0.9953)
+[2018/09/21 14:58:26 __main__ INFO] - Epoch 104 Step 200/390 Loss 0.0046 (0.0125) Accuracy 1.0000 (0.9958)
+[2018/09/21 14:58:31 __main__ INFO] - Epoch 104 Step 300/390 Loss 0.0245 (0.0136) Accuracy 0.9844 (0.9955)
+[2018/09/21 14:58:34 __main__ INFO] - Elapsed 17.49
+[2018/09/21 14:58:35 __main__ INFO] - Test 104
+[2018/09/21 14:58:37 __main__ INFO] - Epoch 104 Loss 0.3665 Accuracy 0.9231
+[2018/09/21 14:58:37 __main__ INFO] - Elapsed 2.71
+[2018/09/21 14:58:38 __main__ INFO] - Train 105
+[2018/09/21 14:58:38 __main__ INFO] - Epoch 105 Step 0/390 Loss 0.0034 (0.0034) Accuracy 1.0000 (1.0000)
+[2018/09/21 14:58:43 __main__ INFO] - Epoch 105 Step 100/390 Loss 0.0017 (0.0111) Accuracy 1.0000 (0.9958)
+[2018/09/21 14:58:47 __main__ INFO] - Epoch 105 Step 200/390 Loss 0.0081 (0.0105) Accuracy 1.0000 (0.9963)
+[2018/09/21 14:58:51 __main__ INFO] - Epoch 105 Step 300/390 Loss 0.0027 (0.0116) Accuracy 1.0000 (0.9960)
+[2018/09/21 14:58:55 __main__ INFO] - Elapsed 17.54
+[2018/09/21 14:58:55 __main__ INFO] - Test 105
+[2018/09/21 14:58:58 __main__ INFO] - Epoch 105 Loss 0.3586 Accuracy 0.9246
+[2018/09/21 14:58:58 __main__ INFO] - Elapsed 2.83
+[2018/09/21 14:58:58 __main__ INFO] - Train 106
+[2018/09/21 14:58:59 __main__ INFO] - Epoch 106 Step 0/390 Loss 0.0097 (0.0097) Accuracy 0.9922 (0.9922)
+[2018/09/21 14:59:03 __main__ INFO] - Epoch 106 Step 100/390 Loss 0.0032 (0.0098) Accuracy 1.0000 (0.9968)
+[2018/09/21 14:59:07 __main__ INFO] - Epoch 106 Step 200/390 Loss 0.0095 (0.0098) Accuracy 0.9922 (0.9969)
+[2018/09/21 14:59:12 __main__ INFO] - Epoch 106 Step 300/390 Loss 0.0066 (0.0098) Accuracy 1.0000 (0.9970)
+[2018/09/21 14:59:16 __main__ INFO] - Elapsed 17.48
+[2018/09/21 14:59:16 __main__ INFO] - Test 106
+[2018/09/21 14:59:18 __main__ INFO] - Epoch 106 Loss 0.3589 Accuracy 0.9240
+[2018/09/21 14:59:18 __main__ INFO] - Elapsed 2.84
+[2018/09/21 14:59:19 __main__ INFO] - Train 107
+[2018/09/21 14:59:19 __main__ INFO] - Epoch 107 Step 0/390 Loss 0.0005 (0.0005) Accuracy 1.0000 (1.0000)
+[2018/09/21 14:59:24 __main__ INFO] - Epoch 107 Step 100/390 Loss 0.0015 (0.0098) Accuracy 1.0000 (0.9971)
+[2018/09/21 14:59:28 __main__ INFO] - Epoch 107 Step 200/390 Loss 0.0177 (0.0114) Accuracy 0.9922 (0.9964)
+[2018/09/21 14:59:32 __main__ INFO] - Epoch 107 Step 300/390 Loss 0.0190 (0.0111) Accuracy 0.9922 (0.9965)
+[2018/09/21 14:59:36 __main__ INFO] - Elapsed 17.31
+[2018/09/21 14:59:36 __main__ INFO] - Test 107
+[2018/09/21 14:59:39 __main__ INFO] - Epoch 107 Loss 0.3627 Accuracy 0.9228
+[2018/09/21 14:59:39 __main__ INFO] - Elapsed 2.74
+[2018/09/21 14:59:39 __main__ INFO] - Train 108
+[2018/09/21 14:59:39 __main__ INFO] - Epoch 108 Step 0/390 Loss 0.0091 (0.0091) Accuracy 1.0000 (1.0000)
+[2018/09/21 14:59:44 __main__ INFO] - Epoch 108 Step 100/390 Loss 0.0238 (0.0098) Accuracy 0.9922 (0.9968)
+[2018/09/21 14:59:48 __main__ INFO] - Epoch 108 Step 200/390 Loss 0.0081 (0.0103) Accuracy 1.0000 (0.9969)
+[2018/09/21 14:59:53 __main__ INFO] - Epoch 108 Step 300/390 Loss 0.0124 (0.0099) Accuracy 0.9922 (0.9969)
+[2018/09/21 14:59:56 __main__ INFO] - Elapsed 17.00
+[2018/09/21 14:59:56 __main__ INFO] - Test 108
+[2018/09/21 14:59:59 __main__ INFO] - Epoch 108 Loss 0.3724 Accuracy 0.9222
+[2018/09/21 14:59:59 __main__ INFO] - Elapsed 2.73
+[2018/09/21 14:59:59 __main__ INFO] - Train 109
+[2018/09/21 14:59:59 __main__ INFO] - Epoch 109 Step 0/390 Loss 0.0087 (0.0087) Accuracy 1.0000 (1.0000)
+[2018/09/21 15:00:04 __main__ INFO] - Epoch 109 Step 100/390 Loss 0.0110 (0.0099) Accuracy 0.9922 (0.9970)
+[2018/09/21 15:00:08 __main__ INFO] - Epoch 109 Step 200/390 Loss 0.0033 (0.0097) Accuracy 1.0000 (0.9971)
+[2018/09/21 15:00:13 __main__ INFO] - Epoch 109 Step 300/390 Loss 0.0113 (0.0095) Accuracy 1.0000 (0.9971)
+[2018/09/21 15:00:16 __main__ INFO] - Elapsed 17.34
+[2018/09/21 15:00:16 __main__ INFO] - Test 109
+[2018/09/21 15:00:19 __main__ INFO] - Epoch 109 Loss 0.3665 Accuracy 0.9231
+[2018/09/21 15:00:19 __main__ INFO] - Elapsed 2.76
+[2018/09/21 15:00:19 __main__ INFO] - Train 110
+[2018/09/21 15:00:20 __main__ INFO] - Epoch 110 Step 0/390 Loss 0.0061 (0.0061) Accuracy 1.0000 (1.0000)
+[2018/09/21 15:00:24 __main__ INFO] - Epoch 110 Step 100/390 Loss 0.0014 (0.0102) Accuracy 1.0000 (0.9967)
+[2018/09/21 15:00:29 __main__ INFO] - Epoch 110 Step 200/390 Loss 0.0179 (0.0110) Accuracy 0.9922 (0.9963)
+[2018/09/21 15:00:33 __main__ INFO] - Epoch 110 Step 300/390 Loss 0.0107 (0.0113) Accuracy 0.9922 (0.9961)
+[2018/09/21 15:00:37 __main__ INFO] - Elapsed 17.30
+[2018/09/21 15:00:37 __main__ INFO] - Test 110
+[2018/09/21 15:00:39 __main__ INFO] - Epoch 110 Loss 0.3717 Accuracy 0.9243
+[2018/09/21 15:00:39 __main__ INFO] - Elapsed 2.79
+[2018/09/21 15:00:40 __main__ INFO] - Train 111
+[2018/09/21 15:00:40 __main__ INFO] - Epoch 111 Step 0/390 Loss 0.0047 (0.0047) Accuracy 1.0000 (1.0000)
+[2018/09/21 15:00:45 __main__ INFO] - Epoch 111 Step 100/390 Loss 0.0175 (0.0088) Accuracy 0.9844 (0.9966)
+[2018/09/21 15:00:49 __main__ INFO] - Epoch 111 Step 200/390 Loss 0.0033 (0.0093) Accuracy 1.0000 (0.9967)
+[2018/09/21 15:00:53 __main__ INFO] - Epoch 111 Step 300/390 Loss 0.0088 (0.0098) Accuracy 1.0000 (0.9965)
+[2018/09/21 15:00:57 __main__ INFO] - Elapsed 17.27
+[2018/09/21 15:00:57 __main__ INFO] - Test 111
+[2018/09/21 15:01:00 __main__ INFO] - Epoch 111 Loss 0.3698 Accuracy 0.9219
+[2018/09/21 15:01:00 __main__ INFO] - Elapsed 2.77
+[2018/09/21 15:01:00 __main__ INFO] - Train 112
+[2018/09/21 15:01:00 __main__ INFO] - Epoch 112 Step 0/390 Loss 0.0198 (0.0198) Accuracy 0.9922 (0.9922)
+[2018/09/21 15:01:05 __main__ INFO] - Epoch 112 Step 100/390 Loss 0.0030 (0.0095) Accuracy 1.0000 (0.9968)
+[2018/09/21 15:01:09 __main__ INFO] - Epoch 112 Step 200/390 Loss 0.0014 (0.0089) Accuracy 1.0000 (0.9970)
+[2018/09/21 15:01:13 __main__ INFO] - Epoch 112 Step 300/390 Loss 0.0021 (0.0087) Accuracy 1.0000 (0.9971)
+[2018/09/21 15:01:17 __main__ INFO] - Elapsed 17.27
+[2018/09/21 15:01:17 __main__ INFO] - Test 112
+[2018/09/21 15:01:20 __main__ INFO] - Epoch 112 Loss 0.3757 Accuracy 0.9236
+[2018/09/21 15:01:20 __main__ INFO] - Elapsed 2.78
+[2018/09/21 15:01:20 __main__ INFO] - Train 113
+[2018/09/21 15:01:21 __main__ INFO] - Epoch 113 Step 0/390 Loss 0.0182 (0.0182) Accuracy 0.9922 (0.9922)
+[2018/09/21 15:01:25 __main__ INFO] - Epoch 113 Step 100/390 Loss 0.0026 (0.0103) Accuracy 1.0000 (0.9964)
+[2018/09/21 15:01:29 __main__ INFO] - Epoch 113 Step 200/390 Loss 0.0239 (0.0098) Accuracy 0.9922 (0.9965)
+[2018/09/21 15:01:34 __main__ INFO] - Epoch 113 Step 300/390 Loss 0.0143 (0.0098) Accuracy 0.9922 (0.9967)
+[2018/09/21 15:01:37 __main__ INFO] - Elapsed 17.23
+[2018/09/21 15:01:37 __main__ INFO] - Test 113
+[2018/09/21 15:01:40 __main__ INFO] - Epoch 113 Loss 0.3733 Accuracy 0.9231
+[2018/09/21 15:01:40 __main__ INFO] - Elapsed 2.80
+[2018/09/21 15:01:40 __main__ INFO] - Train 114
+[2018/09/21 15:01:41 __main__ INFO] - Epoch 114 Step 0/390 Loss 0.0018 (0.0018) Accuracy 1.0000 (1.0000)
+[2018/09/21 15:01:45 __main__ INFO] - Epoch 114 Step 100/390 Loss 0.0034 (0.0082) Accuracy 1.0000 (0.9972)
+[2018/09/21 15:01:50 __main__ INFO] - Epoch 114 Step 200/390 Loss 0.0041 (0.0082) Accuracy 1.0000 (0.9972)
+[2018/09/21 15:01:54 __main__ INFO] - Epoch 114 Step 300/390 Loss 0.0016 (0.0083) Accuracy 1.0000 (0.9974)
+[2018/09/21 15:01:58 __main__ INFO] - Elapsed 17.31
+[2018/09/21 15:01:58 __main__ INFO] - Test 114
+[2018/09/21 15:02:01 __main__ INFO] - Epoch 114 Loss 0.3804 Accuracy 0.9223
+[2018/09/21 15:02:01 __main__ INFO] - Elapsed 2.72
+[2018/09/21 15:02:01 __main__ INFO] - Train 115
+[2018/09/21 15:02:01 __main__ INFO] - Epoch 115 Step 0/390 Loss 0.0080 (0.0080) Accuracy 0.9922 (0.9922)
+[2018/09/21 15:02:06 __main__ INFO] - Epoch 115 Step 100/390 Loss 0.0010 (0.0067) Accuracy 1.0000 (0.9978)
+[2018/09/21 15:02:10 __main__ INFO] - Epoch 115 Step 200/390 Loss 0.0018 (0.0076) Accuracy 1.0000 (0.9974)
+[2018/09/21 15:02:14 __main__ INFO] - Epoch 115 Step 300/390 Loss 0.0005 (0.0080) Accuracy 1.0000 (0.9973)
+[2018/09/21 15:02:18 __main__ INFO] - Elapsed 17.16
+[2018/09/21 15:02:18 __main__ INFO] - Test 115
+[2018/09/21 15:02:21 __main__ INFO] - Epoch 115 Loss 0.3845 Accuracy 0.9226
+[2018/09/21 15:02:21 __main__ INFO] - Elapsed 2.77
+[2018/09/21 15:02:21 __main__ INFO] - Train 116
+[2018/09/21 15:02:21 __main__ INFO] - Epoch 116 Step 0/390 Loss 0.0011 (0.0011) Accuracy 1.0000 (1.0000)
+[2018/09/21 15:02:26 __main__ INFO] - Epoch 116 Step 100/390 Loss 0.0078 (0.0080) Accuracy 0.9922 (0.9971)
+[2018/09/21 15:02:30 __main__ INFO] - Epoch 116 Step 200/390 Loss 0.0007 (0.0086) Accuracy 1.0000 (0.9972)
+[2018/09/21 15:02:34 __main__ INFO] - Epoch 116 Step 300/390 Loss 0.0075 (0.0088) Accuracy 0.9922 (0.9969)
+[2018/09/21 15:02:38 __main__ INFO] - Elapsed 17.32
+[2018/09/21 15:02:38 __main__ INFO] - Test 116
+[2018/09/21 15:02:41 __main__ INFO] - Epoch 116 Loss 0.3879 Accuracy 0.9244
+[2018/09/21 15:02:41 __main__ INFO] - Elapsed 2.87
+[2018/09/21 15:02:41 __main__ INFO] - Train 117
+[2018/09/21 15:02:42 __main__ INFO] - Epoch 117 Step 0/390 Loss 0.0029 (0.0029) Accuracy 1.0000 (1.0000)
+[2018/09/21 15:02:46 __main__ INFO] - Epoch 117 Step 100/390 Loss 0.0064 (0.0084) Accuracy 0.9922 (0.9973)
+[2018/09/21 15:02:51 __main__ INFO] - Epoch 117 Step 200/390 Loss 0.0006 (0.0085) Accuracy 1.0000 (0.9973)
+[2018/09/21 15:02:55 __main__ INFO] - Epoch 117 Step 300/390 Loss 0.0013 (0.0084) Accuracy 1.0000 (0.9974)
+[2018/09/21 15:02:58 __main__ INFO] - Elapsed 17.24
+[2018/09/21 15:02:58 __main__ INFO] - Test 117
+[2018/09/21 15:03:01 __main__ INFO] - Epoch 117 Loss 0.3949 Accuracy 0.9248
+[2018/09/21 15:03:01 __main__ INFO] - Elapsed 2.76
+[2018/09/21 15:03:01 __main__ INFO] - Train 118
+[2018/09/21 15:03:02 __main__ INFO] - Epoch 118 Step 0/390 Loss 0.0327 (0.0327) Accuracy 0.9844 (0.9844)
+[2018/09/21 15:03:06 __main__ INFO] - Epoch 118 Step 100/390 Loss 0.0012 (0.0078) Accuracy 1.0000 (0.9971)
+[2018/09/21 15:03:11 __main__ INFO] - Epoch 118 Step 200/390 Loss 0.0282 (0.0078) Accuracy 0.9844 (0.9971)
+[2018/09/21 15:03:15 __main__ INFO] - Epoch 118 Step 300/390 Loss 0.0082 (0.0078) Accuracy 0.9922 (0.9971)
+[2018/09/21 15:03:19 __main__ INFO] - Elapsed 17.25
+[2018/09/21 15:03:19 __main__ INFO] - Test 118
+[2018/09/21 15:03:21 __main__ INFO] - Epoch 118 Loss 0.3911 Accuracy 0.9233
+[2018/09/21 15:03:21 __main__ INFO] - Elapsed 2.73
+[2018/09/21 15:03:22 __main__ INFO] - Train 119
+[2018/09/21 15:03:22 __main__ INFO] - Epoch 119 Step 0/390 Loss 0.0114 (0.0114) Accuracy 0.9922 (0.9922)
+[2018/09/21 15:03:27 __main__ INFO] - Epoch 119 Step 100/390 Loss 0.0452 (0.0076) Accuracy 0.9844 (0.9974)
+[2018/09/21 15:03:31 __main__ INFO] - Epoch 119 Step 200/390 Loss 0.0274 (0.0085) Accuracy 0.9844 (0.9972)
+[2018/09/21 15:03:35 __main__ INFO] - Epoch 119 Step 300/390 Loss 0.0006 (0.0082) Accuracy 1.0000 (0.9973)
+[2018/09/21 15:03:38 __main__ INFO] - Elapsed 16.81
+[2018/09/21 15:03:38 __main__ INFO] - Test 119
+[2018/09/21 15:03:41 __main__ INFO] - Epoch 119 Loss 0.3794 Accuracy 0.9244
+[2018/09/21 15:03:41 __main__ INFO] - Elapsed 2.72
+[2018/09/21 15:03:41 __main__ INFO] - Train 120
+[2018/09/21 15:03:42 __main__ INFO] - Epoch 120 Step 0/390 Loss 0.0033 (0.0033) Accuracy 1.0000 (1.0000)
+[2018/09/21 15:03:46 __main__ INFO] - Epoch 120 Step 100/390 Loss 0.0038 (0.0078) Accuracy 1.0000 (0.9975)
+[2018/09/21 15:03:51 __main__ INFO] - Epoch 120 Step 200/390 Loss 0.0007 (0.0082) Accuracy 1.0000 (0.9976)
+[2018/09/21 15:03:55 __main__ INFO] - Epoch 120 Step 300/390 Loss 0.0025 (0.0082) Accuracy 1.0000 (0.9976)
+[2018/09/21 15:03:58 __main__ INFO] - Elapsed 16.69
+[2018/09/21 15:03:58 __main__ INFO] - Test 120
+[2018/09/21 15:04:01 __main__ INFO] - Epoch 120 Loss 0.3849 Accuracy 0.9255
+[2018/09/21 15:04:01 __main__ INFO] - Elapsed 2.72
+[2018/09/21 15:04:01 __main__ INFO] - Train 121
+[2018/09/21 15:04:02 __main__ INFO] - Epoch 121 Step 0/390 Loss 0.0013 (0.0013) Accuracy 1.0000 (1.0000)
+[2018/09/21 15:04:06 __main__ INFO] - Epoch 121 Step 100/390 Loss 0.0072 (0.0076) Accuracy 0.9922 (0.9974)
+[2018/09/21 15:04:10 __main__ INFO] - Epoch 121 Step 200/390 Loss 0.0009 (0.0071) Accuracy 1.0000 (0.9975)
+[2018/09/21 15:04:15 __main__ INFO] - Epoch 121 Step 300/390 Loss 0.0040 (0.0070) Accuracy 1.0000 (0.9976)
+[2018/09/21 15:04:19 __main__ INFO] - Elapsed 17.25
+[2018/09/21 15:04:19 __main__ INFO] - Test 121
+[2018/09/21 15:04:21 __main__ INFO] - Epoch 121 Loss 0.3833 Accuracy 0.9251
+[2018/09/21 15:04:21 __main__ INFO] - Elapsed 2.77
+[2018/09/21 15:04:22 __main__ INFO] - Train 122
+[2018/09/21 15:04:22 __main__ INFO] - Epoch 122 Step 0/390 Loss 0.0067 (0.0067) Accuracy 0.9922 (0.9922)
+[2018/09/21 15:04:26 __main__ INFO] - Epoch 122 Step 100/390 Loss 0.0019 (0.0061) Accuracy 1.0000 (0.9978)
+[2018/09/21 15:04:31 __main__ INFO] - Epoch 122 Step 200/390 Loss 0.0188 (0.0063) Accuracy 0.9922 (0.9977)
+[2018/09/21 15:04:35 __main__ INFO] - Epoch 122 Step 300/390 Loss 0.0027 (0.0064) Accuracy 1.0000 (0.9978)
+[2018/09/21 15:04:39 __main__ INFO] - Elapsed 17.18
+[2018/09/21 15:04:39 __main__ INFO] - Test 122
+[2018/09/21 15:04:41 __main__ INFO] - Epoch 122 Loss 0.3789 Accuracy 0.9258
+[2018/09/21 15:04:41 __main__ INFO] - Elapsed 2.77
+[2018/09/21 15:04:42 __main__ INFO] - Train 123
+[2018/09/21 15:04:42 __main__ INFO] - Epoch 123 Step 0/390 Loss 0.0024 (0.0024) Accuracy 1.0000 (1.0000)
+[2018/09/21 15:04:47 __main__ INFO] - Epoch 123 Step 100/390 Loss 0.0087 (0.0057) Accuracy 1.0000 (0.9983)
+[2018/09/21 15:04:51 __main__ INFO] - Epoch 123 Step 200/390 Loss 0.0025 (0.0057) Accuracy 1.0000 (0.9981)
+[2018/09/21 15:04:55 __main__ INFO] - Epoch 123 Step 300/390 Loss 0.0025 (0.0053) Accuracy 1.0000 (0.9983)
+[2018/09/21 15:04:59 __main__ INFO] - Elapsed 17.22
+[2018/09/21 15:04:59 __main__ INFO] - Test 123
+[2018/09/21 15:05:02 __main__ INFO] - Epoch 123 Loss 0.3790 Accuracy 0.9267
+[2018/09/21 15:05:02 __main__ INFO] - Elapsed 2.69
+[2018/09/21 15:05:02 __main__ INFO] - Train 124
+[2018/09/21 15:05:03 __main__ INFO] - Epoch 124 Step 0/390 Loss 0.0003 (0.0003) Accuracy 1.0000 (1.0000)
+[2018/09/21 15:05:07 __main__ INFO] - Epoch 124 Step 100/390 Loss 0.0073 (0.0061) Accuracy 1.0000 (0.9985)
+[2018/09/21 15:05:11 __main__ INFO] - Epoch 124 Step 200/390 Loss 0.0007 (0.0055) Accuracy 1.0000 (0.9984)
+[2018/09/21 15:05:16 __main__ INFO] - Epoch 124 Step 300/390 Loss 0.0079 (0.0056) Accuracy 1.0000 (0.9982)
+[2018/09/21 15:05:19 __main__ INFO] - Elapsed 17.01
+[2018/09/21 15:05:19 __main__ INFO] - Test 124
+[2018/09/21 15:05:22 __main__ INFO] - Epoch 124 Loss 0.3753 Accuracy 0.9268
+[2018/09/21 15:05:22 __main__ INFO] - Elapsed 2.75
+[2018/09/21 15:05:22 __main__ INFO] - Train 125
+[2018/09/21 15:05:23 __main__ INFO] - Epoch 125 Step 0/390 Loss 0.0011 (0.0011) Accuracy 1.0000 (1.0000)
+[2018/09/21 15:05:27 __main__ INFO] - Epoch 125 Step 100/390 Loss 0.0007 (0.0044) Accuracy 1.0000 (0.9988)
+[2018/09/21 15:05:32 __main__ INFO] - Epoch 125 Step 200/390 Loss 0.0071 (0.0044) Accuracy 1.0000 (0.9988)
+[2018/09/21 15:05:36 __main__ INFO] - Epoch 125 Step 300/390 Loss 0.0032 (0.0045) Accuracy 1.0000 (0.9988)
+[2018/09/21 15:05:40 __main__ INFO] - Elapsed 17.53
+[2018/09/21 15:05:40 __main__ INFO] - Test 125
+[2018/09/21 15:05:43 __main__ INFO] - Epoch 125 Loss 0.3766 Accuracy 0.9273
+[2018/09/21 15:05:43 __main__ INFO] - Elapsed 2.72
+[2018/09/21 15:05:43 __main__ INFO] - Train 126
+[2018/09/21 15:05:43 __main__ INFO] - Epoch 126 Step 0/390 Loss 0.0014 (0.0014) Accuracy 1.0000 (1.0000)
+[2018/09/21 15:05:48 __main__ INFO] - Epoch 126 Step 100/390 Loss 0.0033 (0.0055) Accuracy 1.0000 (0.9984)
+[2018/09/21 15:05:52 __main__ INFO] - Epoch 126 Step 200/390 Loss 0.0050 (0.0047) Accuracy 1.0000 (0.9989)
+[2018/09/21 15:05:57 __main__ INFO] - Epoch 126 Step 300/390 Loss 0.0006 (0.0051) Accuracy 1.0000 (0.9985)
+[2018/09/21 15:06:00 __main__ INFO] - Elapsed 17.42
+[2018/09/21 15:06:00 __main__ INFO] - Test 126
+[2018/09/21 15:06:03 __main__ INFO] - Epoch 126 Loss 0.3740 Accuracy 0.9261
+[2018/09/21 15:06:03 __main__ INFO] - Elapsed 2.78
+[2018/09/21 15:06:03 __main__ INFO] - Train 127
+[2018/09/21 15:06:04 __main__ INFO] - Epoch 127 Step 0/390 Loss 0.0075 (0.0075) Accuracy 0.9922 (0.9922)
+[2018/09/21 15:06:08 __main__ INFO] - Epoch 127 Step 100/390 Loss 0.0022 (0.0060) Accuracy 1.0000 (0.9976)
+[2018/09/21 15:06:12 __main__ INFO] - Epoch 127 Step 200/390 Loss 0.0034 (0.0055) Accuracy 1.0000 (0.9981)
+[2018/09/21 15:06:17 __main__ INFO] - Epoch 127 Step 300/390 Loss 0.0003 (0.0055) Accuracy 1.0000 (0.9983)
+[2018/09/21 15:06:20 __main__ INFO] - Elapsed 16.98
+[2018/09/21 15:06:20 __main__ INFO] - Test 127
+[2018/09/21 15:06:23 __main__ INFO] - Epoch 127 Loss 0.3756 Accuracy 0.9271
+[2018/09/21 15:06:23 __main__ INFO] - Elapsed 2.75
+[2018/09/21 15:06:23 __main__ INFO] - Train 128
+[2018/09/21 15:06:24 __main__ INFO] - Epoch 128 Step 0/390 Loss 0.0005 (0.0005) Accuracy 1.0000 (1.0000)
+[2018/09/21 15:06:28 __main__ INFO] - Epoch 128 Step 100/390 Loss 0.0004 (0.0040) Accuracy 1.0000 (0.9991)
+[2018/09/21 15:06:32 __main__ INFO] - Epoch 128 Step 200/390 Loss 0.0007 (0.0048) Accuracy 1.0000 (0.9988)
+[2018/09/21 15:06:37 __main__ INFO] - Epoch 128 Step 300/390 Loss 0.0088 (0.0046) Accuracy 1.0000 (0.9989)
+[2018/09/21 15:06:41 __main__ INFO] - Elapsed 17.24
+[2018/09/21 15:06:41 __main__ INFO] - Test 128
+[2018/09/21 15:06:43 __main__ INFO] - Epoch 128 Loss 0.3740 Accuracy 0.9270
+[2018/09/21 15:06:43 __main__ INFO] - Elapsed 2.70
+[2018/09/21 15:06:44 __main__ INFO] - Train 129
+[2018/09/21 15:06:44 __main__ INFO] - Epoch 129 Step 0/390 Loss 0.0005 (0.0005) Accuracy 1.0000 (1.0000)
+[2018/09/21 15:06:49 __main__ INFO] - Epoch 129 Step 100/390 Loss 0.0009 (0.0063) Accuracy 1.0000 (0.9984)
+[2018/09/21 15:06:53 __main__ INFO] - Epoch 129 Step 200/390 Loss 0.0056 (0.0062) Accuracy 1.0000 (0.9981)
+[2018/09/21 15:06:57 __main__ INFO] - Epoch 129 Step 300/390 Loss 0.0024 (0.0058) Accuracy 1.0000 (0.9984)
+[2018/09/21 15:07:01 __main__ INFO] - Elapsed 17.21
+[2018/09/21 15:07:01 __main__ INFO] - Test 129
+[2018/09/21 15:07:04 __main__ INFO] - Epoch 129 Loss 0.3756 Accuracy 0.9272
+[2018/09/21 15:07:04 __main__ INFO] - Elapsed 2.81
+[2018/09/21 15:07:04 __main__ INFO] - Train 130
+[2018/09/21 15:07:04 __main__ INFO] - Epoch 130 Step 0/390 Loss 0.0015 (0.0015) Accuracy 1.0000 (1.0000)
+[2018/09/21 15:07:08 __main__ INFO] - Epoch 130 Step 100/390 Loss 0.0022 (0.0048) Accuracy 1.0000 (0.9989)
+[2018/09/21 15:07:13 __main__ INFO] - Epoch 130 Step 200/390 Loss 0.0004 (0.0049) Accuracy 1.0000 (0.9987)
+[2018/09/21 15:07:17 __main__ INFO] - Epoch 130 Step 300/390 Loss 0.0059 (0.0048) Accuracy 1.0000 (0.9988)
+[2018/09/21 15:07:21 __main__ INFO] - Elapsed 16.90
+[2018/09/21 15:07:21 __main__ INFO] - Test 130
+[2018/09/21 15:07:23 __main__ INFO] - Epoch 130 Loss 0.3758 Accuracy 0.9276
+[2018/09/21 15:07:23 __main__ INFO] - Elapsed 2.73
+[2018/09/21 15:07:24 __main__ INFO] - Train 131
+[2018/09/21 15:07:24 __main__ INFO] - Epoch 131 Step 0/390 Loss 0.0007 (0.0007) Accuracy 1.0000 (1.0000)
+[2018/09/21 15:07:28 __main__ INFO] - Epoch 131 Step 100/390 Loss 0.0360 (0.0058) Accuracy 0.9844 (0.9983)
+[2018/09/21 15:07:32 __main__ INFO] - Epoch 131 Step 200/390 Loss 0.0052 (0.0053) Accuracy 1.0000 (0.9984)
+[2018/09/21 15:07:36 __main__ INFO] - Epoch 131 Step 300/390 Loss 0.0015 (0.0051) Accuracy 1.0000 (0.9984)
+[2018/09/21 15:07:40 __main__ INFO] - Elapsed 16.02
+[2018/09/21 15:07:40 __main__ INFO] - Test 131
+[2018/09/21 15:07:42 __main__ INFO] - Epoch 131 Loss 0.3750 Accuracy 0.9268
+[2018/09/21 15:07:42 __main__ INFO] - Elapsed 2.41
+[2018/09/21 15:07:43 __main__ INFO] - Train 132
+[2018/09/21 15:07:43 __main__ INFO] - Epoch 132 Step 0/390 Loss 0.0005 (0.0005) Accuracy 1.0000 (1.0000)
+[2018/09/21 15:07:47 __main__ INFO] - Epoch 132 Step 100/390 Loss 0.0158 (0.0040) Accuracy 0.9922 (0.9988)
+[2018/09/21 15:07:51 __main__ INFO] - Epoch 132 Step 200/390 Loss 0.0016 (0.0041) Accuracy 1.0000 (0.9989)
+[2018/09/21 15:07:55 __main__ INFO] - Epoch 132 Step 300/390 Loss 0.0013 (0.0039) Accuracy 1.0000 (0.9989)
+[2018/09/21 15:07:59 __main__ INFO] - Elapsed 15.99
+[2018/09/21 15:07:59 __main__ INFO] - Test 132
+[2018/09/21 15:08:01 __main__ INFO] - Epoch 132 Loss 0.3763 Accuracy 0.9270
+[2018/09/21 15:08:01 __main__ INFO] - Elapsed 2.47
+[2018/09/21 15:08:01 __main__ INFO] - Train 133
+[2018/09/21 15:08:02 __main__ INFO] - Epoch 133 Step 0/390 Loss 0.0007 (0.0007) Accuracy 1.0000 (1.0000)
+[2018/09/21 15:08:06 __main__ INFO] - Epoch 133 Step 100/390 Loss 0.0064 (0.0045) Accuracy 1.0000 (0.9987)
+[2018/09/21 15:08:10 __main__ INFO] - Epoch 133 Step 200/390 Loss 0.0369 (0.0043) Accuracy 0.9922 (0.9988)
+[2018/09/21 15:08:14 __main__ INFO] - Epoch 133 Step 300/390 Loss 0.0021 (0.0045) Accuracy 1.0000 (0.9987)
+slurmstepd: error: *** JOB 1390393 ON tiger-i23g15 CANCELLED AT 2018-09-21T15:08:16 ***
