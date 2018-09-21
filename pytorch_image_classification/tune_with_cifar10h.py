@@ -1,6 +1,8 @@
 #!/usr/bin/env python
 # coding: utf-8
 
+# python tune_with_cifar10h.py --arch resnet_preac
+
 import os
 import time
 import json
@@ -21,7 +23,9 @@ try:
 except Exception:
     is_tensorboard_available = False
 
-from dataloader import get_loader
+# from dataloader import get_loader
+from dataloader_c10h import get_loader
+
 from utils import (str2bool, load_model, save_checkpoint, create_optimizer,
                    AverageMeter, mixup, CrossEntropyLoss)
 
@@ -75,7 +79,7 @@ def parse_args():
     # model config (SENet)
     parser.add_argument('--se_reduction', type=int)
 
-    parser.add_argument('--outdir', type=str, required=True)
+    parser.add_argument('--outdir', type=str, required=False)
     parser.add_argument('--seed', type=int, default=17)
     parser.add_argument('--test_first', type=str2bool, default=True)
     parser.add_argument('--gpu', type=str, default='0')
@@ -115,7 +119,7 @@ def parse_args():
         '--dataset',
         type=str,
         default='CIFAR10',
-        choices=['CIFAR10', 'CIFAR100', 'MNIST', 'FashionMNIST'])
+        choices=['CIFAR10', 'CIFAR10H'])
     parser.add_argument('--num_workers', type=int, default=7)
     # cutout configuration
     parser.add_argument('--use_cutout', action='store_true', default=False)
@@ -142,6 +146,28 @@ def parse_args():
     config = get_config(args)
 
     return config
+
+
+
+
+
+
+
+
+
+config = parse_args()
+train_loader, test_loader = get_loader(config['data_config'])
+print(train_loader)
+exit()
+
+
+
+
+
+
+
+
+
 
 
 def train(epoch, model, optimizer, scheduler, criterion, train_loader, config,
