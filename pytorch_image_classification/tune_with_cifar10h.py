@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# python tune_with_cifar10h.py --arch resnet_preac
+# python tune_with_cifar10h.py --arch resnet_preact
 
 import os
 import time
@@ -146,7 +146,6 @@ def parse_args():
     config = get_config(args)
 
     return config
-
 
 
 

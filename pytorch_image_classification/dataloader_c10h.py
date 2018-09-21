@@ -16,21 +16,26 @@ import transforms
 class Dataset(object):
     def __init__(self, config):
         self.config = config
-        self.dataset_dir = os.path.join('~/.torchvision/datasets',
-                                        config['dataset'])
+        if config['dataset'] != 'CIFAR10H':
+            self.dataset_dir = os.path.join('~/.torchvision/datasets',
+                                            config['dataset'])
 
         self.use_cutout = (
             'use_cutout' in config.keys()) and config['use_cutout']
 
         self.use_random_erasing = ('use_random_erasing' in config.keys()
                                    ) and config['use_random_erasing']
-
-    def get_datasets(self):
-        train_dataset = getattr(torchvision.datasets, self.config['dataset'])(
-            self.dataset_dir, train=True, transform=self.train_transform, download=True)
-        test_dataset = getattr(torchvision.datasets, self.config['dataset'])(
-            self.dataset_dir, train=False, transform=self.test_transform, download=True)
-        return train_dataset, test_dataset
+        if config['dataset'] != 'CIFAR10H':
+            def get_datasets(self):
+                train_dataset = getattr(torchvision.datasets, self.config['dataset'])(
+                    self.dataset_dir, train=True, transform=self.train_transform, download=True)
+                test_dataset = getattr(torchvision.datasets, self.config['dataset'])(
+                    self.dataset_dir, train=False, transform=self.test_transform, download=True)
+                return train_dataset, test_dataset
+        else:
+            # USE CIFAR10H!
+            raise NotImplementedError
+    
 
     def _get_random_erasing_train_transform(self):
         raise NotImplementedError
@@ -211,10 +216,13 @@ def get_loader(config):
     use_gpu = config['use_gpu']
 
     dataset_name = config['dataset']
-    assert dataset_name in ['CIFAR10', 'CIFAR100', 'MNIST', 'FashionMNIST']
+    assert dataset_name in ['CIFAR10', 'CIFAR100', 'CIFAR10H'
+                            'MNIST', 'FashionMNIST']
 
     if dataset_name in ['CIFAR10', 'CIFAR100']:
-        dataset = CIFAR(config)
+        dataset = CIFAR(config)    
+    if dataset_name == 'CIFAR10H':
+        dataset = CIFARH(config)
     elif dataset_name == 'MNIST':
         dataset = MNIST(config)
     elif dataset_name == 'FashionMNIST':
