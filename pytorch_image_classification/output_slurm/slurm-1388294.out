@@ -1,0 +1,97 @@
+mkdir: cannot create directory ‘/scratch/ruairidh’: File exists
+mkdir: cannot create directory ‘/scratch/ruairidh/results’: File exists
+[2018/09/20 22:44:24 __main__ INFO] - {
+  "model_config": {
+    "arch": "vgg",
+    "input_shape": [
+      1,
+      3,
+      32,
+      32
+    ],
+    "n_classes": 10,
+    "n_channels": [
+      64,
+      128,
+      256,
+      512,
+      512
+    ],
+    "n_layers": [
+      2,
+      2,
+      3,
+      3,
+      3
+    ],
+    "use_bn": true
+  },
+  "optim_config": {
+    "epochs": 160,
+    "batch_size": 128,
+    "optimizer": "sgd",
+    "base_lr": 0.1,
+    "weight_decay": 0.0001,
+    "momentum": 0.9,
+    "nesterov": true,
+    "scheduler": "multistep",
+    "milestones": [
+      80,
+      120
+    ],
+    "lr_decay": 0.1
+  },
+  "data_config": {
+    "dataset": "CIFAR10",
+    "n_classes": 10,
+    "num_workers": 7,
+    "batch_size": 128,
+    "use_cutout": false,
+    "use_random_erasing": false,
+    "use_mixup": false,
+    "use_gpu": true
+  },
+  "run_config": {
+    "outdir": "/scratch/ruairidh/results/vgg_15_BN_64/00",
+    "seed": 7,
+    "test_first": true,
+    "gpu": "0",
+    "tensorboard": false,
+    "tensorboard_train_images": false,
+    "tensorboard_test_images": false,
+    "tensorboard_model_params": false,
+    "use_gpu": true
+  },
+  "env_info": {
+    "pytorch_version": "0.4.1",
+    "cuda_version": "9.2.148",
+    "cudnn_version": 7104,
+    "gpu0": {
+      "name": "Tesla P100-PCIE-16GB",
+      "capability": "6.0"
+    }
+  }
+}
+[2018/09/20 22:44:26 __main__ INFO] - Loading model...
+[2018/09/20 22:44:26 __main__ INFO] - n_params: 14728266
+[2018/09/20 22:44:29 __main__ INFO] - Done
+/home/ruairidh/miniconda3/envs/pytorch_env/lib/python3.7/site-packages/torch/nn/functional.py:52: UserWarning: size_average and reduce args will be deprecated, please use reduction='elementwise_mean' instead.
+  warnings.warn(warning.format(ret))
+[2018/09/20 22:44:29 __main__ INFO] - Test 0
+Files already downloaded and verified
+Files already downloaded and verified
+[2018/09/20 22:44:32 __main__ INFO] - Epoch 0 Loss 2.3026 Accuracy 0.1001
+[2018/09/20 22:44:32 __main__ INFO] - Elapsed 3.13
+[2018/09/20 22:44:32 __main__ INFO] - Train 1
+[2018/09/20 22:44:33 __main__ INFO] - Epoch 1 Step 0/390 Loss 2.3366 (2.3366) Accuracy 0.1172 (0.1172)
+[2018/09/20 22:44:37 __main__ INFO] - Epoch 1 Step 100/390 Loss 1.8325 (2.1291) Accuracy 0.2500 (0.2371)
+[2018/09/20 22:44:42 __main__ INFO] - Epoch 1 Step 200/390 Loss 1.5771 (1.9276) Accuracy 0.3281 (0.2900)
+[2018/09/20 22:44:46 __main__ INFO] - Epoch 1 Step 300/390 Loss 1.4992 (1.8153) Accuracy 0.3984 (0.3266)
+[2018/09/20 22:44:50 __main__ INFO] - Elapsed 18.05
+[2018/09/20 22:44:50 __main__ INFO] - Test 1
+[2018/09/20 22:44:53 __main__ INFO] - Epoch 1 Loss 1.4231 Accuracy 0.4817
+[2018/09/20 22:44:53 __main__ INFO] - Elapsed 2.71
+[2018/09/20 22:44:53 __main__ INFO] - Train 2
+slurmstepd: error: Job 1388294 exceeded memory limit (9588416 > 4096000), being killed
+slurmstepd: error: Exceeded job memory limit
+slurmstepd: error: *** JOB 1388294 ON tiger-i23g15 CANCELLED AT 2018-09-20T22:44:53 ***
