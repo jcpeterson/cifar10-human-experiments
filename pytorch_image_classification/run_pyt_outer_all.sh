@@ -2,15 +2,20 @@
 echo 'outer script'
 
 
+declare -A models=( [vgg]=vgg_15_BN_64 [res_b]=resnet_basic_110)
+declare -A times=( [vgg]=350 [res_b]=350 )
+declare -A params=([vgg]='--arch vgg --seed/ 7' [res_b]='--arch resnet --depth 110 --block_type basic --seed 7')
+echo 'declared dicts'
 
-declare -A times=( [4_1]=4_2 [5_1]=5_2 [6_1]=6_2 [7_1]=7_2 [8_1]=8_2 )
+for token in "${!models[@]}"
+  do
+  echo ${token}
+  model=${models[${token}]}   # need curly braces?
+  time=${times[${token}]}
+  python_args=${params[${token}]}
 
-for i in "${!pairs[@]}"; do
-  j=${pairs[$i]}
-
-time=60
-model=vgg_15_BN_64
-log_file=${model}.out
-out_dir=${model}
-python_args='--arch=vgg'
-sbatch --time=${time} --output=${log_file} --export=out_dir=${out_dir},python_args=${python_args},log_file=$log_file run_pyt_inner.sh
+  log_file=${model}.out
+  out_dir=${model}
+  sbatch --time=${time} --output=${log_file} --export=out_dir=${out_dir},python_args=${python_args},log_file=${log_file} run_pyt_inner.sh
+  echo 'done outer'
+  done
