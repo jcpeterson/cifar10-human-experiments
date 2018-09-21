@@ -1,0 +1,39 @@
+vgg_15_BN_64
+
+--arch vgg --seed 7 
+
+350
+
+resnet_basic_110
+--arch resnet --depth 110 --block_type basic --seed 7
+
+350
+
+resnet_preact_bottleneck_164
+--arch resnet_preact --depth 164 --block_type bottleneck --seed 7 
+
+350
+
+wrn_28_10
+--arch wrn --depth 28 --widening_factor 10 --seed 7
+1430
+
+densenet_BC_100_12
+--arch densenet --depth 100 --block_type bottleneck --growth_rate 12 --compression_rate 0.5 --batch_size 32 --base_lr 0.05 --seed 7 
+1430
+
+pyramidnet_basic_110_270
+--arch pyramidnet --depth 110 --block_type basic --pyramid_alpha 270 --seed 7 
+4310
+
+resnext_29_8x64d
+--arch resnext --depth 29 --cardinality 8 --base_channels 64 --batch_size 64 --base_lr 0.05 --seed 7 
+4310
+
+wrn_28_10_cutout16
+--arch wrn --depth 28 --epochs 200 --scheduler cosine --base_lr 0.1 --batch_size 64 --seed 17 --use_cutout --cutout_size 16
+4310
+
+shake_shake_26_2x64d_SSI_cutout16
+--arch shake_shake --depth 26 --base_channels 64 --epochs 300 --scheduler cosine --base_lr 0.1 --batch_size 64 --seed 17 --use_cutout --cutout_size 16
+8630

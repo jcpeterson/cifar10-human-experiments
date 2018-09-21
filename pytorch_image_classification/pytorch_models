@@ -1,0 +1,36 @@
+python -u main.py --arch vgg --seed 7 --outdir results/vgg_15_BN_64/00
+80
+350
+
+python -u main.py --arch resnet --depth 110 --block_type basic --seed 7 --outdir results/resnet_basic_110/00
+186
+350
+
+python -u main.py --arch resnet_preact --depth 164 --block_type bottleneck --seed 7 --outdir results/resnet_preact_bottleneck_164/00
+241
+350
+
+python -u main.py --arch wrn --depth 28 --widening_factor 10 --seed 7 --outdir results/wrn_28_10/00
+970
+1430
+
+python -u main.py --arch densenet --depth 100 --block_type bottleneck --growth_rate 12 --compression_rate 0.5 --batch_size 32 --base_lr 0.05 --seed 7 --outdir results/densenet_BC_100_12/00
+920
+1430
+
+python -u main.py --arch pyramidnet --depth 110 --block_type basic --pyramid_alpha 270 --seed 7 --outdir results/pyramidnet_basic_110_270/00
+1452
+4310
+
+python -u main.py --arch resnext --depth 29 --cardinality 8 --base_channels 64 --batch_size 64 --base_lr 0.05 --seed 7 --outdir results/resnext_29_8x64d/00
+2570
+4310
+
+
+python -u main.py --arch wrn --depth 28 --outdir results/wrn_28_10_cutout16 --epochs 200 --scheduler cosine --base_lr 0.1 --batch_size 64 --seed 17 --use_cutout --cutout_size 16
+983
+4310
+
+python -u main.py --arch shake_shake --depth 26 --base_channels 64 --outdir results/shake_shake_26_2x64d_SSI_cutout16 --epochs 300 --scheduler cosine --base_lr 0.1 --batch_size 64 --seed 17 --use_cutout --cutout_size 16
+4735
+8630
