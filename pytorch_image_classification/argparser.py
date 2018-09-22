@@ -257,6 +257,9 @@ def _cleanup_args(args):
     if args.dataset == 'CIFAR10':
         args.input_shape = (1, 3, 32, 32)
         args.n_classes = 10
+    elif args.dataset == 'CIFAR10H':
+        args.input_shape = (1, 3, 32, 32)
+        args.n_classes = 10
     elif args.dataset == 'CIFAR100':
         args.input_shape = (1, 3, 32, 32)
         args.n_classes = 100

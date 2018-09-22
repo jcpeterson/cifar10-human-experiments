@@ -156,7 +156,7 @@ train_loader, test_loader = get_loader(config['data_config'])
 
 for step, (data, targets) in enumerate(train_loader):
     print(data.shape)
-    print(targets.shape)
+    print(targets)
     exit()
 
 exit()
@@ -218,10 +218,6 @@ def train(epoch, model, optimizer, scheduler, criterion, train_loader, config,
 
         loss_meter.update(loss_, num)
         accuracy_meter.update(accuracy, num)
-
-        if run_config['tensorboard']:
-            writer.add_scalar('Train/RunningLoss', loss_, global_step)
-            writer.add_scalar('Train/RunningAccuracy', accuracy, global_step)
 
         if step % 100 == 0:
             logger.info('Epoch {} Step {}/{} '
