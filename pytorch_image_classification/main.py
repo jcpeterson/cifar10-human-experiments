@@ -376,6 +376,16 @@ def main():
         else:
             print("=> no checkpoint found at '{}'".format(run_config['resume']))
 
+    if start_epoch != 1:
+        for epoch in range(1, start_epoch + 1)
+            for step, (data, targets) in enumerate(train_loader):
+                global_step += 1
+
+                if optim_config['scheduler'] == 'multistep':
+                    scheduler.step(epoch - 1)
+                elif optim_config['scheduler'] == 'cosine':
+                    scheduler.step()
+
     # run test before start training
     if run_config['test_first']:
         test(0, model, test_criterion, test_loader, run_config, writer)
