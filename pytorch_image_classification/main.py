@@ -135,6 +135,9 @@ def parse_args():
     parser.add_argument('--use_mixup', action='store_true', default=False)
     parser.add_argument('--mixup_alpha', type=float, default=1)
 
+    # previous model weights to load if any
+    parser.add_argument('--resume', type=str)
+
     args = parser.parse_args()
     if not is_tensorboard_available:
         args.tensorboard = False
@@ -357,6 +360,22 @@ def main():
     optim_config['steps_per_epoch'] = len(train_loader)
     optimizer, scheduler = create_optimizer(model.parameters(), optim_config)
 
+    start_epoch = 1
+
+    # load pretrained weights if given
+    if run_config['resume']:
+        if os.path.isfile(run_config['resume']):
+            print("=> loading checkpoint '{}'".format(run_config['resume']))
+            checkpoint = torch.load(run_config['resume'])
+            start_epoch = checkpoint['epoch']
+            # best_prec1 = checkpoint['best_prec1']
+            model.load_state_dict(checkpoint['state_dict'])
+            optimizer.load_state_dict(checkpoint['optimizer'])
+            print("=> loaded checkpoint '{}' (epoch {})"
+                  .format(run_config['resume'], checkpoint['epoch']))
+        else:
+            print("=> no checkpoint found at '{}'".format(run_config['resume']))
+
     # run test before start training
     if run_config['test_first']:
         test(0, model, test_criterion, test_loader, run_config, writer)
@@ -370,7 +389,7 @@ def main():
         'best_accuracy': 0,
         'best_epoch': 0,
     }
-    for epoch in range(1, optim_config['epochs'] + 1):
+    for epoch in range(start_epoch, optim_config['epochs'] + 1):
         # train
         train(epoch, model, optimizer, scheduler, train_criterion,
               train_loader, config, writer)
