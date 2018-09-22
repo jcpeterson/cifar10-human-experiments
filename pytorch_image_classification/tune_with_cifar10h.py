@@ -2,7 +2,7 @@
 # coding: utf-8
 
 # example for testing this script
-# python tune_with_cifar10h.py --arch vgg --config tmp_reference_model/config.json --resume tmp_reference_model/model_state_160.pth --gpu 0
+# python tune_with_cifar10h.py --dataset CIFAR10H --arch vgg --config tmp_reference_model/config.json --resume tmp_reference_model/model_state_160.pth --gpu 0
 
 import os
 import time
@@ -28,7 +28,7 @@ except Exception:
 from dataloader_c10h import get_loader
 
 from utils import (str2bool, load_model, save_checkpoint, create_optimizer,
-                   AverageMeter, mixup, CrossEntropyLoss)
+                   AverageMeter, mixup, CrossEntropyLoss, onehot)
 
 from rutils_run import save_checkpoint_epoch
 
@@ -118,7 +118,7 @@ def parse_args():
     parser.add_argument(
         '--dataset',
         type=str,
-        default='CIFAR10H',
+        default='CIFAR10',
         choices=['CIFAR10', 'CIFAR10H'])
     parser.add_argument('--num_workers', type=int, default=7)
     # cutout configuration
@@ -152,7 +152,7 @@ def parse_args():
 
 
 def train(epoch, model, optimizer, scheduler, criterion, train_loader, config,
-          writer):
+          writer, human_tune=False):
     global global_step
 
     run_config = config['run_config']
@@ -206,12 +206,12 @@ def train(epoch, model, optimizer, scheduler, criterion, train_loader, config,
         _, preds = torch.max(outputs, dim=1)
 
         loss_ = loss.item()
-        if data_config['use_mixup']:
+        if human_tune or data_config['use_mixup']:
             _, targets = targets.max(dim=1)
         correct_ = preds.eq(targets).sum().item()
         num = data.size(0)
 
-        accuracy = correct_ / num
+        accuracy = correct_ / float(num)
 
         loss_meter.update(loss_, num)
         accuracy_meter.update(accuracy, num)
@@ -241,15 +241,27 @@ def train(epoch, model, optimizer, scheduler, criterion, train_loader, config,
         writer.add_scalar('Train/Accuracy', accuracy_meter.avg, epoch)
         writer.add_scalar('Train/Time', elapsed, epoch)
 
-def test(epoch, model, criterion, test_loader, run_config, writer):
-    logger.info('Test {}'.format(epoch))
+def test(epoch, model, criterion, test_loader, run_config, writer, 
+        human_tune=False):
+    logger.info('TEST {}'.format(epoch))
 
     model.eval()
 
     loss_meter = AverageMeter()
     correct_meter = AverageMeter()
+    if human_tune:
+        c10h_c10_loss_meter = AverageMeter()
+        c10h_c10_correct_meter = AverageMeter()
     start = time.time()
-    for step, (data, targets) in enumerate(test_loader):
+
+    for step, batch_data in enumerate(test_loader):
+
+        if human_tune:
+            data, targets, c10h_c10_targets = batch_data
+            c10h_c10_targets = onehot(c10h_c10_targets, 10)
+        else:
+            data, targets = batch_data
+
         if run_config['tensorboard_test_images']:
             if epoch == 0 and step == 0:
                 image = torchvision.utils.make_grid(
@@ -259,24 +271,38 @@ def test(epoch, model, criterion, test_loader, run_config, writer):
         if run_config['use_gpu']:
             data = data.cuda()
             targets = targets.cuda()
+            if human_tune: 
+                c10h_c10_targets = c10h_c10_targets.cuda()
 
         with torch.no_grad():
             outputs = model(data)
         loss = criterion(outputs, targets)
+        if human_tune:
+            loss_c10h_c10 = criterion(outputs, c10h_c10_targets)
 
         _, preds = torch.max(outputs, dim=1)
+        if human_tune: 
+            _, targets = targets.max(dim=1)
+            _, c10h_c10_targets = c10h_c10_targets.max(dim=1)
 
-        loss_ = loss.item()
-        correct_ = preds.eq(targets).sum().item()
         num = data.size(0)
+        correct_ = preds.eq(targets).sum().item()
+        c10h_c10_correct_ = preds.eq(c10h_c10_targets).sum().item()
 
-        loss_meter.update(loss_, num)
+        loss_meter.update(loss.item(), num)
+        c10h_c10_loss_meter.update(loss_c10h_c10.item(), num)
         correct_meter.update(correct_, 1)
+        c10h_c10_correct_meter.update(c10h_c10_correct_, 1)
 
     accuracy = correct_meter.sum / float(len(test_loader.dataset))
+    c10h_c10_accuracy = c10h_c10_correct_meter.sum / float(len(test_loader.dataset))
 
-    logger.info('Epoch {} Loss {:.4f} Accuracy {:.4f}'.format(
-        epoch, loss_meter.avg, accuracy))
+    if human_tune:
+        logger.info('- epoch {}, c10h {:.4f} (acc: {:.4f}), c10h_c10 {:.4f} (acc: {:.4f})'.format(
+            epoch, loss_meter.avg, accuracy, c10h_c10_loss_meter.avg, c10h_c10_accuracy))
+    else:
+        logger.info('Epoch {} Loss {:.4f} Accuracy {:.4f}'.format(
+            epoch, loss_meter.avg, accuracy))
 
     elapsed = time.time() - start
     logger.info('Elapsed {:.2f}'.format(elapsed))
@@ -352,11 +378,12 @@ def main(human_tune=True, no_output=False):
         model.cuda()
     logger.info('Done')
 
-    if config['data_config']['use_mixup']:
+    if human_tune or config['data_config']['use_mixup']:
         train_criterion = CrossEntropyLoss(size_average=True)
+        test_criterion = CrossEntropyLoss(size_average=True)
     else:
         train_criterion = nn.CrossEntropyLoss(size_average=True)
-    test_criterion = nn.CrossEntropyLoss(size_average=True)
+        test_criterion = nn.CrossEntropyLoss(size_average=True)
 
     # create optimizer
     optim_config['steps_per_epoch'] = len(train_loader)
@@ -382,7 +409,8 @@ def main(human_tune=True, no_output=False):
     else:
         print('Test accuracy of untrained model ---------------------')
     if run_config['test_first']:
-        test(0, model, test_criterion, test_loader, run_config, writer)
+        test(0, model, test_criterion, test_loader, run_config, writer,
+            human_tune=human_tune)
 
     state = {
         'config': config,
@@ -394,22 +422,21 @@ def main(human_tune=True, no_output=False):
         'best_epoch': 0,
     }
 
-    if not human_tune:
-        for epoch in range(1, optim_config['epochs'] + 1):
-            # train
-            train(epoch, model, optimizer, scheduler, train_criterion,
-                  train_loader, config, writer)
+    for epoch in range(1, optim_config['epochs'] + 1):
+        # train
+        train(epoch, model, optimizer, scheduler, train_criterion,
+              train_loader, config, writer, human_tune=human_tune)
 
-            # test
-            accuracy = test(epoch, model, test_criterion, test_loader, run_config,
-                            writer)
+        # test
+        accuracy = test(epoch, model, test_criterion, test_loader, run_config,
+                        writer, human_tune=human_tune)
 
-            # update state dictionary
-            state = update_state(state, epoch, accuracy, model, optimizer)
-            
-            if not no_output:
-                # save model
-                save_checkpoint(state, outdir)
+        # update state dictionary
+        state = update_state(state, epoch, accuracy, model, optimizer)
+        
+        if not no_output:
+            # save model
+            save_checkpoint(state, outdir)
 
     if not no_output and run_config['tensorboard']:
         outpath = os.path.join(outdir, 'all_scalars.json')
