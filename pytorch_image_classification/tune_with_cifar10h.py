@@ -118,7 +118,7 @@ def parse_args():
     parser.add_argument(
         '--dataset',
         type=str,
-        default='CIFAR10',
+        default='CIFAR10H',
         choices=['CIFAR10', 'CIFAR10H'])
     parser.add_argument('--num_workers', type=int, default=7)
     # cutout configuration
@@ -151,18 +151,15 @@ def parse_args():
 
 
 
-
-
-
 config = parse_args()
 train_loader, test_loader = get_loader(config['data_config'])
-print(train_loader)
+
+for step, (data, targets) in enumerate(train_loader):
+    print(data.shape)
+    print(targets.shape)
+    exit()
+
 exit()
-
-
-
-
-
 
 
 
@@ -192,23 +189,10 @@ def train(epoch, model, optimizer, scheduler, criterion, train_loader, config,
             data, targets = mixup(data, targets, data_config['mixup_alpha'],
                                   data_config['n_classes'])
 
-        if run_config['tensorboard_train_images']:
-            if step == 0:
-                image = torchvision.utils.make_grid(
-                    data, normalize=True, scale_each=True)
-                writer.add_image('Train/Image', image, epoch)
-
         if optim_config['scheduler'] == 'multistep':
             scheduler.step(epoch - 1)
         elif optim_config['scheduler'] == 'cosine':
             scheduler.step()
-
-        if run_config['tensorboard']:
-            if optim_config['scheduler'] != 'none':
-                lr = scheduler.get_lr()[0]
-            else:
-                lr = optim_config['base_lr']
-            writer.add_scalar('Train/LearningRate', lr, global_step)
 
         if run_config['use_gpu']:
             data = data.cuda()
@@ -255,11 +239,6 @@ def train(epoch, model, optimizer, scheduler, criterion, train_loader, config,
     elapsed = time.time() - start
     logger.info('Elapsed {:.2f}'.format(elapsed))
 
-    if run_config['tensorboard']:
-        writer.add_scalar('Train/Loss', loss_meter.avg, epoch)
-        writer.add_scalar('Train/Accuracy', accuracy_meter.avg, epoch)
-        writer.add_scalar('Train/Time', elapsed, epoch)
-
 
 def test(epoch, model, criterion, test_loader, run_config, writer):
     logger.info('Test {}'.format(epoch))
@@ -270,11 +249,6 @@ def test(epoch, model, criterion, test_loader, run_config, writer):
     correct_meter = AverageMeter()
     start = time.time()
     for step, (data, targets) in enumerate(test_loader):
-        if run_config['tensorboard_test_images']:
-            if epoch == 0 and step == 0:
-                image = torchvision.utils.make_grid(
-                    data, normalize=True, scale_each=True)
-                writer.add_image('Test/Image', image, epoch)
 
         if run_config['use_gpu']:
             data = data.cuda()
@@ -300,16 +274,6 @@ def test(epoch, model, criterion, test_loader, run_config, writer):
 
     elapsed = time.time() - start
     logger.info('Elapsed {:.2f}'.format(elapsed))
-
-    if run_config['tensorboard']:
-        if epoch > 0:
-            writer.add_scalar('Test/Loss', loss_meter.avg, epoch)
-        writer.add_scalar('Test/Accuracy', accuracy, epoch)
-        writer.add_scalar('Test/Time', elapsed, epoch)
-
-    if run_config['tensorboard_model_params']:
-        for name, param in model.named_parameters():
-            writer.add_histogram(name, param, global_step)
 
     return accuracy
 
