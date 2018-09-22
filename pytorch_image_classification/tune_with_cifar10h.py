@@ -139,6 +139,9 @@ def parse_args():
     parser.add_argument('--use_mixup', action='store_true', default=False)
     parser.add_argument('--mixup_alpha', type=float, default=1)
 
+    # previous model weights to load if any
+    parser.add_argument('--resume', type=str)
+
     args = parser.parse_args()
     if not is_tensorboard_available:
         args.tensorboard = False
@@ -148,18 +151,50 @@ def parse_args():
     return config
 
 
+# checkpoint = torch.load('tmp_reference_model/model_best_state.pth')
+# print(checkpoint.keys())
+# print(checkpoint['epoch'])
+# print(checkpoint['best_epoch'])
+# print(checkpoint['accuracy'])
+# exit()
 
 
 
-config = parse_args()
-train_loader, test_loader = get_loader(config['data_config'])
 
-for step, (data, targets) in enumerate(train_loader):
-    print(data.shape)
-    print(targets)
-    exit()
+# # process config
+# config = parse_args()
 
-exit()
+# # load data
+# model = load_model(config['model_config'])
+# if run_config['use_gpu']:
+#     model = nn.DataParallel(model)
+#     model.cuda()
+
+# # set up loss function
+# if config['data_config']['use_mixup']:
+#     train_criterion = CrossEntropyLoss(size_average=True)
+# else:
+#     train_criterion = nn.CrossEntropyLoss(size_average=True)
+# test_criterion = nn.CrossEntropyLoss(size_average=True)
+
+# # prepare train/test dataloaders
+# train_loader, test_loader = get_loader(config['data_config'])
+
+# # create optimizer
+# optim_config['steps_per_epoch'] = len(train_loader)
+# optimizer, scheduler = create_optimizer(model.parameters(), optim_config)
+
+# # run test before start training
+# if run_config['test_first']:
+#     test(0, model, test_criterion, test_loader, run_config, writer)
+
+# # for step, (data, targets) in enumerate(train_loader):
+# #     print(data.shape)
+# #     print(targets)
+# #     exit()
+
+# exit()
+
 
 
 
@@ -171,7 +206,6 @@ def train(epoch, model, optimizer, scheduler, criterion, train_loader, config,
     global global_step
 
     run_config = config['run_config']
-    
     optim_config = config['optim_config']
     data_config = config['data_config']
 
@@ -189,10 +223,23 @@ def train(epoch, model, optimizer, scheduler, criterion, train_loader, config,
             data, targets = mixup(data, targets, data_config['mixup_alpha'],
                                   data_config['n_classes'])
 
+        if run_config['tensorboard_train_images']:
+            if step == 0:
+                image = torchvision.utils.make_grid(
+                    data, normalize=True, scale_each=True)
+                writer.add_image('Train/Image', image, epoch)
+
         if optim_config['scheduler'] == 'multistep':
             scheduler.step(epoch - 1)
         elif optim_config['scheduler'] == 'cosine':
             scheduler.step()
+
+        if run_config['tensorboard']:
+            if optim_config['scheduler'] != 'none':
+                lr = scheduler.get_lr()[0]
+            else:
+                lr = optim_config['base_lr']
+            writer.add_scalar('Train/LearningRate', lr, global_step)
 
         if run_config['use_gpu']:
             data = data.cuda()
@@ -219,6 +266,10 @@ def train(epoch, model, optimizer, scheduler, criterion, train_loader, config,
         loss_meter.update(loss_, num)
         accuracy_meter.update(accuracy, num)
 
+        if run_config['tensorboard']:
+            writer.add_scalar('Train/RunningLoss', loss_, global_step)
+            writer.add_scalar('Train/RunningAccuracy', accuracy, global_step)
+
         if step % 100 == 0:
             logger.info('Epoch {} Step {}/{} '
                         'Loss {:.4f} ({:.4f}) '
@@ -235,6 +286,11 @@ def train(epoch, model, optimizer, scheduler, criterion, train_loader, config,
     elapsed = time.time() - start
     logger.info('Elapsed {:.2f}'.format(elapsed))
 
+    if run_config['tensorboard']:
+        writer.add_scalar('Train/Loss', loss_meter.avg, epoch)
+        writer.add_scalar('Train/Accuracy', accuracy_meter.avg, epoch)
+        writer.add_scalar('Train/Time', elapsed, epoch)
+
 
 def test(epoch, model, criterion, test_loader, run_config, writer):
     logger.info('Test {}'.format(epoch))
@@ -245,6 +301,11 @@ def test(epoch, model, criterion, test_loader, run_config, writer):
     correct_meter = AverageMeter()
     start = time.time()
     for step, (data, targets) in enumerate(test_loader):
+        if run_config['tensorboard_test_images']:
+            if epoch == 0 and step == 0:
+                image = torchvision.utils.make_grid(
+                    data, normalize=True, scale_each=True)
+                writer.add_image('Test/Image', image, epoch)
 
         if run_config['use_gpu']:
             data = data.cuda()
@@ -270,6 +331,16 @@ def test(epoch, model, criterion, test_loader, run_config, writer):
 
     elapsed = time.time() - start
     logger.info('Elapsed {:.2f}'.format(elapsed))
+
+    if run_config['tensorboard']:
+        if epoch > 0:
+            writer.add_scalar('Test/Loss', loss_meter.avg, epoch)
+        writer.add_scalar('Test/Accuracy', accuracy, epoch)
+        writer.add_scalar('Test/Time', elapsed, epoch)
+
+    if run_config['tensorboard_model_params']:
+        for name, param in model.named_parameters():
+            writer.add_histogram(name, param, global_step)
 
     return accuracy
 
@@ -310,7 +381,6 @@ def main():
 
     # create output directory
     outdir = run_config['outdir']
-    print('outdir: ', outdir)
     if not os.path.exists(outdir):
         os.makedirs(outdir)
 
@@ -366,15 +436,100 @@ def main():
 
         # update state dictionary
         state = update_state(state, epoch, accuracy, model, optimizer)
-        print('outdir 2: ', outdir)
+
         # save model
         save_checkpoint(state, outdir)
-        save_checkpoint_epoch(state, epoch, outdir)
 
     if run_config['tensorboard']:
         outpath = os.path.join(outdir, 'all_scalars.json')
         writer.export_scalars_to_json(outpath)
 
 
+def tune():
+    # parse command line argument and generate config dictionary
+    config = parse_args()
+    logger.info(json.dumps(config, indent=2))
+
+    run_config = config['run_config']
+    optim_config = config['optim_config']
+
+    # TensorBoard SummaryWriter
+    if run_config['tensorboard']:
+        writer = SummaryWriter()
+    else:
+        writer = None
+
+    # set random seed
+    seed = run_config['seed']
+    torch.manual_seed(seed)
+    np.random.seed(seed)
+    random.seed(seed)
+
+    # # create output directory
+    # outdir = run_config['outdir']
+    # if not os.path.exists(outdir):
+    #     os.makedirs(outdir)
+
+    # # save config as json file in output directory
+    # outpath = os.path.join(outdir, 'config.json')
+    # with open(outpath, 'w') as fout:
+    #     json.dump(config, fout, indent=2)
+
+    # load data loaders
+    train_loader, test_loader = get_loader(config['data_config'])
+
+    # load model
+    logger.info('Loading model...')
+    model = load_model(config['model_config'])
+    n_params = sum([param.view(-1).size()[0] for param in model.parameters()])
+    logger.info('n_params: {}'.format(n_params))
+    if run_config['use_gpu']:
+        model = nn.DataParallel(model)
+        model.cuda()
+    logger.info('Done')
+
+    if config['data_config']['use_mixup']:
+        train_criterion = CrossEntropyLoss(size_average=True)
+    else:
+        train_criterion = nn.CrossEntropyLoss(size_average=True)
+    test_criterion = nn.CrossEntropyLoss(size_average=True)
+
+    # create optimizer
+    optim_config['steps_per_epoch'] = len(train_loader)
+    optimizer, scheduler = create_optimizer(model.parameters(), optim_config)
+
+    # run test before start training
+    if run_config['test_first']:
+        test(-1, model, test_criterion, test_loader, run_config, writer)
+
+    # load pretrained weights if given
+    if run_config['resume']:
+        if os.path.isfile(run_config['resume']):
+            print("=> loading checkpoint '{}'".format(run_config['resume']))
+            # checkpoint = torch.load(run_config['resume'])
+            # args.start_epoch = checkpoint['epoch']
+            # best_prec1 = checkpoint['best_prec1']
+            checkpoint = torch.load(run_config['resume'])
+            # try:
+            # checkpoint = torch.load(run_config['resume'],
+            #     map_location='cuda:0')
+                # map_location=lambda storage, loc: storage)
+            model.load_state_dict(checkpoint['state_dict'])
+            print('pretrained weights loaded!')
+            # except:
+            # checkpoint = torch.load(run_config['resume'], 
+            #     map_location={"cpu" : "cuda:0"})
+            # model.load_state_dict(checkpoint['state_dict'])
+            # optimizer.load_state_dict(checkpoint['optimizer'])
+            print("=> loaded checkpoint '{}' (epoch {})"
+                  .format(run_config['resume'], checkpoint['epoch']))
+        else:
+            print("=> no checkpoint found at '{}'".format(run_config['resume']))
+
+    # run test before start training
+    if run_config['test_first']:
+        test(0, model, test_criterion, test_loader, run_config, writer)
+
 if __name__ == '__main__':
-    main()
+    tune()
+    # main()
