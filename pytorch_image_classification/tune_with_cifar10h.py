@@ -1,7 +1,8 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# python tune_with_cifar10h.py --arch resnet_preact
+# example for testing this script
+# python tune_with_cifar10h.py --arch vgg --config tmp_reference_model/config.json --resume tmp_reference_model/model_state_160.pth --gpu 0
 
 import os
 import time
@@ -82,8 +83,7 @@ def parse_args():
     parser.add_argument('--outdir', type=str, required=False)
     parser.add_argument('--seed', type=int, default=17)
     parser.add_argument('--test_first', type=str2bool, default=True)
-    parser.add_argument('--gpu', type=str, default='0')
-#off    parser.add_argument('--gpu', type=str, default='-1')
+    parser.add_argument('--gpu', type=str, default='0') # -1 for CPU
 
     # TensorBoard configuration
     parser.add_argument(
@@ -149,56 +149,6 @@ def parse_args():
     config = get_config(args)
 
     return config
-
-
-# checkpoint = torch.load('tmp_reference_model/model_best_state.pth')
-# print(checkpoint.keys())
-# print(checkpoint['epoch'])
-# print(checkpoint['best_epoch'])
-# print(checkpoint['accuracy'])
-# exit()
-
-
-
-
-# # process config
-# config = parse_args()
-
-# # load data
-# model = load_model(config['model_config'])
-# if run_config['use_gpu']:
-#     model = nn.DataParallel(model)
-#     model.cuda()
-
-# # set up loss function
-# if config['data_config']['use_mixup']:
-#     train_criterion = CrossEntropyLoss(size_average=True)
-# else:
-#     train_criterion = nn.CrossEntropyLoss(size_average=True)
-# test_criterion = nn.CrossEntropyLoss(size_average=True)
-
-# # prepare train/test dataloaders
-# train_loader, test_loader = get_loader(config['data_config'])
-
-# # create optimizer
-# optim_config['steps_per_epoch'] = len(train_loader)
-# optimizer, scheduler = create_optimizer(model.parameters(), optim_config)
-
-# # run test before start training
-# if run_config['test_first']:
-#     test(0, model, test_criterion, test_loader, run_config, writer)
-
-# # for step, (data, targets) in enumerate(train_loader):
-# #     print(data.shape)
-# #     print(targets)
-# #     exit()
-
-# exit()
-
-
-
-
-
 
 
 def train(epoch, model, optimizer, scheduler, criterion, train_loader, config,
@@ -291,7 +241,6 @@ def train(epoch, model, optimizer, scheduler, criterion, train_loader, config,
         writer.add_scalar('Train/Accuracy', accuracy_meter.avg, epoch)
         writer.add_scalar('Train/Time', elapsed, epoch)
 
-
 def test(epoch, model, criterion, test_loader, run_config, writer):
     logger.info('Test {}'.format(epoch))
 
@@ -324,7 +273,7 @@ def test(epoch, model, criterion, test_loader, run_config, writer):
         loss_meter.update(loss_, num)
         correct_meter.update(correct_, 1)
 
-    accuracy = correct_meter.sum / len(test_loader.dataset)
+    accuracy = correct_meter.sum / float(len(test_loader.dataset))
 
     logger.info('Epoch {} Loss {:.4f} Accuracy {:.4f}'.format(
         epoch, loss_meter.avg, accuracy))
@@ -359,7 +308,7 @@ def update_state(state, epoch, accuracy, model, optimizer):
     return state
 
 
-def main():
+def main(human_tune=True, no_output=False):
     # parse command line argument and generate config dictionary
     config = parse_args()
     logger.info(json.dumps(config, indent=2))
@@ -379,15 +328,16 @@ def main():
     np.random.seed(seed)
     random.seed(seed)
 
-    # create output directory
-    outdir = run_config['outdir']
-    if not os.path.exists(outdir):
-        os.makedirs(outdir)
+    if not no_output:
+        # create output directory
+        outdir = run_config['outdir']
+        if not os.path.exists(outdir):
+            os.makedirs(outdir)
 
-    # save config as json file in output directory
-    outpath = os.path.join(outdir, 'config.json')
-    with open(outpath, 'w') as fout:
-        json.dump(config, fout, indent=2)
+        # save config as json file in output directory
+        outpath = os.path.join(outdir, 'config.json')
+        with open(outpath, 'w') as fout:
+            json.dump(config, fout, indent=2)
 
     # load data loaders
     train_loader, test_loader = get_loader(config['data_config'])
@@ -412,7 +362,25 @@ def main():
     optim_config['steps_per_epoch'] = len(train_loader)
     optimizer, scheduler = create_optimizer(model.parameters(), optim_config)
 
-    # run test before start training
+    # load pretrained weights if given
+    if run_config['resume']:
+        if os.path.isfile(run_config['resume']):
+            print("=> loading checkpoint '{}'".format(run_config['resume']))
+            checkpoint = torch.load(run_config['resume'])
+            # args.start_epoch = checkpoint['epoch']
+            # best_prec1 = checkpoint['best_prec1']
+            model.load_state_dict(checkpoint['state_dict'])
+            # optimizer.load_state_dict(checkpoint['optimizer'])
+            print("=> loaded checkpoint '{}' (epoch {})"
+                  .format(run_config['resume'], checkpoint['epoch']))
+        else:
+            print("=> no checkpoint found at '{}'".format(run_config['resume']))
+
+    # run test before we start training
+    if run_config['resume']: 
+        print('Test accuracy of pretrained model --------------------')
+    else:
+        print('Test accuracy of untrained model ---------------------')
     if run_config['test_first']:
         test(0, model, test_criterion, test_loader, run_config, writer)
 
@@ -425,111 +393,28 @@ def main():
         'best_accuracy': 0,
         'best_epoch': 0,
     }
-    for epoch in range(1, optim_config['epochs'] + 1):
-        # train
-        train(epoch, model, optimizer, scheduler, train_criterion,
-              train_loader, config, writer)
 
-        # test
-        accuracy = test(epoch, model, test_criterion, test_loader, run_config,
-                        writer)
+    if not human_tune:
+        for epoch in range(1, optim_config['epochs'] + 1):
+            # train
+            train(epoch, model, optimizer, scheduler, train_criterion,
+                  train_loader, config, writer)
 
-        # update state dictionary
-        state = update_state(state, epoch, accuracy, model, optimizer)
+            # test
+            accuracy = test(epoch, model, test_criterion, test_loader, run_config,
+                            writer)
 
-        # save model
-        save_checkpoint(state, outdir)
+            # update state dictionary
+            state = update_state(state, epoch, accuracy, model, optimizer)
+            
+            if not no_output:
+                # save model
+                save_checkpoint(state, outdir)
 
-    if run_config['tensorboard']:
+    if not no_output and run_config['tensorboard']:
         outpath = os.path.join(outdir, 'all_scalars.json')
         writer.export_scalars_to_json(outpath)
 
-
-def tune():
-    # parse command line argument and generate config dictionary
-    config = parse_args()
-    logger.info(json.dumps(config, indent=2))
-
-    run_config = config['run_config']
-    optim_config = config['optim_config']
-
-    # TensorBoard SummaryWriter
-    if run_config['tensorboard']:
-        writer = SummaryWriter()
-    else:
-        writer = None
-
-    # set random seed
-    seed = run_config['seed']
-    torch.manual_seed(seed)
-    np.random.seed(seed)
-    random.seed(seed)
-
-    # # create output directory
-    # outdir = run_config['outdir']
-    # if not os.path.exists(outdir):
-    #     os.makedirs(outdir)
-
-    # # save config as json file in output directory
-    # outpath = os.path.join(outdir, 'config.json')
-    # with open(outpath, 'w') as fout:
-    #     json.dump(config, fout, indent=2)
-
-    # load data loaders
-    train_loader, test_loader = get_loader(config['data_config'])
-
-    # load model
-    logger.info('Loading model...')
-    model = load_model(config['model_config'])
-    n_params = sum([param.view(-1).size()[0] for param in model.parameters()])
-    logger.info('n_params: {}'.format(n_params))
-    if run_config['use_gpu']:
-        model = nn.DataParallel(model)
-        model.cuda()
-    logger.info('Done')
-
-    if config['data_config']['use_mixup']:
-        train_criterion = CrossEntropyLoss(size_average=True)
-    else:
-        train_criterion = nn.CrossEntropyLoss(size_average=True)
-    test_criterion = nn.CrossEntropyLoss(size_average=True)
-
-    # create optimizer
-    optim_config['steps_per_epoch'] = len(train_loader)
-    optimizer, scheduler = create_optimizer(model.parameters(), optim_config)
-
-    # run test before start training
-    if run_config['test_first']:
-        test(-1, model, test_criterion, test_loader, run_config, writer)
-
-    # load pretrained weights if given
-    if run_config['resume']:
-        if os.path.isfile(run_config['resume']):
-            print("=> loading checkpoint '{}'".format(run_config['resume']))
-            # checkpoint = torch.load(run_config['resume'])
-            # args.start_epoch = checkpoint['epoch']
-            # best_prec1 = checkpoint['best_prec1']
-            checkpoint = torch.load(run_config['resume'])
-            # try:
-            # checkpoint = torch.load(run_config['resume'],
-            #     map_location='cuda:0')
-                # map_location=lambda storage, loc: storage)
-            model.load_state_dict(checkpoint['state_dict'])
-            print('pretrained weights loaded!')
-            # except:
-            # checkpoint = torch.load(run_config['resume'], 
-            #     map_location={"cpu" : "cuda:0"})
-            # model.load_state_dict(checkpoint['state_dict'])
-            # optimizer.load_state_dict(checkpoint['optimizer'])
-            print("=> loaded checkpoint '{}' (epoch {})"
-                  .format(run_config['resume'], checkpoint['epoch']))
-        else:
-            print("=> no checkpoint found at '{}'".format(run_config['resume']))
-
-    # run test before start training
-    if run_config['test_first']:
-        test(0, model, test_criterion, test_loader, run_config, writer)
-
 if __name__ == '__main__':
-    tune()
-    # main()
+    # main_tune()
+    main(human_tune=True, no_output=True)
