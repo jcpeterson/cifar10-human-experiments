@@ -367,7 +367,8 @@ def main():
         if os.path.isfile(run_config['resume']):
             print("=> loading checkpoint '{}'".format(run_config['resume']))
             checkpoint = torch.load(run_config['resume'])
-            start_epoch = checkpoint['epoch']
+            loaded_last_epoch = checkpoint['epoch']
+            start_epoch = loaded_last_epoch + 1
             # best_prec1 = checkpoint['best_prec1']
             model.load_state_dict(checkpoint['state_dict'])
             optimizer.load_state_dict(checkpoint['optimizer'])
@@ -377,7 +378,7 @@ def main():
             print("=> no checkpoint found at '{}'".format(run_config['resume']))
 
     if start_epoch != 1:
-        for epoch in range(1, start_epoch + 1)
+        for epoch in range(1, start_epoch)
             for step, (data, targets) in enumerate(train_loader):
                 global_step += 1
 
