@@ -1,0 +1,114 @@
+/tigress/ruairidh/model_results
+--arch=wrn --depth 28 --epochs=200 --scheduler=cosine --base_lr=0.1 --batch_size=64
+wrn_28_10_cutout16.out
+entering python script
+[2018/09/21 23:30:56 __main__ INFO] - {
+  "model_config": {
+    "arch": "wrn",
+    "input_shape": [
+      1,
+      3,
+      32,
+      32
+    ],
+    "n_classes": 10,
+    "base_channels": 16,
+    "depth": 28,
+    "widening_factor": 10,
+    "drop_rate": 0
+  },
+  "optim_config": {
+    "epochs": 200,
+    "batch_size": 64,
+    "optimizer": "sgd",
+    "base_lr": 0.1,
+    "weight_decay": 0.0005,
+    "momentum": 0.9,
+    "nesterov": true,
+    "scheduler": "cosine",
+    "lr_min": 0
+  },
+  "data_config": {
+    "dataset": "CIFAR10",
+    "n_classes": 10,
+    "num_workers": 7,
+    "batch_size": 64,
+    "use_cutout": false,
+    "use_random_erasing": false,
+    "use_mixup": false,
+    "use_gpu": true
+  },
+  "run_config": {
+    "outdir": "/tigress/ruairidh/model_results/wrn_28_10_cutout16",
+    "seed": 7,
+    "test_first": true,
+    "gpu": "0",
+    "tensorboard": false,
+    "tensorboard_train_images": false,
+    "tensorboard_test_images": false,
+    "tensorboard_model_params": false,
+    "use_gpu": true
+  },
+  "env_info": {
+    "pytorch_version": "0.4.1",
+    "cuda_version": "9.2.148",
+    "cudnn_version": 7104,
+    "gpu0": {
+      "name": "Tesla P100-PCIE-16GB",
+      "capability": "6.0"
+    }
+  }
+}
+outdir:  /tigress/ruairidh/model_results/wrn_28_10_cutout16
+Files already downloaded and verified
+Files already downloaded and verified
+[2018/09/21 23:30:58 __main__ INFO] - Loading model...
+[2018/09/21 23:30:59 __main__ INFO] - n_params: 36479194
+[2018/09/21 23:31:01 __main__ INFO] - Done
+/home/ruairidh/miniconda3/envs/pytorch_env/lib/python3.7/site-packages/torch/nn/functional.py:52: UserWarning: size_average and reduce args will be deprecated, please use reduction='elementwise_mean' instead.
+  warnings.warn(warning.format(ret))
+[2018/09/21 23:31:01 __main__ INFO] - Test 0
+[2018/09/21 23:31:10 __main__ INFO] - Epoch 0 Loss 2.3303 Accuracy 0.1085
+[2018/09/21 23:31:10 __main__ INFO] - Elapsed 8.30
+[2018/09/21 23:31:10 __main__ INFO] - Train 1
+[2018/09/21 23:31:11 __main__ INFO] - Epoch 1 Step 0/781 Loss 2.3172 (2.3172) Accuracy 0.1250 (0.1250)
+[2018/09/21 23:31:26 __main__ INFO] - Epoch 1 Step 100/781 Loss 1.8596 (1.8980) Accuracy 0.2969 (0.2803)
+[2018/09/21 23:31:41 __main__ INFO] - Epoch 1 Step 200/781 Loss 1.6305 (1.7708) Accuracy 0.4375 (0.3354)
+[2018/09/21 23:31:56 __main__ INFO] - Epoch 1 Step 300/781 Loss 1.3389 (1.6635) Accuracy 0.5781 (0.3767)
+[2018/09/21 23:32:11 __main__ INFO] - Epoch 1 Step 400/781 Loss 1.1316 (1.5692) Accuracy 0.5781 (0.4150)
+[2018/09/21 23:32:26 __main__ INFO] - Epoch 1 Step 500/781 Loss 1.1485 (1.4923) Accuracy 0.6094 (0.4460)
+[2018/09/21 23:32:42 __main__ INFO] - Epoch 1 Step 600/781 Loss 1.0600 (1.4268) Accuracy 0.6562 (0.4730)
+[2018/09/21 23:32:57 __main__ INFO] - Epoch 1 Step 700/781 Loss 1.0886 (1.3745) Accuracy 0.6406 (0.4944)
+[2018/09/21 23:33:09 __main__ INFO] - Elapsed 119.32
+[2018/09/21 23:33:09 __main__ INFO] - Test 1
+[2018/09/21 23:33:17 __main__ INFO] - Epoch 1 Loss 1.0952 Accuracy 0.6154
+[2018/09/21 23:33:17 __main__ INFO] - Elapsed 7.94
+outdir 2:  /tigress/ruairidh/model_results/wrn_28_10_cutout16
+[2018/09/21 23:33:18 __main__ INFO] - Train 2
+[2018/09/21 23:33:19 __main__ INFO] - Epoch 2 Step 0/781 Loss 0.9557 (0.9557) Accuracy 0.7188 (0.7188)
+[2018/09/21 23:33:34 __main__ INFO] - Epoch 2 Step 100/781 Loss 1.1958 (0.9522) Accuracy 0.5469 (0.6583)
+[2018/09/21 23:33:49 __main__ INFO] - Epoch 2 Step 200/781 Loss 0.9294 (0.9385) Accuracy 0.6250 (0.6636)
+[2018/09/21 23:34:04 __main__ INFO] - Epoch 2 Step 300/781 Loss 0.9214 (0.9278) Accuracy 0.7188 (0.6693)
+[2018/09/21 23:34:19 __main__ INFO] - Epoch 2 Step 400/781 Loss 1.0602 (0.9075) Accuracy 0.6562 (0.6779)
+[2018/09/21 23:34:34 __main__ INFO] - Epoch 2 Step 500/781 Loss 0.9120 (0.8913) Accuracy 0.6562 (0.6844)
+[2018/09/21 23:34:50 __main__ INFO] - Epoch 2 Step 600/781 Loss 0.6496 (0.8779) Accuracy 0.7969 (0.6899)
+[2018/09/21 23:35:05 __main__ INFO] - Epoch 2 Step 700/781 Loss 0.6380 (0.8622) Accuracy 0.8125 (0.6964)
+[2018/09/21 23:35:17 __main__ INFO] - Elapsed 118.75
+[2018/09/21 23:35:17 __main__ INFO] - Test 2
+[2018/09/21 23:35:25 __main__ INFO] - Epoch 2 Loss 1.0052 Accuracy 0.6658
+[2018/09/21 23:35:25 __main__ INFO] - Elapsed 7.83
+outdir 2:  /tigress/ruairidh/model_results/wrn_28_10_cutout16
+[2018/09/21 23:35:26 __main__ INFO] - Train 3
+[2018/09/21 23:35:26 __main__ INFO] - Epoch 3 Step 0/781 Loss 0.7142 (0.7142) Accuracy 0.7188 (0.7188)
+[2018/09/21 23:35:42 __main__ INFO] - Epoch 3 Step 100/781 Loss 0.5847 (0.7181) Accuracy 0.8594 (0.7550)
+[2018/09/21 23:35:57 __main__ INFO] - Epoch 3 Step 200/781 Loss 0.6412 (0.7215) Accuracy 0.7500 (0.7504)
+[2018/09/21 23:36:12 __main__ INFO] - Epoch 3 Step 300/781 Loss 0.7043 (0.7165) Accuracy 0.7500 (0.7509)
+[2018/09/21 23:36:27 __main__ INFO] - Epoch 3 Step 400/781 Loss 0.9630 (0.7137) Accuracy 0.6562 (0.7521)
+[2018/09/21 23:36:42 __main__ INFO] - Epoch 3 Step 500/781 Loss 0.8970 (0.7063) Accuracy 0.7344 (0.7550)
+[2018/09/21 23:36:58 __main__ INFO] - Epoch 3 Step 600/781 Loss 0.8223 (0.7005) Accuracy 0.7031 (0.7573)
+[2018/09/21 23:37:13 __main__ INFO] - Epoch 3 Step 700/781 Loss 0.5566 (0.6967) Accuracy 0.8281 (0.7591)
+[2018/09/21 23:37:25 __main__ INFO] - Elapsed 118.79
+[2018/09/21 23:37:25 __main__ INFO] - Test 3
+[2018/09/21 23:37:33 __main__ INFO] - Epoch 3 Loss 1.1866 Accuracy 0.6686
+[2018/09/21 23:37:33 __main__ INFO] - Elapsed 7.92
+outdir 2:  /tigress/ruairidh/model_results/wrn_28_10_cutout16

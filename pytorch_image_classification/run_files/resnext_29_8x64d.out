@@ -1,0 +1,96 @@
+/tigress/ruairidh/model_results
+--arch=resnext --depth 29 --cardinality=8 --base_channels=64 --batch_size=64 --base_lr=0.05
+resnext_29_8x64d.out
+entering python script
+[2018/09/21 23:29:56 __main__ INFO] - {
+  "model_config": {
+    "arch": "resnext",
+    "input_shape": [
+      1,
+      3,
+      32,
+      32
+    ],
+    "n_classes": 10,
+    "base_channels": 64,
+    "depth": 29,
+    "cardinality": 8
+  },
+  "optim_config": {
+    "epochs": 300,
+    "batch_size": 64,
+    "optimizer": "sgd",
+    "base_lr": 0.05,
+    "weight_decay": 0.0005,
+    "momentum": 0.9,
+    "nesterov": true,
+    "scheduler": "multistep",
+    "milestones": [
+      150,
+      225
+    ],
+    "lr_decay": 0.1
+  },
+  "data_config": {
+    "dataset": "CIFAR10",
+    "n_classes": 10,
+    "num_workers": 7,
+    "batch_size": 64,
+    "use_cutout": false,
+    "use_random_erasing": false,
+    "use_mixup": false,
+    "use_gpu": true
+  },
+  "run_config": {
+    "outdir": "/tigress/ruairidh/model_results/resnext_29_8x64d",
+    "seed": 7,
+    "test_first": true,
+    "gpu": "0",
+    "tensorboard": false,
+    "tensorboard_train_images": false,
+    "tensorboard_test_images": false,
+    "tensorboard_model_params": false,
+    "use_gpu": true
+  },
+  "env_info": {
+    "pytorch_version": "0.4.1",
+    "cuda_version": "9.2.148",
+    "cudnn_version": 7104,
+    "gpu0": {
+      "name": "Tesla P100-PCIE-16GB",
+      "capability": "6.0"
+    }
+  }
+}
+outdir:  /tigress/ruairidh/model_results/resnext_29_8x64d
+Files already downloaded and verified
+Files already downloaded and verified
+[2018/09/21 23:29:57 __main__ INFO] - Loading model...
+[2018/09/21 23:29:58 __main__ INFO] - n_params: 34426698
+[2018/09/21 23:30:01 __main__ INFO] - Done
+/home/ruairidh/miniconda3/envs/pytorch_env/lib/python3.7/site-packages/torch/nn/functional.py:52: UserWarning: size_average and reduce args will be deprecated, please use reduction='elementwise_mean' instead.
+  warnings.warn(warning.format(ret))
+[2018/09/21 23:30:01 __main__ INFO] - Test 0
+[2018/09/21 23:30:18 __main__ INFO] - Epoch 0 Loss 2.3048 Accuracy 0.0997
+[2018/09/21 23:30:18 __main__ INFO] - Elapsed 17.35
+[2018/09/21 23:30:18 __main__ INFO] - Train 1
+[2018/09/21 23:30:21 __main__ INFO] - Epoch 1 Step 0/781 Loss 2.5044 (2.5044) Accuracy 0.0781 (0.0781)
+[2018/09/21 23:30:53 __main__ INFO] - Epoch 1 Step 100/781 Loss 2.0608 (3.2807) Accuracy 0.2812 (0.1468)
+[2018/09/21 23:31:25 __main__ INFO] - Epoch 1 Step 200/781 Loss 1.8358 (2.6266) Accuracy 0.3594 (0.1957)
+[2018/09/21 23:31:57 __main__ INFO] - Epoch 1 Step 300/781 Loss 1.7050 (2.3550) Accuracy 0.3750 (0.2344)
+[2018/09/21 23:32:30 __main__ INFO] - Epoch 1 Step 400/781 Loss 1.8461 (2.1871) Accuracy 0.2969 (0.2671)
+[2018/09/21 23:33:02 __main__ INFO] - Epoch 1 Step 500/781 Loss 1.7691 (2.0666) Accuracy 0.3438 (0.2949)
+[2018/09/21 23:33:34 __main__ INFO] - Epoch 1 Step 600/781 Loss 1.4655 (1.9763) Accuracy 0.4375 (0.3180)
+[2018/09/21 23:34:06 __main__ INFO] - Epoch 1 Step 700/781 Loss 1.5409 (1.8981) Accuracy 0.4375 (0.3400)
+[2018/09/21 23:34:32 __main__ INFO] - Elapsed 253.68
+[2018/09/21 23:34:32 __main__ INFO] - Test 1
+[2018/09/21 23:34:48 __main__ INFO] - Epoch 1 Loss 1.5171 Accuracy 0.4525
+[2018/09/21 23:34:48 __main__ INFO] - Elapsed 16.07
+outdir 2:  /tigress/ruairidh/model_results/resnext_29_8x64d
+[2018/09/21 23:34:49 __main__ INFO] - Train 2
+[2018/09/21 23:34:50 __main__ INFO] - Epoch 2 Step 0/781 Loss 1.5970 (1.5970) Accuracy 0.3594 (0.3594)
+[2018/09/21 23:35:22 __main__ INFO] - Epoch 2 Step 100/781 Loss 1.3463 (1.3037) Accuracy 0.4531 (0.5232)
+[2018/09/21 23:35:54 __main__ INFO] - Epoch 2 Step 200/781 Loss 1.0479 (1.2713) Accuracy 0.6250 (0.5396)
+[2018/09/21 23:36:27 __main__ INFO] - Epoch 2 Step 300/781 Loss 1.4734 (1.2475) Accuracy 0.5000 (0.5489)
+[2018/09/21 23:36:59 __main__ INFO] - Epoch 2 Step 400/781 Loss 1.2769 (1.2136) Accuracy 0.5312 (0.5626)
+[2018/09/21 23:37:31 __main__ INFO] - Epoch 2 Step 500/781 Loss 1.1372 (1.1851) Accuracy 0.5625 (0.5730)

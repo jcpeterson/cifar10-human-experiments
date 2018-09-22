@@ -1,0 +1,109 @@
+/tigress/ruairidh/model_results
+--arch=pyramidnet --depth 110 --block_type=basic --pyramid_alpha=270
+pyramidnet_basic_110_270.out
+entering python script
+[2018/09/21 23:26:56 __main__ INFO] - {
+  "model_config": {
+    "arch": "pyramidnet",
+    "input_shape": [
+      1,
+      3,
+      32,
+      32
+    ],
+    "n_classes": 10,
+    "base_channels": 16,
+    "block_type": "basic",
+    "depth": 110,
+    "pyramid_alpha": 270
+  },
+  "optim_config": {
+    "epochs": 300,
+    "batch_size": 128,
+    "optimizer": "sgd",
+    "base_lr": 0.1,
+    "weight_decay": 0.0001,
+    "momentum": 0.9,
+    "nesterov": true,
+    "scheduler": "multistep",
+    "milestones": [
+      150,
+      225
+    ],
+    "lr_decay": 0.1
+  },
+  "data_config": {
+    "dataset": "CIFAR10",
+    "n_classes": 10,
+    "num_workers": 7,
+    "batch_size": 128,
+    "use_cutout": false,
+    "use_random_erasing": false,
+    "use_mixup": false,
+    "use_gpu": true
+  },
+  "run_config": {
+    "outdir": "/tigress/ruairidh/model_results/pyramidnet_basic_110_270",
+    "seed": 7,
+    "test_first": true,
+    "gpu": "0",
+    "tensorboard": false,
+    "tensorboard_train_images": false,
+    "tensorboard_test_images": false,
+    "tensorboard_model_params": false,
+    "use_gpu": true
+  },
+  "env_info": {
+    "pytorch_version": "0.4.1",
+    "cuda_version": "9.2.148",
+    "cudnn_version": 7104,
+    "gpu0": {
+      "name": "Tesla P100-PCIE-16GB",
+      "capability": "6.0"
+    }
+  }
+}
+outdir:  /tigress/ruairidh/model_results/pyramidnet_basic_110_270
+Files already downloaded and verified
+Files already downloaded and verified
+[2018/09/21 23:26:58 __main__ INFO] - Loading model...
+[2018/09/21 23:26:59 __main__ INFO] - n_params: 28485477
+[2018/09/21 23:27:02 __main__ INFO] - Done
+/home/ruairidh/miniconda3/envs/pytorch_env/lib/python3.7/site-packages/torch/nn/functional.py:52: UserWarning: size_average and reduce args will be deprecated, please use reduction='elementwise_mean' instead.
+  warnings.warn(warning.format(ret))
+[2018/09/21 23:27:02 __main__ INFO] - Test 0
+[2018/09/21 23:27:17 __main__ INFO] - Epoch 0 Loss 13786817614577.6641 Accuracy 0.1000
+[2018/09/21 23:27:17 __main__ INFO] - Elapsed 14.99
+[2018/09/21 23:27:17 __main__ INFO] - Train 1
+[2018/09/21 23:27:23 __main__ INFO] - Epoch 1 Step 0/390 Loss 2.3252 (2.3252) Accuracy 0.1094 (0.1094)
+[2018/09/21 23:28:06 __main__ INFO] - Epoch 1 Step 100/390 Loss 1.4771 (1.7530) Accuracy 0.3906 (0.3436)
+[2018/09/21 23:28:49 __main__ INFO] - Epoch 1 Step 200/390 Loss 1.2956 (1.5433) Accuracy 0.5625 (0.4288)
+[2018/09/21 23:29:33 __main__ INFO] - Epoch 1 Step 300/390 Loss 0.9030 (1.4011) Accuracy 0.6562 (0.4857)
+[2018/09/21 23:30:11 __main__ INFO] - Elapsed 173.51
+[2018/09/21 23:30:11 __main__ INFO] - Test 1
+[2018/09/21 23:30:21 __main__ INFO] - Epoch 1 Loss 1.0779 Accuracy 0.6341
+[2018/09/21 23:30:21 __main__ INFO] - Elapsed 10.60
+outdir 2:  /tigress/ruairidh/model_results/pyramidnet_basic_110_270
+[2018/09/21 23:30:23 __main__ INFO] - Train 2
+[2018/09/21 23:30:24 __main__ INFO] - Epoch 2 Step 0/390 Loss 0.8362 (0.8362) Accuracy 0.6953 (0.6953)
+[2018/09/21 23:31:07 __main__ INFO] - Epoch 2 Step 100/390 Loss 0.7268 (0.8641) Accuracy 0.7266 (0.6932)
+[2018/09/21 23:31:50 __main__ INFO] - Epoch 2 Step 200/390 Loss 0.7159 (0.8321) Accuracy 0.7578 (0.7059)
+[2018/09/21 23:32:33 __main__ INFO] - Epoch 2 Step 300/390 Loss 0.6659 (0.8028) Accuracy 0.7578 (0.7178)
+[2018/09/21 23:33:11 __main__ INFO] - Elapsed 168.13
+[2018/09/21 23:33:11 __main__ INFO] - Test 2
+[2018/09/21 23:33:21 __main__ INFO] - Epoch 2 Loss 0.8010 Accuracy 0.7372
+[2018/09/21 23:33:22 __main__ INFO] - Elapsed 10.61
+outdir 2:  /tigress/ruairidh/model_results/pyramidnet_basic_110_270
+[2018/09/21 23:33:23 __main__ INFO] - Train 3
+[2018/09/21 23:33:24 __main__ INFO] - Epoch 3 Step 0/390 Loss 0.7273 (0.7273) Accuracy 0.7656 (0.7656)
+[2018/09/21 23:34:07 __main__ INFO] - Epoch 3 Step 100/390 Loss 0.5233 (0.6398) Accuracy 0.8203 (0.7771)
+[2018/09/21 23:34:50 __main__ INFO] - Epoch 3 Step 200/390 Loss 0.5200 (0.6259) Accuracy 0.8516 (0.7818)
+[2018/09/21 23:35:33 __main__ INFO] - Epoch 3 Step 300/390 Loss 0.5482 (0.6181) Accuracy 0.8125 (0.7848)
+[2018/09/21 23:36:11 __main__ INFO] - Elapsed 168.28
+[2018/09/21 23:36:11 __main__ INFO] - Test 3
+[2018/09/21 23:36:22 __main__ INFO] - Epoch 3 Loss 0.6282 Accuracy 0.7858
+[2018/09/21 23:36:22 __main__ INFO] - Elapsed 10.65
+outdir 2:  /tigress/ruairidh/model_results/pyramidnet_basic_110_270
+[2018/09/21 23:36:23 __main__ INFO] - Train 4
+[2018/09/21 23:36:24 __main__ INFO] - Epoch 4 Step 0/390 Loss 0.5049 (0.5049) Accuracy 0.8438 (0.8438)
+[2018/09/21 23:37:07 __main__ INFO] - Epoch 4 Step 100/390 Loss 0.5326 (0.5234) Accuracy 0.8047 (0.8182)
