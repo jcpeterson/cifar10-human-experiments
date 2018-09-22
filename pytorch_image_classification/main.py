@@ -308,6 +308,7 @@ def update_state(state, epoch, accuracy, model, optimizer):
 
 def main():
     # parse command line argument and generate config dictionary
+    global global_step
     config = parse_args()
     logger.info(json.dumps(config, indent=2))
 
@@ -378,7 +379,7 @@ def main():
             print("=> no checkpoint found at '{}'".format(run_config['resume']))
 
     if start_epoch != 1:
-        for epoch in range(1, start_epoch)
+        for epoch in range(1, start_epoch):
             for step, (data, targets) in enumerate(train_loader):
                 global_step += 1
 
