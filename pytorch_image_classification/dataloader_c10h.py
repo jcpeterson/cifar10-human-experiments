@@ -62,11 +62,12 @@ class CIFAR10H(data.Dataset):
 
     def __init__(self, root, which_set='train',
                  transform=None, target_transform=None,
-                 download=False):
+                 download=False, c10h_sample=False):
         self.root = os.path.expanduser(root)
         self.transform = transform
         self.target_transform = target_transform
         self.set = which_set  # training set or test set
+        self.c10h_sample = c10h_sample
 
         if download:
             self.download()
@@ -142,6 +143,10 @@ class CIFAR10H(data.Dataset):
             if self.set == 'train':
                 self.c10h_data = self.c10h_data[:9000]
                 self.c10h_targets = self.c10h_targets[:9000]
+
+                # for _ in self.c10h_targets[20:40]: print(_)
+                # exit()
+
                 self.c10h_c10_targets =  self.c10h_c10_targets[:9000]
             elif self.set == 'test':
                 self.c10h_data = self.c10h_data[9000:]
@@ -178,6 +183,16 @@ class CIFAR10H(data.Dataset):
 
             if self.target_transform is not None:
                 target = self.target_transform(target)
+            
+            # if training, we have the option to sample from
+            # humans their proportions as multinomial params
+            if self.c10h_sample and self.set == 'train':
+                # yes, you seriously have to do all this
+                # to avoid numpy summing error when f32-->f64
+                target = target.astype('float64')
+                target /= target.sum()
+                target = np.random.multinomial(1, target)
+                target = target.astype('float32')
 
             return img, target, c10h_c10_target
 
@@ -257,7 +272,7 @@ class Dataset(object):
         self.use_random_erasing = ('use_random_erasing' in config.keys()
                                    ) and config['use_random_erasing']
 
-    def get_datasets(self):
+    def get_datasets(self, c10h_sample=False):
         if self.config['dataset'] != 'CIFAR10H':
             train_dataset = getattr(torchvision.datasets, self.config['dataset'])(
                 self.dataset_dir, train=True, transform=self.train_transform, download=True)
@@ -268,7 +283,7 @@ class Dataset(object):
             # USE CIFAR10H!
             train_dataset = CIFAR10H(
                 self.dataset_dir, which_set='train', transform=self.train_transform, 
-                download=True)
+                download=True, c10h_sample=c10h_sample)
             test_dataset = CIFAR10H(
                 self.dataset_dir, which_set='test', transform=self.test_transform, 
                 download=True)
@@ -410,6 +425,7 @@ def get_loader(config):
     batch_size = config['batch_size']
     num_workers = config['num_workers']
     use_gpu = config['use_gpu']
+    c10h_sample = config['c10h_sample']
 
     dataset_name = config['dataset']
     assert dataset_name in ['CIFAR10', 'CIFAR100', 'CIFAR10H',
@@ -425,7 +441,7 @@ def get_loader(config):
         dataset = FashionMNIST(config)
 
     train_dataset, test_dataset, v4_dataset, v6_dataset = \
-        dataset.get_datasets()
+        dataset.get_datasets(c10h_sample=c10h_sample)
 
     train_loader = torch.utils.data.DataLoader(
         train_dataset,
@@ -446,7 +462,7 @@ def get_loader(config):
     v4_loader = torch.utils.data.DataLoader(
         v4_dataset,
         batch_size=batch_size,
-        shuffle=True,
+        shuffle=False,
         num_workers=num_workers,
         pin_memory=use_gpu,
         drop_last=True,

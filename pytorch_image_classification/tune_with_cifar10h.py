@@ -2,7 +2,10 @@
 # coding: utf-8
 
 # example for testing this script
-# python tune_with_cifar10h.py --human_tune --dataset CIFAR10H --arch vgg --config tmp_reference_model/config.json --resume tmp_reference_model/model_state_160.pth --gpu 0 --no_output --test_only
+# python tune_with_cifar10h.py --human_tune --dataset CIFAR10H --arch vgg --config tmp_reference_model/config.json --resume tmp_reference_model/model_state_160.pth --gpu 0 --no_output --test_only --c10h_sample
+
+# python tune_with_cifar10h.py --human_tune --dataset CIFAR10H --arch vgg --config tmp_reference_model/config.json --resume tmp_reference_model/model_state_160.pth --gpu 0 --no_output --c10h_sample --base_lr 0.01
+# python tune_with_cifar10h.py --human_tune --dataset CIFAR10H --arch vgg --config tmp_reference_model/config.json --resume tmp_reference_model/model_state_160.pth --gpu 0 --no_output --base_lr 0.01
 
 import os
 import time
@@ -143,6 +146,8 @@ def parse_args():
     parser.add_argument('--resume', type=str)
     # whether to tune to human labels
     parser.add_argument('--human_tune', action='store_true', default=False)
+    # whether to tune to human labels
+    parser.add_argument('--c10h_sample', action='store_true', default=False)
     # whether to save to out_dir
     parser.add_argument('--no_output', action='store_true', default=False)
     # to test the loaded model and don't train
@@ -172,8 +177,13 @@ def train(epoch, model, optimizer, scheduler, criterion, train_loader, config,
     loss_meter = AverageMeter()
     accuracy_meter = AverageMeter()
     start = time.time()
-    for step, (data, targets) in enumerate(train_loader):
+    for step, batch_data in enumerate(train_loader):
         global_step += 1
+
+        if human_tune:
+            data, targets, _ = batch_data
+        else:
+            data, targets = batch_data
 
         if data_config['use_mixup']:
             data, targets = mixup(data, targets, data_config['mixup_alpha'],
@@ -226,18 +236,25 @@ def train(epoch, model, optimizer, scheduler, criterion, train_loader, config,
             writer.add_scalar('Train/RunningLoss', loss_, global_step)
             writer.add_scalar('Train/RunningAccuracy', accuracy, global_step)
 
-        if step % 100 == 0:
-            logger.info('Epoch {} Step {}/{} '
-                        'Loss {:.4f} ({:.4f}) '
-                        'Accuracy {:.4f} ({:.4f})'.format(
-                            epoch,
-                            step,
-                            len(train_loader),
-                            loss_meter.val,
-                            loss_meter.avg,
-                            accuracy_meter.val,
-                            accuracy_meter.avg,
-                        ))
+        if not human_tune:
+            if step % 100 == 0:
+                logger.info('Epoch {} Step {}/{} '
+                            'Loss {:.4f} ({:.4f}) '
+                            'Accuracy {:.4f} ({:.4f})'.format(
+                                epoch,
+                                step,
+                                len(train_loader),
+                                loss_meter.val,
+                                loss_meter.avg,
+                                accuracy_meter.val,
+                                accuracy_meter.avg,
+                            ))
+    if human_tune:
+        logger.info('Train Epoch {} Loss {:.4f} (acc: {:.4f})'.format(
+                        epoch,
+                        loss_meter.avg,
+                        accuracy_meter.avg,
+                    ))
 
     elapsed = time.time() - start
     logger.info('Elapsed {:.2f}'.format(elapsed))
@@ -359,7 +376,7 @@ def test(epoch, model, criterion, test_loaders, run_config, writer,
     if human_tune:
         logger.info('- epoch {}, c10h: {:.4f} (acc: {:.4f}) | c10h_c10: {:.4f} (acc: {:.4f})'.format(
             epoch, loss_meter.avg, accuracy, c10h_c10_loss_meter.avg, c10h_c10_accuracy))
-        logger.info('-       {}  v4  : {:.4f} (acc: {:.4f}) |     v6  : {:.4f} (acc: {:.4f})'.format(
+        logger.info('-       {}    v4: {:.4f} (acc: {:.4f}) |       v6: {:.4f} (acc: {:.4f})'.format(
             epoch, v4_loss_meter.avg, v4_accuracy, v6_loss_meter.avg, v6_accuracy))
     else:
         logger.info('Epoch {} Loss {:.4f} Accuracy {:.4f}'.format(
@@ -477,10 +494,14 @@ def main():
     else:
         print('Test accuracy of untrained model ---------------------')
     if run_config['test_first']:
-        test(0, model, test_criterion, 
-            (test_loader, v4_loader, v6_loader), 
-            run_config, writer,
-            human_tune=human_tune)
+        if human_tune:
+            test(0, model, test_criterion, 
+                (test_loader, v4_loader, v6_loader), 
+                run_config, writer,
+                human_tune=human_tune)
+        else:           
+            test(0, model, test_criterion, test_loader,
+                run_config, writer, human_tune=human_tune)
 
     if run_config['test_only']: exit()
 
@@ -500,13 +521,21 @@ def main():
               train_loader, config, writer, human_tune=human_tune)
 
         # test
-        accuracy = test(epoch, model, test_criterion, test_loader, run_config,
-                        writer, human_tune=human_tune)
+        if human_tune:
+            accuracy = test(0, model, test_criterion, 
+                (test_loader, v4_loader, v6_loader), 
+                run_config, writer,
+                human_tune=human_tune)
+        else:           
+            accuracy = test(0, model, test_criterion, test_loader,
+                            run_config, writer, human_tune=human_tune)
+        # accuracy = test(epoch, model, test_criterion, test_loader, run_config,
+        #                 writer, human_tune=human_tune)
 
         # update state dictionary
         state = update_state(state, epoch, accuracy, model, optimizer)
         
-        if run_config['outdir']:
+        if not run_config['no_output']:
             # save model
             save_checkpoint(state, outdir)
 
@@ -515,5 +544,4 @@ def main():
         writer.export_scalars_to_json(outpath)
 
 if __name__ == '__main__':
-    # main_tune()
     main()
