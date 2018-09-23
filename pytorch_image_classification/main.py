@@ -139,7 +139,9 @@ def parse_args():
     parser.add_argument('--resume', type=str, default=False)
     # whether to tune to human labels
     parser.add_argument('--human_tune', action='store_true', default=False)
-    # whether to save to out_dir
+    # whether to save to sample from multinomial 
+    parser.add_argument('--c10h_sample', action='store_true', default=False)
+    # whether to save to out_dir    
     parser.add_argument('--no_output', action='store_true', default=False)
     # to test the loaded model and don't train
     parser.add_argument('--test_only', action='store_true', default=False)
