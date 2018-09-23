@@ -62,7 +62,8 @@ class CIFAR10H(data.Dataset):
 
     def __init__(self, root, which_set='train',
                  transform=None, target_transform=None,
-                 download=False, c10h_sample=False):
+                 download=False, c10h_sample=False,
+                 c10h_datasplit_seed=999):
         self.root = os.path.expanduser(root)
         self.transform = transform
         self.target_transform = target_transform
@@ -133,6 +134,8 @@ class CIFAR10H(data.Dataset):
 
             # shuffle data and labels together
             c10h_rnd_idxs = np.arange(self.c10h_data.shape[0])
+            # this seed is the same for self.set in ['train','test']
+            np.random.seed(c10h_datasplit_seed)
             np.random.shuffle(c10h_rnd_idxs)
             self.c10h_data = self.c10h_data[c10h_rnd_idxs,:,:,:]
             self.c10h_targets = self.c10h_targets[c10h_rnd_idxs]
@@ -272,7 +275,7 @@ class Dataset(object):
         self.use_random_erasing = ('use_random_erasing' in config.keys()
                                    ) and config['use_random_erasing']
 
-    def get_datasets(self, c10h_sample=False):
+    def get_datasets(self, c10h_sample=False, c10h_datasplit_seed=999):
         if self.config['dataset'] != 'CIFAR10H':
             train_dataset = getattr(torchvision.datasets, self.config['dataset'])(
                 self.dataset_dir, train=True, transform=self.train_transform, download=True)
@@ -283,10 +286,10 @@ class Dataset(object):
             # USE CIFAR10H!
             train_dataset = CIFAR10H(
                 self.dataset_dir, which_set='train', transform=self.train_transform, 
-                download=True, c10h_sample=c10h_sample)
+                download=True, c10h_sample=c10h_sample, c10h_datasplit_seed=c10h_datasplit_seed)
             test_dataset = CIFAR10H(
                 self.dataset_dir, which_set='test', transform=self.test_transform, 
-                download=True)
+                download=True, c10h_datasplit_seed=c10h_datasplit_seed)
             # cifar 10.1 versions
             v4_dataset = CIFAR10H(
                 self.dataset_dir, which_set='v4', transform=self.train_transform, 
@@ -426,6 +429,7 @@ def get_loader(config):
     num_workers = config['num_workers']
     use_gpu = config['use_gpu']
     c10h_sample = config['c10h_sample']
+    c10h_datasplit_seed = config['c10h_datasplit_seed']
 
     dataset_name = config['dataset']
     assert dataset_name in ['CIFAR10', 'CIFAR100', 'CIFAR10H',
@@ -441,7 +445,8 @@ def get_loader(config):
         dataset = FashionMNIST(config)
 
     train_dataset, test_dataset, v4_dataset, v6_dataset = \
-        dataset.get_datasets(c10h_sample=c10h_sample)
+        dataset.get_datasets(c10h_sample=c10h_sample, 
+            c10h_datasplit_seed=c10h_datasplit_seed)
 
     train_loader = torch.utils.data.DataLoader(
         train_dataset,

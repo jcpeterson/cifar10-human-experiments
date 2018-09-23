@@ -7,6 +7,10 @@
 # python tune_with_cifar10h.py --human_tune --dataset CIFAR10H --arch vgg --config tmp_reference_model/config.json --resume tmp_reference_model/model_state_160.pth --gpu 0 --no_output --c10h_sample --base_lr 0.01
 # python tune_with_cifar10h.py --human_tune --dataset CIFAR10H --arch vgg --config tmp_reference_model/config.json --resume tmp_reference_model/model_state_160.pth --gpu 0 --no_output --base_lr 0.01
 
+# python tune_with_cifar10h.py --human_tune --dataset CIFAR10H --arch shake_shake --config tmp_reference_model/config.json --resume tmp_reference_model/model_best_state.pth --gpu 0 --no_output --base_lr 0.01
+# python tune_with_cifar10h.py --human_tune --dataset CIFAR10H --arch shake_shake --config tmp_reference_model/config.json --resume tmp_reference_model/model_best_state.pth --gpu 0 --no_output --base_lr 0.01 --nonhuman_control
+
+
 import os
 import time
 import json
@@ -146,7 +150,11 @@ def parse_args():
     parser.add_argument('--resume', type=str)
     # whether to tune to human labels
     parser.add_argument('--human_tune', action='store_true', default=False)
-    # whether to tune to human labels
+    # 
+    parser.add_argument('--c10h_datasplit_seed', type=int, default=999)
+    # whether to use the cifar10 labels for the human test set (CONTROL)
+    parser.add_argument('--nonhuman_control', action='store_true', default=False)
+    # whether to sample from the human labels to get one-hot samples
     parser.add_argument('--c10h_sample', action='store_true', default=False)
     # whether to save to out_dir
     parser.add_argument('--no_output', action='store_true', default=False)
@@ -170,6 +178,8 @@ def train(epoch, model, optimizer, scheduler, criterion, train_loader, config,
     optim_config = config['optim_config']
     data_config = config['data_config']
 
+    nonhuman_control = config['run_config']['nonhuman_control']
+
     logger.info('Train {}'.format(epoch))
 
     model.train()
@@ -181,7 +191,12 @@ def train(epoch, model, optimizer, scheduler, criterion, train_loader, config,
         global_step += 1
 
         if human_tune:
-            data, targets, _ = batch_data
+            if nonhuman_control:
+                # `targets` are now `c10h_c10_targets`
+                data, _, targets = batch_data
+                targets = onehot(targets, 10)
+            else:
+                data, targets, _ = batch_data                
         else:
             data, targets = batch_data
 
@@ -522,12 +537,12 @@ def main():
 
         # test
         if human_tune:
-            accuracy = test(0, model, test_criterion, 
+            accuracy = test(epoch, model, test_criterion, 
                 (test_loader, v4_loader, v6_loader), 
                 run_config, writer,
                 human_tune=human_tune)
         else:           
-            accuracy = test(0, model, test_criterion, test_loader,
+            accuracy = test(epoch, model, test_criterion, test_loader,
                             run_config, writer, human_tune=human_tune)
         # accuracy = test(epoch, model, test_criterion, test_loader, run_config,
         #                 writer, human_tune=human_tune)
