@@ -269,3 +269,361 @@ outdir 2:  /tigress/ruairidh/model_results/resnext_29_8x64d
 [2018/09/22 22:46:34 __main__ INFO] - Epoch 14 Step 500/781 Loss 0.3409 (0.3987) Accuracy 0.9375 (0.8663)
 [2018/09/22 22:47:06 __main__ INFO] - Epoch 14 Step 600/781 Loss 0.5508 (0.4014) Accuracy 0.7812 (0.8654)
 [2018/09/22 22:47:38 __main__ INFO] - Epoch 14 Step 700/781 Loss 0.5114 (0.4006) Accuracy 0.8281 (0.8653)
+[2018/09/22 22:48:04 __main__ INFO] - Elapsed 251.97
+[2018/09/22 22:48:04 __main__ INFO] - Test 14
+[2018/09/22 22:48:20 __main__ INFO] - Epoch 14 Loss 0.5630 Accuracy 0.8108
+[2018/09/22 22:48:20 __main__ INFO] - Elapsed 16.02
+outdir 2:  /tigress/ruairidh/model_results/resnext_29_8x64d
+[2018/09/22 22:48:21 __main__ INFO] - Train 15
+[2018/09/22 22:48:22 __main__ INFO] - Epoch 15 Step 0/781 Loss 0.5066 (0.5066) Accuracy 0.8281 (0.8281)
+[2018/09/22 22:48:54 __main__ INFO] - Epoch 15 Step 100/781 Loss 0.4672 (0.3660) Accuracy 0.8281 (0.8787)
+[2018/09/22 22:49:26 __main__ INFO] - Epoch 15 Step 200/781 Loss 0.3190 (0.3606) Accuracy 0.8906 (0.8799)
+[2018/09/22 22:49:58 __main__ INFO] - Epoch 15 Step 300/781 Loss 0.4097 (0.3728) Accuracy 0.9062 (0.8732)
+[2018/09/22 22:50:30 __main__ INFO] - Epoch 15 Step 400/781 Loss 0.3098 (0.3780) Accuracy 0.8906 (0.8704)
+[2018/09/22 22:51:03 __main__ INFO] - Epoch 15 Step 500/781 Loss 0.3519 (0.3836) Accuracy 0.8438 (0.8682)
+[2018/09/22 22:51:35 __main__ INFO] - Epoch 15 Step 600/781 Loss 0.6048 (0.3864) Accuracy 0.8125 (0.8672)
+[2018/09/22 22:52:07 __main__ INFO] - Epoch 15 Step 700/781 Loss 0.6077 (0.3874) Accuracy 0.8438 (0.8667)
+[2018/09/22 22:52:33 __main__ INFO] - Elapsed 251.89
+[2018/09/22 22:52:33 __main__ INFO] - Test 15
+[2018/09/22 22:52:49 __main__ INFO] - Epoch 15 Loss 0.4692 Accuracy 0.8367
+[2018/09/22 22:52:49 __main__ INFO] - Elapsed 15.83
+outdir 2:  /tigress/ruairidh/model_results/resnext_29_8x64d
+[2018/09/22 22:52:50 __main__ INFO] - Train 16
+[2018/09/22 22:52:50 __main__ INFO] - Epoch 16 Step 0/781 Loss 0.2526 (0.2526) Accuracy 0.8906 (0.8906)
+[2018/09/22 22:53:23 __main__ INFO] - Epoch 16 Step 100/781 Loss 0.3115 (0.3545) Accuracy 0.8906 (0.8744)
+[2018/09/22 22:53:55 __main__ INFO] - Epoch 16 Step 200/781 Loss 0.2390 (0.3598) Accuracy 0.9375 (0.8751)
+[2018/09/22 22:54:27 __main__ INFO] - Epoch 16 Step 300/781 Loss 0.3764 (0.3743) Accuracy 0.9062 (0.8699)
+[2018/09/22 22:54:59 __main__ INFO] - Epoch 16 Step 400/781 Loss 0.2950 (0.3771) Accuracy 0.9219 (0.8692)
+[2018/09/22 22:55:31 __main__ INFO] - Epoch 16 Step 500/781 Loss 0.2196 (0.3829) Accuracy 0.9219 (0.8670)
+[2018/09/22 22:56:04 __main__ INFO] - Epoch 16 Step 600/781 Loss 0.2692 (0.3834) Accuracy 0.8906 (0.8674)
+[2018/09/22 22:56:36 __main__ INFO] - Epoch 16 Step 700/781 Loss 0.3140 (0.3874) Accuracy 0.8750 (0.8665)
+[2018/09/22 22:57:02 __main__ INFO] - Elapsed 251.75
+[2018/09/22 22:57:02 __main__ INFO] - Test 16
+[2018/09/22 22:57:18 __main__ INFO] - Epoch 16 Loss 0.5156 Accuracy 0.8236
+[2018/09/22 22:57:18 __main__ INFO] - Elapsed 15.97
+outdir 2:  /tigress/ruairidh/model_results/resnext_29_8x64d
+[2018/09/22 22:57:19 __main__ INFO] - Train 17
+[2018/09/22 22:57:19 __main__ INFO] - Epoch 17 Step 0/781 Loss 0.2534 (0.2534) Accuracy 0.9531 (0.9531)
+[2018/09/22 22:57:51 __main__ INFO] - Epoch 17 Step 100/781 Loss 0.4500 (0.3393) Accuracy 0.8281 (0.8823)
+[2018/09/22 22:58:24 __main__ INFO] - Epoch 17 Step 200/781 Loss 0.4926 (0.3721) Accuracy 0.8281 (0.8718)
+[2018/09/22 22:58:56 __main__ INFO] - Epoch 17 Step 300/781 Loss 0.3358 (0.3791) Accuracy 0.8594 (0.8698)
+[2018/09/22 22:59:28 __main__ INFO] - Epoch 17 Step 400/781 Loss 0.3628 (0.3743) Accuracy 0.8906 (0.8707)
+[2018/09/22 23:00:00 __main__ INFO] - Epoch 17 Step 500/781 Loss 0.2254 (0.3765) Accuracy 0.9219 (0.8692)
+[2018/09/22 23:00:32 __main__ INFO] - Epoch 17 Step 600/781 Loss 0.3089 (0.3777) Accuracy 0.9062 (0.8689)
+[2018/09/22 23:01:04 __main__ INFO] - Epoch 17 Step 700/781 Loss 0.3456 (0.3792) Accuracy 0.8906 (0.8681)
+[2018/09/22 23:01:30 __main__ INFO] - Elapsed 251.44
+[2018/09/22 23:01:30 __main__ INFO] - Test 17
+[2018/09/22 23:01:46 __main__ INFO] - Epoch 17 Loss 0.6007 Accuracy 0.8096
+[2018/09/22 23:01:46 __main__ INFO] - Elapsed 15.89
+outdir 2:  /tigress/ruairidh/model_results/resnext_29_8x64d
+[2018/09/22 23:01:48 __main__ INFO] - Train 18
+[2018/09/22 23:01:49 __main__ INFO] - Epoch 18 Step 0/781 Loss 0.4479 (0.4479) Accuracy 0.8438 (0.8438)
+[2018/09/22 23:02:21 __main__ INFO] - Epoch 18 Step 100/781 Loss 0.1471 (0.3674) Accuracy 0.9531 (0.8742)
+[2018/09/22 23:02:53 __main__ INFO] - Epoch 18 Step 200/781 Loss 0.4039 (0.3688) Accuracy 0.8750 (0.8732)
+[2018/09/22 23:03:26 __main__ INFO] - Epoch 18 Step 300/781 Loss 0.2964 (0.3687) Accuracy 0.9062 (0.8723)
+[2018/09/22 23:03:58 __main__ INFO] - Epoch 18 Step 400/781 Loss 0.4418 (0.3788) Accuracy 0.8594 (0.8694)
+[2018/09/22 23:04:30 __main__ INFO] - Epoch 18 Step 500/781 Loss 0.2137 (0.3750) Accuracy 0.9375 (0.8709)
+[2018/09/22 23:05:02 __main__ INFO] - Epoch 18 Step 600/781 Loss 0.3795 (0.3761) Accuracy 0.8750 (0.8713)
+[2018/09/22 23:05:34 __main__ INFO] - Epoch 18 Step 700/781 Loss 0.2672 (0.3758) Accuracy 0.9062 (0.8715)
+[2018/09/22 23:06:00 __main__ INFO] - Elapsed 251.35
+[2018/09/22 23:06:00 __main__ INFO] - Test 18
+[2018/09/22 23:06:16 __main__ INFO] - Epoch 18 Loss 0.5309 Accuracy 0.8274
+[2018/09/22 23:06:16 __main__ INFO] - Elapsed 15.93
+outdir 2:  /tigress/ruairidh/model_results/resnext_29_8x64d
+[2018/09/22 23:06:17 __main__ INFO] - Train 19
+[2018/09/22 23:06:17 __main__ INFO] - Epoch 19 Step 0/781 Loss 0.4619 (0.4619) Accuracy 0.8906 (0.8906)
+[2018/09/22 23:06:50 __main__ INFO] - Epoch 19 Step 100/781 Loss 0.3244 (0.3424) Accuracy 0.9219 (0.8852)
+[2018/09/22 23:07:22 __main__ INFO] - Epoch 19 Step 200/781 Loss 0.3478 (0.3438) Accuracy 0.9219 (0.8843)
+[2018/09/22 23:07:54 __main__ INFO] - Epoch 19 Step 300/781 Loss 0.4267 (0.3495) Accuracy 0.8594 (0.8812)
+[2018/09/22 23:08:26 __main__ INFO] - Epoch 19 Step 400/781 Loss 0.4881 (0.3566) Accuracy 0.8281 (0.8794)
+[2018/09/22 23:08:58 __main__ INFO] - Epoch 19 Step 500/781 Loss 0.4475 (0.3585) Accuracy 0.8594 (0.8783)
+[2018/09/22 23:09:31 __main__ INFO] - Epoch 19 Step 600/781 Loss 0.6454 (0.3621) Accuracy 0.7656 (0.8762)
+[2018/09/22 23:10:03 __main__ INFO] - Epoch 19 Step 700/781 Loss 0.3020 (0.3633) Accuracy 0.8594 (0.8751)
+[2018/09/22 23:10:29 __main__ INFO] - Elapsed 251.71
+[2018/09/22 23:10:29 __main__ INFO] - Test 19
+[2018/09/22 23:10:44 __main__ INFO] - Epoch 19 Loss 0.5361 Accuracy 0.8159
+[2018/09/22 23:10:44 __main__ INFO] - Elapsed 15.84
+outdir 2:  /tigress/ruairidh/model_results/resnext_29_8x64d
+[2018/09/22 23:10:45 __main__ INFO] - Train 20
+[2018/09/22 23:10:46 __main__ INFO] - Epoch 20 Step 0/781 Loss 0.4499 (0.4499) Accuracy 0.7969 (0.7969)
+[2018/09/22 23:11:18 __main__ INFO] - Epoch 20 Step 100/781 Loss 0.4276 (0.3334) Accuracy 0.8125 (0.8868)
+[2018/09/22 23:11:50 __main__ INFO] - Epoch 20 Step 200/781 Loss 0.2798 (0.3494) Accuracy 0.8438 (0.8796)
+[2018/09/22 23:12:23 __main__ INFO] - Epoch 20 Step 300/781 Loss 0.2498 (0.3507) Accuracy 0.9219 (0.8791)
+[2018/09/22 23:12:55 __main__ INFO] - Epoch 20 Step 400/781 Loss 0.3534 (0.3568) Accuracy 0.8750 (0.8782)
+[2018/09/22 23:13:27 __main__ INFO] - Epoch 20 Step 500/781 Loss 0.3635 (0.3600) Accuracy 0.8906 (0.8772)
+[2018/09/22 23:13:59 __main__ INFO] - Epoch 20 Step 600/781 Loss 0.4229 (0.3574) Accuracy 0.8594 (0.8781)
+[2018/09/22 23:14:31 __main__ INFO] - Epoch 20 Step 700/781 Loss 0.2045 (0.3569) Accuracy 0.9219 (0.8779)
+[2018/09/22 23:14:57 __main__ INFO] - Elapsed 251.72
+[2018/09/22 23:14:57 __main__ INFO] - Test 20
+[2018/09/22 23:15:13 __main__ INFO] - Epoch 20 Loss 0.6982 Accuracy 0.7947
+[2018/09/22 23:15:13 __main__ INFO] - Elapsed 16.00
+outdir 2:  /tigress/ruairidh/model_results/resnext_29_8x64d
+[2018/09/22 23:15:14 __main__ INFO] - Train 21
+[2018/09/22 23:15:15 __main__ INFO] - Epoch 21 Step 0/781 Loss 0.4897 (0.4897) Accuracy 0.8438 (0.8438)
+[2018/09/22 23:15:47 __main__ INFO] - Epoch 21 Step 100/781 Loss 0.3506 (0.3374) Accuracy 0.8750 (0.8823)
+[2018/09/22 23:16:19 __main__ INFO] - Epoch 21 Step 200/781 Loss 0.2330 (0.3501) Accuracy 0.9219 (0.8788)
+[2018/09/22 23:16:51 __main__ INFO] - Epoch 21 Step 300/781 Loss 0.3071 (0.3467) Accuracy 0.8906 (0.8797)
+[2018/09/22 23:17:23 __main__ INFO] - Epoch 21 Step 400/781 Loss 0.3450 (0.3486) Accuracy 0.9219 (0.8793)
+[2018/09/22 23:17:56 __main__ INFO] - Epoch 21 Step 500/781 Loss 0.3643 (0.3512) Accuracy 0.8281 (0.8795)
+[2018/09/22 23:18:28 __main__ INFO] - Epoch 21 Step 600/781 Loss 0.2969 (0.3530) Accuracy 0.9062 (0.8784)
+[2018/09/22 23:19:00 __main__ INFO] - Epoch 21 Step 700/781 Loss 0.4436 (0.3523) Accuracy 0.8906 (0.8782)
+[2018/09/22 23:19:26 __main__ INFO] - Elapsed 251.61
+[2018/09/22 23:19:26 __main__ INFO] - Test 21
+[2018/09/22 23:19:41 __main__ INFO] - Epoch 21 Loss 0.4289 Accuracy 0.8518
+[2018/09/22 23:19:41 __main__ INFO] - Elapsed 15.76
+outdir 2:  /tigress/ruairidh/model_results/resnext_29_8x64d
+[2018/09/22 23:19:45 __main__ INFO] - Train 22
+[2018/09/22 23:19:45 __main__ INFO] - Epoch 22 Step 0/781 Loss 0.2772 (0.2772) Accuracy 0.8750 (0.8750)
+[2018/09/22 23:20:17 __main__ INFO] - Epoch 22 Step 100/781 Loss 0.4415 (0.3297) Accuracy 0.8281 (0.8861)
+[2018/09/22 23:20:50 __main__ INFO] - Epoch 22 Step 200/781 Loss 0.5302 (0.3275) Accuracy 0.8281 (0.8879)
+[2018/09/22 23:21:22 __main__ INFO] - Epoch 22 Step 300/781 Loss 0.1889 (0.3352) Accuracy 0.9375 (0.8842)
+[2018/09/22 23:21:54 __main__ INFO] - Epoch 22 Step 400/781 Loss 0.4645 (0.3406) Accuracy 0.8281 (0.8819)
+[2018/09/22 23:22:26 __main__ INFO] - Epoch 22 Step 500/781 Loss 0.2205 (0.3457) Accuracy 0.8906 (0.8812)
+[2018/09/22 23:22:58 __main__ INFO] - Epoch 22 Step 600/781 Loss 0.2930 (0.3470) Accuracy 0.9062 (0.8806)
+[2018/09/22 23:23:31 __main__ INFO] - Epoch 22 Step 700/781 Loss 0.5732 (0.3497) Accuracy 0.7969 (0.8803)
+[2018/09/22 23:23:56 __main__ INFO] - Elapsed 251.61
+[2018/09/22 23:23:56 __main__ INFO] - Test 22
+[2018/09/22 23:24:12 __main__ INFO] - Epoch 22 Loss 0.4245 Accuracy 0.8602
+[2018/09/22 23:24:12 __main__ INFO] - Elapsed 15.81
+outdir 2:  /tigress/ruairidh/model_results/resnext_29_8x64d
+[2018/09/22 23:24:13 __main__ INFO] - Train 23
+[2018/09/22 23:24:14 __main__ INFO] - Epoch 23 Step 0/781 Loss 0.3042 (0.3042) Accuracy 0.8750 (0.8750)
+[2018/09/22 23:24:46 __main__ INFO] - Epoch 23 Step 100/781 Loss 0.2295 (0.3356) Accuracy 0.9219 (0.8846)
+[2018/09/22 23:25:18 __main__ INFO] - Epoch 23 Step 200/781 Loss 0.3254 (0.3450) Accuracy 0.9219 (0.8837)
+[2018/09/22 23:25:50 __main__ INFO] - Epoch 23 Step 300/781 Loss 0.4568 (0.3391) Accuracy 0.8750 (0.8843)
+[2018/09/22 23:26:23 __main__ INFO] - Epoch 23 Step 400/781 Loss 0.3496 (0.3413) Accuracy 0.8750 (0.8831)
+[2018/09/22 23:26:55 __main__ INFO] - Epoch 23 Step 500/781 Loss 0.4542 (0.3442) Accuracy 0.8438 (0.8821)
+[2018/09/22 23:27:27 __main__ INFO] - Epoch 23 Step 600/781 Loss 0.4919 (0.3475) Accuracy 0.8438 (0.8809)
+[2018/09/22 23:27:59 __main__ INFO] - Epoch 23 Step 700/781 Loss 0.4231 (0.3482) Accuracy 0.8281 (0.8804)
+[2018/09/22 23:28:25 __main__ INFO] - Elapsed 251.51
+[2018/09/22 23:28:25 __main__ INFO] - Test 23
+[2018/09/22 23:28:41 __main__ INFO] - Epoch 23 Loss 0.4571 Accuracy 0.8421
+[2018/09/22 23:28:41 __main__ INFO] - Elapsed 15.81
+outdir 2:  /tigress/ruairidh/model_results/resnext_29_8x64d
+[2018/09/22 23:28:42 __main__ INFO] - Train 24
+[2018/09/22 23:28:42 __main__ INFO] - Epoch 24 Step 0/781 Loss 0.3361 (0.3361) Accuracy 0.8594 (0.8594)
+[2018/09/22 23:29:14 __main__ INFO] - Epoch 24 Step 100/781 Loss 0.1957 (0.3312) Accuracy 0.9375 (0.8866)
+[2018/09/22 23:29:47 __main__ INFO] - Epoch 24 Step 200/781 Loss 0.5070 (0.3365) Accuracy 0.8906 (0.8856)
+[2018/09/22 23:30:19 __main__ INFO] - Epoch 24 Step 300/781 Loss 0.1750 (0.3378) Accuracy 0.9375 (0.8838)
+[2018/09/22 23:30:51 __main__ INFO] - Epoch 24 Step 400/781 Loss 0.3956 (0.3384) Accuracy 0.8594 (0.8825)
+[2018/09/22 23:31:23 __main__ INFO] - Epoch 24 Step 500/781 Loss 0.4798 (0.3354) Accuracy 0.8125 (0.8843)
+[2018/09/22 23:31:55 __main__ INFO] - Epoch 24 Step 600/781 Loss 0.1826 (0.3382) Accuracy 0.9375 (0.8842)
+[2018/09/22 23:32:28 __main__ INFO] - Epoch 24 Step 700/781 Loss 0.3444 (0.3434) Accuracy 0.8594 (0.8822)
+[2018/09/22 23:32:53 __main__ INFO] - Elapsed 251.55
+[2018/09/22 23:32:53 __main__ INFO] - Test 24
+[2018/09/22 23:33:09 __main__ INFO] - Epoch 24 Loss 0.5587 Accuracy 0.8236
+[2018/09/22 23:33:09 __main__ INFO] - Elapsed 15.88
+outdir 2:  /tigress/ruairidh/model_results/resnext_29_8x64d
+[2018/09/22 23:33:10 __main__ INFO] - Train 25
+[2018/09/22 23:33:11 __main__ INFO] - Epoch 25 Step 0/781 Loss 0.4412 (0.4412) Accuracy 0.8438 (0.8438)
+[2018/09/22 23:33:43 __main__ INFO] - Epoch 25 Step 100/781 Loss 0.3042 (0.3246) Accuracy 0.9219 (0.8875)
+[2018/09/22 23:34:15 __main__ INFO] - Epoch 25 Step 200/781 Loss 0.3441 (0.3405) Accuracy 0.8594 (0.8812)
+[2018/09/22 23:34:47 __main__ INFO] - Epoch 25 Step 300/781 Loss 0.2537 (0.3361) Accuracy 0.9375 (0.8837)
+[2018/09/22 23:35:19 __main__ INFO] - Epoch 25 Step 400/781 Loss 0.3698 (0.3376) Accuracy 0.8906 (0.8838)
+[2018/09/22 23:35:51 __main__ INFO] - Epoch 25 Step 500/781 Loss 0.2624 (0.3412) Accuracy 0.9219 (0.8828)
+[2018/09/22 23:36:23 __main__ INFO] - Epoch 25 Step 600/781 Loss 0.1968 (0.3423) Accuracy 0.9375 (0.8823)
+[2018/09/22 23:36:55 __main__ INFO] - Epoch 25 Step 700/781 Loss 0.4441 (0.3436) Accuracy 0.8750 (0.8816)
+[2018/09/22 23:37:21 __main__ INFO] - Elapsed 251.12
+[2018/09/22 23:37:21 __main__ INFO] - Test 25
+[2018/09/22 23:37:37 __main__ INFO] - Epoch 25 Loss 0.4314 Accuracy 0.8519
+[2018/09/22 23:37:37 __main__ INFO] - Elapsed 15.99
+outdir 2:  /tigress/ruairidh/model_results/resnext_29_8x64d
+[2018/09/22 23:37:38 __main__ INFO] - Train 26
+[2018/09/22 23:37:39 __main__ INFO] - Epoch 26 Step 0/781 Loss 0.2644 (0.2644) Accuracy 0.9062 (0.9062)
+[2018/09/22 23:38:11 __main__ INFO] - Epoch 26 Step 100/781 Loss 0.3053 (0.3081) Accuracy 0.8750 (0.8933)
+[2018/09/22 23:38:43 __main__ INFO] - Epoch 26 Step 200/781 Loss 0.3874 (0.3092) Accuracy 0.8906 (0.8950)
+[2018/09/22 23:39:15 __main__ INFO] - Epoch 26 Step 300/781 Loss 0.3173 (0.3148) Accuracy 0.8906 (0.8920)
+[2018/09/22 23:39:47 __main__ INFO] - Epoch 26 Step 400/781 Loss 0.4775 (0.3215) Accuracy 0.8594 (0.8900)
+[2018/09/22 23:40:19 __main__ INFO] - Epoch 26 Step 500/781 Loss 0.4697 (0.3251) Accuracy 0.7969 (0.8885)
+[2018/09/22 23:40:52 __main__ INFO] - Epoch 26 Step 600/781 Loss 0.4385 (0.3313) Accuracy 0.8594 (0.8860)
+[2018/09/22 23:41:24 __main__ INFO] - Epoch 26 Step 700/781 Loss 0.3595 (0.3346) Accuracy 0.8906 (0.8849)
+[2018/09/22 23:41:49 __main__ INFO] - Elapsed 251.22
+[2018/09/22 23:41:49 __main__ INFO] - Test 26
+[2018/09/22 23:42:05 __main__ INFO] - Epoch 26 Loss 0.4133 Accuracy 0.8590
+[2018/09/22 23:42:05 __main__ INFO] - Elapsed 15.88
+outdir 2:  /tigress/ruairidh/model_results/resnext_29_8x64d
+[2018/09/22 23:42:06 __main__ INFO] - Train 27
+[2018/09/22 23:42:07 __main__ INFO] - Epoch 27 Step 0/781 Loss 0.4817 (0.4817) Accuracy 0.8750 (0.8750)
+[2018/09/22 23:42:39 __main__ INFO] - Epoch 27 Step 100/781 Loss 0.3834 (0.3125) Accuracy 0.8750 (0.8894)
+[2018/09/22 23:43:11 __main__ INFO] - Epoch 27 Step 200/781 Loss 0.4403 (0.3230) Accuracy 0.8438 (0.8891)
+[2018/09/22 23:43:43 __main__ INFO] - Epoch 27 Step 300/781 Loss 0.4345 (0.3249) Accuracy 0.8281 (0.8886)
+[2018/09/22 23:44:15 __main__ INFO] - Epoch 27 Step 400/781 Loss 0.3414 (0.3271) Accuracy 0.8594 (0.8877)
+[2018/09/22 23:44:47 __main__ INFO] - Epoch 27 Step 500/781 Loss 0.3265 (0.3277) Accuracy 0.8906 (0.8876)
+[2018/09/22 23:45:20 __main__ INFO] - Epoch 27 Step 600/781 Loss 0.2675 (0.3279) Accuracy 0.9219 (0.8871)
+[2018/09/22 23:45:52 __main__ INFO] - Epoch 27 Step 700/781 Loss 0.4458 (0.3333) Accuracy 0.8438 (0.8853)
+[2018/09/22 23:46:17 __main__ INFO] - Elapsed 251.19
+[2018/09/22 23:46:17 __main__ INFO] - Test 27
+[2018/09/22 23:46:33 __main__ INFO] - Epoch 27 Loss 0.4397 Accuracy 0.8569
+[2018/09/22 23:46:33 __main__ INFO] - Elapsed 15.94
+outdir 2:  /tigress/ruairidh/model_results/resnext_29_8x64d
+[2018/09/22 23:46:34 __main__ INFO] - Train 28
+[2018/09/22 23:46:35 __main__ INFO] - Epoch 28 Step 0/781 Loss 0.2480 (0.2480) Accuracy 0.9219 (0.9219)
+[2018/09/22 23:47:07 __main__ INFO] - Epoch 28 Step 100/781 Loss 0.4481 (0.3120) Accuracy 0.8438 (0.8936)
+[2018/09/22 23:47:39 __main__ INFO] - Epoch 28 Step 200/781 Loss 0.4323 (0.3137) Accuracy 0.8594 (0.8926)
+[2018/09/22 23:48:12 __main__ INFO] - Epoch 28 Step 300/781 Loss 0.3467 (0.3159) Accuracy 0.8281 (0.8921)
+[2018/09/22 23:48:44 __main__ INFO] - Epoch 28 Step 400/781 Loss 0.4521 (0.3229) Accuracy 0.8281 (0.8893)
+[2018/09/22 23:49:16 __main__ INFO] - Epoch 28 Step 500/781 Loss 0.2289 (0.3257) Accuracy 0.9375 (0.8881)
+[2018/09/22 23:49:48 __main__ INFO] - Epoch 28 Step 600/781 Loss 0.4043 (0.3249) Accuracy 0.7969 (0.8880)
+[2018/09/22 23:50:20 __main__ INFO] - Epoch 28 Step 700/781 Loss 0.3671 (0.3280) Accuracy 0.9219 (0.8875)
+[2018/09/22 23:50:46 __main__ INFO] - Elapsed 251.27
+[2018/09/22 23:50:46 __main__ INFO] - Test 28
+[2018/09/22 23:51:02 __main__ INFO] - Epoch 28 Loss 0.3754 Accuracy 0.8725
+[2018/09/22 23:51:02 __main__ INFO] - Elapsed 15.82
+outdir 2:  /tigress/ruairidh/model_results/resnext_29_8x64d
+[2018/09/22 23:51:03 __main__ INFO] - Train 29
+[2018/09/22 23:51:04 __main__ INFO] - Epoch 29 Step 0/781 Loss 0.1402 (0.1402) Accuracy 0.9531 (0.9531)
+[2018/09/22 23:51:36 __main__ INFO] - Epoch 29 Step 100/781 Loss 0.3284 (0.2937) Accuracy 0.8750 (0.8993)
+[2018/09/22 23:52:08 __main__ INFO] - Epoch 29 Step 200/781 Loss 0.3428 (0.3124) Accuracy 0.8594 (0.8930)
+[2018/09/22 23:52:40 __main__ INFO] - Epoch 29 Step 300/781 Loss 0.3687 (0.3178) Accuracy 0.8750 (0.8914)
+[2018/09/22 23:53:12 __main__ INFO] - Epoch 29 Step 400/781 Loss 0.4516 (0.3204) Accuracy 0.7812 (0.8896)
+[2018/09/22 23:53:45 __main__ INFO] - Epoch 29 Step 500/781 Loss 0.3189 (0.3186) Accuracy 0.8750 (0.8895)
+[2018/09/22 23:54:17 __main__ INFO] - Epoch 29 Step 600/781 Loss 0.2724 (0.3225) Accuracy 0.8906 (0.8883)
+[2018/09/22 23:54:49 __main__ INFO] - Epoch 29 Step 700/781 Loss 0.1916 (0.3253) Accuracy 0.9375 (0.8875)
+[2018/09/22 23:55:14 __main__ INFO] - Elapsed 251.48
+[2018/09/22 23:55:15 __main__ INFO] - Test 29
+[2018/09/22 23:55:30 __main__ INFO] - Epoch 29 Loss 0.4916 Accuracy 0.8326
+[2018/09/22 23:55:31 __main__ INFO] - Elapsed 16.00
+outdir 2:  /tigress/ruairidh/model_results/resnext_29_8x64d
+[2018/09/22 23:55:32 __main__ INFO] - Train 30
+[2018/09/22 23:55:32 __main__ INFO] - Epoch 30 Step 0/781 Loss 0.3269 (0.3269) Accuracy 0.8750 (0.8750)
+[2018/09/22 23:56:04 __main__ INFO] - Epoch 30 Step 100/781 Loss 0.4986 (0.2986) Accuracy 0.8594 (0.8954)
+[2018/09/22 23:56:37 __main__ INFO] - Epoch 30 Step 200/781 Loss 0.3079 (0.3143) Accuracy 0.9219 (0.8926)
+[2018/09/22 23:57:09 __main__ INFO] - Epoch 30 Step 300/781 Loss 0.2385 (0.3148) Accuracy 0.9219 (0.8924)
+[2018/09/22 23:57:41 __main__ INFO] - Epoch 30 Step 400/781 Loss 0.4661 (0.3168) Accuracy 0.8125 (0.8915)
+[2018/09/22 23:58:13 __main__ INFO] - Epoch 30 Step 500/781 Loss 0.2523 (0.3202) Accuracy 0.8750 (0.8900)
+[2018/09/22 23:58:45 __main__ INFO] - Epoch 30 Step 600/781 Loss 0.4933 (0.3207) Accuracy 0.8125 (0.8896)
+[2018/09/22 23:59:18 __main__ INFO] - Epoch 30 Step 700/781 Loss 0.2426 (0.3218) Accuracy 0.9062 (0.8890)
+[2018/09/22 23:59:43 __main__ INFO] - Elapsed 251.49
+[2018/09/22 23:59:43 __main__ INFO] - Test 30
+[2018/09/22 23:59:59 __main__ INFO] - Epoch 30 Loss 0.3718 Accuracy 0.8737
+[2018/09/22 23:59:59 __main__ INFO] - Elapsed 15.89
+outdir 2:  /tigress/ruairidh/model_results/resnext_29_8x64d
+[2018/09/23 00:00:01 __main__ INFO] - Train 31
+[2018/09/23 00:00:01 __main__ INFO] - Epoch 31 Step 0/781 Loss 0.2620 (0.2620) Accuracy 0.9062 (0.9062)
+[2018/09/23 00:00:33 __main__ INFO] - Epoch 31 Step 100/781 Loss 0.2819 (0.2988) Accuracy 0.8750 (0.8971)
+[2018/09/23 00:01:06 __main__ INFO] - Epoch 31 Step 200/781 Loss 0.4163 (0.2974) Accuracy 0.8750 (0.8983)
+[2018/09/23 00:01:38 __main__ INFO] - Epoch 31 Step 300/781 Loss 0.3733 (0.3018) Accuracy 0.8906 (0.8966)
+[2018/09/23 00:02:10 __main__ INFO] - Epoch 31 Step 400/781 Loss 0.2695 (0.3071) Accuracy 0.9062 (0.8950)
+[2018/09/23 00:02:42 __main__ INFO] - Epoch 31 Step 500/781 Loss 0.3630 (0.3109) Accuracy 0.8750 (0.8932)
+[2018/09/23 00:03:14 __main__ INFO] - Epoch 31 Step 600/781 Loss 0.2348 (0.3164) Accuracy 0.9375 (0.8914)
+[2018/09/23 00:03:47 __main__ INFO] - Epoch 31 Step 700/781 Loss 0.2769 (0.3204) Accuracy 0.9375 (0.8898)
+[2018/09/23 00:04:12 __main__ INFO] - Elapsed 251.58
+[2018/09/23 00:04:13 __main__ INFO] - Test 31
+[2018/09/23 00:04:30 __main__ INFO] - Epoch 31 Loss 0.4094 Accuracy 0.8609
+[2018/09/23 00:04:31 __main__ INFO] - Elapsed 18.87
+outdir 2:  /tigress/ruairidh/model_results/resnext_29_8x64d
+[2018/09/23 00:04:36 __main__ INFO] - Train 32
+[2018/09/23 00:04:36 __main__ INFO] - Epoch 32 Step 0/781 Loss 0.3705 (0.3705) Accuracy 0.8750 (0.8750)
+[2018/09/23 00:05:09 __main__ INFO] - Epoch 32 Step 100/781 Loss 0.2115 (0.2946) Accuracy 0.9219 (0.8965)
+[2018/09/23 00:05:41 __main__ INFO] - Epoch 32 Step 200/781 Loss 0.4788 (0.3026) Accuracy 0.8281 (0.8941)
+[2018/09/23 00:06:13 __main__ INFO] - Epoch 32 Step 300/781 Loss 0.2371 (0.3062) Accuracy 0.9219 (0.8930)
+[2018/09/23 00:06:45 __main__ INFO] - Epoch 32 Step 400/781 Loss 0.2966 (0.3145) Accuracy 0.9062 (0.8910)
+[2018/09/23 00:07:17 __main__ INFO] - Epoch 32 Step 500/781 Loss 0.4038 (0.3123) Accuracy 0.8594 (0.8922)
+[2018/09/23 00:07:49 __main__ INFO] - Epoch 32 Step 600/781 Loss 0.4962 (0.3153) Accuracy 0.8125 (0.8904)
+[2018/09/23 00:08:22 __main__ INFO] - Epoch 32 Step 700/781 Loss 0.2680 (0.3200) Accuracy 0.8906 (0.8888)
+[2018/09/23 00:08:47 __main__ INFO] - Elapsed 251.55
+[2018/09/23 00:08:47 __main__ INFO] - Test 32
+[2018/09/23 00:09:03 __main__ INFO] - Epoch 32 Loss 0.5768 Accuracy 0.8128
+[2018/09/23 00:09:03 __main__ INFO] - Elapsed 16.00
+outdir 2:  /tigress/ruairidh/model_results/resnext_29_8x64d
+[2018/09/23 00:09:04 __main__ INFO] - Train 33
+[2018/09/23 00:09:05 __main__ INFO] - Epoch 33 Step 0/781 Loss 0.2013 (0.2013) Accuracy 0.9219 (0.9219)
+[2018/09/23 00:09:37 __main__ INFO] - Epoch 33 Step 100/781 Loss 0.3486 (0.3006) Accuracy 0.9219 (0.8976)
+[2018/09/23 00:10:09 __main__ INFO] - Epoch 33 Step 200/781 Loss 0.4802 (0.3143) Accuracy 0.8750 (0.8910)
+[2018/09/23 00:10:41 __main__ INFO] - Epoch 33 Step 300/781 Loss 0.2520 (0.3122) Accuracy 0.8906 (0.8910)
+[2018/09/23 00:11:14 __main__ INFO] - Epoch 33 Step 400/781 Loss 0.3330 (0.3173) Accuracy 0.8906 (0.8889)
+[2018/09/23 00:11:46 __main__ INFO] - Epoch 33 Step 500/781 Loss 0.2635 (0.3196) Accuracy 0.9062 (0.8888)
+[2018/09/23 00:12:18 __main__ INFO] - Epoch 33 Step 600/781 Loss 0.2182 (0.3207) Accuracy 0.9062 (0.8886)
+[2018/09/23 00:12:50 __main__ INFO] - Epoch 33 Step 700/781 Loss 0.3519 (0.3186) Accuracy 0.8906 (0.8891)
+[2018/09/23 00:13:16 __main__ INFO] - Elapsed 251.49
+[2018/09/23 00:13:16 __main__ INFO] - Test 33
+[2018/09/23 00:13:32 __main__ INFO] - Epoch 33 Loss 0.4819 Accuracy 0.8417
+[2018/09/23 00:13:32 __main__ INFO] - Elapsed 15.79
+outdir 2:  /tigress/ruairidh/model_results/resnext_29_8x64d
+[2018/09/23 00:13:33 __main__ INFO] - Train 34
+[2018/09/23 00:13:33 __main__ INFO] - Epoch 34 Step 0/781 Loss 0.2960 (0.2960) Accuracy 0.9219 (0.9219)
+[2018/09/23 00:14:05 __main__ INFO] - Epoch 34 Step 100/781 Loss 0.2927 (0.2976) Accuracy 0.9062 (0.8984)
+[2018/09/23 00:14:38 __main__ INFO] - Epoch 34 Step 200/781 Loss 0.2133 (0.2971) Accuracy 0.9375 (0.8979)
+[2018/09/23 00:15:10 __main__ INFO] - Epoch 34 Step 300/781 Loss 0.1571 (0.3151) Accuracy 0.9375 (0.8923)
+[2018/09/23 00:15:42 __main__ INFO] - Epoch 34 Step 400/781 Loss 0.2042 (0.3140) Accuracy 0.9219 (0.8931)
+[2018/09/23 00:16:14 __main__ INFO] - Epoch 34 Step 500/781 Loss 0.3541 (0.3169) Accuracy 0.9062 (0.8917)
+[2018/09/23 00:16:46 __main__ INFO] - Epoch 34 Step 600/781 Loss 0.3806 (0.3183) Accuracy 0.8594 (0.8915)
+[2018/09/23 00:17:19 __main__ INFO] - Epoch 34 Step 700/781 Loss 0.2884 (0.3173) Accuracy 0.8594 (0.8915)
+[2018/09/23 00:17:44 __main__ INFO] - Elapsed 251.67
+[2018/09/23 00:17:44 __main__ INFO] - Test 34
+[2018/09/23 00:18:00 __main__ INFO] - Epoch 34 Loss 0.5233 Accuracy 0.8347
+[2018/09/23 00:18:00 __main__ INFO] - Elapsed 15.93
+outdir 2:  /tigress/ruairidh/model_results/resnext_29_8x64d
+[2018/09/23 00:18:01 __main__ INFO] - Train 35
+[2018/09/23 00:18:02 __main__ INFO] - Epoch 35 Step 0/781 Loss 0.2379 (0.2379) Accuracy 0.9219 (0.9219)
+[2018/09/23 00:18:34 __main__ INFO] - Epoch 35 Step 100/781 Loss 0.3658 (0.2845) Accuracy 0.8906 (0.9042)
+[2018/09/23 00:19:06 __main__ INFO] - Epoch 35 Step 200/781 Loss 0.2718 (0.2978) Accuracy 0.9062 (0.9001)
+[2018/09/23 00:19:38 __main__ INFO] - Epoch 35 Step 300/781 Loss 0.2124 (0.2980) Accuracy 0.9375 (0.8997)
+[2018/09/23 00:20:10 __main__ INFO] - Epoch 35 Step 400/781 Loss 0.2141 (0.3003) Accuracy 0.9219 (0.8974)
+[2018/09/23 00:20:43 __main__ INFO] - Epoch 35 Step 500/781 Loss 0.3694 (0.3070) Accuracy 0.8281 (0.8954)
+[2018/09/23 00:21:15 __main__ INFO] - Epoch 35 Step 600/781 Loss 0.3249 (0.3073) Accuracy 0.8594 (0.8955)
+[2018/09/23 00:21:47 __main__ INFO] - Epoch 35 Step 700/781 Loss 0.4039 (0.3061) Accuracy 0.8281 (0.8954)
+[2018/09/23 00:22:12 __main__ INFO] - Elapsed 251.26
+[2018/09/23 00:22:13 __main__ INFO] - Test 35
+[2018/09/23 00:22:28 __main__ INFO] - Epoch 35 Loss 0.4805 Accuracy 0.8427
+[2018/09/23 00:22:28 __main__ INFO] - Elapsed 15.91
+outdir 2:  /tigress/ruairidh/model_results/resnext_29_8x64d
+[2018/09/23 00:22:29 __main__ INFO] - Train 36
+[2018/09/23 00:22:30 __main__ INFO] - Epoch 36 Step 0/781 Loss 0.3082 (0.3082) Accuracy 0.8750 (0.8750)
+[2018/09/23 00:23:02 __main__ INFO] - Epoch 36 Step 100/781 Loss 0.3031 (0.2745) Accuracy 0.8750 (0.9056)
+[2018/09/23 00:23:34 __main__ INFO] - Epoch 36 Step 200/781 Loss 0.3886 (0.2966) Accuracy 0.9062 (0.8995)
+[2018/09/23 00:24:06 __main__ INFO] - Epoch 36 Step 300/781 Loss 0.3447 (0.3030) Accuracy 0.9062 (0.8972)
+[2018/09/23 00:24:38 __main__ INFO] - Epoch 36 Step 400/781 Loss 0.3062 (0.3067) Accuracy 0.8750 (0.8954)
+[2018/09/23 00:25:10 __main__ INFO] - Epoch 36 Step 500/781 Loss 0.2785 (0.3106) Accuracy 0.8750 (0.8936)
+[2018/09/23 00:25:43 __main__ INFO] - Epoch 36 Step 600/781 Loss 0.2484 (0.3134) Accuracy 0.9219 (0.8926)
+[2018/09/23 00:26:15 __main__ INFO] - Epoch 36 Step 700/781 Loss 0.3517 (0.3155) Accuracy 0.9219 (0.8919)
+[2018/09/23 00:26:40 __main__ INFO] - Elapsed 251.03
+[2018/09/23 00:26:40 __main__ INFO] - Test 36
+[2018/09/23 00:26:56 __main__ INFO] - Epoch 36 Loss 0.4112 Accuracy 0.8632
+[2018/09/23 00:26:56 __main__ INFO] - Elapsed 15.97
+outdir 2:  /tigress/ruairidh/model_results/resnext_29_8x64d
+[2018/09/23 00:26:57 __main__ INFO] - Train 37
+[2018/09/23 00:26:58 __main__ INFO] - Epoch 37 Step 0/781 Loss 0.1994 (0.1994) Accuracy 0.9375 (0.9375)
+[2018/09/23 00:27:30 __main__ INFO] - Epoch 37 Step 100/781 Loss 0.2535 (0.2799) Accuracy 0.9062 (0.9041)
+[2018/09/23 00:28:02 __main__ INFO] - Epoch 37 Step 200/781 Loss 0.3559 (0.2982) Accuracy 0.8906 (0.8972)
+[2018/09/23 00:28:34 __main__ INFO] - Epoch 37 Step 300/781 Loss 0.1863 (0.2961) Accuracy 0.9531 (0.8985)
+[2018/09/23 00:29:07 __main__ INFO] - Epoch 37 Step 400/781 Loss 0.1993 (0.3002) Accuracy 0.9375 (0.8971)
+[2018/09/23 00:29:39 __main__ INFO] - Epoch 37 Step 500/781 Loss 0.2311 (0.3014) Accuracy 0.9062 (0.8976)
+[2018/09/23 00:30:11 __main__ INFO] - Epoch 37 Step 600/781 Loss 0.2490 (0.3031) Accuracy 0.9219 (0.8970)
+[2018/09/23 00:30:43 __main__ INFO] - Epoch 37 Step 700/781 Loss 0.3630 (0.3044) Accuracy 0.8750 (0.8967)
+[2018/09/23 00:31:09 __main__ INFO] - Elapsed 251.57
+[2018/09/23 00:31:09 __main__ INFO] - Test 37
+[2018/09/23 00:31:25 __main__ INFO] - Epoch 37 Loss 0.4297 Accuracy 0.8525
+[2018/09/23 00:31:25 __main__ INFO] - Elapsed 15.85
+outdir 2:  /tigress/ruairidh/model_results/resnext_29_8x64d
+[2018/09/23 00:31:26 __main__ INFO] - Train 38
+[2018/09/23 00:31:27 __main__ INFO] - Epoch 38 Step 0/781 Loss 0.4330 (0.4330) Accuracy 0.8594 (0.8594)
+[2018/09/23 00:31:59 __main__ INFO] - Epoch 38 Step 100/781 Loss 0.3146 (0.2864) Accuracy 0.8906 (0.9010)
+[2018/09/23 00:32:31 __main__ INFO] - Epoch 38 Step 200/781 Loss 0.5044 (0.3023) Accuracy 0.8438 (0.8972)
+[2018/09/23 00:33:03 __main__ INFO] - Epoch 38 Step 300/781 Loss 0.2891 (0.3061) Accuracy 0.8906 (0.8945)
+[2018/09/23 00:33:35 __main__ INFO] - Epoch 38 Step 400/781 Loss 0.1545 (0.3104) Accuracy 0.9531 (0.8927)
+[2018/09/23 00:34:07 __main__ INFO] - Epoch 38 Step 500/781 Loss 0.3901 (0.3073) Accuracy 0.8906 (0.8937)
+[2018/09/23 00:34:40 __main__ INFO] - Epoch 38 Step 600/781 Loss 0.5028 (0.3058) Accuracy 0.8125 (0.8944)
+[2018/09/23 00:35:12 __main__ INFO] - Epoch 38 Step 700/781 Loss 0.2491 (0.3069) Accuracy 0.9219 (0.8946)
+[2018/09/23 00:35:37 __main__ INFO] - Elapsed 251.49
+[2018/09/23 00:35:38 __main__ INFO] - Test 38
+[2018/09/23 00:35:53 __main__ INFO] - Epoch 38 Loss 0.5684 Accuracy 0.8268
+[2018/09/23 00:35:53 __main__ INFO] - Elapsed 15.80
+outdir 2:  /tigress/ruairidh/model_results/resnext_29_8x64d
+[2018/09/23 00:35:55 __main__ INFO] - Train 39
+[2018/09/23 00:35:56 __main__ INFO] - Epoch 39 Step 0/781 Loss 0.2818 (0.2818) Accuracy 0.8906 (0.8906)
+[2018/09/23 00:36:28 __main__ INFO] - Epoch 39 Step 100/781 Loss 0.2112 (0.2874) Accuracy 0.9375 (0.9001)
+[2018/09/23 00:37:00 __main__ INFO] - Epoch 39 Step 200/781 Loss 0.3988 (0.2885) Accuracy 0.8438 (0.9000)
+[2018/09/23 00:37:32 __main__ INFO] - Epoch 39 Step 300/781 Loss 0.3114 (0.2884) Accuracy 0.8750 (0.9009)
+[2018/09/23 00:38:04 __main__ INFO] - Epoch 39 Step 400/781 Loss 0.1447 (0.2956) Accuracy 0.9844 (0.8986)
+[2018/09/23 00:38:36 __main__ INFO] - Epoch 39 Step 500/781 Loss 0.2880 (0.3015) Accuracy 0.9062 (0.8968)
+[2018/09/23 00:39:09 __main__ INFO] - Epoch 39 Step 600/781 Loss 0.3405 (0.3045) Accuracy 0.8438 (0.8960)
+[2018/09/23 00:39:41 __main__ INFO] - Epoch 39 Step 700/781 Loss 0.3529 (0.3068) Accuracy 0.8594 (0.8954)
+[2018/09/23 00:40:06 __main__ INFO] - Elapsed 251.37
+[2018/09/23 00:40:07 __main__ INFO] - Test 39
+[2018/09/23 00:40:22 __main__ INFO] - Epoch 39 Loss 0.4383 Accuracy 0.8555
+[2018/09/23 00:40:23 __main__ INFO] - Elapsed 15.95
+outdir 2:  /tigress/ruairidh/model_results/resnext_29_8x64d
+[2018/09/23 00:40:24 __main__ INFO] - Train 40
+[2018/09/23 00:40:25 __main__ INFO] - Epoch 40 Step 0/781 Loss 0.3869 (0.3869) Accuracy 0.8906 (0.8906)
+[2018/09/23 00:40:57 __main__ INFO] - Epoch 40 Step 100/781 Loss 0.3149 (0.2808) Accuracy 0.9062 (0.9049)
