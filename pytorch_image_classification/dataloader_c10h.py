@@ -63,6 +63,7 @@ class CIFAR10H(data.Dataset):
     def __init__(self, root, which_set='train',
                  transform=None, target_transform=None,
                  download=False, c10h_sample=False,
+                 c10h_testsplit_percent=0.1,
                  c10h_datasplit_seed=999):
         self.root = os.path.expanduser(root)
         self.transform = transform
@@ -143,18 +144,34 @@ class CIFAR10H(data.Dataset):
             self.c10h_c10_targets = self.c10h_c10_targets[c10h_rnd_idxs]
             self.c10h_c10_targets = list(self.c10h_c10_targets)
 
+            split_idx = int((1 - c10h_testsplit_percent)*self.c10h_data.shape[0])
+
             if self.set == 'train':
-                self.c10h_data = self.c10h_data[:9000]
-                self.c10h_targets = self.c10h_targets[:9000]
-
-                # for _ in self.c10h_targets[20:40]: print(_)
-                # exit()
-
-                self.c10h_c10_targets =  self.c10h_c10_targets[:9000]
+                self.c10h_data = self.c10h_data[:split_idx]
+                self.c10h_targets = self.c10h_targets[:split_idx]
+                self.c10h_c10_targets =  self.c10h_c10_targets[:split_idx]
             elif self.set == 'test':
-                self.c10h_data = self.c10h_data[9000:]
-                self.c10h_targets = self.c10h_targets[9000:]
-                self.c10h_c10_targets =  self.c10h_c10_targets[9000:]
+                self.c10h_data = self.c10h_data[split_idx:]
+                self.c10h_targets = self.c10h_targets[split_idx:]
+                self.c10h_c10_targets =  self.c10h_c10_targets[split_idx:]
+
+        elif self.set == '50k':
+            self._50k_data = []
+            self._50k_targets = []
+            downloaded_list = self.c10_train_list
+            for file_name, checksum in downloaded_list:
+                file_path = os.path.join(self.root, self.base_folder, file_name)
+                with open(file_path, 'rb') as f:
+                    if sys.version_info[0] == 2:
+                        entry = pickle.load(f)
+                    else:
+                        entry = pickle.load(f, encoding='latin1')
+                    self._50k_data.append(entry['data'])
+                    if 'labels' in entry:
+                        self._50k_targets.extend(entry['labels'])
+
+            self._50k_data = np.vstack(self._50k_data).reshape(-1, 3, 32, 32)
+            self._50k_data = self._50k_data.transpose((0, 2, 3, 1))  # convert to HWC
 
         elif self.set == 'v4':
             self.v4_data, self.v4_targets = \
@@ -199,6 +216,15 @@ class CIFAR10H(data.Dataset):
 
             return img, target, c10h_c10_target
 
+        elif self.set == '50k':
+            img, target = self._50k_data[index], self._50k_targets[index]
+            img = Image.fromarray(img)
+            if self.transform is not None:
+                img = self.transform(img)
+            if self.target_transform is not None:
+                target = self.target_transform(target)
+            return img, target      
+
         elif self.set == 'v4':
             img, target = self.v4_data[index], self.v4_targets[index]
             img = Image.fromarray(img)
@@ -220,6 +246,8 @@ class CIFAR10H(data.Dataset):
     def __len__(self):
         if self.set in ['train','test']:
             return len(self.c10h_data)
+        elif self.set == '50k':
+            return len(self._50k_data)
         elif self.set == 'v4':
             return len(self.v4_data)
         elif self.set == 'v6':
@@ -275,7 +303,7 @@ class Dataset(object):
         self.use_random_erasing = ('use_random_erasing' in config.keys()
                                    ) and config['use_random_erasing']
 
-    def get_datasets(self, c10h_sample=False, c10h_datasplit_seed=999):
+    def get_datasets(self, c10h_sample=False, c10h_testsplit_percent=0.1, c10h_datasplit_seed=999):
         if self.config['dataset'] != 'CIFAR10H':
             train_dataset = getattr(torchvision.datasets, self.config['dataset'])(
                 self.dataset_dir, train=True, transform=self.train_transform, download=True)
@@ -286,10 +314,18 @@ class Dataset(object):
             # USE CIFAR10H!
             train_dataset = CIFAR10H(
                 self.dataset_dir, which_set='train', transform=self.train_transform, 
-                download=True, c10h_sample=c10h_sample, c10h_datasplit_seed=c10h_datasplit_seed)
+                download=True, c10h_sample=c10h_sample, c10h_datasplit_seed=c10h_datasplit_seed,
+                c10h_testsplit_percent=c10h_testsplit_percent)
             test_dataset = CIFAR10H(
                 self.dataset_dir, which_set='test', transform=self.test_transform, 
-                download=True, c10h_datasplit_seed=c10h_datasplit_seed)
+                download=True, c10h_datasplit_seed=c10h_datasplit_seed,
+                c10h_testsplit_percent=c10h_testsplit_percent)
+
+            # cifar10 50,000 training images
+            _50k_dataset = CIFAR10H(
+                self.dataset_dir, which_set='50k', transform=self.train_transform, 
+                download=True)
+
             # cifar 10.1 versions
             v4_dataset = CIFAR10H(
                 self.dataset_dir, which_set='v4', transform=self.train_transform, 
@@ -297,7 +333,7 @@ class Dataset(object):
             v6_dataset = CIFAR10H(
                 self.dataset_dir, which_set='v6', transform=self.test_transform, 
                 download=True)
-            return train_dataset, test_dataset, v4_dataset, v6_dataset
+            return train_dataset, test_dataset, _50k_dataset, v4_dataset, v6_dataset
 
     def _get_random_erasing_train_transform(self):
         raise NotImplementedError
@@ -429,6 +465,7 @@ def get_loader(config):
     num_workers = config['num_workers']
     use_gpu = config['use_gpu']
     c10h_sample = config['c10h_sample']
+    c10h_testsplit_percent = config['c10h_testsplit_percent']
     c10h_datasplit_seed = config['c10h_datasplit_seed']
 
     dataset_name = config['dataset']
@@ -444,8 +481,9 @@ def get_loader(config):
     elif dataset_name == 'FashionMNIST':
         dataset = FashionMNIST(config)
 
-    train_dataset, test_dataset, v4_dataset, v6_dataset = \
+    train_dataset, test_dataset, _50k_dataset, v4_dataset, v6_dataset = \
         dataset.get_datasets(c10h_sample=c10h_sample, 
+            c10h_testsplit_percent=c10h_testsplit_percent,
             c10h_datasplit_seed=c10h_datasplit_seed)
 
     train_loader = torch.utils.data.DataLoader(
@@ -464,13 +502,21 @@ def get_loader(config):
         pin_memory=use_gpu,
         drop_last=False,
     )
+    _50k_loader = torch.utils.data.DataLoader(
+        _50k_dataset,
+        batch_size=batch_size,
+        shuffle=False,
+        num_workers=num_workers,
+        pin_memory=use_gpu,
+        drop_last=False,
+    )
     v4_loader = torch.utils.data.DataLoader(
         v4_dataset,
         batch_size=batch_size,
         shuffle=False,
         num_workers=num_workers,
         pin_memory=use_gpu,
-        drop_last=True,
+        drop_last=False,
     )
     v6_loader = torch.utils.data.DataLoader(
         v6_dataset,
@@ -480,4 +526,4 @@ def get_loader(config):
         pin_memory=use_gpu,
         drop_last=False,
     )
-    return train_loader, test_loader, v4_loader, v6_loader
+    return train_loader, test_loader, _50k_loader, v4_loader, v6_loader

@@ -11,13 +11,8 @@
 # python tune_with_cifar10h.py --human_tune --dataset CIFAR10H --arch shake_shake --config tmp_reference_model/config.json --resume tmp_reference_model/model_best_state.pth --gpu 0 --no_output --base_lr 0.01 --nonhuman_control
 
 
-import os
-import time
-import json
-import logging
-import argparse
+import os, time, random, json, logging, argparse, csv
 import numpy as np
-import random
 
 import torch
 import torch.nn as nn
@@ -150,7 +145,13 @@ def parse_args():
     parser.add_argument('--resume', type=str)
     # whether to tune to human labels
     parser.add_argument('--human_tune', action='store_true', default=False)
-    # 
+    # where to save the loss/accuracy for c10h to a csv file
+    parser.add_argument('--c10h_scores_outdir', type=str, default='tmp')
+    # c10h scores save interval (in epochs)
+    parser.add_argument('--c10h_save_interval', type=int, default=1)
+    # how much of the data to use use for test for c10h training
+    parser.add_argument('--c10h_testsplit_percent', type=float, default=0.1)
+    # seed for splitting the c10h data into train/test
     parser.add_argument('--c10h_datasplit_seed', type=int, default=999)
     # whether to use the cifar10 labels for the human test set (CONTROL)
     parser.add_argument('--nonhuman_control', action='store_true', default=False)
@@ -234,56 +235,60 @@ def train(epoch, model, optimizer, scheduler, criterion, train_loader, config,
 
         optimizer.step()
 
-        _, preds = torch.max(outputs, dim=1)
+    #     _, preds = torch.max(outputs, dim=1)
 
-        loss_ = loss.item()
-        if human_tune or data_config['use_mixup']:
-            _, targets = targets.max(dim=1)
-        correct_ = preds.eq(targets).sum().item()
-        n_obs = data.size(0)
+    #     loss_ = loss.item()
+    #     if human_tune or data_config['use_mixup']:
+    #         _, targets = targets.max(dim=1)
+    #     correct_ = preds.eq(targets).sum().item()
+    #     n_obs = data.size(0)
 
-        accuracy = correct_ / float(n_obs)
+    #     accuracy = correct_ / float(n_obs)
 
-        loss_meter.update(loss_, n_obs)
-        accuracy_meter.update(accuracy, n_obs)
+    #     loss_meter.update(loss_, n_obs)
+    #     accuracy_meter.update(accuracy, n_obs)
 
-        if run_config['tensorboard']:
-            writer.add_scalar('Train/RunningLoss', loss_, global_step)
-            writer.add_scalar('Train/RunningAccuracy', accuracy, global_step)
+    #     if run_config['tensorboard']:
+    #         writer.add_scalar('Train/RunningLoss', loss_, global_step)
+    #         writer.add_scalar('Train/RunningAccuracy', accuracy, global_step)
 
-        if not human_tune:
-            if step % 100 == 0:
-                logger.info('Epoch {} Step {}/{} '
-                            'Loss {:.4f} ({:.4f}) '
-                            'Accuracy {:.4f} ({:.4f})'.format(
-                                epoch,
-                                step,
-                                len(train_loader),
-                                loss_meter.val,
-                                loss_meter.avg,
-                                accuracy_meter.val,
-                                accuracy_meter.avg,
-                            ))
-    if human_tune:
-        logger.info('Train Epoch {} Loss {:.4f} (acc: {:.4f})'.format(
-                        epoch,
-                        loss_meter.avg,
-                        accuracy_meter.avg,
-                    ))
+    #     if not human_tune:
+    #         if step % 100 == 0:
+    #             logger.info('Epoch {} Step {}/{} '
+    #                         'Loss {:.4f} ({:.4f}) '
+    #                         'Accuracy {:.4f} ({:.4f})'.format(
+    #                             epoch,
+    #                             step,
+    #                             len(train_loader),
+    #                             loss_meter.val,
+    #                             loss_meter.avg,
+    #                             accuracy_meter.val,
+    #                             accuracy_meter.avg,
+    #                         ))
+    # if human_tune:
+    #     logger.info('Train Epoch {} Loss {:.4f} (acc: {:.4f})'.format(
+    #                     epoch,
+    #                     loss_meter.avg,
+    #                     accuracy_meter.avg,
+    #                 ))
 
-    elapsed = time.time() - start
-    logger.info('Elapsed {:.2f}'.format(elapsed))
+    # elapsed = time.time() - start
+    # logger.info('Elapsed {:.2f}'.format(elapsed))
 
-    if run_config['tensorboard']:
-        writer.add_scalar('Train/Loss', loss_meter.avg, epoch)
-        writer.add_scalar('Train/Accuracy', accuracy_meter.avg, epoch)
-        writer.add_scalar('Train/Time', elapsed, epoch)
+    # if run_config['tensorboard']:
+    #     writer.add_scalar('Train/Loss', loss_meter.avg, epoch)
+    #     writer.add_scalar('Train/Accuracy', accuracy_meter.avg, epoch)
+    #     writer.add_scalar('Train/Time', elapsed, epoch)
 
 def test(epoch, model, criterion, test_loaders, run_config, writer, 
         human_tune=False):
 
     if human_tune:
-        test_loader, v4_loader, v6_loader = test_loaders
+        train_loader, \
+        test_loader,  \
+        _50k_loader,  \
+        v4_loader,    \
+        v6_loader = test_loaders
     else:
         test_loader = test_loaders
 
@@ -294,8 +299,14 @@ def test(epoch, model, criterion, test_loaders, run_config, writer,
     loss_meter = AverageMeter()
     correct_meter = AverageMeter()
     if human_tune:
-        c10h_c10_loss_meter = AverageMeter()
-        c10h_c10_correct_meter = AverageMeter()
+        c10h_val_c10_loss_meter = AverageMeter()
+        c10h_val_c10_correct_meter = AverageMeter()
+        c10h_train_c10_loss_meter = AverageMeter()
+        c10h_train_c10_correct_meter = AverageMeter()
+        train_loss_meter = AverageMeter()
+        train_correct_meter = AverageMeter()
+        _50k_loss_meter = AverageMeter()
+        _50k_correct_meter = AverageMeter()
         v4_loss_meter = AverageMeter()
         v4_correct_meter = AverageMeter()
         v6_loss_meter = AverageMeter()
@@ -305,8 +316,8 @@ def test(epoch, model, criterion, test_loaders, run_config, writer,
     for step, batch_data in enumerate(test_loader):
 
         if human_tune:
-            data, targets, c10h_c10_targets = batch_data
-            c10h_c10_targets = onehot(c10h_c10_targets, 10)
+            data, targets, c10h_val_c10_targets = batch_data
+            c10h_val_c10_targets = onehot(c10h_val_c10_targets, 10)
         else:
             data, targets = batch_data
 
@@ -320,7 +331,7 @@ def test(epoch, model, criterion, test_loaders, run_config, writer,
             data = data.cuda()
             targets = targets.cuda()
             if human_tune: 
-                c10h_c10_targets = c10h_c10_targets.cuda()
+                c10h_val_c10_targets = c10h_val_c10_targets.cuda()
 
         with torch.no_grad():
             outputs = model(data)
@@ -330,29 +341,68 @@ def test(epoch, model, criterion, test_loaders, run_config, writer,
         # compute loss for each test set
         loss = criterion(outputs, targets)
         if human_tune:
-            c10h_c10_loss = criterion(outputs, c10h_c10_targets)
+            c10h_val_c10_loss = criterion(outputs, c10h_val_c10_targets)
 
         # save losses
         loss_meter.update(loss.item(), n_obs)
         if human_tune:
-            c10h_c10_loss_meter.update(c10h_c10_loss.item(), n_obs)
+            c10h_val_c10_loss_meter.update(c10h_val_c10_loss.item(), n_obs)
 
         # turn the NN probs into classifications ("predictions")
         _, preds = torch.max(outputs, dim=1)
 
         if human_tune: 
             _, targets = targets.max(dim=1)
-            _, c10h_c10_targets = c10h_c10_targets.max(dim=1)
+            _, c10h_val_c10_targets = c10h_val_c10_targets.max(dim=1)
 
         correct_ = preds.eq(targets).sum().item()
         correct_meter.update(correct_, 1)
 
         if human_tune:
-            c10h_c10_correct_ = preds.eq(c10h_c10_targets).sum().item()
-            c10h_c10_correct_meter.update(c10h_c10_correct_, 1)
+            c10h_val_c10_correct_ = preds.eq(c10h_val_c10_targets).sum().item()
+            c10h_val_c10_correct_meter.update(c10h_val_c10_correct_, 1)
 
-    # TEST v4/v6 CIFAR 10.1
     if human_tune:
+        # get the full training loss after the last epoch
+        # as opposed to the rolling average which is biased
+        # due to having many gradient updates in between batches
+        # -- get it for c10 labels too (c10h_train_c10_targets)
+        for step, (data, targets, c10h_train_c10_targets) in enumerate(train_loader):
+            c10h_train_c10_targets = onehot(c10h_train_c10_targets, 10)
+            if run_config['use_gpu']:
+                data = data.cuda()
+                targets = targets.cuda()
+                c10h_train_c10_targets = c10h_train_c10_targets.cuda()
+            with torch.no_grad(): outputs = model(data)
+            n_obs = data.size(0)
+            train_loss = criterion(outputs, targets)
+            c10h_train_c10_loss = criterion(outputs, c10h_train_c10_targets)
+            train_loss_meter.update(train_loss.item(), n_obs)
+            c10h_train_c10_loss_meter.update(c10h_train_c10_loss.item(), n_obs)
+            _, preds = torch.max(outputs, dim=1)
+            _, targets = targets.max(dim=1)
+            _, c10h_train_c10_targets = c10h_train_c10_targets.max(dim=1)
+            train_correct_ = preds.eq(targets).sum().item()
+            c10h_train_c10_correct_ = preds.eq(c10h_train_c10_targets).sum().item()
+            train_correct_meter.update(train_correct_, 1)
+            c10h_train_c10_correct_meter.update(c10h_train_c10_correct_, 1)
+
+        # TEST 50k cifar10 training to make sure it sustains
+        for step, (data, targets) in enumerate(_50k_loader):
+            targets = onehot(targets, 10)
+            if run_config['use_gpu']:
+                data = data.cuda()
+                targets = targets.cuda()
+            with torch.no_grad(): outputs = model(data)
+            n_obs = data.size(0)
+            _50k_loss = criterion(outputs, targets)
+            _50k_loss_meter.update(_50k_loss.item(), n_obs)
+            _, preds = torch.max(outputs, dim=1)
+            _, targets = targets.max(dim=1)
+            _50k_correct_ = preds.eq(targets).sum().item()
+            _50k_correct_meter.update(_50k_correct_, 1)
+
+        # TEST v4/v6 CIFAR 10.1
         for step, (data, targets) in enumerate(v4_loader):
             targets = onehot(targets, 10)
             if run_config['use_gpu']:
@@ -383,16 +433,24 @@ def test(epoch, model, criterion, test_loaders, run_config, writer,
 
     accuracy = correct_meter.sum / float(len(test_loader.dataset))
     if human_tune:
-        c10h_c10_accuracy = \
-            c10h_c10_correct_meter.sum / float(len(test_loader.dataset))
+        c10h_val_c10_accuracy = \
+            c10h_val_c10_correct_meter.sum / float(len(test_loader.dataset))
+        c10h_train_c10_accuracy = \
+            c10h_train_c10_correct_meter.sum / float(len(train_loader.dataset))
+        train_accuracy = train_correct_meter.sum / float(len(train_loader.dataset))
+        _50k_accuracy = _50k_correct_meter.sum / float(len(_50k_loader.dataset))
         v4_accuracy = v4_correct_meter.sum / float(len(v4_loader.dataset))
         v6_accuracy = v6_correct_meter.sum / float(len(v6_loader.dataset))
 
     if human_tune:
-        logger.info('- epoch {}, c10h: {:.4f} (acc: {:.4f}) | c10h_c10: {:.4f} (acc: {:.4f})'.format(
-            epoch, loss_meter.avg, accuracy, c10h_c10_loss_meter.avg, c10h_c10_accuracy))
-        logger.info('-       {}    v4: {:.4f} (acc: {:.4f}) |       v6: {:.4f} (acc: {:.4f})'.format(
-            epoch, v4_loss_meter.avg, v4_accuracy, v6_loss_meter.avg, v6_accuracy))
+        logger.info('- epoch {}    c10h_train    : {:.4f} (acc: {:.4f}) | c10h_val    : {:.4f} (acc: {:.4f})'.format(
+            epoch, train_loss_meter.avg, train_accuracy, loss_meter.avg, accuracy))     
+        logger.info('-            c10h_train_c10: {:.4f} (acc: {:.4f}) | c10h_val_c10: {:.4f} (acc: {:.4f})'.format(
+            c10h_train_c10_loss_meter.avg, c10h_train_c10_accuracy, c10h_val_c10_loss_meter.avg, c10h_val_c10_accuracy))  
+        logger.info('-            v4            : {:.4f} (acc: {:.4f}) |           v6: {:.4f} (acc: {:.4f})'.format(
+            v4_loss_meter.avg, v4_accuracy, v6_loss_meter.avg, v6_accuracy))
+        logger.info('-            c10_50k       : {:.4f} (acc: {:.4f})'.format(
+            _50k_loss_meter.avg, _50k_accuracy))
     else:
         logger.info('Epoch {} Loss {:.4f} Accuracy {:.4f}'.format(
             epoch, loss_meter.avg, accuracy))
@@ -410,7 +468,32 @@ def test(epoch, model, criterion, test_loaders, run_config, writer,
         for name, param in model.named_parameters():
             writer.add_histogram(name, param, global_step)
 
-    return accuracy
+    if human_tune:
+        return {'epoch'          : epoch,
+
+                'c10h_train_loss': train_loss_meter.avg,
+                'c10h_train_acc' : train_accuracy,
+
+                'c10h_val_loss': loss_meter.avg,
+                'c10h_val_acc' : accuracy,
+
+                'c10h_train_c10_loss': c10h_train_c10_loss_meter.avg,
+                'c10h_train_c10_acc' : c10h_train_c10_accuracy,
+
+                'c10h_val_c10_loss': c10h_val_c10_loss_meter.avg,
+                'c10h_val_c10_acc' : c10h_val_c10_accuracy,
+
+                'v4_loss': v4_loss_meter.avg,
+                'v4_acc' : v4_accuracy,
+
+                'v6_loss': v6_loss_meter.avg,
+                'v6_acc' : v6_accuracy,
+
+                'c10_50k_loss': _50k_loss_meter.avg,
+                'c10_50k_acc' : _50k_accuracy,                 
+        }
+    else:
+        return accuracy
 
 
 def update_state(state, epoch, accuracy, model, optimizer):
@@ -437,6 +520,7 @@ def main():
     optim_config = config['optim_config']
 
     human_tune = run_config['human_tune']
+    if human_tune: human_tune_scores = []
 
     # TensorBoard SummaryWriter
     if run_config['tensorboard']:
@@ -463,7 +547,7 @@ def main():
 
     # load data loaders
     if human_tune:
-        train_loader, test_loader, v4_loader, v6_loader = \
+        train_loader, test_loader, _50k_loader, v4_loader, v6_loader = \
             get_loader(config['data_config'])
     else:
         train_loader, test_loader = get_loader(config['data_config'])
@@ -503,20 +587,20 @@ def main():
         else:
             print("=> no checkpoint found at '{}'".format(run_config['resume']))
 
-    # run test before we start training
-    if run_config['resume']: 
-        print('Test accuracy of pretrained model --------------------')
-    else:
-        print('Test accuracy of untrained model ---------------------')
-    if run_config['test_first']:
-        if human_tune:
-            test(0, model, test_criterion, 
-                (test_loader, v4_loader, v6_loader), 
-                run_config, writer,
-                human_tune=human_tune)
-        else:           
-            test(0, model, test_criterion, test_loader,
-                run_config, writer, human_tune=human_tune)
+    # # run test before we start training
+    # if run_config['resume']: 
+    #     print('Test accuracy of pretrained model --------------------')
+    # else:
+    #     print('Test accuracy of untrained model ---------------------')
+    # if run_config['test_first']:
+    #     if human_tune:
+    #         test(0, model, test_criterion, 
+    #             (train_loader, test_loader, _50k_loader, v4_loader, v6_loader), 
+    #             run_config, writer,
+    #             human_tune=human_tune)
+    #     else:           
+    #         test(0, model, test_criterion, test_loader,
+    #             run_config, writer, human_tune=human_tune)
 
     if run_config['test_only']: exit()
 
@@ -530,29 +614,57 @@ def main():
         'best_epoch': 0,
     }
 
-    for epoch in range(1, optim_config['epochs'] + 1):
-        # train
-        train(epoch, model, optimizer, scheduler, train_criterion,
-              train_loader, config, writer, human_tune=human_tune)
+    save_counter = 0
+    for epoch in range(0, optim_config['epochs'] + 1):
 
-        # test
-        if human_tune:
-            accuracy = test(epoch, model, test_criterion, 
-                (test_loader, v4_loader, v6_loader), 
-                run_config, writer,
-                human_tune=human_tune)
-        else:           
-            accuracy = test(epoch, model, test_criterion, test_loader,
-                            run_config, writer, human_tune=human_tune)
-        # accuracy = test(epoch, model, test_criterion, test_loader, run_config,
-        #                 writer, human_tune=human_tune)
+        if epoch > 0:
+            train(epoch, model, optimizer, scheduler, train_criterion,
+                  train_loader, config, writer, human_tune=human_tune)
+            save_counter += 1
 
-        # update state dictionary
-        state = update_state(state, epoch, accuracy, model, optimizer)
-        
-        if not run_config['no_output']:
-            # save model
-            save_checkpoint(state, outdir)
+        if (run_config['test_first'] and epoch == 0) or epoch > 0:
+            # test
+            if human_tune:
+                scores = test(epoch, model, test_criterion, 
+                    (train_loader, test_loader, _50k_loader, v4_loader, v6_loader), 
+                    run_config, writer,
+                    human_tune=human_tune)
+                # print(scores)
+                human_tune_scores.append(scores)
+                # update state dictionary
+                state = update_state(state, epoch, scores['c10h_val_acc'], model, optimizer)
+            else:           
+                accuracy = test(epoch, model, test_criterion, test_loader,
+                                run_config, writer, human_tune=human_tune)
+                # update state dictionary
+                state = update_state(state, epoch, accuracy, model, optimizer)
+            # accuracy = test(epoch, model, test_criterion, test_loader, run_config,
+            #                 writer, human_tune=human_tune)
+
+            # # update state dictionary
+            # state = update_state(state, epoch, accuracy, model, optimizer)
+            
+            if not run_config['no_output']:
+                # save model
+                save_checkpoint(state, outdir)
+                # make dir and save score if requested
+
+            if (human_tune and save_counter == run_config['c10h_save_interval']) or \
+                (human_tune and run_config['test_first']):
+                save_counter = 0
+                # note: maybe we should merge this with the normal output stuff
+                if run_config['c10h_scores_outdir']:
+
+                    # create output directory
+                    c10h_outdir = run_config['c10h_scores_outdir']
+                    if not os.path.exists(c10h_outdir):
+                        os.makedirs(c10h_outdir)
+                    # resave (overwrite) scores file with latest entries
+                    keys = human_tune_scores[0].keys()
+                    with open(os.path.join(c10h_outdir, 'scores.csv'), 'wb') as output_file:
+                        dict_writer = csv.DictWriter(output_file, keys)
+                        dict_writer.writeheader()
+                        dict_writer.writerows(human_tune_scores)
 
     if not run_config['no_output'] and run_config['tensorboard']:
         outpath = os.path.join(outdir, 'all_scalars.json')

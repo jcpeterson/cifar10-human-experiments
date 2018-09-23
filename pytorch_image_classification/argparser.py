@@ -132,6 +132,7 @@ def _get_data_config(args):
         'use_mixup',
         'mixup_alpha',
         'c10h_sample',
+        'c10h_testsplit_percent',
         'c10h_datasplit_seed'
     ]
     json_keys = ['random_erasing_area_ratio_range']
@@ -154,7 +155,9 @@ def _get_run_config(args):
         'human_tune',
         'no_output',
         'test_only',
-        'nonhuman_control'
+        'nonhuman_control',
+        'c10h_scores_outdir',
+        'c10h_save_interval'
     ]
     config = _args2config(args, keys, None)
 
