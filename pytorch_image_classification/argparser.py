@@ -131,7 +131,8 @@ def _get_data_config(args):
         'random_erasing_max_attempt',
         'use_mixup',
         'mixup_alpha',
-        'c10h_sample'
+        'c10h_sample',
+        'c10h_datasplit_seed'
     ]
     json_keys = ['random_erasing_area_ratio_range']
     config = _args2config(args, keys, json_keys)
@@ -152,7 +153,8 @@ def _get_run_config(args):
         'resume',
         'human_tune',
         'no_output',
-        'test_only'
+        'test_only',
+        'nonhuman_control'
     ]
     config = _args2config(args, keys, None)
 
