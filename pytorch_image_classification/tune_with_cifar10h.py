@@ -2,7 +2,7 @@
 # coding: utf-8
 
 # example for testing this script
-# python tune_with_cifar10h.py --dataset CIFAR10H --arch vgg --config tmp_reference_model/config.json --resume tmp_reference_model/model_state_160.pth --gpu 0
+# python tune_with_cifar10h.py --human_tune --dataset CIFAR10H --arch vgg --config tmp_reference_model/config.json --resume tmp_reference_model/model_state_160.pth --gpu 0 --no_output --test_only
 
 import os
 import time
@@ -141,6 +141,12 @@ def parse_args():
 
     # previous model weights to load if any
     parser.add_argument('--resume', type=str)
+    # whether to tune to human labels
+    parser.add_argument('--human_tune', action='store_true', default=False)
+    # whether to save to out_dir
+    parser.add_argument('--no_output', action='store_true', default=False)
+    # to test the loaded model and don't train
+    parser.add_argument('--test_only', action='store_true', default=False)
 
     args = parser.parse_args()
     if not is_tensorboard_available:
@@ -209,12 +215,12 @@ def train(epoch, model, optimizer, scheduler, criterion, train_loader, config,
         if human_tune or data_config['use_mixup']:
             _, targets = targets.max(dim=1)
         correct_ = preds.eq(targets).sum().item()
-        num = data.size(0)
+        n_obs = data.size(0)
 
-        accuracy = correct_ / float(num)
+        accuracy = correct_ / float(n_obs)
 
-        loss_meter.update(loss_, num)
-        accuracy_meter.update(accuracy, num)
+        loss_meter.update(loss_, n_obs)
+        accuracy_meter.update(accuracy, n_obs)
 
         if run_config['tensorboard']:
             writer.add_scalar('Train/RunningLoss', loss_, global_step)
@@ -241,8 +247,14 @@ def train(epoch, model, optimizer, scheduler, criterion, train_loader, config,
         writer.add_scalar('Train/Accuracy', accuracy_meter.avg, epoch)
         writer.add_scalar('Train/Time', elapsed, epoch)
 
-def test(epoch, model, criterion, test_loader, run_config, writer, 
+def test(epoch, model, criterion, test_loaders, run_config, writer, 
         human_tune=False):
+
+    if human_tune:
+        test_loader, v4_loader, v6_loader = test_loaders
+    else:
+        test_loader = test_loaders
+
     logger.info('TEST {}'.format(epoch))
 
     model.eval()
@@ -252,6 +264,10 @@ def test(epoch, model, criterion, test_loader, run_config, writer,
     if human_tune:
         c10h_c10_loss_meter = AverageMeter()
         c10h_c10_correct_meter = AverageMeter()
+        v4_loss_meter = AverageMeter()
+        v4_correct_meter = AverageMeter()
+        v6_loss_meter = AverageMeter()
+        v6_correct_meter = AverageMeter()
     start = time.time()
 
     for step, batch_data in enumerate(test_loader):
@@ -276,30 +292,75 @@ def test(epoch, model, criterion, test_loader, run_config, writer,
 
         with torch.no_grad():
             outputs = model(data)
+
+        n_obs = data.size(0)
+
+        # compute loss for each test set
         loss = criterion(outputs, targets)
         if human_tune:
-            loss_c10h_c10 = criterion(outputs, c10h_c10_targets)
+            c10h_c10_loss = criterion(outputs, c10h_c10_targets)
 
+        # save losses
+        loss_meter.update(loss.item(), n_obs)
+        if human_tune:
+            c10h_c10_loss_meter.update(c10h_c10_loss.item(), n_obs)
+
+        # turn the NN probs into classifications ("predictions")
         _, preds = torch.max(outputs, dim=1)
+
         if human_tune: 
             _, targets = targets.max(dim=1)
             _, c10h_c10_targets = c10h_c10_targets.max(dim=1)
 
-        num = data.size(0)
         correct_ = preds.eq(targets).sum().item()
-        c10h_c10_correct_ = preds.eq(c10h_c10_targets).sum().item()
-
-        loss_meter.update(loss.item(), num)
-        c10h_c10_loss_meter.update(loss_c10h_c10.item(), num)
         correct_meter.update(correct_, 1)
-        c10h_c10_correct_meter.update(c10h_c10_correct_, 1)
+
+        if human_tune:
+            c10h_c10_correct_ = preds.eq(c10h_c10_targets).sum().item()
+            c10h_c10_correct_meter.update(c10h_c10_correct_, 1)
+
+    # TEST v4/v6 CIFAR 10.1
+    if human_tune:
+        for step, (data, targets) in enumerate(v4_loader):
+            targets = onehot(targets, 10)
+            if run_config['use_gpu']:
+                data = data.cuda()
+                targets = targets.cuda()
+            with torch.no_grad(): outputs = model(data)
+            n_obs = data.size(0)
+            v4_loss = criterion(outputs, targets)
+            v4_loss_meter.update(v4_loss.item(), n_obs)
+            _, preds = torch.max(outputs, dim=1)
+            _, targets = targets.max(dim=1)
+            v4_correct_ = preds.eq(targets).sum().item()
+            v4_correct_meter.update(v4_correct_, 1)
+
+        for step, (data, targets) in enumerate(v6_loader):
+            targets = onehot(targets, 10)
+            if run_config['use_gpu']:
+                data = data.cuda()
+                targets = targets.cuda()
+            with torch.no_grad(): outputs = model(data)
+            n_obs = data.size(0)
+            v6_loss = criterion(outputs, targets)
+            v6_loss_meter.update(v6_loss.item(), n_obs)
+            _, preds = torch.max(outputs, dim=1)
+            _, targets = targets.max(dim=1)
+            v6_correct_ = preds.eq(targets).sum().item()
+            v6_correct_meter.update(v6_correct_, 1)
 
     accuracy = correct_meter.sum / float(len(test_loader.dataset))
-    c10h_c10_accuracy = c10h_c10_correct_meter.sum / float(len(test_loader.dataset))
+    if human_tune:
+        c10h_c10_accuracy = \
+            c10h_c10_correct_meter.sum / float(len(test_loader.dataset))
+        v4_accuracy = v4_correct_meter.sum / float(len(v4_loader.dataset))
+        v6_accuracy = v6_correct_meter.sum / float(len(v6_loader.dataset))
 
     if human_tune:
-        logger.info('- epoch {}, c10h {:.4f} (acc: {:.4f}), c10h_c10 {:.4f} (acc: {:.4f})'.format(
+        logger.info('- epoch {}, c10h: {:.4f} (acc: {:.4f}) | c10h_c10: {:.4f} (acc: {:.4f})'.format(
             epoch, loss_meter.avg, accuracy, c10h_c10_loss_meter.avg, c10h_c10_accuracy))
+        logger.info('-       {}  v4  : {:.4f} (acc: {:.4f}) |     v6  : {:.4f} (acc: {:.4f})'.format(
+            epoch, v4_loss_meter.avg, v4_accuracy, v6_loss_meter.avg, v6_accuracy))
     else:
         logger.info('Epoch {} Loss {:.4f} Accuracy {:.4f}'.format(
             epoch, loss_meter.avg, accuracy))
@@ -334,13 +395,16 @@ def update_state(state, epoch, accuracy, model, optimizer):
     return state
 
 
-def main(human_tune=True, no_output=False):
+def main():
     # parse command line argument and generate config dictionary
     config = parse_args()
+
     logger.info(json.dumps(config, indent=2))
 
     run_config = config['run_config']
     optim_config = config['optim_config']
+
+    human_tune = run_config['human_tune']
 
     # TensorBoard SummaryWriter
     if run_config['tensorboard']:
@@ -354,7 +418,7 @@ def main(human_tune=True, no_output=False):
     np.random.seed(seed)
     random.seed(seed)
 
-    if not no_output:
+    if not run_config['no_output']:
         # create output directory
         outdir = run_config['outdir']
         if not os.path.exists(outdir):
@@ -366,7 +430,11 @@ def main(human_tune=True, no_output=False):
             json.dump(config, fout, indent=2)
 
     # load data loaders
-    train_loader, test_loader = get_loader(config['data_config'])
+    if human_tune:
+        train_loader, test_loader, v4_loader, v6_loader = \
+            get_loader(config['data_config'])
+    else:
+        train_loader, test_loader = get_loader(config['data_config'])
 
     # load model
     logger.info('Loading model...')
@@ -409,8 +477,12 @@ def main(human_tune=True, no_output=False):
     else:
         print('Test accuracy of untrained model ---------------------')
     if run_config['test_first']:
-        test(0, model, test_criterion, test_loader, run_config, writer,
+        test(0, model, test_criterion, 
+            (test_loader, v4_loader, v6_loader), 
+            run_config, writer,
             human_tune=human_tune)
+
+    if run_config['test_only']: exit()
 
     state = {
         'config': config,
@@ -434,14 +506,14 @@ def main(human_tune=True, no_output=False):
         # update state dictionary
         state = update_state(state, epoch, accuracy, model, optimizer)
         
-        if not no_output:
+        if run_config['outdir']:
             # save model
             save_checkpoint(state, outdir)
 
-    if not no_output and run_config['tensorboard']:
+    if not run_config['no_output'] and run_config['tensorboard']:
         outpath = os.path.join(outdir, 'all_scalars.json')
         writer.export_scalars_to_json(outpath)
 
 if __name__ == '__main__':
     # main_tune()
-    main(human_tune=True, no_output=True)
+    main()

@@ -33,7 +33,7 @@ import numpy as np
 
 from keras.datasets.cifar10 import load_data as load_cifar10
 
-from jutils import load_cifar10h_labels
+from jutils import load_cifar10h_labels, load_cifar10_1
 
 
 SEED = 999
@@ -102,54 +102,60 @@ class CIFAR10H(data.Dataset):
         # self.c10_train_data = np.vstack(self.c10_train_data).reshape(-1, 3, 32, 32)
         # self.c10_train_data = self.c10_train_data.transpose((0, 2, 3, 1))  # convert to HWC
 
+        if self.set in ['train','test']:
+            # handles both the cifar10h (human) training and test sets
+            self.c10h_data = []
+            self.c10h_targets = []
+            self.c10h_c10_targets = []
 
-        # handles both the cifar10h (human) training and test sets
-        self.c10h_data = []
-        self.c10h_targets = []
-        self.c10h_c10_targets = []
+            downloaded_list = self.c10_test_list
+            # now load the picked numpy arrays
+            for file_name, checksum in downloaded_list:
+                file_path = os.path.join(self.root, self.base_folder, file_name)
+                with open(file_path, 'rb') as f:
+                    if sys.version_info[0] == 2:
+                        entry = pickle.load(f)
+                    else:
+                        entry = pickle.load(f, encoding='latin1')
+                    self.c10h_data.append(entry['data'])
+                    if 'labels' in entry:
+                        self.c10h_c10_targets.extend(entry['labels'])
 
-        downloaded_list = self.c10_test_list
-        # now load the picked numpy arrays
-        for file_name, checksum in downloaded_list:
-            file_path = os.path.join(self.root, self.base_folder, file_name)
-            with open(file_path, 'rb') as f:
-                if sys.version_info[0] == 2:
-                    entry = pickle.load(f)
-                else:
-                    entry = pickle.load(f, encoding='latin1')
-                self.c10h_data.append(entry['data'])
-                if 'labels' in entry:
-                    self.c10h_c10_targets.extend(entry['labels'])
-                else:
-                    self.c10h_c10_targets.extend(entry['fine_labels'])
+            self.c10h_data = np.vstack(self.c10h_data).reshape(-1, 3, 32, 32)
+            self.c10h_data = self.c10h_data.transpose((0, 2, 3, 1))  # convert to HWC
 
-        self.c10h_data = np.vstack(self.c10h_data).reshape(-1, 3, 32, 32)
-        self.c10h_data = self.c10h_data.transpose((0, 2, 3, 1))  # convert to HWC
+            self.c10h_targets = load_cifar10h_labels(type='aggregate', 
+                path='../data/cifar10h/')
 
-        self.c10h_targets = load_cifar10h_labels(type='aggregate', 
-            path='../data/cifar10h/')
+            self.c10h_targets = self.c10h_targets.astype('f')
+            self.c10h_targets = self.c10h_targets / self.c10h_targets.sum(axis=1)[:,None]
 
-        self.c10h_targets = self.c10h_targets.astype('f')
-        self.c10h_targets = self.c10h_targets / self.c10h_targets.sum(axis=1)[:,None]
+            # shuffle data and labels together
+            c10h_rnd_idxs = np.arange(self.c10h_data.shape[0])
+            np.random.shuffle(c10h_rnd_idxs)
+            self.c10h_data = self.c10h_data[c10h_rnd_idxs,:,:,:]
+            self.c10h_targets = self.c10h_targets[c10h_rnd_idxs]
+            self.c10h_c10_targets = np.array(self.c10h_c10_targets)
+            self.c10h_c10_targets = self.c10h_c10_targets[c10h_rnd_idxs]
+            self.c10h_c10_targets = list(self.c10h_c10_targets)
 
-        # shuffle data and labels together
-        c10h_rnd_idxs = np.arange(self.c10h_data.shape[0])
-        np.random.shuffle(c10h_rnd_idxs)
-        self.c10h_data = self.c10h_data[c10h_rnd_idxs,:,:,:]
-        self.c10h_targets = self.c10h_targets[c10h_rnd_idxs]
-        self.c10h_c10_targets = np.array(self.c10h_c10_targets)
-        self.c10h_c10_targets = self.c10h_c10_targets[c10h_rnd_idxs]
-        self.c10h_c10_targets = list(self.c10h_c10_targets)
+            if self.set == 'train':
+                self.c10h_data = self.c10h_data[:9000]
+                self.c10h_targets = self.c10h_targets[:9000]
+                self.c10h_c10_targets =  self.c10h_c10_targets[:9000]
+            elif self.set == 'test':
+                self.c10h_data = self.c10h_data[9000:]
+                self.c10h_targets = self.c10h_targets[9000:]
+                self.c10h_c10_targets =  self.c10h_c10_targets[9000:]
 
-        if self.set == 'train':
-            self.c10h_data = self.c10h_data[:9000]
-            self.c10h_targets = self.c10h_targets[:9000]
-            self.c10h_c10_targets =  self.c10h_c10_targets[:9000]
-        elif self.set == 'test':
-            self.c10h_data = self.c10h_data[9000:]
-            self.c10h_targets = self.c10h_targets[9000:]
-            self.c10h_c10_targets =  self.c10h_c10_targets[9000:]
-
+        elif self.set == 'v4':
+            self.v4_data, self.v4_targets = \
+                load_cifar10_1(version_string='v4')
+            self.v4_targets = self.v4_targets.reshape(-1).astype('int64')
+        elif self.set == 'v6':
+            self.v6_data, self.v6_targets = \
+                load_cifar10_1(version_string='v6')
+            self.v6_targets = self.v6_targets.reshape(-1).astype('int64')
 
     def __getitem__(self, index):
         """
@@ -159,23 +165,47 @@ class CIFAR10H(data.Dataset):
         Returns:
             tuple: (image, target, y_agg) where target is index of the target class.
         """
-        img, target, c10h_c10_target = \
-            self.c10h_data[index], self.c10h_targets[index], self.c10h_c10_targets[index]
+        if self.set in ['train','test']:
+            img, target, c10h_c10_target = \
+                self.c10h_data[index], self.c10h_targets[index], self.c10h_c10_targets[index]
 
-        # doing this so that it is consistent with all other datasets
-        # to return a PIL Image
-        img = Image.fromarray(img)
+            # doing this so that it is consistent with all other datasets
+            # to return a PIL Image
+            img = Image.fromarray(img)
 
-        if self.transform is not None:
-            img = self.transform(img)
+            if self.transform is not None:
+                img = self.transform(img)
 
-        if self.target_transform is not None:
-            target = self.target_transform(target)
+            if self.target_transform is not None:
+                target = self.target_transform(target)
 
-        return img, target, c10h_c10_target
+            return img, target, c10h_c10_target
+
+        elif self.set == 'v4':
+            img, target = self.v4_data[index], self.v4_targets[index]
+            img = Image.fromarray(img)
+            if self.transform is not None:
+                img = self.transform(img)
+            if self.target_transform is not None:
+                target = self.target_transform(target)
+            return img, target
+
+        elif self.set == 'v6':
+            img, target = self.v6_data[index], self.v6_targets[index]
+            img = Image.fromarray(img)
+            if self.transform is not None:
+                img = self.transform(img)
+            if self.target_transform is not None:
+                target = self.target_transform(target)
+            return img, target
 
     def __len__(self):
-        return len(self.c10h_data)
+        if self.set in ['train','test']:
+            return len(self.c10h_data)
+        elif self.set == 'v4':
+            return len(self.v4_data)
+        elif self.set == 'v6':
+            return len(self.v6_data)
 
     def _check_integrity(self):
         root = self.root
@@ -242,13 +272,14 @@ class Dataset(object):
             test_dataset = CIFAR10H(
                 self.dataset_dir, which_set='test', transform=self.test_transform, 
                 download=True)
-            c10_1_v4_dataset = CIFAR10H(
+            # cifar 10.1 versions
+            v4_dataset = CIFAR10H(
                 self.dataset_dir, which_set='v4', transform=self.train_transform, 
                 download=True)
-            c10_1_v6_dataset = CIFAR10H(
+            v6_dataset = CIFAR10H(
                 self.dataset_dir, which_set='v6', transform=self.test_transform, 
                 download=True)
-            return train_dataset, test_dataset, c10_1_v4_dataset, c10_1_v6_dataset
+            return train_dataset, test_dataset, v4_dataset, v6_dataset
 
     def _get_random_erasing_train_transform(self):
         raise NotImplementedError
@@ -393,7 +424,8 @@ def get_loader(config):
     elif dataset_name == 'FashionMNIST':
         dataset = FashionMNIST(config)
 
-    train_dataset, test_dataset = dataset.get_datasets()
+    train_dataset, test_dataset, v4_dataset, v6_dataset = \
+        dataset.get_datasets()
 
     train_loader = torch.utils.data.DataLoader(
         train_dataset,
@@ -402,7 +434,6 @@ def get_loader(config):
         num_workers=num_workers,
         pin_memory=use_gpu,
         drop_last=True,
-        
     )
     test_loader = torch.utils.data.DataLoader(
         test_dataset,
@@ -412,4 +443,20 @@ def get_loader(config):
         pin_memory=use_gpu,
         drop_last=False,
     )
-    return train_loader, test_loader
+    v4_loader = torch.utils.data.DataLoader(
+        v4_dataset,
+        batch_size=batch_size,
+        shuffle=True,
+        num_workers=num_workers,
+        pin_memory=use_gpu,
+        drop_last=True,
+    )
+    v6_loader = torch.utils.data.DataLoader(
+        v6_dataset,
+        batch_size=batch_size,
+        num_workers=num_workers,
+        shuffle=False,
+        pin_memory=use_gpu,
+        drop_last=False,
+    )
+    return train_loader, test_loader, v4_loader, v6_loader
