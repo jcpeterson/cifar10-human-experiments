@@ -1,8 +1,8 @@
 /tigress/ruairidh/model_results
---arch=wrn --depth 28 --epochs=200 --scheduler=cosine --base_lr=0.1 --batch_size=64 --resume=/tigress/ruairidh/model_results/wrn_28_10_cutout16/model_state_112.pth
+--arch=wrn --depth 28 --epochs=200 --scheduler=cosine --base_lr=0.1 --batch_size=64
 wrn_28_10_cutout16.out
 entering python script
-[2018/09/22 15:42:11 __main__ INFO] - {
+[2018/09/22 22:45:13 __main__ INFO] - {
   "model_config": {
     "arch": "wrn",
     "input_shape": [
@@ -47,7 +47,10 @@ entering python script
     "tensorboard_train_images": false,
     "tensorboard_test_images": false,
     "tensorboard_model_params": false,
-    "resume": "/tigress/ruairidh/model_results/wrn_28_10_cutout16/model_state_112.pth",
+    "resume": false,
+    "human_tune": false,
+    "no_output": false,
+    "test_only": false,
     "use_gpu": true
   },
   "env_info": {
@@ -63,10 +66,27 @@ entering python script
 outdir:  /tigress/ruairidh/model_results/wrn_28_10_cutout16
 Files already downloaded and verified
 Files already downloaded and verified
-[2018/09/22 15:42:13 __main__ INFO] - Loading model...
-[2018/09/22 15:42:14 __main__ INFO] - n_params: 36479194
-[2018/09/22 15:42:16 __main__ INFO] - Done
+[2018/09/22 22:45:15 __main__ INFO] - Loading model...
+[2018/09/22 22:45:16 __main__ INFO] - n_params: 36479194
+[2018/09/22 22:45:18 __main__ INFO] - Done
 /home/ruairidh/miniconda3/envs/pytorch_env/lib/python3.7/site-packages/torch/nn/functional.py:52: UserWarning: size_average and reduce args will be deprecated, please use reduction='elementwise_mean' instead.
   warnings.warn(warning.format(ret))
-=> loading checkpoint '/tigress/ruairidh/model_results/wrn_28_10_cutout16/model_state_112.pth'
-=> loaded checkpoint '/tigress/ruairidh/model_results/wrn_28_10_cutout16/model_state_112.pth' (epoch 112)
+[2018/09/22 22:45:18 __main__ INFO] - Test 0
+[2018/09/22 22:45:26 __main__ INFO] - Epoch 0 Loss 2.3303 Accuracy 0.1085
+[2018/09/22 22:45:26 __main__ INFO] - Elapsed 8.19
+[2018/09/22 22:45:26 __main__ INFO] - Train 1
+[2018/09/22 22:45:27 __main__ INFO] - Epoch 1 Step 0/781 Loss 2.3172 (2.3172) Accuracy 0.1250 (0.1250)
+[2018/09/22 22:45:42 __main__ INFO] - Epoch 1 Step 100/781 Loss 1.7949 (1.9066) Accuracy 0.2812 (0.2772)
+[2018/09/22 22:45:57 __main__ INFO] - Epoch 1 Step 200/781 Loss 1.5321 (1.7804) Accuracy 0.4531 (0.3332)
+[2018/09/22 22:46:13 __main__ INFO] - Epoch 1 Step 300/781 Loss 1.3232 (1.6745) Accuracy 0.6562 (0.3720)
+[2018/09/22 22:46:28 __main__ INFO] - Epoch 1 Step 400/781 Loss 1.1785 (1.5842) Accuracy 0.5625 (0.4100)
+[2018/09/22 22:46:43 __main__ INFO] - Epoch 1 Step 500/781 Loss 1.2130 (1.5079) Accuracy 0.5781 (0.4408)
+[2018/09/22 22:46:58 __main__ INFO] - Epoch 1 Step 600/781 Loss 1.1158 (1.4426) Accuracy 0.6719 (0.4675)
+[2018/09/22 22:47:14 __main__ INFO] - Epoch 1 Step 700/781 Loss 1.0784 (1.3897) Accuracy 0.6406 (0.4892)
+[2018/09/22 22:47:26 __main__ INFO] - Elapsed 119.23
+[2018/09/22 22:47:26 __main__ INFO] - Test 1
+[2018/09/22 22:47:33 __main__ INFO] - Epoch 1 Loss 1.0543 Accuracy 0.6188
+[2018/09/22 22:47:33 __main__ INFO] - Elapsed 7.71
+outdir 2:  /tigress/ruairidh/model_results/wrn_28_10_cutout16
+[2018/09/22 22:47:35 __main__ INFO] - Train 2
+[2018/09/22 22:47:35 __main__ INFO] - Epoch 2 Step 0/781 Loss 1.0094 (1.0094) Accuracy 0.6250 (0.6250)

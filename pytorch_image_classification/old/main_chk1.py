@@ -136,7 +136,7 @@ def parse_args():
     parser.add_argument('--mixup_alpha', type=float, default=1)
 
     # previous model weights to load if any
-    parser.add_argument('--resume', type=str, default=False)
+    parser.add_argument('--resume', type=str)
     # whether to tune to human labels
     parser.add_argument('--human_tune', action='store_true', default=False)
     # whether to save to out_dir

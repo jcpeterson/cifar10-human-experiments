@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 echo 'outer script'
-epoch=82
+epoch=72
 model_file='/tigress/ruairidh/model_results/resnext_29_8x64d'
 time=4310
 model=resnext_29_8x64d
