@@ -6,18 +6,22 @@
 #SBATCH --mem=16000
 #SBATCH --time=59
 
+
+echo 'entering inner script'
+echo 'activating virtual env'
 # activate virtual environment here
 source activate pytorch_env
 
 SDIR='/tigress/ruairidh/model_results'
 echo ${model}
 echo ${python_args}
-echo ${log_file}
+echo ${logfile}
 echo 'entering python script'
 resume="${SDIR}/run_1/${model}/model_best_state.pth"
-python -u ./tune_with_cifarh10.py ${python_args} ${resume} # do we need outdir? --outdir ${SDIR}/${out_d$
+echo ${resume}
+python -u ./tune_with_cifar10h.py ${python_args} --resume=${resume} # do we need outdir? --outdir ${SDIR}/${out_d$
 
 cp ./${log_file} ${SDIR}/run_1/.
 
-echo 'done'
+echo 'inner done'
 
