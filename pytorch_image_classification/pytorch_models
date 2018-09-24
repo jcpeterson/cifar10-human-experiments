@@ -39,7 +39,7 @@ python -u main.py --arch pyramidnet --depth 110 --block_type basic --pyramid_alp
 1452
 4310
 reported error: 3.44
-last acccuracy: CANCELLED---job memory limit
+last acccuracy: 0.96 (0.04) loss: 0.1838
 best accuracy:
 
 python -u main.py --arch resnext --depth 29 --cardinality 8 --base_channels 64 --batch_size 64 --base_lr 0.05 --seed 7 --outdir results/resnext_29_8x64d/00
@@ -54,7 +54,7 @@ python -u main.py --arch wrn --depth 28 --outdir results/wrn_28_10_cutout16 --ep
 983
 4310
 reported error: 3.19
-last acccuracy: 0.9601 (0.04) loss 0.1577
+last acccuracy: 0.962 (0.038) loss 0.1574
 best accuracy:
 
 python -u main.py --arch shake_shake --depth 26 --base_channels 64 --outdir results/shake_shake_26_2x64d_SSI_cutout16 --epochs 300 --scheduler cosine --base_lr 0.1 --batch_size 64 --seed 17 --use_cutout --cutout_size 16

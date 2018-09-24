@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 echo 'outer script'
-epoch=97
+epoch=243
 model_file='/tigress/ruairidh/model_results/pyramidnet_basic_110_270'
 time=4310
 model=pyramidnet_basic_110_270
