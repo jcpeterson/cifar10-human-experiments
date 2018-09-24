@@ -35,9 +35,9 @@ for model in "${models[@]}"
             for s in "${seeds[@]}"
                 do
                  logfile=${model}_control:${con}_lr:${l}_seed:${s}.out
-
+                 interval=2
 #                echo $s
-                python_args="--arch=${arch} --c10h_save_interval=2 --dataset=CIFAR10H --no_output --c10h_datasplit_seed=${s} --human_tune --nonhuman_control=${con} --base_lr=${l}"
+                python_args="--arch=${arch} --c10h_save_interval=${interval} --dataset=CIFAR10H --no_output --c10h_datasplit_seed=${s} --human_tune --nonhuman_control=${con} --base_lr=${l}"
                 echo 'python args: '"${python_args}"
                 sbatch --output=${logfile} --export=model=$model,python_args="${python_args}",logfile=${logfile} tune_bash_inner.sh
                 done

@@ -615,6 +615,9 @@ def main():
     }
 
     save_counter = 0
+
+    # optim_config['epochs']=100
+
     for epoch in range(0, optim_config['epochs'] + 1):
 
         if epoch > 0:
@@ -649,6 +652,9 @@ def main():
                 save_checkpoint(state, outdir)
                 # make dir and save score if requested
 
+            #set save interval manually
+            run_config['c10h_save_interval'] = 2
+
             if (human_tune and save_counter == int(run_config['c10h_save_interval'])) or \
                 (human_tune and run_config['test_first']):
                 save_counter = 0
@@ -659,8 +665,12 @@ def main():
                     c10h_outdir = run_config['c10h_scores_outdir']
                     if not os.path.exists(c10h_outdir):
                         os.makedirs(c10h_outdir)
+
                     # resave (overwrite) scores file with latest entries
                     keys = human_tune_scores[0].keys()
+
+                    print('keys: ', keys, '\n c10h_outdir: ', c10h_outdir)
+
                     with open(os.path.join(c10h_outdir, 'scores.csv'), 'wb') as output_file:
                         dict_writer = csv.DictWriter(output_file, keys)
                         dict_writer.writeheader()
