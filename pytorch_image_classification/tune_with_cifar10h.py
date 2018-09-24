@@ -154,7 +154,7 @@ def parse_args():
     # seed for splitting the c10h data into train/test
     parser.add_argument('--c10h_datasplit_seed', type=int, default=999)
     # whether to use the cifar10 labels for the human test set (CONTROL)
-    parser.add_argument('--nonhuman_control', action='store_true', default=False)
+    parser.add_argument('--nonhuman_control', type=str2bool, default=False)
     # whether to sample from the human labels to get one-hot samples
     parser.add_argument('--c10h_sample', action='store_true', default=False)
     # whether to save to out_dir
