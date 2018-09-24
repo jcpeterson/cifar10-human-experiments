@@ -406,7 +406,7 @@ class AdversarialTraining(object):
                     # BE SURE TO 'DETACH' THE ADV_INPUTS!!!
                     reg_adv_loss = regularize_adv_criterion(adv_examples,
                                                       Variable(adv_inputs.data))
-                    print float(loss), regularize_adv_scale * float(reg_adv_loss)
+                    print(float(loss), regularize_adv_scale * float(reg_adv_loss))
                     loss = loss + regularize_adv_scale * reg_adv_loss
 
 
@@ -424,7 +424,7 @@ class AdversarialTraining(object):
 
             # end_of_epoch
             if epoch % verbosity_epoch == 0:
-                print "COMPLETED EPOCH %04d... checkpointing here" % epoch
+                print("COMPLETED EPOCH %04d... checkpointing here" % epoch)
                 checkpoints.save_state_dict(self.experiment_name,
                                             self.architecture_name,
                                             epoch, self.classifier_net,
@@ -432,7 +432,7 @@ class AdversarialTraining(object):
 
 
         if verbosity_level >= 1:
-            print 'Finished Training'
+            print('Finished Training')
 
         return
 

@@ -106,7 +106,7 @@ class AdversarialAttack(object):
         """
 
         og, adv = self.eval(ground_examples, adversarials, labels, topk=topk)
-        print "Went from %s correct to %s correct" % (og, adv)
+        print("Went from %s correct to %s correct" % (og, adv))
 
 
 
@@ -135,7 +135,7 @@ class AdversarialAttack(object):
 
         print_str += " %s correct" % new_prec[0][0]
 
-        print print_str
+        print(print_str)
 
 
 ##############################################################################
@@ -248,7 +248,7 @@ class URM(AdversarialAttack):
 
         for try_no in xrange(num_tries):
             if verbose and try_no % (num_tries / 10) == 0 and try_no > 1:
-                print "Completed %03d random guesses..." % try_no
+                print("Completed %03d random guesses..." % try_no)
 
             # get random perturbation
             random_guess = var_examples + random_guesser(var_examples,
@@ -289,9 +289,9 @@ class URM(AdversarialAttack):
         if verbose:
             num_successful = len([_ for _ in outputs['best_dist']
                                   if _ < MAXFLOAT])
-            print "\n Ending attack"
-            print "Successful attacks for %03d/%03d examples in CONTINUOUS" %\
-                   (num_successful, num_examples)
+            print("\n Ending attack")
+            print("Successful attacks for %03d/%03d examples in CONTINUOUS" %\
+                   (num_successful, num_examples))
 
         return outputs
 
@@ -757,7 +757,7 @@ class CW(AdversarialAttack):
             #   Optimize with a given scale constant                     #
             ##############################################################
             if verbose:
-                print "Starting binary_search_step %02d..." % bin_search_step
+                print("Starting binary_search_step %02d..." % bin_search_step)
             prev_loss = MAXFLOAT
             optimizer = optim.Adam([var_intermeds], lr=0.0005)
 
@@ -765,16 +765,16 @@ class CW(AdversarialAttack):
 
 
                 if verbose and optim_step > 0 and optim_step % 25 == 0:
-                    print "Optim search: %s, %s" % (optim_step, prev_loss)
+                    print("Optim search: %s, %s" % (optim_step, prev_loss))
                 loss_sum = self._optimize_step(optimizer, var_intermeds,
                                                var_targets, var_scale,
                                                targeted=targeted)
 
                 if loss_sum + 1e-10 > prev_loss * 0.9999:
                     if verbose:
-                        print ("...stopping early on binary_search_step %02d "
+                        print(("...stopping early on binary_search_step %02d "
                                " after %03d iterations" ) % (bin_search_step,
-                                                             optim_step)
+                                                             optim_step))
                     break
                 prev_loss = loss_sum
             # End inner optimize loop
@@ -830,9 +830,9 @@ class CW(AdversarialAttack):
         if verbose:
             num_successful = len([_ for _ in best_results['best_dist']
                                   if _ < MAXFLOAT])
-            print "\n Ending attack"
-            print "Successful attacks for %03d/%03d examples in CONTINUOUS" %\
-                   (num_successful, num_examples)
+            print("\n Ending attack")
+            print("Successful attacks for %03d/%03d examples in CONTINUOUS" %\
+                   (num_successful, num_examples))
 
 
         self.loss_fxn.cleanup_attack_batch()
@@ -916,7 +916,7 @@ class SpatialPGDLp(AdversarialAttack):
         optimizer = optim.Adam(spatial_transformer.parameters(), lr=step_size)
         for iter_no in xrange(num_iter):
             if verbose:
-                print "Optim step: %03d" % iter_no
+                print("Optim step: %03d" % iter_no)
 
             spatial_transformer.zero_grad()
 

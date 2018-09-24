@@ -136,7 +136,7 @@ def display_adversarial_2row(classifier_net, normalizer, original_images,
 
     # Now select some indices to show
     if to_sample_idxs == []:
-        print "Couldn't show anything. Try changing the 'which' argument here"
+        print("Couldn't show anything. Try changing the 'which' argument here")
         return
 
     to_show_idxs = random.sample(to_sample_idxs, min([num_to_show,

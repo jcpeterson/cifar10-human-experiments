@@ -124,7 +124,7 @@ class AdversarialAttack(object):
         """
 
         og, adv = self.eval(ground_examples, adversarials, labels, topk=topk)
-        print "Went from %s correct to %s correct" % (og, adv)
+        print("Went from %s correct to %s correct" % (og, adv))
 
 
 
@@ -146,14 +146,14 @@ class AdversarialAttack(object):
         print_str = ""
         if isinstance(iter_no, int):
             print_str += "(iteration %02d): " % iter_no
-        elif isinstance(iter_no, basestring):
+        elif isinstance(iter_no, str): # JOSH p2->p3 elif isinstance(iter_no, basestring):
             print_str += "(%s): " % iter_no
         else:
             pass
 
         print_str += " %s correct" % float(new_prec[0])
 
-        print print_str
+        print(print_str)
 
 
 
@@ -326,7 +326,7 @@ class PGD(AdversarialAttack):
 
 
 
-        for iter_no in xrange(max_iterations):
+        for iter_no in range(max_iterations): # JOSH py2->py3 for loss in self.losses.itervalues():
             perturbation.zero_grad()
             loss = self.loss_fxn.forward(perturbation(var_examples), var_labels,
                                          perturbation=perturbation)
@@ -344,7 +344,7 @@ class PGD(AdversarialAttack):
             if (iter_no >= min_iterations and
                 float(loss) >= loss_convergence * prev_loss):
                 if verbose:
-                    print "Stopping early at %03d iterations" % iter_no
+                    print("Stopping early at %03d iterations" % iter_no)
                 break
             prev_loss = float(loss)
 
@@ -604,7 +604,7 @@ class CarliniWagner(AdversarialAttack):
             #   Optimize with a given scale constant                         #
             ##################################################################
             if verbose:
-                print "Starting binary_search_step %02d..." % bin_search_step
+                print("Starting binary_search_step %02d..." % bin_search_step)
 
             prev_loss = MAXFLOAT
             optimizer = optim.Adam(perturbation.parameters(), lr=0.001)
@@ -612,7 +612,7 @@ class CarliniWagner(AdversarialAttack):
             for optim_step in xrange(num_optim_steps):
 
                 if verbose and optim_step > 0 and optim_step % 25 == 0:
-                    print "Optim search: %s, Loss: %s" % (optim_step, prev_loss)
+                    print("Optim search: %s, Loss: %s" % (optim_step, prev_loss))
 
                 loss_sum = self._optimize_step(optimizer, perturbation,
                                                var_examples, var_labels,
@@ -620,9 +620,9 @@ class CarliniWagner(AdversarialAttack):
 
                 if loss_sum + 1e-10 > prev_loss * 0.99999 and optim_step >= 100:
                     if verbose:
-                        print ("...stopping early on binary_search_step %02d "
+                        print(("...stopping early on binary_search_step %02d "
                                " after %03d iterations" ) % (bin_search_step,
-                                                             optim_step)
+                                                             optim_step))
                     break
                 prev_loss = loss_sum
             # End inner optimize loop
@@ -672,9 +672,9 @@ class CarliniWagner(AdversarialAttack):
         if verbose:
             num_successful = len([_ for _ in best_results['best_dist']
                                   if _ < MAXFLOAT])
-            print "\n Ending attack"
-            print "Successful attacks for %03d/%03d examples in CONTINUOUS" %\
-                  (num_successful, num_examples)
+            print("\n Ending attack")
+            print("Successful attacks for %03d/%03d examples in CONTINUOUS" %\
+                  (num_successful, num_examples))
 
         loss_fxn.cleanup_attack_batch()
         perturbation.attach_originals(examples)
