@@ -148,7 +148,7 @@ def parse_args():
     # where to save the loss/accuracy for c10h to a csv file
     parser.add_argument('--c10h_scores_outdir', type=str, default='tmp')
     # c10h scores save interval (in epochs)
-    parser.add_argument('--c10h_save_interval', type=int, default=1)
+    parser.add_argument('--c10h_save_interval', type=str, default='1') # changed from int
     # how much of the data to use use for test for c10h training
     parser.add_argument('--c10h_testsplit_percent', type=float, default=0.1)
     # seed for splitting the c10h data into train/test
@@ -649,7 +649,7 @@ def main():
                 save_checkpoint(state, outdir)
                 # make dir and save score if requested
 
-            if (human_tune and save_counter == run_config['c10h_save_interval']) or \
+            if (human_tune and save_counter == int(run_config['c10h_save_interval'])) or \
                 (human_tune and run_config['test_first']):
                 save_counter = 0
                 # note: maybe we should merge this with the normal output stuff
