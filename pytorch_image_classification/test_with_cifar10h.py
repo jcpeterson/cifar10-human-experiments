@@ -349,16 +349,6 @@ def test(epoch, model, criterion, test_loaders, run_config, writer,
     elapsed = time.time() - start
     logger.info('Elapsed {:.2f}'.format(elapsed))
 
-    if run_config['tensorboard']:
-        if epoch > 0:
-            writer.add_scalar('Test/Loss', loss_meter.avg, epoch)
-        writer.add_scalar('Test/Accuracy', accuracy, epoch)
-        writer.add_scalar('Test/Time', elapsed, epoch)
-
-    if run_config['tensorboard_model_params']:
-        for name, param in model.named_parameters():
-            writer.add_histogram(name, param, global_step)
-
     if human_tune:
         return {'epoch'          : epoch,
 
@@ -480,91 +470,22 @@ def main():
         #update params
 
 
-# # run test before we start training
-    # if run_config['resume']: 
-    #     print('Test accuracy of pretrained model --------------------')
-    # else:
-    #     print('Test accuracy of untrained model ---------------------')
-    # if run_config['test_first']:
-    #     if human_tune:
-    #         test(0, model, test_criterion, 
-    #             (train_loader, test_loader, _50k_loader, v4_loader, v6_loader), 
-    #             run_config, writer,
-    #             human_tune=human_tune)
-    #     else:           
-    #         test(0, model, test_criterion, test_loader,
-    #             run_config, writer, human_tune=human_tune)
-
-    if run_config['test_only']: exit()
-
-    state = {
-        'config': config,
-        'state_dict': None,
-        'optimizer': None,
-        'epoch': 0,
-        'accuracy': 0,
-        'best_accuracy': 0,
-        'best_epoch': 0,
-    }
-
-    save_counter = 0
-    for epoch in range(0, optim_config['epochs'] + 1):
-
-        if epoch > 0:
-            train(epoch, model, optimizer, scheduler, train_criterion,
-                  train_loader, config, writer, human_tune=human_tune)
-            save_counter += 1
-
-        if (run_config['test_first'] and epoch == 0) or epoch > 0:
-            # test
-            if human_tune:
-                scores = test(epoch, model, test_criterion, 
-                    (train_loader, test_loader, _50k_loader, v4_loader, v6_loader), 
-                    run_config, writer,
-                    human_tune=human_tune)
-                # print(scores)
-                human_tune_scores.append(scores)
-                # update state dictionary
-                state = update_state(state, epoch, scores['c10h_val_acc'], model, optimizer)
-            else:           
-                accuracy = test(epoch, model, test_criterion, test_loader,
+        accuracy = test(epoch, model, test_criterion, test_loader,
                                 run_config, writer, human_tune=human_tune)
-                # update state dictionary
-                state = update_state(state, epoch, accuracy, model, optimizer)
-            # accuracy = test(epoch, model, test_criterion, test_loader, run_config,
-            #                 writer, human_tune=human_tune)
 
-            # # update state dictionary
-            # state = update_state(state, epoch, accuracy, model, optimizer)
-            
-            if not run_config['no_output']:
-                # save model
-                save_checkpoint(state, outdir)
-                # make dir and save score if requested
+        # create output directory
+        c10h_outdir = run_config['c10h_scores_outdir']
+        if not os.path.exists(c10h_outdir):
+            os.makedirs(c10h_outdir)
+        # resave (overwrite) scores file with latest entries
+        keys = human_tune_scores[0].keys()
+        print('keys: ', keys)
 
-            if (human_tune and save_counter == run_config['c10h_save_interval']) or \
-                (human_tune and run_config['test_first']):
-                save_counter = 0
-                # note: maybe we should merge this with the normal output stuff
-                if run_config['c10h_scores_outdir']:
-
-                    # create output directory
-                    c10h_outdir = run_config['c10h_scores_outdir']
-                    if not os.path.exists(c10h_outdir):
-                        os.makedirs(c10h_outdir)
-                    # resave (overwrite) scores file with latest entries
-                    keys = human_tune_scores[0].keys()
-                    print('keys: ', keys)
-
-#                    with open(os.path.join(c10h_outdir, 'scores.csv'), 'wb') as output_file:
-                    with open(os.path.join(c10h_outdir, 'scores.csv'), 'w') as output_file:    # changed from above
-                        dict_writer = csv.DictWriter(output_file, keys)
-                        dict_writer.writeheader()
-                        dict_writer.writerows(human_tune_scores)
-
-    if not run_config['no_output'] and run_config['tensorboard']:
-        outpath = os.path.join(outdir, 'all_scalars.json')
-        writer.export_scalars_to_json(outpath)
+#        with open(os.path.join(c10h_outdir, 'scores.csv'), 'wb') as output_file:
+        with open(os.path.join(c10h_outdir, 'scores.csv'), 'w') as output_file:    # changed from above
+            dict_writer = csv.DictWriter(output_file, keys)
+            dict_writer.writeheader()
+            dict_writer.writerows(human_tune_scores)
 
 if __name__ == '__main__':
     main()
