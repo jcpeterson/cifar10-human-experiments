@@ -4,7 +4,7 @@
 #SBATCH --ntasks-per-node=1
 #SBATCH --gres=gpu:1
 #SBATCH --mem=16000
-#SBATCH --time=70
+#SBATCH --time=50
 
 
 echo 'entering inner script'
@@ -18,14 +18,14 @@ echo ${python_args}
 echo ${logfile}
 echo 'entering python script'
 resume="${SDIR}/run_1/${model}/model_best_state.pth"
-SV_DIR="${SDIR}/run_1/saves/${model}"
+SV_DIR="${SDIR}/run_1/test_saves/${model}"
 echo ${resume}
 echo ${SV_DIR}
 
 
-python -u ./tune_with_cifar10h.py ${python_args} --resume=${resume} --c10h_scores_outdir=${SV_DIR}
+python -u ./test_with_cifar10h.py ${python_args} --resume=${resume} --c10h_scores_outdir=${SV_DIR}
 
-cp ./${logfile} ${SDIR}/run_1/${model}/.
+cp ./${logfile} ${SDIR}/run_1/test_saves/${model}.
 
 echo 'inner done'
 
