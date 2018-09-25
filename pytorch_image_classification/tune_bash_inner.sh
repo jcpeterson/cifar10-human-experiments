@@ -4,7 +4,7 @@
 #SBATCH --ntasks-per-node=1
 #SBATCH --gres=gpu:1
 #SBATCH --mem=16000
-#SBATCH --time=70
+#SBATCH --time=350
 
 
 echo 'entering inner script'
