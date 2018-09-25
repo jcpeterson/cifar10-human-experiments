@@ -1,15 +1,9 @@
 #!/usr/bin/env bash
 echo 'outer tuning script'
 
-declare -a models=(vgg_15_BN_64)
+#declare -a models=(vgg_15_BN_64)
 
-#declare -a models=([vgg_15_BN_64]=vgg [resnet_basic_110]=resnet 
-#[resnet_preact_bottleneck_164]=resnet [wrn_28_10]=wrn 
-#densenet_BC_100_12]=dense [pyramidnet_basic_110_270]=pyramidnet 
-#[resnext_29_8x64d]=resnext [wrn_28_10_cutout16]=wrn
-#[shake_shake_26_2x64d_SSI_cutout16]=shake)
-
-declare -a archs=([vgg_15_BN_64]=vgg)
+declare -A archs=(["vgg_15_BN_64"]=vgg [resnet_basic_110]=resnet [resnet_preact_bottleneck_164]=resnet [wrn_28_10]=wrn [densenet_BC_100_12]=dense [pyramidnet_basic_110_270]=pyramidnet [resnext_29_8x64d]=resnext [wrn_28_10_cutout16]=wrn [shake_shake_26_2x64d_SSI_cutout16]=shake)
 
 declare -a control=(True False)
 
@@ -17,10 +11,12 @@ declare -a lr=(0.1 0.01 0.001)
 
 declare -a seeds=(0 1 2)
 # for every model
-for model in "${models[@]}"
+for model in "${!archs[@]}"
     do
     echo $model
+    echo ${archs[$model]}
     arch=${archs[$model]}
+    echo $arch
     # for control or not
     for con in "${control[@]}"
         do

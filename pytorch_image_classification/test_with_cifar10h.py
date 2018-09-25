@@ -554,7 +554,10 @@ def main():
                         os.makedirs(c10h_outdir)
                     # resave (overwrite) scores file with latest entries
                     keys = human_tune_scores[0].keys()
-                    with open(os.path.join(c10h_outdir, 'scores.csv'), 'wb') as output_file:
+                    print('keys: ', keys)
+
+#                    with open(os.path.join(c10h_outdir, 'scores.csv'), 'wb') as output_file:
+                    with open(os.path.join(c10h_outdir, 'scores.csv'), 'w') as output_file:    # changed from above
                         dict_writer = csv.DictWriter(output_file, keys)
                         dict_writer.writeheader()
                         dict_writer.writerows(human_tune_scores)

@@ -616,7 +616,7 @@ def main():
 
     save_counter = 0
 
-    # optim_config['epochs']=100
+    optim_config['epochs']=100
 
     for epoch in range(0, optim_config['epochs'] + 1):
 
