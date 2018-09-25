@@ -26,7 +26,7 @@ echo ${SV_DIR}
 
 python -u ./tune_with_cifar10h.py ${python_args} --resume=${resume} --c10h_scores_outdir=${SV_DIR}
 
-cp ./${logfile} ${SDIR}/run_1/${model}/.
+cp ./${logfile} ${SDIR}/run_1/saves/${model}/.
 
 echo 'inner done'
 
