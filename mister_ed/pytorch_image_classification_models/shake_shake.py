@@ -4,7 +4,7 @@ import torch
 import torch.nn as nn
 import torch.nn.functional as F
 
-from functions.shake_shake_function import get_alpha_beta, shake_function
+from pytorch_image_classification_functions.shake_shake_function import get_alpha_beta, shake_function
 
 
 def initialize_weights(module):

@@ -18,7 +18,7 @@ def str2bool(s):
 
 
 def load_model(config):
-    module = importlib.import_module('models.{}'.format(config['arch']))
+    module = importlib.import_module('pytorch_image_classification_models.{}'.format(config['arch']))
     Network = getattr(module, 'Network')
     return Network(config)
 
