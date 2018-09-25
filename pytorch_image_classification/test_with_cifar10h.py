@@ -449,6 +449,7 @@ def main():
         test_criterion = nn.CrossEntropyLoss(size_average=True)
 
     # load optimal model
+    print('rc resume path:', run_config['resume'])
     if run_config['resume']: # always on---set to best
         if os.path.isfile(run_config['resume']):
             print("=> loading checkpoint '{}'".format(run_config['resume']))
@@ -460,16 +461,23 @@ def main():
         else:
             print("=> no checkpoint found at '{}'".format(run_config['resume']))
 
-    for ep in np.arange(end_epoch):    
+    for ep in np.arange(end_epoch+1):    
+        temp_eval_file = run_config['resume'].split('best')[0] + 'state_' + str(ep) + '.pth'
+        print('temp eval file: ', temp_eval_file)
+
         # load model
+        # load pretrained weights if given
+        if os.path.isfile(temp_eval_file):
+            print("=> loading checkpoint '{}'".format(temp_eval_file))
+            checkpoint = torch.load(temp_eval_file)
+            model.load_state_dict(checkpoint['state_dict'])
+            print("=> loaded checkpoint '{}' (epoch {})"
+                  .format(temp_eval_file, checkpoint['epoch']))
+        else:
+            print("=> no checkpoint found at '{}'".format(temp_eval_file))
 
 
         #evaluate model
-
-
-        #update params
-
-
         accuracy = test(epoch, model, test_criterion, test_loader,
                                 run_config, writer, human_tune=human_tune)
 
