@@ -18,9 +18,12 @@ echo ${python_args}
 echo ${logfile}
 echo 'entering python script'
 resume="${SDIR}/run_1/${model}/model_best_state.pth"
-SV_DIR="${S_DIR/run_1/saves/${model}}"
+SV_DIR="${SDIR}/run_1/saves/${model}"
 echo ${resume}
-python -u ./tune_with_cifar10h.py ${python_args} --resume=${resume} --c10h_save_interval=${SV_DIR}
+echo ${SV_DIR}
+
+
+python -u ./tune_with_cifar10h.py ${python_args} --resume=${resume} --c10h_scores_outdir=${SV_DIR}
 
 cp ./${logfile} ${SDIR}/run_1/.
 
