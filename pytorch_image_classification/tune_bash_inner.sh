@@ -14,11 +14,12 @@ source activate pytorch_env
 
 SDIR='/tigress/ruairidh/model_results'
 echo ${model}
+echo 'identifier: '${identifier}
 echo ${python_args}
 echo ${logfile}
 echo 'entering python script'
 resume="${SDIR}/run_1/${model}/model_best_state.pth"
-SV_DIR="${SDIR}/run_1/saves/${model}"
+SV_DIR="${SDIR}/run_1/saves/${model}/${identifier}"
 echo ${resume}
 echo ${SV_DIR}
 
