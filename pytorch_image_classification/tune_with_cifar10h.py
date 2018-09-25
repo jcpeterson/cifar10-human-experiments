@@ -677,6 +677,9 @@ def main():
                         dict_writer.writeheader()
                         dict_writer.writerows(human_tune_scores)
 
+                    # save model
+                    save_checkpoint(state, c10h_outdir)
+
     if not run_config['no_output'] and run_config['tensorboard']:
         outpath = os.path.join(outdir, 'all_scalars.json')
         writer.export_scalars_to_json(outpath)
