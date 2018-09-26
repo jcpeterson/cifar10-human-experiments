@@ -377,20 +377,6 @@ def test(epoch, model, criterion, test_loaders, run_config, writer,
         return accuracy
 
 
-def update_state(state, epoch, accuracy, model, optimizer):
-    state['state_dict'] = model.state_dict()
-    state['optimizer'] = optimizer.state_dict()
-    state['epoch'] = epoch
-    state['accuracy'] = accuracy
-
-    # update best accuracy
-    if accuracy > state['best_accuracy']:
-        state['best_accuracy'] = accuracy
-        state['best_epoch'] = epoch
-
-    return state
-
-
 def main():
     # parse command line argument and generate config dictionary
     config = parse_args()
@@ -438,6 +424,7 @@ def main():
     model = load_model(config['model_config'])
     n_params = sum([param.view(-1).size()[0] for param in model.parameters()])
     logger.info('n_params: {}'.format(n_params))
+
     if run_config['use_gpu']:
         model = nn.DataParallel(model)
         model.cuda()
@@ -448,20 +435,10 @@ def main():
     else:
         test_criterion = nn.CrossEntropyLoss(size_average=True)
 
-    # load optimal model
-    print('rc resume path:', run_config['resume'])
-    if run_config['resume']: # always on---set to best
-        if os.path.isfile(run_config['resume']):
-            print("=> loading checkpoint '{}'".format(run_config['resume']))
-            checkpoint = torch.load(run_config['resume'])
-            end_epoch = checkpoint['epoch']
-            print("last epoch at : {0}".format(end_epoch))
-            checkpoint = None
-    
-        else:
-            print("=> no checkpoint found at '{}'".format(run_config['resume']))
+    epochs = optim_config['epochs']
+    print('expected number (max) epochs:', str(epochs))
 
-    for ep in np.arange(end_epoch+1):    
+    for ep in np.arange(1, epochs + 1): # is there a 0 epoch?    
         temp_eval_file = run_config['resume'].split('best')[0] + 'state_' + str(ep) + '.pth'
         print('temp eval file: ', temp_eval_file)
 
@@ -478,19 +455,32 @@ def main():
 
 
         #evaluate model
-        accuracy = test(epoch, model, test_criterion, test_loader,
+
+        if human_tune:
+            scores = test(epoch, model, test_criterion,
+                    (train_loader, test_loader, _50k_loader, v4_loader, v6_loader),
+                    run_config, writer,
+                    human_tune=human_tune)
+            # print(scores)
+            human_tune_scores.append(scores)
+        else:
+            accuracy = test(epoch, model, test_criterion, test_loader,
                                 run_config, writer, human_tune=human_tune)
 
-        # create output directory
-        c10h_outdir = run_config['c10h_scores_outdir']
-        if not os.path.exists(c10h_outdir):
-            os.makedirs(c10h_outdir)
-        # resave (overwrite) scores file with latest entries
-        keys = human_tune_scores[0].keys()
-        print('keys: ', keys)
+    # after iterating through epochs and saving scores to list, dump
+    # into csv file
 
-#        with open(os.path.join(c10h_outdir, 'scores.csv'), 'wb') as output_file:
-        with open(os.path.join(c10h_outdir, 'scores.csv'), 'w') as output_file:    # changed from above
+    # create output directory
+    c10h_outdir = run_config['c10h_scores_outdir']
+    if not os.path.exists(c10h_outdir):
+        os.makedirs(c10h_outdir)
+    
+    # resave (overwrite) scores file with latest entries
+    keys = human_tune_scores[0].keys()
+    print('keys: ', keys)
+
+#    with open(os.path.join(c10h_outdir, 'test_scores.csv'), 'wb') as output_file:
+        with open(os.path.join(c10h_outdir, 'test_scores.csv'), 'w') as output_file:    # changed from above
             dict_writer = csv.DictWriter(output_file, keys)
             dict_writer.writeheader()
             dict_writer.writerows(human_tune_scores)

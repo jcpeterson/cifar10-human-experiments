@@ -1,0 +1,10 @@
+entering inner script
+activating virtual env
+0
+--arch=shake --c10h_save_interval=2 --dataset=CIFAR10H --no_output --c10h_datasplit_seed=2 --human_tune --nonhuman_control=True --base_lr=0.01
+0_control:True_lr:0.01_seed:2.out
+entering python script
+/tigress/ruairidh/model_results/run_1/0/model_best_state.pth
+/tigress/ruairidh/model_results/run_1/saves/0
+Using TensorFlow backend.
+slurmstepd: error: *** JOB 1454273 ON tiger-i22g12 CANCELLED AT 2018-09-24T22:46:30 ***

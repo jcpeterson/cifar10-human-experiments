@@ -1,0 +1,394 @@
+entering inner script
+activating virtual env
+resnet_preact_bottleneck_164
+identifier: con_True_lr_0.01_seed_1
+--arch=resnet --c10h_save_interval=2 --dataset=CIFAR10H --no_output --c10h_datasplit_seed=1 --human_tune --nonhuman_control=True --base_lr=0.01
+resnet_preact_bottleneck_164_control:True_lr:0.01_seed:1.out
+entering python script
+/tigress/ruairidh/model_results/run_1/resnet_preact_bottleneck_164/model_best_state.pth
+/tigress/ruairidh/model_results/run_1/saves/resnet_preact_bottleneck_164/con_True_lr_0.01_seed_1
+Using TensorFlow backend.
+[2018/09/25 12:35:42 __main__ INFO] - {
+  "model_config": {
+    "arch": "resnet",
+    "input_shape": [
+      1,
+      3,
+      32,
+      32
+    ],
+    "n_classes": 10,
+    "base_channels": 16,
+    "block_type": "basic",
+    "depth": 110
+  },
+  "optim_config": {
+    "epochs": 160,
+    "batch_size": 128,
+    "optimizer": "sgd",
+    "base_lr": 0.01,
+    "weight_decay": 0.0001,
+    "momentum": 0.9,
+    "nesterov": true,
+    "scheduler": "multistep",
+    "milestones": [
+      80,
+      120
+    ],
+    "lr_decay": 0.1
+  },
+  "data_config": {
+    "dataset": "CIFAR10H",
+    "n_classes": 10,
+    "num_workers": 7,
+    "batch_size": 128,
+    "use_cutout": false,
+    "use_random_erasing": false,
+    "use_mixup": false,
+    "c10h_sample": false,
+    "c10h_testsplit_percent": 0.1,
+    "c10h_datasplit_seed": 1,
+    "use_gpu": true
+  },
+  "run_config": {
+    "seed": 17,
+    "test_first": true,
+    "gpu": "0",
+    "tensorboard": false,
+    "tensorboard_train_images": false,
+    "tensorboard_test_images": false,
+    "tensorboard_model_params": false,
+    "resume": "/tigress/ruairidh/model_results/run_1/resnet_preact_bottleneck_164/model_best_state.pth",
+    "human_tune": true,
+    "no_output": true,
+    "test_only": false,
+    "nonhuman_control": true,
+    "c10h_scores_outdir": "/tigress/ruairidh/model_results/run_1/saves/resnet_preact_bottleneck_164/con_True_lr_0.01_seed_1",
+    "c10h_save_interval": "2",
+    "use_gpu": true
+  },
+  "env_info": {
+    "pytorch_version": "0.4.1",
+    "cuda_version": "9.0.176",
+    "cudnn_version": 7102,
+    "gpu0": {
+      "name": "Tesla P100-PCIE-16GB",
+      "capability": "6.0"
+    }
+  }
+}
+Files already downloaded and verified
+Files already downloaded and verified
+Files already downloaded and verified
+Files already downloaded and verified
+Files already downloaded and verified
+[2018/09/25 12:35:47 __main__ INFO] - Loading model...
+[2018/09/25 12:35:47 __main__ INFO] - n_params: 1730714
+[2018/09/25 12:35:49 __main__ INFO] - Done
+=> loading checkpoint '/tigress/ruairidh/model_results/run_1/resnet_preact_bottleneck_164/model_best_state.pth'
+Traceback (most recent call last):
+  File "./tune_with_cifar10h.py", line 688, in <module>
+    main()
+  File "./tune_with_cifar10h.py", line 583, in main
+    model.load_state_dict(checkpoint['state_dict'])
+  File "/home/ruairidh/miniconda3/envs/pytorch_env/lib/python3.6/site-packages/torch/nn/modules/module.py", line 719, in load_state_dict
+    self.__class__.__name__, "\n\t".join(error_msgs)))
+RuntimeError: Error(s) in loading state_dict for DataParallel:
+	Missing key(s) in state_dict: "module.stage2.block1.shortcut.bn.weight", "module.stage2.block1.shortcut.bn.bias", "module.stage2.block1.shortcut.bn.running_mean", "module.stage2.block1.shortcut.bn.running_var", "module.stage3.block1.shortcut.bn.weight", "module.stage3.block1.shortcut.bn.bias", "module.stage3.block1.shortcut.bn.running_mean", "module.stage3.block1.shortcut.bn.running_var". 
+	Unexpected key(s) in state_dict: "module.stage1.block1.bn3.weight", "module.stage1.block1.bn3.bias", "module.stage1.block1.bn3.running_mean", "module.stage1.block1.bn3.running_var", "module.stage1.block1.bn3.num_batches_tracked", "module.stage1.block1.conv3.weight", "module.stage1.block2.bn3.weight", "module.stage1.block2.bn3.bias", "module.stage1.block2.bn3.running_mean", "module.stage1.block2.bn3.running_var", "module.stage1.block2.bn3.num_batches_tracked", "module.stage1.block2.conv3.weight", "module.stage1.block3.bn3.weight", "module.stage1.block3.bn3.bias", "module.stage1.block3.bn3.running_mean", "module.stage1.block3.bn3.running_var", "module.stage1.block3.bn3.num_batches_tracked", "module.stage1.block3.conv3.weight", "module.stage1.block4.bn3.weight", "module.stage1.block4.bn3.bias", "module.stage1.block4.bn3.running_mean", "module.stage1.block4.bn3.running_var", "module.stage1.block4.bn3.num_batches_tracked", "module.stage1.block4.conv3.weight", "module.stage1.block5.bn3.weight", "module.stage1.block5.bn3.bias", "module.stage1.block5.bn3.running_mean", "module.stage1.block5.bn3.running_var", "module.stage1.block5.bn3.num_batches_tracked", "module.stage1.block5.conv3.weight", "module.stage1.block6.bn3.weight", "module.stage1.block6.bn3.bias", "module.stage1.block6.bn3.running_mean", "module.stage1.block6.bn3.running_var", "module.stage1.block6.bn3.num_batches_tracked", "module.stage1.block6.conv3.weight", "module.stage1.block7.bn3.weight", "module.stage1.block7.bn3.bias", "module.stage1.block7.bn3.running_mean", "module.stage1.block7.bn3.running_var", "module.stage1.block7.bn3.num_batches_tracked", "module.stage1.block7.conv3.weight", "module.stage1.block8.bn3.weight", "module.stage1.block8.bn3.bias", "module.stage1.block8.bn3.running_mean", "module.stage1.block8.bn3.running_var", "module.stage1.block8.bn3.num_batches_tracked", "module.stage1.block8.conv3.weight", "module.stage1.block9.bn3.weight", "module.stage1.block9.bn3.bias", "module.stage1.block9.bn3.running_mean", "module.stage1.block9.bn3.running_var", "module.stage1.block9.bn3.num_batches_tracked", "module.stage1.block9.conv3.weight", "module.stage1.block10.bn3.weight", "module.stage1.block10.bn3.bias", "module.stage1.block10.bn3.running_mean", "module.stage1.block10.bn3.running_var", "module.stage1.block10.bn3.num_batches_tracked", "module.stage1.block10.conv3.weight", "module.stage1.block11.bn3.weight", "module.stage1.block11.bn3.bias", "module.stage1.block11.bn3.running_mean", "module.stage1.block11.bn3.running_var", "module.stage1.block11.bn3.num_batches_tracked", "module.stage1.block11.conv3.weight", "module.stage1.block12.bn3.weight", "module.stage1.block12.bn3.bias", "module.stage1.block12.bn3.running_mean", "module.stage1.block12.bn3.running_var", "module.stage1.block12.bn3.num_batches_tracked", "module.stage1.block12.conv3.weight", "module.stage1.block13.bn3.weight", "module.stage1.block13.bn3.bias", "module.stage1.block13.bn3.running_mean", "module.stage1.block13.bn3.running_var", "module.stage1.block13.bn3.num_batches_tracked", "module.stage1.block13.conv3.weight", "module.stage1.block14.bn3.weight", "module.stage1.block14.bn3.bias", "module.stage1.block14.bn3.running_mean", "module.stage1.block14.bn3.running_var", "module.stage1.block14.bn3.num_batches_tracked", "module.stage1.block14.conv3.weight", "module.stage1.block15.bn3.weight", "module.stage1.block15.bn3.bias", "module.stage1.block15.bn3.running_mean", "module.stage1.block15.bn3.running_var", "module.stage1.block15.bn3.num_batches_tracked", "module.stage1.block15.conv3.weight", "module.stage1.block16.bn3.weight", "module.stage1.block16.bn3.bias", "module.stage1.block16.bn3.running_mean", "module.stage1.block16.bn3.running_var", "module.stage1.block16.bn3.num_batches_tracked", "module.stage1.block16.conv3.weight", "module.stage1.block17.bn3.weight", "module.stage1.block17.bn3.bias", "module.stage1.block17.bn3.running_mean", "module.stage1.block17.bn3.running_var", "module.stage1.block17.bn3.num_batches_tracked", "module.stage1.block17.conv3.weight", "module.stage1.block18.bn3.weight", "module.stage1.block18.bn3.bias", "module.stage1.block18.bn3.running_mean", "module.stage1.block18.bn3.running_var", "module.stage1.block18.bn3.num_batches_tracked", "module.stage1.block18.conv3.weight", "module.stage2.block1.bn3.weight", "module.stage2.block1.bn3.bias", "module.stage2.block1.bn3.running_mean", "module.stage2.block1.bn3.running_var", "module.stage2.block1.bn3.num_batches_tracked", "module.stage2.block1.conv3.weight", "module.stage2.block2.bn3.weight", "module.stage2.block2.bn3.bias", "module.stage2.block2.bn3.running_mean", "module.stage2.block2.bn3.running_var", "module.stage2.block2.bn3.num_batches_tracked", "module.stage2.block2.conv3.weight", "module.stage2.block3.bn3.weight", "module.stage2.block3.bn3.bias", "module.stage2.block3.bn3.running_mean", "module.stage2.block3.bn3.running_var", "module.stage2.block3.bn3.num_batches_tracked", "module.stage2.block3.conv3.weight", "module.stage2.block4.bn3.weight", "module.stage2.block4.bn3.bias", "module.stage2.block4.bn3.running_mean", "module.stage2.block4.bn3.running_var", "module.stage2.block4.bn3.num_batches_tracked", "module.stage2.block4.conv3.weight", "module.stage2.block5.bn3.weight", "module.stage2.block5.bn3.bias", "module.stage2.block5.bn3.running_mean", "module.stage2.block5.bn3.running_var", "module.stage2.block5.bn3.num_batches_tracked", "module.stage2.block5.conv3.weight", "module.stage2.block6.bn3.weight", "module.stage2.block6.bn3.bias", "module.stage2.block6.bn3.running_mean", "module.stage2.block6.bn3.running_var", "module.stage2.block6.bn3.num_batches_tracked", "module.stage2.block6.conv3.weight", "module.stage2.block7.bn3.weight", "module.stage2.block7.bn3.bias", "module.stage2.block7.bn3.running_mean", "module.stage2.block7.bn3.running_var", "module.stage2.block7.bn3.num_batches_tracked", "module.stage2.block7.conv3.weight", "module.stage2.block8.bn3.weight", "module.stage2.block8.bn3.bias", "module.stage2.block8.bn3.running_mean", "module.stage2.block8.bn3.running_var", "module.stage2.block8.bn3.num_batches_tracked", "module.stage2.block8.conv3.weight", "module.stage2.block9.bn3.weight", "module.stage2.block9.bn3.bias", "module.stage2.block9.bn3.running_mean", "module.stage2.block9.bn3.running_var", "module.stage2.block9.bn3.num_batches_tracked", "module.stage2.block9.conv3.weight", "module.stage2.block10.bn3.weight", "module.stage2.block10.bn3.bias", "module.stage2.block10.bn3.running_mean", "module.stage2.block10.bn3.running_var", "module.stage2.block10.bn3.num_batches_tracked", "module.stage2.block10.conv3.weight", "module.stage2.block11.bn3.weight", "module.stage2.block11.bn3.bias", "module.stage2.block11.bn3.running_mean", "module.stage2.block11.bn3.running_var", "module.stage2.block11.bn3.num_batches_tracked", "module.stage2.block11.conv3.weight", "module.stage2.block12.bn3.weight", "module.stage2.block12.bn3.bias", "module.stage2.block12.bn3.running_mean", "module.stage2.block12.bn3.running_var", "module.stage2.block12.bn3.num_batches_tracked", "module.stage2.block12.conv3.weight", "module.stage2.block13.bn3.weight", "module.stage2.block13.bn3.bias", "module.stage2.block13.bn3.running_mean", "module.stage2.block13.bn3.running_var", "module.stage2.block13.bn3.num_batches_tracked", "module.stage2.block13.conv3.weight", "module.stage2.block14.bn3.weight", "module.stage2.block14.bn3.bias", "module.stage2.block14.bn3.running_mean", "module.stage2.block14.bn3.running_var", "module.stage2.block14.bn3.num_batches_tracked", "module.stage2.block14.conv3.weight", "module.stage2.block15.bn3.weight", "module.stage2.block15.bn3.bias", "module.stage2.block15.bn3.running_mean", "module.stage2.block15.bn3.running_var", "module.stage2.block15.bn3.num_batches_tracked", "module.stage2.block15.conv3.weight", "module.stage2.block16.bn3.weight", "module.stage2.block16.bn3.bias", "module.stage2.block16.bn3.running_mean", "module.stage2.block16.bn3.running_var", "module.stage2.block16.bn3.num_batches_tracked", "module.stage2.block16.conv3.weight", "module.stage2.block17.bn3.weight", "module.stage2.block17.bn3.bias", "module.stage2.block17.bn3.running_mean", "module.stage2.block17.bn3.running_var", "module.stage2.block17.bn3.num_batches_tracked", "module.stage2.block17.conv3.weight", "module.stage2.block18.bn3.weight", "module.stage2.block18.bn3.bias", "module.stage2.block18.bn3.running_mean", "module.stage2.block18.bn3.running_var", "module.stage2.block18.bn3.num_batches_tracked", "module.stage2.block18.conv3.weight", "module.stage3.block1.bn3.weight", "module.stage3.block1.bn3.bias", "module.stage3.block1.bn3.running_mean", "module.stage3.block1.bn3.running_var", "module.stage3.block1.bn3.num_batches_tracked", "module.stage3.block1.conv3.weight", "module.stage3.block2.bn3.weight", "module.stage3.block2.bn3.bias", "module.stage3.block2.bn3.running_mean", "module.stage3.block2.bn3.running_var", "module.stage3.block2.bn3.num_batches_tracked", "module.stage3.block2.conv3.weight", "module.stage3.block3.bn3.weight", "module.stage3.block3.bn3.bias", "module.stage3.block3.bn3.running_mean", "module.stage3.block3.bn3.running_var", "module.stage3.block3.bn3.num_batches_tracked", "module.stage3.block3.conv3.weight", "module.stage3.block4.bn3.weight", "module.stage3.block4.bn3.bias", "module.stage3.block4.bn3.running_mean", "module.stage3.block4.bn3.running_var", "module.stage3.block4.bn3.num_batches_tracked", "module.stage3.block4.conv3.weight", "module.stage3.block5.bn3.weight", "module.stage3.block5.bn3.bias", "module.stage3.block5.bn3.running_mean", "module.stage3.block5.bn3.running_var", "module.stage3.block5.bn3.num_batches_tracked", "module.stage3.block5.conv3.weight", "module.stage3.block6.bn3.weight", "module.stage3.block6.bn3.bias", "module.stage3.block6.bn3.running_mean", "module.stage3.block6.bn3.running_var", "module.stage3.block6.bn3.num_batches_tracked", "module.stage3.block6.conv3.weight", "module.stage3.block7.bn3.weight", "module.stage3.block7.bn3.bias", "module.stage3.block7.bn3.running_mean", "module.stage3.block7.bn3.running_var", "module.stage3.block7.bn3.num_batches_tracked", "module.stage3.block7.conv3.weight", "module.stage3.block8.bn3.weight", "module.stage3.block8.bn3.bias", "module.stage3.block8.bn3.running_mean", "module.stage3.block8.bn3.running_var", "module.stage3.block8.bn3.num_batches_tracked", "module.stage3.block8.conv3.weight", "module.stage3.block9.bn3.weight", "module.stage3.block9.bn3.bias", "module.stage3.block9.bn3.running_mean", "module.stage3.block9.bn3.running_var", "module.stage3.block9.bn3.num_batches_tracked", "module.stage3.block9.conv3.weight", "module.stage3.block10.bn3.weight", "module.stage3.block10.bn3.bias", "module.stage3.block10.bn3.running_mean", "module.stage3.block10.bn3.running_var", "module.stage3.block10.bn3.num_batches_tracked", "module.stage3.block10.conv3.weight", "module.stage3.block11.bn3.weight", "module.stage3.block11.bn3.bias", "module.stage3.block11.bn3.running_mean", "module.stage3.block11.bn3.running_var", "module.stage3.block11.bn3.num_batches_tracked", "module.stage3.block11.conv3.weight", "module.stage3.block12.bn3.weight", "module.stage3.block12.bn3.bias", "module.stage3.block12.bn3.running_mean", "module.stage3.block12.bn3.running_var", "module.stage3.block12.bn3.num_batches_tracked", "module.stage3.block12.conv3.weight", "module.stage3.block13.bn3.weight", "module.stage3.block13.bn3.bias", "module.stage3.block13.bn3.running_mean", "module.stage3.block13.bn3.running_var", "module.stage3.block13.bn3.num_batches_tracked", "module.stage3.block13.conv3.weight", "module.stage3.block14.bn3.weight", "module.stage3.block14.bn3.bias", "module.stage3.block14.bn3.running_mean", "module.stage3.block14.bn3.running_var", "module.stage3.block14.bn3.num_batches_tracked", "module.stage3.block14.conv3.weight", "module.stage3.block15.bn3.weight", "module.stage3.block15.bn3.bias", "module.stage3.block15.bn3.running_mean", "module.stage3.block15.bn3.running_var", "module.stage3.block15.bn3.num_batches_tracked", "module.stage3.block15.conv3.weight", "module.stage3.block16.bn3.weight", "module.stage3.block16.bn3.bias", "module.stage3.block16.bn3.running_mean", "module.stage3.block16.bn3.running_var", "module.stage3.block16.bn3.num_batches_tracked", "module.stage3.block16.conv3.weight", "module.stage3.block17.bn3.weight", "module.stage3.block17.bn3.bias", "module.stage3.block17.bn3.running_mean", "module.stage3.block17.bn3.running_var", "module.stage3.block17.bn3.num_batches_tracked", "module.stage3.block17.conv3.weight", "module.stage3.block18.bn3.weight", "module.stage3.block18.bn3.bias", "module.stage3.block18.bn3.running_mean", "module.stage3.block18.bn3.running_var", "module.stage3.block18.bn3.num_batches_tracked", "module.stage3.block18.conv3.weight". 
+	size mismatch for module.bn.weight: copying a param of torch.Size([16]) from checkpoint, where the shape is torch.Size([256]) in current model.
+	size mismatch for module.bn.bias: copying a param of torch.Size([16]) from checkpoint, where the shape is torch.Size([256]) in current model.
+	size mismatch for module.bn.running_mean: copying a param of torch.Size([16]) from checkpoint, where the shape is torch.Size([256]) in current model.
+	size mismatch for module.bn.running_var: copying a param of torch.Size([16]) from checkpoint, where the shape is torch.Size([256]) in current model.
+	size mismatch for module.stage1.block1.conv1.weight: copying a param of torch.Size([16, 16, 3, 3]) from checkpoint, where the shape is torch.Size([4, 16, 1, 1]) in current model.
+	size mismatch for module.stage1.block1.conv2.weight: copying a param of torch.Size([16, 16, 3, 3]) from checkpoint, where the shape is torch.Size([4, 4, 3, 3]) in current model.
+	size mismatch for module.stage1.block1.bn2.weight: copying a param of torch.Size([16]) from checkpoint, where the shape is torch.Size([4]) in current model.
+	size mismatch for module.stage1.block1.bn2.bias: copying a param of torch.Size([16]) from checkpoint, where the shape is torch.Size([4]) in current model.
+	size mismatch for module.stage1.block1.bn2.running_mean: copying a param of torch.Size([16]) from checkpoint, where the shape is torch.Size([4]) in current model.
+	size mismatch for module.stage1.block1.bn2.running_var: copying a param of torch.Size([16]) from checkpoint, where the shape is torch.Size([4]) in current model.
+	size mismatch for module.stage1.block2.conv1.weight: copying a param of torch.Size([16, 16, 3, 3]) from checkpoint, where the shape is torch.Size([4, 16, 1, 1]) in current model.
+	size mismatch for module.stage1.block2.conv2.weight: copying a param of torch.Size([16, 16, 3, 3]) from checkpoint, where the shape is torch.Size([4, 4, 3, 3]) in current model.
+	size mismatch for module.stage1.block2.bn2.weight: copying a param of torch.Size([16]) from checkpoint, where the shape is torch.Size([4]) in current model.
+	size mismatch for module.stage1.block2.bn2.bias: copying a param of torch.Size([16]) from checkpoint, where the shape is torch.Size([4]) in current model.
+	size mismatch for module.stage1.block2.bn2.running_mean: copying a param of torch.Size([16]) from checkpoint, where the shape is torch.Size([4]) in current model.
+	size mismatch for module.stage1.block2.bn2.running_var: copying a param of torch.Size([16]) from checkpoint, where the shape is torch.Size([4]) in current model.
+	size mismatch for module.stage1.block3.conv1.weight: copying a param of torch.Size([16, 16, 3, 3]) from checkpoint, where the shape is torch.Size([4, 16, 1, 1]) in current model.
+	size mismatch for module.stage1.block3.conv2.weight: copying a param of torch.Size([16, 16, 3, 3]) from checkpoint, where the shape is torch.Size([4, 4, 3, 3]) in current model.
+	size mismatch for module.stage1.block3.bn2.weight: copying a param of torch.Size([16]) from checkpoint, where the shape is torch.Size([4]) in current model.
+	size mismatch for module.stage1.block3.bn2.bias: copying a param of torch.Size([16]) from checkpoint, where the shape is torch.Size([4]) in current model.
+	size mismatch for module.stage1.block3.bn2.running_mean: copying a param of torch.Size([16]) from checkpoint, where the shape is torch.Size([4]) in current model.
+	size mismatch for module.stage1.block3.bn2.running_var: copying a param of torch.Size([16]) from checkpoint, where the shape is torch.Size([4]) in current model.
+	size mismatch for module.stage1.block4.conv1.weight: copying a param of torch.Size([16, 16, 3, 3]) from checkpoint, where the shape is torch.Size([4, 16, 1, 1]) in current model.
+	size mismatch for module.stage1.block4.conv2.weight: copying a param of torch.Size([16, 16, 3, 3]) from checkpoint, where the shape is torch.Size([4, 4, 3, 3]) in current model.
+	size mismatch for module.stage1.block4.bn2.weight: copying a param of torch.Size([16]) from checkpoint, where the shape is torch.Size([4]) in current model.
+	size mismatch for module.stage1.block4.bn2.bias: copying a param of torch.Size([16]) from checkpoint, where the shape is torch.Size([4]) in current model.
+	size mismatch for module.stage1.block4.bn2.running_mean: copying a param of torch.Size([16]) from checkpoint, where the shape is torch.Size([4]) in current model.
+	size mismatch for module.stage1.block4.bn2.running_var: copying a param of torch.Size([16]) from checkpoint, where the shape is torch.Size([4]) in current model.
+	size mismatch for module.stage1.block5.conv1.weight: copying a param of torch.Size([16, 16, 3, 3]) from checkpoint, where the shape is torch.Size([4, 16, 1, 1]) in current model.
+	size mismatch for module.stage1.block5.conv2.weight: copying a param of torch.Size([16, 16, 3, 3]) from checkpoint, where the shape is torch.Size([4, 4, 3, 3]) in current model.
+	size mismatch for module.stage1.block5.bn2.weight: copying a param of torch.Size([16]) from checkpoint, where the shape is torch.Size([4]) in current model.
+	size mismatch for module.stage1.block5.bn2.bias: copying a param of torch.Size([16]) from checkpoint, where the shape is torch.Size([4]) in current model.
+	size mismatch for module.stage1.block5.bn2.running_mean: copying a param of torch.Size([16]) from checkpoint, where the shape is torch.Size([4]) in current model.
+	size mismatch for module.stage1.block5.bn2.running_var: copying a param of torch.Size([16]) from checkpoint, where the shape is torch.Size([4]) in current model.
+	size mismatch for module.stage1.block6.conv1.weight: copying a param of torch.Size([16, 16, 3, 3]) from checkpoint, where the shape is torch.Size([4, 16, 1, 1]) in current model.
+	size mismatch for module.stage1.block6.conv2.weight: copying a param of torch.Size([16, 16, 3, 3]) from checkpoint, where the shape is torch.Size([4, 4, 3, 3]) in current model.
+	size mismatch for module.stage1.block6.bn2.weight: copying a param of torch.Size([16]) from checkpoint, where the shape is torch.Size([4]) in current model.
+	size mismatch for module.stage1.block6.bn2.bias: copying a param of torch.Size([16]) from checkpoint, where the shape is torch.Size([4]) in current model.
+	size mismatch for module.stage1.block6.bn2.running_mean: copying a param of torch.Size([16]) from checkpoint, where the shape is torch.Size([4]) in current model.
+	size mismatch for module.stage1.block6.bn2.running_var: copying a param of torch.Size([16]) from checkpoint, where the shape is torch.Size([4]) in current model.
+	size mismatch for module.stage1.block7.conv1.weight: copying a param of torch.Size([16, 16, 3, 3]) from checkpoint, where the shape is torch.Size([4, 16, 1, 1]) in current model.
+	size mismatch for module.stage1.block7.conv2.weight: copying a param of torch.Size([16, 16, 3, 3]) from checkpoint, where the shape is torch.Size([4, 4, 3, 3]) in current model.
+	size mismatch for module.stage1.block7.bn2.weight: copying a param of torch.Size([16]) from checkpoint, where the shape is torch.Size([4]) in current model.
+	size mismatch for module.stage1.block7.bn2.bias: copying a param of torch.Size([16]) from checkpoint, where the shape is torch.Size([4]) in current model.
+	size mismatch for module.stage1.block7.bn2.running_mean: copying a param of torch.Size([16]) from checkpoint, where the shape is torch.Size([4]) in current model.
+	size mismatch for module.stage1.block7.bn2.running_var: copying a param of torch.Size([16]) from checkpoint, where the shape is torch.Size([4]) in current model.
+	size mismatch for module.stage1.block8.conv1.weight: copying a param of torch.Size([16, 16, 3, 3]) from checkpoint, where the shape is torch.Size([4, 16, 1, 1]) in current model.
+	size mismatch for module.stage1.block8.conv2.weight: copying a param of torch.Size([16, 16, 3, 3]) from checkpoint, where the shape is torch.Size([4, 4, 3, 3]) in current model.
+	size mismatch for module.stage1.block8.bn2.weight: copying a param of torch.Size([16]) from checkpoint, where the shape is torch.Size([4]) in current model.
+	size mismatch for module.stage1.block8.bn2.bias: copying a param of torch.Size([16]) from checkpoint, where the shape is torch.Size([4]) in current model.
+	size mismatch for module.stage1.block8.bn2.running_mean: copying a param of torch.Size([16]) from checkpoint, where the shape is torch.Size([4]) in current model.
+	size mismatch for module.stage1.block8.bn2.running_var: copying a param of torch.Size([16]) from checkpoint, where the shape is torch.Size([4]) in current model.
+	size mismatch for module.stage1.block9.conv1.weight: copying a param of torch.Size([16, 16, 3, 3]) from checkpoint, where the shape is torch.Size([4, 16, 1, 1]) in current model.
+	size mismatch for module.stage1.block9.conv2.weight: copying a param of torch.Size([16, 16, 3, 3]) from checkpoint, where the shape is torch.Size([4, 4, 3, 3]) in current model.
+	size mismatch for module.stage1.block9.bn2.weight: copying a param of torch.Size([16]) from checkpoint, where the shape is torch.Size([4]) in current model.
+	size mismatch for module.stage1.block9.bn2.bias: copying a param of torch.Size([16]) from checkpoint, where the shape is torch.Size([4]) in current model.
+	size mismatch for module.stage1.block9.bn2.running_mean: copying a param of torch.Size([16]) from checkpoint, where the shape is torch.Size([4]) in current model.
+	size mismatch for module.stage1.block9.bn2.running_var: copying a param of torch.Size([16]) from checkpoint, where the shape is torch.Size([4]) in current model.
+	size mismatch for module.stage1.block10.conv1.weight: copying a param of torch.Size([16, 16, 3, 3]) from checkpoint, where the shape is torch.Size([4, 16, 1, 1]) in current model.
+	size mismatch for module.stage1.block10.conv2.weight: copying a param of torch.Size([16, 16, 3, 3]) from checkpoint, where the shape is torch.Size([4, 4, 3, 3]) in current model.
+	size mismatch for module.stage1.block10.bn2.weight: copying a param of torch.Size([16]) from checkpoint, where the shape is torch.Size([4]) in current model.
+	size mismatch for module.stage1.block10.bn2.bias: copying a param of torch.Size([16]) from checkpoint, where the shape is torch.Size([4]) in current model.
+	size mismatch for module.stage1.block10.bn2.running_mean: copying a param of torch.Size([16]) from checkpoint, where the shape is torch.Size([4]) in current model.
+	size mismatch for module.stage1.block10.bn2.running_var: copying a param of torch.Size([16]) from checkpoint, where the shape is torch.Size([4]) in current model.
+	size mismatch for module.stage1.block11.conv1.weight: copying a param of torch.Size([16, 16, 3, 3]) from checkpoint, where the shape is torch.Size([4, 16, 1, 1]) in current model.
+	size mismatch for module.stage1.block11.conv2.weight: copying a param of torch.Size([16, 16, 3, 3]) from checkpoint, where the shape is torch.Size([4, 4, 3, 3]) in current model.
+	size mismatch for module.stage1.block11.bn2.weight: copying a param of torch.Size([16]) from checkpoint, where the shape is torch.Size([4]) in current model.
+	size mismatch for module.stage1.block11.bn2.bias: copying a param of torch.Size([16]) from checkpoint, where the shape is torch.Size([4]) in current model.
+	size mismatch for module.stage1.block11.bn2.running_mean: copying a param of torch.Size([16]) from checkpoint, where the shape is torch.Size([4]) in current model.
+	size mismatch for module.stage1.block11.bn2.running_var: copying a param of torch.Size([16]) from checkpoint, where the shape is torch.Size([4]) in current model.
+	size mismatch for module.stage1.block12.conv1.weight: copying a param of torch.Size([16, 16, 3, 3]) from checkpoint, where the shape is torch.Size([4, 16, 1, 1]) in current model.
+	size mismatch for module.stage1.block12.conv2.weight: copying a param of torch.Size([16, 16, 3, 3]) from checkpoint, where the shape is torch.Size([4, 4, 3, 3]) in current model.
+	size mismatch for module.stage1.block12.bn2.weight: copying a param of torch.Size([16]) from checkpoint, where the shape is torch.Size([4]) in current model.
+	size mismatch for module.stage1.block12.bn2.bias: copying a param of torch.Size([16]) from checkpoint, where the shape is torch.Size([4]) in current model.
+	size mismatch for module.stage1.block12.bn2.running_mean: copying a param of torch.Size([16]) from checkpoint, where the shape is torch.Size([4]) in current model.
+	size mismatch for module.stage1.block12.bn2.running_var: copying a param of torch.Size([16]) from checkpoint, where the shape is torch.Size([4]) in current model.
+	size mismatch for module.stage1.block13.conv1.weight: copying a param of torch.Size([16, 16, 3, 3]) from checkpoint, where the shape is torch.Size([4, 16, 1, 1]) in current model.
+	size mismatch for module.stage1.block13.conv2.weight: copying a param of torch.Size([16, 16, 3, 3]) from checkpoint, where the shape is torch.Size([4, 4, 3, 3]) in current model.
+	size mismatch for module.stage1.block13.bn2.weight: copying a param of torch.Size([16]) from checkpoint, where the shape is torch.Size([4]) in current model.
+	size mismatch for module.stage1.block13.bn2.bias: copying a param of torch.Size([16]) from checkpoint, where the shape is torch.Size([4]) in current model.
+	size mismatch for module.stage1.block13.bn2.running_mean: copying a param of torch.Size([16]) from checkpoint, where the shape is torch.Size([4]) in current model.
+	size mismatch for module.stage1.block13.bn2.running_var: copying a param of torch.Size([16]) from checkpoint, where the shape is torch.Size([4]) in current model.
+	size mismatch for module.stage1.block14.conv1.weight: copying a param of torch.Size([16, 16, 3, 3]) from checkpoint, where the shape is torch.Size([4, 16, 1, 1]) in current model.
+	size mismatch for module.stage1.block14.conv2.weight: copying a param of torch.Size([16, 16, 3, 3]) from checkpoint, where the shape is torch.Size([4, 4, 3, 3]) in current model.
+	size mismatch for module.stage1.block14.bn2.weight: copying a param of torch.Size([16]) from checkpoint, where the shape is torch.Size([4]) in current model.
+	size mismatch for module.stage1.block14.bn2.bias: copying a param of torch.Size([16]) from checkpoint, where the shape is torch.Size([4]) in current model.
+	size mismatch for module.stage1.block14.bn2.running_mean: copying a param of torch.Size([16]) from checkpoint, where the shape is torch.Size([4]) in current model.
+	size mismatch for module.stage1.block14.bn2.running_var: copying a param of torch.Size([16]) from checkpoint, where the shape is torch.Size([4]) in current model.
+	size mismatch for module.stage1.block15.conv1.weight: copying a param of torch.Size([16, 16, 3, 3]) from checkpoint, where the shape is torch.Size([4, 16, 1, 1]) in current model.
+	size mismatch for module.stage1.block15.conv2.weight: copying a param of torch.Size([16, 16, 3, 3]) from checkpoint, where the shape is torch.Size([4, 4, 3, 3]) in current model.
+	size mismatch for module.stage1.block15.bn2.weight: copying a param of torch.Size([16]) from checkpoint, where the shape is torch.Size([4]) in current model.
+	size mismatch for module.stage1.block15.bn2.bias: copying a param of torch.Size([16]) from checkpoint, where the shape is torch.Size([4]) in current model.
+	size mismatch for module.stage1.block15.bn2.running_mean: copying a param of torch.Size([16]) from checkpoint, where the shape is torch.Size([4]) in current model.
+	size mismatch for module.stage1.block15.bn2.running_var: copying a param of torch.Size([16]) from checkpoint, where the shape is torch.Size([4]) in current model.
+	size mismatch for module.stage1.block16.conv1.weight: copying a param of torch.Size([16, 16, 3, 3]) from checkpoint, where the shape is torch.Size([4, 16, 1, 1]) in current model.
+	size mismatch for module.stage1.block16.conv2.weight: copying a param of torch.Size([16, 16, 3, 3]) from checkpoint, where the shape is torch.Size([4, 4, 3, 3]) in current model.
+	size mismatch for module.stage1.block16.bn2.weight: copying a param of torch.Size([16]) from checkpoint, where the shape is torch.Size([4]) in current model.
+	size mismatch for module.stage1.block16.bn2.bias: copying a param of torch.Size([16]) from checkpoint, where the shape is torch.Size([4]) in current model.
+	size mismatch for module.stage1.block16.bn2.running_mean: copying a param of torch.Size([16]) from checkpoint, where the shape is torch.Size([4]) in current model.
+	size mismatch for module.stage1.block16.bn2.running_var: copying a param of torch.Size([16]) from checkpoint, where the shape is torch.Size([4]) in current model.
+	size mismatch for module.stage1.block17.conv1.weight: copying a param of torch.Size([16, 16, 3, 3]) from checkpoint, where the shape is torch.Size([4, 16, 1, 1]) in current model.
+	size mismatch for module.stage1.block17.conv2.weight: copying a param of torch.Size([16, 16, 3, 3]) from checkpoint, where the shape is torch.Size([4, 4, 3, 3]) in current model.
+	size mismatch for module.stage1.block17.bn2.weight: copying a param of torch.Size([16]) from checkpoint, where the shape is torch.Size([4]) in current model.
+	size mismatch for module.stage1.block17.bn2.bias: copying a param of torch.Size([16]) from checkpoint, where the shape is torch.Size([4]) in current model.
+	size mismatch for module.stage1.block17.bn2.running_mean: copying a param of torch.Size([16]) from checkpoint, where the shape is torch.Size([4]) in current model.
+	size mismatch for module.stage1.block17.bn2.running_var: copying a param of torch.Size([16]) from checkpoint, where the shape is torch.Size([4]) in current model.
+	size mismatch for module.stage1.block18.conv1.weight: copying a param of torch.Size([16, 16, 3, 3]) from checkpoint, where the shape is torch.Size([4, 16, 1, 1]) in current model.
+	size mismatch for module.stage1.block18.conv2.weight: copying a param of torch.Size([16, 16, 3, 3]) from checkpoint, where the shape is torch.Size([4, 4, 3, 3]) in current model.
+	size mismatch for module.stage1.block18.bn2.weight: copying a param of torch.Size([16]) from checkpoint, where the shape is torch.Size([4]) in current model.
+	size mismatch for module.stage1.block18.bn2.bias: copying a param of torch.Size([16]) from checkpoint, where the shape is torch.Size([4]) in current model.
+	size mismatch for module.stage1.block18.bn2.running_mean: copying a param of torch.Size([16]) from checkpoint, where the shape is torch.Size([4]) in current model.
+	size mismatch for module.stage1.block18.bn2.running_var: copying a param of torch.Size([16]) from checkpoint, where the shape is torch.Size([4]) in current model.
+	size mismatch for module.stage2.block1.conv1.weight: copying a param of torch.Size([32, 16, 3, 3]) from checkpoint, where the shape is torch.Size([32, 16, 1, 1]) in current model.
+	size mismatch for module.stage2.block1.bn1.weight: copying a param of torch.Size([32]) from checkpoint, where the shape is torch.Size([16]) in current model.
+	size mismatch for module.stage2.block1.bn1.bias: copying a param of torch.Size([32]) from checkpoint, where the shape is torch.Size([16]) in current model.
+	size mismatch for module.stage2.block1.bn1.running_mean: copying a param of torch.Size([32]) from checkpoint, where the shape is torch.Size([16]) in current model.
+	size mismatch for module.stage2.block1.bn1.running_var: copying a param of torch.Size([32]) from checkpoint, where the shape is torch.Size([16]) in current model.
+	size mismatch for module.stage2.block1.shortcut.conv.weight: copying a param of torch.Size([32, 16, 1, 1]) from checkpoint, where the shape is torch.Size([128, 16, 1, 1]) in current model.
+	size mismatch for module.stage2.block2.conv1.weight: copying a param of torch.Size([32, 32, 3, 3]) from checkpoint, where the shape is torch.Size([32, 128, 1, 1]) in current model.
+	size mismatch for module.stage2.block2.bn1.weight: copying a param of torch.Size([32]) from checkpoint, where the shape is torch.Size([128]) in current model.
+	size mismatch for module.stage2.block2.bn1.bias: copying a param of torch.Size([32]) from checkpoint, where the shape is torch.Size([128]) in current model.
+	size mismatch for module.stage2.block2.bn1.running_mean: copying a param of torch.Size([32]) from checkpoint, where the shape is torch.Size([128]) in current model.
+	size mismatch for module.stage2.block2.bn1.running_var: copying a param of torch.Size([32]) from checkpoint, where the shape is torch.Size([128]) in current model.
+	size mismatch for module.stage2.block3.conv1.weight: copying a param of torch.Size([32, 32, 3, 3]) from checkpoint, where the shape is torch.Size([32, 128, 1, 1]) in current model.
+	size mismatch for module.stage2.block3.bn1.weight: copying a param of torch.Size([32]) from checkpoint, where the shape is torch.Size([128]) in current model.
+	size mismatch for module.stage2.block3.bn1.bias: copying a param of torch.Size([32]) from checkpoint, where the shape is torch.Size([128]) in current model.
+	size mismatch for module.stage2.block3.bn1.running_mean: copying a param of torch.Size([32]) from checkpoint, where the shape is torch.Size([128]) in current model.
+	size mismatch for module.stage2.block3.bn1.running_var: copying a param of torch.Size([32]) from checkpoint, where the shape is torch.Size([128]) in current model.
+	size mismatch for module.stage2.block4.conv1.weight: copying a param of torch.Size([32, 32, 3, 3]) from checkpoint, where the shape is torch.Size([32, 128, 1, 1]) in current model.
+	size mismatch for module.stage2.block4.bn1.weight: copying a param of torch.Size([32]) from checkpoint, where the shape is torch.Size([128]) in current model.
+	size mismatch for module.stage2.block4.bn1.bias: copying a param of torch.Size([32]) from checkpoint, where the shape is torch.Size([128]) in current model.
+	size mismatch for module.stage2.block4.bn1.running_mean: copying a param of torch.Size([32]) from checkpoint, where the shape is torch.Size([128]) in current model.
+	size mismatch for module.stage2.block4.bn1.running_var: copying a param of torch.Size([32]) from checkpoint, where the shape is torch.Size([128]) in current model.
+	size mismatch for module.stage2.block5.conv1.weight: copying a param of torch.Size([32, 32, 3, 3]) from checkpoint, where the shape is torch.Size([32, 128, 1, 1]) in current model.
+	size mismatch for module.stage2.block5.bn1.weight: copying a param of torch.Size([32]) from checkpoint, where the shape is torch.Size([128]) in current model.
+	size mismatch for module.stage2.block5.bn1.bias: copying a param of torch.Size([32]) from checkpoint, where the shape is torch.Size([128]) in current model.
+	size mismatch for module.stage2.block5.bn1.running_mean: copying a param of torch.Size([32]) from checkpoint, where the shape is torch.Size([128]) in current model.
+	size mismatch for module.stage2.block5.bn1.running_var: copying a param of torch.Size([32]) from checkpoint, where the shape is torch.Size([128]) in current model.
+	size mismatch for module.stage2.block6.conv1.weight: copying a param of torch.Size([32, 32, 3, 3]) from checkpoint, where the shape is torch.Size([32, 128, 1, 1]) in current model.
+	size mismatch for module.stage2.block6.bn1.weight: copying a param of torch.Size([32]) from checkpoint, where the shape is torch.Size([128]) in current model.
+	size mismatch for module.stage2.block6.bn1.bias: copying a param of torch.Size([32]) from checkpoint, where the shape is torch.Size([128]) in current model.
+	size mismatch for module.stage2.block6.bn1.running_mean: copying a param of torch.Size([32]) from checkpoint, where the shape is torch.Size([128]) in current model.
+	size mismatch for module.stage2.block6.bn1.running_var: copying a param of torch.Size([32]) from checkpoint, where the shape is torch.Size([128]) in current model.
+	size mismatch for module.stage2.block7.conv1.weight: copying a param of torch.Size([32, 32, 3, 3]) from checkpoint, where the shape is torch.Size([32, 128, 1, 1]) in current model.
+	size mismatch for module.stage2.block7.bn1.weight: copying a param of torch.Size([32]) from checkpoint, where the shape is torch.Size([128]) in current model.
+	size mismatch for module.stage2.block7.bn1.bias: copying a param of torch.Size([32]) from checkpoint, where the shape is torch.Size([128]) in current model.
+	size mismatch for module.stage2.block7.bn1.running_mean: copying a param of torch.Size([32]) from checkpoint, where the shape is torch.Size([128]) in current model.
+	size mismatch for module.stage2.block7.bn1.running_var: copying a param of torch.Size([32]) from checkpoint, where the shape is torch.Size([128]) in current model.
+	size mismatch for module.stage2.block8.conv1.weight: copying a param of torch.Size([32, 32, 3, 3]) from checkpoint, where the shape is torch.Size([32, 128, 1, 1]) in current model.
+	size mismatch for module.stage2.block8.bn1.weight: copying a param of torch.Size([32]) from checkpoint, where the shape is torch.Size([128]) in current model.
+	size mismatch for module.stage2.block8.bn1.bias: copying a param of torch.Size([32]) from checkpoint, where the shape is torch.Size([128]) in current model.
+	size mismatch for module.stage2.block8.bn1.running_mean: copying a param of torch.Size([32]) from checkpoint, where the shape is torch.Size([128]) in current model.
+	size mismatch for module.stage2.block8.bn1.running_var: copying a param of torch.Size([32]) from checkpoint, where the shape is torch.Size([128]) in current model.
+	size mismatch for module.stage2.block9.conv1.weight: copying a param of torch.Size([32, 32, 3, 3]) from checkpoint, where the shape is torch.Size([32, 128, 1, 1]) in current model.
+	size mismatch for module.stage2.block9.bn1.weight: copying a param of torch.Size([32]) from checkpoint, where the shape is torch.Size([128]) in current model.
+	size mismatch for module.stage2.block9.bn1.bias: copying a param of torch.Size([32]) from checkpoint, where the shape is torch.Size([128]) in current model.
+	size mismatch for module.stage2.block9.bn1.running_mean: copying a param of torch.Size([32]) from checkpoint, where the shape is torch.Size([128]) in current model.
+	size mismatch for module.stage2.block9.bn1.running_var: copying a param of torch.Size([32]) from checkpoint, where the shape is torch.Size([128]) in current model.
+	size mismatch for module.stage2.block10.conv1.weight: copying a param of torch.Size([32, 32, 3, 3]) from checkpoint, where the shape is torch.Size([32, 128, 1, 1]) in current model.
+	size mismatch for module.stage2.block10.bn1.weight: copying a param of torch.Size([32]) from checkpoint, where the shape is torch.Size([128]) in current model.
+	size mismatch for module.stage2.block10.bn1.bias: copying a param of torch.Size([32]) from checkpoint, where the shape is torch.Size([128]) in current model.
+	size mismatch for module.stage2.block10.bn1.running_mean: copying a param of torch.Size([32]) from checkpoint, where the shape is torch.Size([128]) in current model.
+	size mismatch for module.stage2.block10.bn1.running_var: copying a param of torch.Size([32]) from checkpoint, where the shape is torch.Size([128]) in current model.
+	size mismatch for module.stage2.block11.conv1.weight: copying a param of torch.Size([32, 32, 3, 3]) from checkpoint, where the shape is torch.Size([32, 128, 1, 1]) in current model.
+	size mismatch for module.stage2.block11.bn1.weight: copying a param of torch.Size([32]) from checkpoint, where the shape is torch.Size([128]) in current model.
+	size mismatch for module.stage2.block11.bn1.bias: copying a param of torch.Size([32]) from checkpoint, where the shape is torch.Size([128]) in current model.
+	size mismatch for module.stage2.block11.bn1.running_mean: copying a param of torch.Size([32]) from checkpoint, where the shape is torch.Size([128]) in current model.
+	size mismatch for module.stage2.block11.bn1.running_var: copying a param of torch.Size([32]) from checkpoint, where the shape is torch.Size([128]) in current model.
+	size mismatch for module.stage2.block12.conv1.weight: copying a param of torch.Size([32, 32, 3, 3]) from checkpoint, where the shape is torch.Size([32, 128, 1, 1]) in current model.
+	size mismatch for module.stage2.block12.bn1.weight: copying a param of torch.Size([32]) from checkpoint, where the shape is torch.Size([128]) in current model.
+	size mismatch for module.stage2.block12.bn1.bias: copying a param of torch.Size([32]) from checkpoint, where the shape is torch.Size([128]) in current model.
+	size mismatch for module.stage2.block12.bn1.running_mean: copying a param of torch.Size([32]) from checkpoint, where the shape is torch.Size([128]) in current model.
+	size mismatch for module.stage2.block12.bn1.running_var: copying a param of torch.Size([32]) from checkpoint, where the shape is torch.Size([128]) in current model.
+	size mismatch for module.stage2.block13.conv1.weight: copying a param of torch.Size([32, 32, 3, 3]) from checkpoint, where the shape is torch.Size([32, 128, 1, 1]) in current model.
+	size mismatch for module.stage2.block13.bn1.weight: copying a param of torch.Size([32]) from checkpoint, where the shape is torch.Size([128]) in current model.
+	size mismatch for module.stage2.block13.bn1.bias: copying a param of torch.Size([32]) from checkpoint, where the shape is torch.Size([128]) in current model.
+	size mismatch for module.stage2.block13.bn1.running_mean: copying a param of torch.Size([32]) from checkpoint, where the shape is torch.Size([128]) in current model.
+	size mismatch for module.stage2.block13.bn1.running_var: copying a param of torch.Size([32]) from checkpoint, where the shape is torch.Size([128]) in current model.
+	size mismatch for module.stage2.block14.conv1.weight: copying a param of torch.Size([32, 32, 3, 3]) from checkpoint, where the shape is torch.Size([32, 128, 1, 1]) in current model.
+	size mismatch for module.stage2.block14.bn1.weight: copying a param of torch.Size([32]) from checkpoint, where the shape is torch.Size([128]) in current model.
+	size mismatch for module.stage2.block14.bn1.bias: copying a param of torch.Size([32]) from checkpoint, where the shape is torch.Size([128]) in current model.
+	size mismatch for module.stage2.block14.bn1.running_mean: copying a param of torch.Size([32]) from checkpoint, where the shape is torch.Size([128]) in current model.
+	size mismatch for module.stage2.block14.bn1.running_var: copying a param of torch.Size([32]) from checkpoint, where the shape is torch.Size([128]) in current model.
+	size mismatch for module.stage2.block15.conv1.weight: copying a param of torch.Size([32, 32, 3, 3]) from checkpoint, where the shape is torch.Size([32, 128, 1, 1]) in current model.
+	size mismatch for module.stage2.block15.bn1.weight: copying a param of torch.Size([32]) from checkpoint, where the shape is torch.Size([128]) in current model.
+	size mismatch for module.stage2.block15.bn1.bias: copying a param of torch.Size([32]) from checkpoint, where the shape is torch.Size([128]) in current model.
+	size mismatch for module.stage2.block15.bn1.running_mean: copying a param of torch.Size([32]) from checkpoint, where the shape is torch.Size([128]) in current model.
+	size mismatch for module.stage2.block15.bn1.running_var: copying a param of torch.Size([32]) from checkpoint, where the shape is torch.Size([128]) in current model.
+	size mismatch for module.stage2.block16.conv1.weight: copying a param of torch.Size([32, 32, 3, 3]) from checkpoint, where the shape is torch.Size([32, 128, 1, 1]) in current model.
+	size mismatch for module.stage2.block16.bn1.weight: copying a param of torch.Size([32]) from checkpoint, where the shape is torch.Size([128]) in current model.
+	size mismatch for module.stage2.block16.bn1.bias: copying a param of torch.Size([32]) from checkpoint, where the shape is torch.Size([128]) in current model.
+	size mismatch for module.stage2.block16.bn1.running_mean: copying a param of torch.Size([32]) from checkpoint, where the shape is torch.Size([128]) in current model.
+	size mismatch for module.stage2.block16.bn1.running_var: copying a param of torch.Size([32]) from checkpoint, where the shape is torch.Size([128]) in current model.
+	size mismatch for module.stage2.block17.conv1.weight: copying a param of torch.Size([32, 32, 3, 3]) from checkpoint, where the shape is torch.Size([32, 128, 1, 1]) in current model.
+	size mismatch for module.stage2.block17.bn1.weight: copying a param of torch.Size([32]) from checkpoint, where the shape is torch.Size([128]) in current model.
+	size mismatch for module.stage2.block17.bn1.bias: copying a param of torch.Size([32]) from checkpoint, where the shape is torch.Size([128]) in current model.
+	size mismatch for module.stage2.block17.bn1.running_mean: copying a param of torch.Size([32]) from checkpoint, where the shape is torch.Size([128]) in current model.
+	size mismatch for module.stage2.block17.bn1.running_var: copying a param of torch.Size([32]) from checkpoint, where the shape is torch.Size([128]) in current model.
+	size mismatch for module.stage2.block18.conv1.weight: copying a param of torch.Size([32, 32, 3, 3]) from checkpoint, where the shape is torch.Size([32, 128, 1, 1]) in current model.
+	size mismatch for module.stage2.block18.bn1.weight: copying a param of torch.Size([32]) from checkpoint, where the shape is torch.Size([128]) in current model.
+	size mismatch for module.stage2.block18.bn1.bias: copying a param of torch.Size([32]) from checkpoint, where the shape is torch.Size([128]) in current model.
+	size mismatch for module.stage2.block18.bn1.running_mean: copying a param of torch.Size([32]) from checkpoint, where the shape is torch.Size([128]) in current model.
+	size mismatch for module.stage2.block18.bn1.running_var: copying a param of torch.Size([32]) from checkpoint, where the shape is torch.Size([128]) in current model.
+	size mismatch for module.stage3.block1.conv1.weight: copying a param of torch.Size([64, 32, 3, 3]) from checkpoint, where the shape is torch.Size([64, 128, 1, 1]) in current model.
+	size mismatch for module.stage3.block1.bn1.weight: copying a param of torch.Size([64]) from checkpoint, where the shape is torch.Size([128]) in current model.
+	size mismatch for module.stage3.block1.bn1.bias: copying a param of torch.Size([64]) from checkpoint, where the shape is torch.Size([128]) in current model.
+	size mismatch for module.stage3.block1.bn1.running_mean: copying a param of torch.Size([64]) from checkpoint, where the shape is torch.Size([128]) in current model.
+	size mismatch for module.stage3.block1.bn1.running_var: copying a param of torch.Size([64]) from checkpoint, where the shape is torch.Size([128]) in current model.
+	size mismatch for module.stage3.block1.shortcut.conv.weight: copying a param of torch.Size([64, 32, 1, 1]) from checkpoint, where the shape is torch.Size([256, 128, 1, 1]) in current model.
+	size mismatch for module.stage3.block2.conv1.weight: copying a param of torch.Size([64, 64, 3, 3]) from checkpoint, where the shape is torch.Size([64, 256, 1, 1]) in current model.
+	size mismatch for module.stage3.block2.bn1.weight: copying a param of torch.Size([64]) from checkpoint, where the shape is torch.Size([256]) in current model.
+	size mismatch for module.stage3.block2.bn1.bias: copying a param of torch.Size([64]) from checkpoint, where the shape is torch.Size([256]) in current model.
+	size mismatch for module.stage3.block2.bn1.running_mean: copying a param of torch.Size([64]) from checkpoint, where the shape is torch.Size([256]) in current model.
+	size mismatch for module.stage3.block2.bn1.running_var: copying a param of torch.Size([64]) from checkpoint, where the shape is torch.Size([256]) in current model.
+	size mismatch for module.stage3.block3.conv1.weight: copying a param of torch.Size([64, 64, 3, 3]) from checkpoint, where the shape is torch.Size([64, 256, 1, 1]) in current model.
+	size mismatch for module.stage3.block3.bn1.weight: copying a param of torch.Size([64]) from checkpoint, where the shape is torch.Size([256]) in current model.
+	size mismatch for module.stage3.block3.bn1.bias: copying a param of torch.Size([64]) from checkpoint, where the shape is torch.Size([256]) in current model.
+	size mismatch for module.stage3.block3.bn1.running_mean: copying a param of torch.Size([64]) from checkpoint, where the shape is torch.Size([256]) in current model.
+	size mismatch for module.stage3.block3.bn1.running_var: copying a param of torch.Size([64]) from checkpoint, where the shape is torch.Size([256]) in current model.
+	size mismatch for module.stage3.block4.conv1.weight: copying a param of torch.Size([64, 64, 3, 3]) from checkpoint, where the shape is torch.Size([64, 256, 1, 1]) in current model.
+	size mismatch for module.stage3.block4.bn1.weight: copying a param of torch.Size([64]) from checkpoint, where the shape is torch.Size([256]) in current model.
+	size mismatch for module.stage3.block4.bn1.bias: copying a param of torch.Size([64]) from checkpoint, where the shape is torch.Size([256]) in current model.
+	size mismatch for module.stage3.block4.bn1.running_mean: copying a param of torch.Size([64]) from checkpoint, where the shape is torch.Size([256]) in current model.
+	size mismatch for module.stage3.block4.bn1.running_var: copying a param of torch.Size([64]) from checkpoint, where the shape is torch.Size([256]) in current model.
+	size mismatch for module.stage3.block5.conv1.weight: copying a param of torch.Size([64, 64, 3, 3]) from checkpoint, where the shape is torch.Size([64, 256, 1, 1]) in current model.
+	size mismatch for module.stage3.block5.bn1.weight: copying a param of torch.Size([64]) from checkpoint, where the shape is torch.Size([256]) in current model.
+	size mismatch for module.stage3.block5.bn1.bias: copying a param of torch.Size([64]) from checkpoint, where the shape is torch.Size([256]) in current model.
+	size mismatch for module.stage3.block5.bn1.running_mean: copying a param of torch.Size([64]) from checkpoint, where the shape is torch.Size([256]) in current model.
+	size mismatch for module.stage3.block5.bn1.running_var: copying a param of torch.Size([64]) from checkpoint, where the shape is torch.Size([256]) in current model.
+	size mismatch for module.stage3.block6.conv1.weight: copying a param of torch.Size([64, 64, 3, 3]) from checkpoint, where the shape is torch.Size([64, 256, 1, 1]) in current model.
+	size mismatch for module.stage3.block6.bn1.weight: copying a param of torch.Size([64]) from checkpoint, where the shape is torch.Size([256]) in current model.
+	size mismatch for module.stage3.block6.bn1.bias: copying a param of torch.Size([64]) from checkpoint, where the shape is torch.Size([256]) in current model.
+	size mismatch for module.stage3.block6.bn1.running_mean: copying a param of torch.Size([64]) from checkpoint, where the shape is torch.Size([256]) in current model.
+	size mismatch for module.stage3.block6.bn1.running_var: copying a param of torch.Size([64]) from checkpoint, where the shape is torch.Size([256]) in current model.
+	size mismatch for module.stage3.block7.conv1.weight: copying a param of torch.Size([64, 64, 3, 3]) from checkpoint, where the shape is torch.Size([64, 256, 1, 1]) in current model.
+	size mismatch for module.stage3.block7.bn1.weight: copying a param of torch.Size([64]) from checkpoint, where the shape is torch.Size([256]) in current model.
+	size mismatch for module.stage3.block7.bn1.bias: copying a param of torch.Size([64]) from checkpoint, where the shape is torch.Size([256]) in current model.
+	size mismatch for module.stage3.block7.bn1.running_mean: copying a param of torch.Size([64]) from checkpoint, where the shape is torch.Size([256]) in current model.
+	size mismatch for module.stage3.block7.bn1.running_var: copying a param of torch.Size([64]) from checkpoint, where the shape is torch.Size([256]) in current model.
+	size mismatch for module.stage3.block8.conv1.weight: copying a param of torch.Size([64, 64, 3, 3]) from checkpoint, where the shape is torch.Size([64, 256, 1, 1]) in current model.
+	size mismatch for module.stage3.block8.bn1.weight: copying a param of torch.Size([64]) from checkpoint, where the shape is torch.Size([256]) in current model.
+	size mismatch for module.stage3.block8.bn1.bias: copying a param of torch.Size([64]) from checkpoint, where the shape is torch.Size([256]) in current model.
+	size mismatch for module.stage3.block8.bn1.running_mean: copying a param of torch.Size([64]) from checkpoint, where the shape is torch.Size([256]) in current model.
+	size mismatch for module.stage3.block8.bn1.running_var: copying a param of torch.Size([64]) from checkpoint, where the shape is torch.Size([256]) in current model.
+	size mismatch for module.stage3.block9.conv1.weight: copying a param of torch.Size([64, 64, 3, 3]) from checkpoint, where the shape is torch.Size([64, 256, 1, 1]) in current model.
+	size mismatch for module.stage3.block9.bn1.weight: copying a param of torch.Size([64]) from checkpoint, where the shape is torch.Size([256]) in current model.
+	size mismatch for module.stage3.block9.bn1.bias: copying a param of torch.Size([64]) from checkpoint, where the shape is torch.Size([256]) in current model.
+	size mismatch for module.stage3.block9.bn1.running_mean: copying a param of torch.Size([64]) from checkpoint, where the shape is torch.Size([256]) in current model.
+	size mismatch for module.stage3.block9.bn1.running_var: copying a param of torch.Size([64]) from checkpoint, where the shape is torch.Size([256]) in current model.
+	size mismatch for module.stage3.block10.conv1.weight: copying a param of torch.Size([64, 64, 3, 3]) from checkpoint, where the shape is torch.Size([64, 256, 1, 1]) in current model.
+	size mismatch for module.stage3.block10.bn1.weight: copying a param of torch.Size([64]) from checkpoint, where the shape is torch.Size([256]) in current model.
+	size mismatch for module.stage3.block10.bn1.bias: copying a param of torch.Size([64]) from checkpoint, where the shape is torch.Size([256]) in current model.
+	size mismatch for module.stage3.block10.bn1.running_mean: copying a param of torch.Size([64]) from checkpoint, where the shape is torch.Size([256]) in current model.
+	size mismatch for module.stage3.block10.bn1.running_var: copying a param of torch.Size([64]) from checkpoint, where the shape is torch.Size([256]) in current model.
+	size mismatch for module.stage3.block11.conv1.weight: copying a param of torch.Size([64, 64, 3, 3]) from checkpoint, where the shape is torch.Size([64, 256, 1, 1]) in current model.
+	size mismatch for module.stage3.block11.bn1.weight: copying a param of torch.Size([64]) from checkpoint, where the shape is torch.Size([256]) in current model.
+	size mismatch for module.stage3.block11.bn1.bias: copying a param of torch.Size([64]) from checkpoint, where the shape is torch.Size([256]) in current model.
+	size mismatch for module.stage3.block11.bn1.running_mean: copying a param of torch.Size([64]) from checkpoint, where the shape is torch.Size([256]) in current model.
+	size mismatch for module.stage3.block11.bn1.running_var: copying a param of torch.Size([64]) from checkpoint, where the shape is torch.Size([256]) in current model.
+	size mismatch for module.stage3.block12.conv1.weight: copying a param of torch.Size([64, 64, 3, 3]) from checkpoint, where the shape is torch.Size([64, 256, 1, 1]) in current model.
+	size mismatch for module.stage3.block12.bn1.weight: copying a param of torch.Size([64]) from checkpoint, where the shape is torch.Size([256]) in current model.
+	size mismatch for module.stage3.block12.bn1.bias: copying a param of torch.Size([64]) from checkpoint, where the shape is torch.Size([256]) in current model.
+	size mismatch for module.stage3.block12.bn1.running_mean: copying a param of torch.Size([64]) from checkpoint, where the shape is torch.Size([256]) in current model.
+	size mismatch for module.stage3.block12.bn1.running_var: copying a param of torch.Size([64]) from checkpoint, where the shape is torch.Size([256]) in current model.
+	size mismatch for module.stage3.block13.conv1.weight: copying a param of torch.Size([64, 64, 3, 3]) from checkpoint, where the shape is torch.Size([64, 256, 1, 1]) in current model.
+	size mismatch for module.stage3.block13.bn1.weight: copying a param of torch.Size([64]) from checkpoint, where the shape is torch.Size([256]) in current model.
+	size mismatch for module.stage3.block13.bn1.bias: copying a param of torch.Size([64]) from checkpoint, where the shape is torch.Size([256]) in current model.
+	size mismatch for module.stage3.block13.bn1.running_mean: copying a param of torch.Size([64]) from checkpoint, where the shape is torch.Size([256]) in current model.
+	size mismatch for module.stage3.block13.bn1.running_var: copying a param of torch.Size([64]) from checkpoint, where the shape is torch.Size([256]) in current model.
+	size mismatch for module.stage3.block14.conv1.weight: copying a param of torch.Size([64, 64, 3, 3]) from checkpoint, where the shape is torch.Size([64, 256, 1, 1]) in current model.
+	size mismatch for module.stage3.block14.bn1.weight: copying a param of torch.Size([64]) from checkpoint, where the shape is torch.Size([256]) in current model.
+	size mismatch for module.stage3.block14.bn1.bias: copying a param of torch.Size([64]) from checkpoint, where the shape is torch.Size([256]) in current model.
+	size mismatch for module.stage3.block14.bn1.running_mean: copying a param of torch.Size([64]) from checkpoint, where the shape is torch.Size([256]) in current model.
+	size mismatch for module.stage3.block14.bn1.running_var: copying a param of torch.Size([64]) from checkpoint, where the shape is torch.Size([256]) in current model.
+	size mismatch for module.stage3.block15.conv1.weight: copying a param of torch.Size([64, 64, 3, 3]) from checkpoint, where the shape is torch.Size([64, 256, 1, 1]) in current model.
+	size mismatch for module.stage3.block15.bn1.weight: copying a param of torch.Size([64]) from checkpoint, where the shape is torch.Size([256]) in current model.
+	size mismatch for module.stage3.block15.bn1.bias: copying a param of torch.Size([64]) from checkpoint, where the shape is torch.Size([256]) in current model.
+	size mismatch for module.stage3.block15.bn1.running_mean: copying a param of torch.Size([64]) from checkpoint, where the shape is torch.Size([256]) in current model.
+	size mismatch for module.stage3.block15.bn1.running_var: copying a param of torch.Size([64]) from checkpoint, where the shape is torch.Size([256]) in current model.
+	size mismatch for module.stage3.block16.conv1.weight: copying a param of torch.Size([64, 64, 3, 3]) from checkpoint, where the shape is torch.Size([64, 256, 1, 1]) in current model.
+	size mismatch for module.stage3.block16.bn1.weight: copying a param of torch.Size([64]) from checkpoint, where the shape is torch.Size([256]) in current model.
+	size mismatch for module.stage3.block16.bn1.bias: copying a param of torch.Size([64]) from checkpoint, where the shape is torch.Size([256]) in current model.
+	size mismatch for module.stage3.block16.bn1.running_mean: copying a param of torch.Size([64]) from checkpoint, where the shape is torch.Size([256]) in current model.
+	size mismatch for module.stage3.block16.bn1.running_var: copying a param of torch.Size([64]) from checkpoint, where the shape is torch.Size([256]) in current model.
+	size mismatch for module.stage3.block17.conv1.weight: copying a param of torch.Size([64, 64, 3, 3]) from checkpoint, where the shape is torch.Size([64, 256, 1, 1]) in current model.
+	size mismatch for module.stage3.block17.bn1.weight: copying a param of torch.Size([64]) from checkpoint, where the shape is torch.Size([256]) in current model.
+	size mismatch for module.stage3.block17.bn1.bias: copying a param of torch.Size([64]) from checkpoint, where the shape is torch.Size([256]) in current model.
+	size mismatch for module.stage3.block17.bn1.running_mean: copying a param of torch.Size([64]) from checkpoint, where the shape is torch.Size([256]) in current model.
+	size mismatch for module.stage3.block17.bn1.running_var: copying a param of torch.Size([64]) from checkpoint, where the shape is torch.Size([256]) in current model.
+	size mismatch for module.stage3.block18.conv1.weight: copying a param of torch.Size([64, 64, 3, 3]) from checkpoint, where the shape is torch.Size([64, 256, 1, 1]) in current model.
+	size mismatch for module.stage3.block18.bn1.weight: copying a param of torch.Size([64]) from checkpoint, where the shape is torch.Size([256]) in current model.
+	size mismatch for module.stage3.block18.bn1.bias: copying a param of torch.Size([64]) from checkpoint, where the shape is torch.Size([256]) in current model.
+	size mismatch for module.stage3.block18.bn1.running_mean: copying a param of torch.Size([64]) from checkpoint, where the shape is torch.Size([256]) in current model.
+	size mismatch for module.stage3.block18.bn1.running_var: copying a param of torch.Size([64]) from checkpoint, where the shape is torch.Size([256]) in current model.
+	size mismatch for module.fc.weight: copying a param of torch.Size([10, 64]) from checkpoint, where the shape is torch.Size([10, 256]) in current model.
+inner done

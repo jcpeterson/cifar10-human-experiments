@@ -1,0 +1,24 @@
+entering inner script
+activating virtual env
+resnet
+identifier: con_False_lr_0.01_seed_2
+--arch= --c10h_save_interval=2 --dataset=CIFAR10H --no_output --c10h_datasplit_seed=2 --human_tune --nonhuman_control=False --base_lr=0.01
+resnet_control:False_lr:0.01_seed:2.out
+entering python script
+/tigress/ruairidh/model_results/run_1/resnet/model_best_state.pth
+/tigress/ruairidh/model_results/run_1/saves/resnet/con_False_lr_0.01_seed_2
+Using TensorFlow backend.
+Traceback (most recent call last):
+  File "./tune_with_cifar10h.py", line 688, in <module>
+    main()
+  File "./tune_with_cifar10h.py", line 515, in main
+    config = parse_args()
+  File "./tune_with_cifar10h.py", line 169, in parse_args
+    config = get_config(args)
+  File "/home/ruairidh/superman/cifar10-human-experiments/pytorch_image_classification/argparser.py", line 309, in get_config
+    args = _set_default_values(args)
+  File "/home/ruairidh/superman/cifar10-human-experiments/pytorch_image_classification/argparser.py", line 285, in _set_default_values
+    with open(args.config, 'r') as fin:
+FileNotFoundError: [Errno 2] No such file or directory: 'configs/.json'
+cp: cannot create regular file ‘/tigress/ruairidh/model_results/run_1/resnet/.’: No such file or directory
+inner done
