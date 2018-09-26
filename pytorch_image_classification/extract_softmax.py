@@ -139,14 +139,36 @@ def parse_args():
     parser.add_argument('--use_mixup', action='store_true', default=False)
     parser.add_argument('--mixup_alpha', type=float, default=1)
 
+#    # previous model weights to load if any
+#    parser.add_argument('--resume', type=str)
+#    # whether to tune to human labels
+#    parser.add_argument('--human_tune', action='store_true', default=False)
+#    # whether to save to out_dir
+#    parser.add_argument('--no_output', action='store_true', default=False)
+#    # to test the loaded model and don't train
+#    parser.add_argument('--test_only', action='store_true', default=False)
+
     # previous model weights to load if any
     parser.add_argument('--resume', type=str)
     # whether to tune to human labels
     parser.add_argument('--human_tune', action='store_true', default=False)
+    # where to save the loss/accuracy for c10h to a csv file
+    parser.add_argument('--c10h_scores_outdir', type=str, default='tmp')
+    # c10h scores save interval (in epochs)
+    parser.add_argument('--c10h_save_interval', type=int, default=1)
+    # how much of the data to use use for test for c10h training
+    parser.add_argument('--c10h_testsplit_percent', type=float, default=0.1)
+    # seed for splitting the c10h data into train/test
+    parser.add_argument('--c10h_datasplit_seed', type=int, default=999)
+    # whether to use the cifar10 labels for the human test set (CONTROL)
+    parser.add_argument('--nonhuman_control', action='store_true', default=False)
+    # whether to sample from the human labels to get one-hot samples
+    parser.add_argument('--c10h_sample', action='store_true', default=False)
     # whether to save to out_dir
     parser.add_argument('--no_output', action='store_true', default=False)
     # to test the loaded model and don't train
     parser.add_argument('--test_only', action='store_true', default=False)
+
 
     args = parser.parse_args()
     if not is_tensorboard_available:

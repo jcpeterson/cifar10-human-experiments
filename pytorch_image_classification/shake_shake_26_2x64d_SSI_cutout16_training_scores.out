@@ -1,0 +1,59 @@
+entering inner script
+activating virtual env
+shake_shake_26_2x64d_SSI_cutout16
+identifier: 
+--arch=shake --c10h_save_interval=2 --dataset=CIFAR10H --no_output --c10h_datasplit_seed= --human_tune
+shake_shake_26_2x64d_SSI_cutout16_training_scores.out
+entering python script
+/tigress/ruairidh/model_results/run_1/shake_shake_26_2x64d_SSI_cutout16/model_best_state.pth
+/tigress/ruairidh/model_results/run_1/saves/shake_shake_26_2x64d_SSI_cutout16/
+Using TensorFlow backend.
+usage: tune_with_cifar10h.py [-h] [--arch ARCH] [--config CONFIG]
+                             [--n_channels N_CHANNELS] [--n_layers N_LAYERS]
+                             [--use_bn USE_BN] [--base_channels BASE_CHANNELS]
+                             [--block_type BLOCK_TYPE] [--depth DEPTH]
+                             [--remove_first_relu REMOVE_FIRST_RELU]
+                             [--add_last_bn ADD_LAST_BN]
+                             [--preact_stage PREACT_STAGE]
+                             [--widening_factor WIDENING_FACTOR]
+                             [--growth_rate GROWTH_RATE]
+                             [--compression_rate COMPRESSION_RATE]
+                             [--drop_rate DROP_RATE]
+                             [--pyramid_alpha PYRAMID_ALPHA]
+                             [--cardinality CARDINALITY]
+                             [--shake_forward SHAKE_FORWARD]
+                             [--shake_backward SHAKE_BACKWARD]
+                             [--shake_image SHAKE_IMAGE]
+                             [--se_reduction SE_REDUCTION] [--outdir OUTDIR]
+                             [--seed SEED] [--test_first TEST_FIRST]
+                             [--gpu GPU] [--tensorboard] [--no-tensorboard]
+                             [--tensorboard_train_images]
+                             [--tensorboard_test_images]
+                             [--tensorboard_model_params] [--epochs EPOCHS]
+                             [--batch_size BATCH_SIZE]
+                             [--optimizer {sgd,adam}] [--base_lr BASE_LR]
+                             [--weight_decay WEIGHT_DECAY]
+                             [--momentum MOMENTUM] [--nesterov NESTEROV]
+                             [--scheduler {none,multistep,cosine}]
+                             [--milestones MILESTONES] [--lr_decay LR_DECAY]
+                             [--lr_min LR_MIN] [--betas BETAS]
+                             [--dataset {CIFAR10,CIFAR10H}]
+                             [--num_workers NUM_WORKERS] [--use_cutout]
+                             [--cutout_size CUTOUT_SIZE]
+                             [--cutout_prob CUTOUT_PROB] [--cutout_inside]
+                             [--use_random_erasing]
+                             [--random_erasing_prob RANDOM_ERASING_PROB]
+                             [--random_erasing_area_ratio_range RANDOM_ERASING_AREA_RATIO_RANGE]
+                             [--random_erasing_min_aspect_ratio RANDOM_ERASING_MIN_ASPECT_RATIO]
+                             [--random_erasing_max_attempt RANDOM_ERASING_MAX_ATTEMPT]
+                             [--use_mixup] [--mixup_alpha MIXUP_ALPHA]
+                             [--resume RESUME] [--human_tune]
+                             [--c10h_scores_outdir C10H_SCORES_OUTDIR]
+                             [--c10h_save_interval C10H_SAVE_INTERVAL]
+                             [--c10h_testsplit_percent C10H_TESTSPLIT_PERCENT]
+                             [--c10h_datasplit_seed C10H_DATASPLIT_SEED]
+                             [--nonhuman_control NONHUMAN_CONTROL]
+                             [--c10h_sample] [--no_output] [--test_only]
+tune_with_cifar10h.py: error: argument --c10h_datasplit_seed: invalid int value: ''
+cp: cannot create regular file ‘/tigress/ruairidh/model_results/run_1/saves/shake_shake_26_2x64d_SSI_cutout16/.’: No such file or directory
+inner done

@@ -1,0 +1,24 @@
+entering inner script
+activating virtual env
+resnet_preact_bottleneck_164
+identifier: con_True_lr_0.1_seed_0
+--arch= --c10h_save_interval=2 --dataset=CIFAR10H --no_output --c10h_datasplit_seed=0 --human_tune --nonhuman_control=True --base_lr=0.1
+resnet_preact_bottleneck_164
+entering python script
+/tigress/ruairidh/model_results/run_1/resnet_preact_bottleneck_164/model_best_state.pth
+/tigress/ruairidh/model_results/run_1/saves/resnet_preact_bottleneck_164/con_True_lr_0.1_seed_0
+Using TensorFlow backend.
+Traceback (most recent call last):
+  File "./tune_with_cifar10h.py", line 688, in <module>
+    main()
+  File "./tune_with_cifar10h.py", line 515, in main
+    config = parse_args()
+  File "./tune_with_cifar10h.py", line 169, in parse_args
+    config = get_config(args)
+  File "/home/ruairidh/superman/cifar10-human-experiments/pytorch_image_classification/argparser.py", line 309, in get_config
+    args = _set_default_values(args)
+  File "/home/ruairidh/superman/cifar10-human-experiments/pytorch_image_classification/argparser.py", line 285, in _set_default_values
+    with open(args.config, 'r') as fin:
+FileNotFoundError: [Errno 2] No such file or directory: 'configs/.json'
+cp: cannot stat ‘./resnet_preact_bottleneck_164’: No such file or directory
+inner done

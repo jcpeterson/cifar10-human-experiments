@@ -1,0 +1,1010 @@
+entering inner script
+activating virtual env
+vgg_15_BN_64
+identifier: con_False_lr_0.1_seed_2
+--arch=vgg --c10h_save_interval=2 --dataset=CIFAR10H --no_output --c10h_datasplit_seed=2 --human_tune --nonhuman_control=False --base_lr=0.1
+vgg_15_BN_64_control:False_lr:0.1_seed:2.out
+entering python script
+/tigress/ruairidh/model_results/run_1/vgg_15_BN_64/model_best_state.pth
+/tigress/ruairidh/model_results/run_1/saves/vgg_15_BN_64/con_False_lr_0.1_seed_2
+Using TensorFlow backend.
+[2018/09/25 10:54:35 __main__ INFO] - {
+  "model_config": {
+    "arch": "vgg",
+    "input_shape": [
+      1,
+      3,
+      32,
+      32
+    ],
+    "n_classes": 10,
+    "n_channels": [
+      64,
+      128,
+      256,
+      512,
+      512
+    ],
+    "n_layers": [
+      2,
+      2,
+      3,
+      3,
+      3
+    ],
+    "use_bn": true
+  },
+  "optim_config": {
+    "epochs": 160,
+    "batch_size": 128,
+    "optimizer": "sgd",
+    "base_lr": 0.1,
+    "weight_decay": 0.0001,
+    "momentum": 0.9,
+    "nesterov": true,
+    "scheduler": "multistep",
+    "milestones": [
+      80,
+      120
+    ],
+    "lr_decay": 0.1
+  },
+  "data_config": {
+    "dataset": "CIFAR10H",
+    "n_classes": 10,
+    "num_workers": 7,
+    "batch_size": 128,
+    "use_cutout": false,
+    "use_random_erasing": false,
+    "use_mixup": false,
+    "c10h_sample": false,
+    "c10h_testsplit_percent": 0.1,
+    "c10h_datasplit_seed": 2,
+    "use_gpu": true
+  },
+  "run_config": {
+    "seed": 17,
+    "test_first": true,
+    "gpu": "0",
+    "tensorboard": false,
+    "tensorboard_train_images": false,
+    "tensorboard_test_images": false,
+    "tensorboard_model_params": false,
+    "resume": "/tigress/ruairidh/model_results/run_1/vgg_15_BN_64/model_best_state.pth",
+    "human_tune": true,
+    "no_output": true,
+    "test_only": false,
+    "nonhuman_control": false,
+    "c10h_scores_outdir": "/tigress/ruairidh/model_results/run_1/saves/vgg_15_BN_64/con_False_lr_0.1_seed_2",
+    "c10h_save_interval": "2",
+    "use_gpu": true
+  },
+  "env_info": {
+    "pytorch_version": "0.4.1",
+    "cuda_version": "9.0.176",
+    "cudnn_version": 7102,
+    "gpu0": {
+      "name": "Tesla P100-PCIE-16GB",
+      "capability": "6.0"
+    }
+  }
+}
+Files already downloaded and verified
+Files already downloaded and verified
+Files already downloaded and verified
+Files already downloaded and verified
+Files already downloaded and verified
+[2018/09/25 10:54:38 __main__ INFO] - Loading model...
+[2018/09/25 10:54:39 __main__ INFO] - n_params: 14728266
+[2018/09/25 10:54:40 __main__ INFO] - Done
+=> loading checkpoint '/tigress/ruairidh/model_results/run_1/vgg_15_BN_64/model_best_state.pth'
+=> loaded checkpoint '/tigress/ruairidh/model_results/run_1/vgg_15_BN_64/model_best_state.pth' (epoch 146)
+[2018/09/25 10:54:41 __main__ INFO] - TEST 0
+[2018/09/25 10:55:03 __main__ INFO] - - epoch 0    c10h_train    : 0.8032 (acc: 0.9193) | c10h_val    : 0.7610 (acc: 0.9360)
+[2018/09/25 10:55:03 __main__ INFO] - -            c10h_train_c10: 0.3734 (acc: 0.9206) | c10h_val_c10: 0.2807 (acc: 0.9380)
+[2018/09/25 10:55:03 __main__ INFO] - -            v4            : 0.8380 (acc: 0.8342) |           v6: 0.7882 (acc: 0.8535)
+[2018/09/25 10:55:03 __main__ INFO] - -            c10_50k       : 0.0021 (acc: 0.9996)
+[2018/09/25 10:55:03 __main__ INFO] - Elapsed 22.05
+keys:  dict_keys(['epoch', 'c10h_train_loss', 'c10h_train_acc', 'c10h_val_loss', 'c10h_val_acc', 'c10h_train_c10_loss', 'c10h_train_c10_acc', 'c10h_val_c10_loss', 'c10h_val_c10_acc', 'v4_loss', 'v4_acc', 'v6_loss', 'v6_acc', 'c10_50k_loss', 'c10_50k_acc']) 
+ c10h_outdir:  /tigress/ruairidh/model_results/run_1/saves/vgg_15_BN_64/con_False_lr_0.1_seed_2
+[2018/09/25 10:55:03 __main__ INFO] - Train 1
+[2018/09/25 10:55:08 __main__ INFO] - TEST 1
+[2018/09/25 10:55:28 __main__ INFO] - - epoch 1    c10h_train    : 0.4715 (acc: 0.8817) | c10h_val    : 0.5086 (acc: 0.8740)
+[2018/09/25 10:55:28 __main__ INFO] - -            c10h_train_c10: 0.3419 (acc: 0.8830) | c10h_val_c10: 0.3690 (acc: 0.8740)
+[2018/09/25 10:55:28 __main__ INFO] - -            v4            : 0.7234 (acc: 0.7615) |           v6: 0.6877 (acc: 0.7700)
+[2018/09/25 10:55:28 __main__ INFO] - -            c10_50k       : 0.2772 (acc: 0.9115)
+[2018/09/25 10:55:28 __main__ INFO] - Elapsed 20.16
+keys:  dict_keys(['epoch', 'c10h_train_loss', 'c10h_train_acc', 'c10h_val_loss', 'c10h_val_acc', 'c10h_train_c10_loss', 'c10h_train_c10_acc', 'c10h_val_c10_loss', 'c10h_val_c10_acc', 'v4_loss', 'v4_acc', 'v6_loss', 'v6_acc', 'c10_50k_loss', 'c10_50k_acc']) 
+ c10h_outdir:  /tigress/ruairidh/model_results/run_1/saves/vgg_15_BN_64/con_False_lr_0.1_seed_2
+[2018/09/25 10:55:29 __main__ INFO] - Train 2
+[2018/09/25 10:55:33 __main__ INFO] - TEST 2
+[2018/09/25 10:55:53 __main__ INFO] - - epoch 2    c10h_train    : 0.3853 (acc: 0.9149) | c10h_val    : 0.4690 (acc: 0.8850)
+[2018/09/25 10:55:53 __main__ INFO] - -            c10h_train_c10: 0.2552 (acc: 0.9149) | c10h_val_c10: 0.3331 (acc: 0.8840)
+[2018/09/25 10:55:53 __main__ INFO] - -            v4            : 0.6447 (acc: 0.7808) |           v6: 0.5963 (acc: 0.7960)
+[2018/09/25 10:55:53 __main__ INFO] - -            c10_50k       : 0.2258 (acc: 0.9327)
+[2018/09/25 10:55:53 __main__ INFO] - Elapsed 20.17
+keys:  dict_keys(['epoch', 'c10h_train_loss', 'c10h_train_acc', 'c10h_val_loss', 'c10h_val_acc', 'c10h_train_c10_loss', 'c10h_train_c10_acc', 'c10h_val_c10_loss', 'c10h_val_c10_acc', 'v4_loss', 'v4_acc', 'v6_loss', 'v6_acc', 'c10_50k_loss', 'c10_50k_acc']) 
+ c10h_outdir:  /tigress/ruairidh/model_results/run_1/saves/vgg_15_BN_64/con_False_lr_0.1_seed_2
+[2018/09/25 10:55:54 __main__ INFO] - Train 3
+[2018/09/25 10:55:57 __main__ INFO] - TEST 3
+[2018/09/25 10:56:18 __main__ INFO] - - epoch 3    c10h_train    : 0.3607 (acc: 0.9253) | c10h_val    : 0.4493 (acc: 0.8940)
+[2018/09/25 10:56:18 __main__ INFO] - -            c10h_train_c10: 0.2371 (acc: 0.9251) | c10h_val_c10: 0.3207 (acc: 0.8960)
+[2018/09/25 10:56:18 __main__ INFO] - -            v4            : 0.6886 (acc: 0.7699) |           v6: 0.6112 (acc: 0.7985)
+[2018/09/25 10:56:18 __main__ INFO] - -            c10_50k       : 0.2292 (acc: 0.9320)
+[2018/09/25 10:56:18 __main__ INFO] - Elapsed 20.09
+keys:  dict_keys(['epoch', 'c10h_train_loss', 'c10h_train_acc', 'c10h_val_loss', 'c10h_val_acc', 'c10h_train_c10_loss', 'c10h_train_c10_acc', 'c10h_val_c10_loss', 'c10h_val_c10_acc', 'v4_loss', 'v4_acc', 'v6_loss', 'v6_acc', 'c10_50k_loss', 'c10_50k_acc']) 
+ c10h_outdir:  /tigress/ruairidh/model_results/run_1/saves/vgg_15_BN_64/con_False_lr_0.1_seed_2
+[2018/09/25 10:56:19 __main__ INFO] - Train 4
+[2018/09/25 10:56:23 __main__ INFO] - TEST 4
+[2018/09/25 10:56:43 __main__ INFO] - - epoch 4    c10h_train    : 0.3795 (acc: 0.9221) | c10h_val    : 0.5083 (acc: 0.8650)
+[2018/09/25 10:56:43 __main__ INFO] - -            c10h_train_c10: 0.2553 (acc: 0.9222) | c10h_val_c10: 0.3855 (acc: 0.8650)
+[2018/09/25 10:56:43 __main__ INFO] - -            v4            : 0.7499 (acc: 0.7566) |           v6: 0.7026 (acc: 0.7630)
+[2018/09/25 10:56:43 __main__ INFO] - -            c10_50k       : 0.2723 (acc: 0.9153)
+[2018/09/25 10:56:43 __main__ INFO] - Elapsed 20.21
+keys:  dict_keys(['epoch', 'c10h_train_loss', 'c10h_train_acc', 'c10h_val_loss', 'c10h_val_acc', 'c10h_train_c10_loss', 'c10h_train_c10_acc', 'c10h_val_c10_loss', 'c10h_val_c10_acc', 'v4_loss', 'v4_acc', 'v6_loss', 'v6_acc', 'c10_50k_loss', 'c10_50k_acc']) 
+ c10h_outdir:  /tigress/ruairidh/model_results/run_1/saves/vgg_15_BN_64/con_False_lr_0.1_seed_2
+[2018/09/25 10:56:44 __main__ INFO] - Train 5
+[2018/09/25 10:56:48 __main__ INFO] - TEST 5
+[2018/09/25 10:57:08 __main__ INFO] - - epoch 5    c10h_train    : 0.3178 (acc: 0.9430) | c10h_val    : 0.4510 (acc: 0.8840)
+[2018/09/25 10:57:08 __main__ INFO] - -            c10h_train_c10: 0.1855 (acc: 0.9422) | c10h_val_c10: 0.3230 (acc: 0.8840)
+[2018/09/25 10:57:08 __main__ INFO] - -            v4            : 0.6569 (acc: 0.7828) |           v6: 0.6255 (acc: 0.8000)
+[2018/09/25 10:57:08 __main__ INFO] - -            c10_50k       : 0.2134 (acc: 0.9349)
+[2018/09/25 10:57:08 __main__ INFO] - Elapsed 20.04
+keys:  dict_keys(['epoch', 'c10h_train_loss', 'c10h_train_acc', 'c10h_val_loss', 'c10h_val_acc', 'c10h_train_c10_loss', 'c10h_train_c10_acc', 'c10h_val_c10_loss', 'c10h_val_c10_acc', 'v4_loss', 'v4_acc', 'v6_loss', 'v6_acc', 'c10_50k_loss', 'c10_50k_acc']) 
+ c10h_outdir:  /tigress/ruairidh/model_results/run_1/saves/vgg_15_BN_64/con_False_lr_0.1_seed_2
+[2018/09/25 10:57:09 __main__ INFO] - Train 6
+[2018/09/25 10:57:13 __main__ INFO] - TEST 6
+[2018/09/25 10:57:33 __main__ INFO] - - epoch 6    c10h_train    : 0.3202 (acc: 0.9406) | c10h_val    : 0.4562 (acc: 0.8950)
+[2018/09/25 10:57:33 __main__ INFO] - -            c10h_train_c10: 0.1879 (acc: 0.9399) | c10h_val_c10: 0.3247 (acc: 0.8950)
+[2018/09/25 10:57:33 __main__ INFO] - -            v4            : 0.6971 (acc: 0.7640) |           v6: 0.6476 (acc: 0.7790)
+[2018/09/25 10:57:33 __main__ INFO] - -            c10_50k       : 0.2321 (acc: 0.9244)
+[2018/09/25 10:57:33 __main__ INFO] - Elapsed 20.17
+keys:  dict_keys(['epoch', 'c10h_train_loss', 'c10h_train_acc', 'c10h_val_loss', 'c10h_val_acc', 'c10h_train_c10_loss', 'c10h_train_c10_acc', 'c10h_val_c10_loss', 'c10h_val_c10_acc', 'v4_loss', 'v4_acc', 'v6_loss', 'v6_acc', 'c10_50k_loss', 'c10_50k_acc']) 
+ c10h_outdir:  /tigress/ruairidh/model_results/run_1/saves/vgg_15_BN_64/con_False_lr_0.1_seed_2
+[2018/09/25 10:57:33 __main__ INFO] - Train 7
+[2018/09/25 10:57:37 __main__ INFO] - TEST 7
+[2018/09/25 10:57:57 __main__ INFO] - - epoch 7    c10h_train    : 0.2921 (acc: 0.9546) | c10h_val    : 0.4405 (acc: 0.9030)
+[2018/09/25 10:57:57 __main__ INFO] - -            c10h_train_c10: 0.1540 (acc: 0.9513) | c10h_val_c10: 0.3076 (acc: 0.9030)
+[2018/09/25 10:57:57 __main__ INFO] - -            v4            : 0.6332 (acc: 0.7778) |           v6: 0.5753 (acc: 0.8115)
+[2018/09/25 10:57:57 __main__ INFO] - -            c10_50k       : 0.2046 (acc: 0.9346)
+[2018/09/25 10:57:57 __main__ INFO] - Elapsed 20.12
+keys:  dict_keys(['epoch', 'c10h_train_loss', 'c10h_train_acc', 'c10h_val_loss', 'c10h_val_acc', 'c10h_train_c10_loss', 'c10h_train_c10_acc', 'c10h_val_c10_loss', 'c10h_val_c10_acc', 'v4_loss', 'v4_acc', 'v6_loss', 'v6_acc', 'c10_50k_loss', 'c10_50k_acc']) 
+ c10h_outdir:  /tigress/ruairidh/model_results/run_1/saves/vgg_15_BN_64/con_False_lr_0.1_seed_2
+[2018/09/25 10:57:58 __main__ INFO] - Train 8
+[2018/09/25 10:58:02 __main__ INFO] - TEST 8
+[2018/09/25 10:58:22 __main__ INFO] - - epoch 8    c10h_train    : 0.2876 (acc: 0.9558) | c10h_val    : 0.4572 (acc: 0.8860)
+[2018/09/25 10:58:22 __main__ INFO] - -            c10h_train_c10: 0.1493 (acc: 0.9537) | c10h_val_c10: 0.3214 (acc: 0.8870)
+[2018/09/25 10:58:22 __main__ INFO] - -            v4            : 0.6388 (acc: 0.7818) |           v6: 0.6047 (acc: 0.8010)
+[2018/09/25 10:58:22 __main__ INFO] - -            c10_50k       : 0.2166 (acc: 0.9303)
+[2018/09/25 10:58:22 __main__ INFO] - Elapsed 20.27
+keys:  dict_keys(['epoch', 'c10h_train_loss', 'c10h_train_acc', 'c10h_val_loss', 'c10h_val_acc', 'c10h_train_c10_loss', 'c10h_train_c10_acc', 'c10h_val_c10_loss', 'c10h_val_c10_acc', 'v4_loss', 'v4_acc', 'v6_loss', 'v6_acc', 'c10_50k_loss', 'c10_50k_acc']) 
+ c10h_outdir:  /tigress/ruairidh/model_results/run_1/saves/vgg_15_BN_64/con_False_lr_0.1_seed_2
+[2018/09/25 10:58:23 __main__ INFO] - Train 9
+[2018/09/25 10:58:27 __main__ INFO] - TEST 9
+[2018/09/25 10:58:47 __main__ INFO] - - epoch 9    c10h_train    : 0.3003 (acc: 0.9503) | c10h_val    : 0.4812 (acc: 0.8850)
+[2018/09/25 10:58:47 __main__ INFO] - -            c10h_train_c10: 0.1614 (acc: 0.9498) | c10h_val_c10: 0.3465 (acc: 0.8850)
+[2018/09/25 10:58:47 __main__ INFO] - -            v4            : 0.6785 (acc: 0.7759) |           v6: 0.6494 (acc: 0.7925)
+[2018/09/25 10:58:47 __main__ INFO] - -            c10_50k       : 0.2293 (acc: 0.9264)
+[2018/09/25 10:58:47 __main__ INFO] - Elapsed 20.03
+keys:  dict_keys(['epoch', 'c10h_train_loss', 'c10h_train_acc', 'c10h_val_loss', 'c10h_val_acc', 'c10h_train_c10_loss', 'c10h_train_c10_acc', 'c10h_val_c10_loss', 'c10h_val_c10_acc', 'v4_loss', 'v4_acc', 'v6_loss', 'v6_acc', 'c10_50k_loss', 'c10_50k_acc']) 
+ c10h_outdir:  /tigress/ruairidh/model_results/run_1/saves/vgg_15_BN_64/con_False_lr_0.1_seed_2
+[2018/09/25 10:58:47 __main__ INFO] - Train 10
+[2018/09/25 10:58:51 __main__ INFO] - TEST 10
+[2018/09/25 10:59:12 __main__ INFO] - - epoch 10    c10h_train    : 0.2850 (acc: 0.9578) | c10h_val    : 0.4778 (acc: 0.8800)
+[2018/09/25 10:59:12 __main__ INFO] - -            c10h_train_c10: 0.1451 (acc: 0.9561) | c10h_val_c10: 0.3517 (acc: 0.8800)
+[2018/09/25 10:59:12 __main__ INFO] - -            v4            : 0.6658 (acc: 0.7857) |           v6: 0.6222 (acc: 0.7910)
+[2018/09/25 10:59:12 __main__ INFO] - -            c10_50k       : 0.2332 (acc: 0.9238)
+[2018/09/25 10:59:12 __main__ INFO] - Elapsed 20.16
+keys:  dict_keys(['epoch', 'c10h_train_loss', 'c10h_train_acc', 'c10h_val_loss', 'c10h_val_acc', 'c10h_train_c10_loss', 'c10h_train_c10_acc', 'c10h_val_c10_loss', 'c10h_val_c10_acc', 'v4_loss', 'v4_acc', 'v6_loss', 'v6_acc', 'c10_50k_loss', 'c10_50k_acc']) 
+ c10h_outdir:  /tigress/ruairidh/model_results/run_1/saves/vgg_15_BN_64/con_False_lr_0.1_seed_2
+[2018/09/25 10:59:12 __main__ INFO] - Train 11
+[2018/09/25 10:59:16 __main__ INFO] - TEST 11
+[2018/09/25 10:59:36 __main__ INFO] - - epoch 11    c10h_train    : 0.2780 (acc: 0.9594) | c10h_val    : 0.4883 (acc: 0.8760)
+[2018/09/25 10:59:36 __main__ INFO] - -            c10h_train_c10: 0.1410 (acc: 0.9573) | c10h_val_c10: 0.3694 (acc: 0.8750)
+[2018/09/25 10:59:36 __main__ INFO] - -            v4            : 0.6631 (acc: 0.7843) |           v6: 0.6074 (acc: 0.8045)
+[2018/09/25 10:59:36 __main__ INFO] - -            c10_50k       : 0.2325 (acc: 0.9265)
+[2018/09/25 10:59:36 __main__ INFO] - Elapsed 20.10
+keys:  dict_keys(['epoch', 'c10h_train_loss', 'c10h_train_acc', 'c10h_val_loss', 'c10h_val_acc', 'c10h_train_c10_loss', 'c10h_train_c10_acc', 'c10h_val_c10_loss', 'c10h_val_c10_acc', 'v4_loss', 'v4_acc', 'v6_loss', 'v6_acc', 'c10_50k_loss', 'c10_50k_acc']) 
+ c10h_outdir:  /tigress/ruairidh/model_results/run_1/saves/vgg_15_BN_64/con_False_lr_0.1_seed_2
+[2018/09/25 10:59:37 __main__ INFO] - Train 12
+[2018/09/25 10:59:41 __main__ INFO] - TEST 12
+[2018/09/25 11:00:01 __main__ INFO] - - epoch 12    c10h_train    : 0.2711 (acc: 0.9636) | c10h_val    : 0.4538 (acc: 0.8920)
+[2018/09/25 11:00:01 __main__ INFO] - -            c10h_train_c10: 0.1324 (acc: 0.9620) | c10h_val_c10: 0.3236 (acc: 0.8920)
+[2018/09/25 11:00:01 __main__ INFO] - -            v4            : 0.7185 (acc: 0.7595) |           v6: 0.6354 (acc: 0.7870)
+[2018/09/25 11:00:01 __main__ INFO] - -            c10_50k       : 0.2239 (acc: 0.9289)
+[2018/09/25 11:00:01 __main__ INFO] - Elapsed 20.22
+keys:  dict_keys(['epoch', 'c10h_train_loss', 'c10h_train_acc', 'c10h_val_loss', 'c10h_val_acc', 'c10h_train_c10_loss', 'c10h_train_c10_acc', 'c10h_val_c10_loss', 'c10h_val_c10_acc', 'v4_loss', 'v4_acc', 'v6_loss', 'v6_acc', 'c10_50k_loss', 'c10_50k_acc']) 
+ c10h_outdir:  /tigress/ruairidh/model_results/run_1/saves/vgg_15_BN_64/con_False_lr_0.1_seed_2
+[2018/09/25 11:00:02 __main__ INFO] - Train 13
+[2018/09/25 11:00:06 __main__ INFO] - TEST 13
+[2018/09/25 11:00:26 __main__ INFO] - - epoch 13    c10h_train    : 0.2667 (acc: 0.9641) | c10h_val    : 0.4520 (acc: 0.8950)
+[2018/09/25 11:00:26 __main__ INFO] - -            c10h_train_c10: 0.1262 (acc: 0.9639) | c10h_val_c10: 0.3211 (acc: 0.8950)
+[2018/09/25 11:00:26 __main__ INFO] - -            v4            : 0.6496 (acc: 0.7867) |           v6: 0.5993 (acc: 0.8100)
+[2018/09/25 11:00:26 __main__ INFO] - -            c10_50k       : 0.2233 (acc: 0.9295)
+[2018/09/25 11:00:26 __main__ INFO] - Elapsed 20.27
+keys:  dict_keys(['epoch', 'c10h_train_loss', 'c10h_train_acc', 'c10h_val_loss', 'c10h_val_acc', 'c10h_train_c10_loss', 'c10h_train_c10_acc', 'c10h_val_c10_loss', 'c10h_val_c10_acc', 'v4_loss', 'v4_acc', 'v6_loss', 'v6_acc', 'c10_50k_loss', 'c10_50k_acc']) 
+ c10h_outdir:  /tigress/ruairidh/model_results/run_1/saves/vgg_15_BN_64/con_False_lr_0.1_seed_2
+[2018/09/25 11:00:27 __main__ INFO] - Train 14
+[2018/09/25 11:00:31 __main__ INFO] - TEST 14
+[2018/09/25 11:00:51 __main__ INFO] - - epoch 14    c10h_train    : 0.2662 (acc: 0.9638) | c10h_val    : 0.4647 (acc: 0.8840)
+[2018/09/25 11:00:51 __main__ INFO] - -            c10h_train_c10: 0.1296 (acc: 0.9626) | c10h_val_c10: 0.3425 (acc: 0.8840)
+[2018/09/25 11:00:51 __main__ INFO] - -            v4            : 0.6553 (acc: 0.7848) |           v6: 0.6138 (acc: 0.8040)
+[2018/09/25 11:00:51 __main__ INFO] - -            c10_50k       : 0.2294 (acc: 0.9264)
+[2018/09/25 11:00:51 __main__ INFO] - Elapsed 20.05
+keys:  dict_keys(['epoch', 'c10h_train_loss', 'c10h_train_acc', 'c10h_val_loss', 'c10h_val_acc', 'c10h_train_c10_loss', 'c10h_train_c10_acc', 'c10h_val_c10_loss', 'c10h_val_c10_acc', 'v4_loss', 'v4_acc', 'v6_loss', 'v6_acc', 'c10_50k_loss', 'c10_50k_acc']) 
+ c10h_outdir:  /tigress/ruairidh/model_results/run_1/saves/vgg_15_BN_64/con_False_lr_0.1_seed_2
+[2018/09/25 11:00:51 __main__ INFO] - Train 15
+[2018/09/25 11:00:55 __main__ INFO] - TEST 15
+[2018/09/25 11:01:15 __main__ INFO] - - epoch 15    c10h_train    : 0.2660 (acc: 0.9624) | c10h_val    : 0.4870 (acc: 0.8770)
+[2018/09/25 11:01:15 __main__ INFO] - -            c10h_train_c10: 0.1326 (acc: 0.9600) | c10h_val_c10: 0.3664 (acc: 0.8770)
+[2018/09/25 11:01:15 __main__ INFO] - -            v4            : 0.6634 (acc: 0.7857) |           v6: 0.6131 (acc: 0.7910)
+[2018/09/25 11:01:15 __main__ INFO] - -            c10_50k       : 0.2342 (acc: 0.9241)
+[2018/09/25 11:01:15 __main__ INFO] - Elapsed 20.05
+keys:  dict_keys(['epoch', 'c10h_train_loss', 'c10h_train_acc', 'c10h_val_loss', 'c10h_val_acc', 'c10h_train_c10_loss', 'c10h_train_c10_acc', 'c10h_val_c10_loss', 'c10h_val_c10_acc', 'v4_loss', 'v4_acc', 'v6_loss', 'v6_acc', 'c10_50k_loss', 'c10_50k_acc']) 
+ c10h_outdir:  /tigress/ruairidh/model_results/run_1/saves/vgg_15_BN_64/con_False_lr_0.1_seed_2
+[2018/09/25 11:01:16 __main__ INFO] - Train 16
+[2018/09/25 11:01:20 __main__ INFO] - TEST 16
+[2018/09/25 11:01:40 __main__ INFO] - - epoch 16    c10h_train    : 0.2703 (acc: 0.9634) | c10h_val    : 0.4785 (acc: 0.8840)
+[2018/09/25 11:01:40 __main__ INFO] - -            c10h_train_c10: 0.1346 (acc: 0.9610) | c10h_val_c10: 0.3547 (acc: 0.8840)
+[2018/09/25 11:01:40 __main__ INFO] - -            v4            : 0.6871 (acc: 0.7714) |           v6: 0.6471 (acc: 0.7965)
+[2018/09/25 11:01:40 __main__ INFO] - -            c10_50k       : 0.2490 (acc: 0.9220)
+[2018/09/25 11:01:40 __main__ INFO] - Elapsed 20.36
+keys:  dict_keys(['epoch', 'c10h_train_loss', 'c10h_train_acc', 'c10h_val_loss', 'c10h_val_acc', 'c10h_train_c10_loss', 'c10h_train_c10_acc', 'c10h_val_c10_loss', 'c10h_val_c10_acc', 'v4_loss', 'v4_acc', 'v6_loss', 'v6_acc', 'c10_50k_loss', 'c10_50k_acc']) 
+ c10h_outdir:  /tigress/ruairidh/model_results/run_1/saves/vgg_15_BN_64/con_False_lr_0.1_seed_2
+[2018/09/25 11:01:41 __main__ INFO] - Train 17
+[2018/09/25 11:01:45 __main__ INFO] - TEST 17
+[2018/09/25 11:02:05 __main__ INFO] - - epoch 17    c10h_train    : 0.2462 (acc: 0.9716) | c10h_val    : 0.4603 (acc: 0.8920)
+[2018/09/25 11:02:05 __main__ INFO] - -            c10h_train_c10: 0.1038 (acc: 0.9706) | c10h_val_c10: 0.3248 (acc: 0.8940)
+[2018/09/25 11:02:05 __main__ INFO] - -            v4            : 0.6435 (acc: 0.7912) |           v6: 0.5802 (acc: 0.8180)
+[2018/09/25 11:02:05 __main__ INFO] - -            c10_50k       : 0.2078 (acc: 0.9350)
+[2018/09/25 11:02:05 __main__ INFO] - Elapsed 20.14
+keys:  dict_keys(['epoch', 'c10h_train_loss', 'c10h_train_acc', 'c10h_val_loss', 'c10h_val_acc', 'c10h_train_c10_loss', 'c10h_train_c10_acc', 'c10h_val_c10_loss', 'c10h_val_c10_acc', 'v4_loss', 'v4_acc', 'v6_loss', 'v6_acc', 'c10_50k_loss', 'c10_50k_acc']) 
+ c10h_outdir:  /tigress/ruairidh/model_results/run_1/saves/vgg_15_BN_64/con_False_lr_0.1_seed_2
+[2018/09/25 11:02:05 __main__ INFO] - Train 18
+[2018/09/25 11:02:09 __main__ INFO] - TEST 18
+[2018/09/25 11:02:30 __main__ INFO] - - epoch 18    c10h_train    : 0.2505 (acc: 0.9709) | c10h_val    : 0.4578 (acc: 0.8940)
+[2018/09/25 11:02:30 __main__ INFO] - -            c10h_train_c10: 0.1096 (acc: 0.9690) | c10h_val_c10: 0.3252 (acc: 0.8960)
+[2018/09/25 11:02:30 __main__ INFO] - -            v4            : 0.7063 (acc: 0.7655) |           v6: 0.6315 (acc: 0.8005)
+[2018/09/25 11:02:30 __main__ INFO] - -            c10_50k       : 0.2242 (acc: 0.9292)
+[2018/09/25 11:02:30 __main__ INFO] - Elapsed 20.44
+keys:  dict_keys(['epoch', 'c10h_train_loss', 'c10h_train_acc', 'c10h_val_loss', 'c10h_val_acc', 'c10h_train_c10_loss', 'c10h_train_c10_acc', 'c10h_val_c10_loss', 'c10h_val_c10_acc', 'v4_loss', 'v4_acc', 'v6_loss', 'v6_acc', 'c10_50k_loss', 'c10_50k_acc']) 
+ c10h_outdir:  /tigress/ruairidh/model_results/run_1/saves/vgg_15_BN_64/con_False_lr_0.1_seed_2
+[2018/09/25 11:02:31 __main__ INFO] - Train 19
+[2018/09/25 11:02:35 __main__ INFO] - TEST 19
+[2018/09/25 11:02:55 __main__ INFO] - - epoch 19    c10h_train    : 0.2539 (acc: 0.9679) | c10h_val    : 0.4833 (acc: 0.8830)
+[2018/09/25 11:02:55 __main__ INFO] - -            c10h_train_c10: 0.1133 (acc: 0.9651) | c10h_val_c10: 0.3469 (acc: 0.8850)
+[2018/09/25 11:02:55 __main__ INFO] - -            v4            : 0.6623 (acc: 0.7981) |           v6: 0.6174 (acc: 0.8105)
+[2018/09/25 11:02:55 __main__ INFO] - -            c10_50k       : 0.2416 (acc: 0.9205)
+[2018/09/25 11:02:55 __main__ INFO] - Elapsed 20.10
+keys:  dict_keys(['epoch', 'c10h_train_loss', 'c10h_train_acc', 'c10h_val_loss', 'c10h_val_acc', 'c10h_train_c10_loss', 'c10h_train_c10_acc', 'c10h_val_c10_loss', 'c10h_val_c10_acc', 'v4_loss', 'v4_acc', 'v6_loss', 'v6_acc', 'c10_50k_loss', 'c10_50k_acc']) 
+ c10h_outdir:  /tigress/ruairidh/model_results/run_1/saves/vgg_15_BN_64/con_False_lr_0.1_seed_2
+[2018/09/25 11:02:55 __main__ INFO] - Train 20
+[2018/09/25 11:02:59 __main__ INFO] - TEST 20
+[2018/09/25 11:03:20 __main__ INFO] - - epoch 20    c10h_train    : 0.2397 (acc: 0.9762) | c10h_val    : 0.4499 (acc: 0.8870)
+[2018/09/25 11:03:20 __main__ INFO] - -            c10h_train_c10: 0.1021 (acc: 0.9734) | c10h_val_c10: 0.3230 (acc: 0.8890)
+[2018/09/25 11:03:20 __main__ INFO] - -            v4            : 0.6831 (acc: 0.7857) |           v6: 0.6133 (acc: 0.7995)
+[2018/09/25 11:03:20 __main__ INFO] - -            c10_50k       : 0.2187 (acc: 0.9319)
+[2018/09/25 11:03:20 __main__ INFO] - Elapsed 20.26
+keys:  dict_keys(['epoch', 'c10h_train_loss', 'c10h_train_acc', 'c10h_val_loss', 'c10h_val_acc', 'c10h_train_c10_loss', 'c10h_train_c10_acc', 'c10h_val_c10_loss', 'c10h_val_c10_acc', 'v4_loss', 'v4_acc', 'v6_loss', 'v6_acc', 'c10_50k_loss', 'c10_50k_acc']) 
+ c10h_outdir:  /tigress/ruairidh/model_results/run_1/saves/vgg_15_BN_64/con_False_lr_0.1_seed_2
+[2018/09/25 11:03:21 __main__ INFO] - Train 21
+[2018/09/25 11:03:25 __main__ INFO] - TEST 21
+[2018/09/25 11:03:45 __main__ INFO] - - epoch 21    c10h_train    : 0.2445 (acc: 0.9746) | c10h_val    : 0.4592 (acc: 0.8880)
+[2018/09/25 11:03:45 __main__ INFO] - -            c10h_train_c10: 0.1042 (acc: 0.9716) | c10h_val_c10: 0.3245 (acc: 0.8900)
+[2018/09/25 11:03:45 __main__ INFO] - -            v4            : 0.6885 (acc: 0.7709) |           v6: 0.6415 (acc: 0.7945)
+[2018/09/25 11:03:45 __main__ INFO] - -            c10_50k       : 0.2256 (acc: 0.9258)
+[2018/09/25 11:03:45 __main__ INFO] - Elapsed 20.12
+keys:  dict_keys(['epoch', 'c10h_train_loss', 'c10h_train_acc', 'c10h_val_loss', 'c10h_val_acc', 'c10h_train_c10_loss', 'c10h_train_c10_acc', 'c10h_val_c10_loss', 'c10h_val_c10_acc', 'v4_loss', 'v4_acc', 'v6_loss', 'v6_acc', 'c10_50k_loss', 'c10_50k_acc']) 
+ c10h_outdir:  /tigress/ruairidh/model_results/run_1/saves/vgg_15_BN_64/con_False_lr_0.1_seed_2
+[2018/09/25 11:03:45 __main__ INFO] - Train 22
+[2018/09/25 11:03:49 __main__ INFO] - TEST 22
+[2018/09/25 11:04:09 __main__ INFO] - - epoch 22    c10h_train    : 0.2455 (acc: 0.9723) | c10h_val    : 0.4776 (acc: 0.8870)
+[2018/09/25 11:04:10 __main__ INFO] - -            c10h_train_c10: 0.1042 (acc: 0.9707) | c10h_val_c10: 0.3447 (acc: 0.8900)
+[2018/09/25 11:04:10 __main__ INFO] - -            v4            : 0.6667 (acc: 0.7813) |           v6: 0.6330 (acc: 0.8065)
+[2018/09/25 11:04:10 __main__ INFO] - -            c10_50k       : 0.2300 (acc: 0.9267)
+[2018/09/25 11:04:10 __main__ INFO] - Elapsed 20.07
+keys:  dict_keys(['epoch', 'c10h_train_loss', 'c10h_train_acc', 'c10h_val_loss', 'c10h_val_acc', 'c10h_train_c10_loss', 'c10h_train_c10_acc', 'c10h_val_c10_loss', 'c10h_val_c10_acc', 'v4_loss', 'v4_acc', 'v6_loss', 'v6_acc', 'c10_50k_loss', 'c10_50k_acc']) 
+ c10h_outdir:  /tigress/ruairidh/model_results/run_1/saves/vgg_15_BN_64/con_False_lr_0.1_seed_2
+[2018/09/25 11:04:10 __main__ INFO] - Train 23
+[2018/09/25 11:04:14 __main__ INFO] - TEST 23
+[2018/09/25 11:04:34 __main__ INFO] - - epoch 23    c10h_train    : 0.2510 (acc: 0.9731) | c10h_val    : 0.4955 (acc: 0.8780)
+[2018/09/25 11:04:34 __main__ INFO] - -            c10h_train_c10: 0.1113 (acc: 0.9702) | c10h_val_c10: 0.3644 (acc: 0.8800)
+[2018/09/25 11:04:34 __main__ INFO] - -            v4            : 0.7358 (acc: 0.7595) |           v6: 0.6304 (acc: 0.8010)
+[2018/09/25 11:04:34 __main__ INFO] - -            c10_50k       : 0.2464 (acc: 0.9211)
+[2018/09/25 11:04:34 __main__ INFO] - Elapsed 19.97
+keys:  dict_keys(['epoch', 'c10h_train_loss', 'c10h_train_acc', 'c10h_val_loss', 'c10h_val_acc', 'c10h_train_c10_loss', 'c10h_train_c10_acc', 'c10h_val_c10_loss', 'c10h_val_c10_acc', 'v4_loss', 'v4_acc', 'v6_loss', 'v6_acc', 'c10_50k_loss', 'c10_50k_acc']) 
+ c10h_outdir:  /tigress/ruairidh/model_results/run_1/saves/vgg_15_BN_64/con_False_lr_0.1_seed_2
+[2018/09/25 11:04:35 __main__ INFO] - Train 24
+[2018/09/25 11:04:39 __main__ INFO] - TEST 24
+[2018/09/25 11:04:59 __main__ INFO] - - epoch 24    c10h_train    : 0.2359 (acc: 0.9766) | c10h_val    : 0.4425 (acc: 0.9050)
+[2018/09/25 11:04:59 __main__ INFO] - -            c10h_train_c10: 0.0953 (acc: 0.9746) | c10h_val_c10: 0.3132 (acc: 0.9030)
+[2018/09/25 11:04:59 __main__ INFO] - -            v4            : 0.6568 (acc: 0.7813) |           v6: 0.5918 (acc: 0.8030)
+[2018/09/25 11:04:59 __main__ INFO] - -            c10_50k       : 0.2253 (acc: 0.9283)
+[2018/09/25 11:04:59 __main__ INFO] - Elapsed 20.17
+keys:  dict_keys(['epoch', 'c10h_train_loss', 'c10h_train_acc', 'c10h_val_loss', 'c10h_val_acc', 'c10h_train_c10_loss', 'c10h_train_c10_acc', 'c10h_val_c10_loss', 'c10h_val_c10_acc', 'v4_loss', 'v4_acc', 'v6_loss', 'v6_acc', 'c10_50k_loss', 'c10_50k_acc']) 
+ c10h_outdir:  /tigress/ruairidh/model_results/run_1/saves/vgg_15_BN_64/con_False_lr_0.1_seed_2
+[2018/09/25 11:05:00 __main__ INFO] - Train 25
+[2018/09/25 11:05:04 __main__ INFO] - TEST 25
+[2018/09/25 11:05:24 __main__ INFO] - - epoch 25    c10h_train    : 0.2405 (acc: 0.9749) | c10h_val    : 0.4502 (acc: 0.9000)
+[2018/09/25 11:05:24 __main__ INFO] - -            c10h_train_c10: 0.0921 (acc: 0.9733) | c10h_val_c10: 0.3082 (acc: 0.9020)
+[2018/09/25 11:05:24 __main__ INFO] - -            v4            : 0.6764 (acc: 0.7853) |           v6: 0.6179 (acc: 0.8055)
+[2018/09/25 11:05:24 __main__ INFO] - -            c10_50k       : 0.2260 (acc: 0.9277)
+[2018/09/25 11:05:24 __main__ INFO] - Elapsed 20.20
+keys:  dict_keys(['epoch', 'c10h_train_loss', 'c10h_train_acc', 'c10h_val_loss', 'c10h_val_acc', 'c10h_train_c10_loss', 'c10h_train_c10_acc', 'c10h_val_c10_loss', 'c10h_val_c10_acc', 'v4_loss', 'v4_acc', 'v6_loss', 'v6_acc', 'c10_50k_loss', 'c10_50k_acc']) 
+ c10h_outdir:  /tigress/ruairidh/model_results/run_1/saves/vgg_15_BN_64/con_False_lr_0.1_seed_2
+[2018/09/25 11:05:25 __main__ INFO] - Train 26
+[2018/09/25 11:05:29 __main__ INFO] - TEST 26
+[2018/09/25 11:05:49 __main__ INFO] - - epoch 26    c10h_train    : 0.2391 (acc: 0.9759) | c10h_val    : 0.4542 (acc: 0.8990)
+[2018/09/25 11:05:49 __main__ INFO] - -            c10h_train_c10: 0.0932 (acc: 0.9741) | c10h_val_c10: 0.3152 (acc: 0.8970)
+[2018/09/25 11:05:49 __main__ INFO] - -            v4            : 0.6574 (acc: 0.7828) |           v6: 0.6057 (acc: 0.8015)
+[2018/09/25 11:05:49 __main__ INFO] - -            c10_50k       : 0.2265 (acc: 0.9277)
+[2018/09/25 11:05:49 __main__ INFO] - Elapsed 20.27
+keys:  dict_keys(['epoch', 'c10h_train_loss', 'c10h_train_acc', 'c10h_val_loss', 'c10h_val_acc', 'c10h_train_c10_loss', 'c10h_train_c10_acc', 'c10h_val_c10_loss', 'c10h_val_c10_acc', 'v4_loss', 'v4_acc', 'v6_loss', 'v6_acc', 'c10_50k_loss', 'c10_50k_acc']) 
+ c10h_outdir:  /tigress/ruairidh/model_results/run_1/saves/vgg_15_BN_64/con_False_lr_0.1_seed_2
+[2018/09/25 11:05:50 __main__ INFO] - Train 27
+[2018/09/25 11:05:54 __main__ INFO] - TEST 27
+[2018/09/25 11:06:14 __main__ INFO] - - epoch 27    c10h_train    : 0.2402 (acc: 0.9738) | c10h_val    : 0.4365 (acc: 0.9020)
+[2018/09/25 11:06:14 __main__ INFO] - -            c10h_train_c10: 0.1002 (acc: 0.9730) | c10h_val_c10: 0.3000 (acc: 0.9040)
+[2018/09/25 11:06:14 __main__ INFO] - -            v4            : 0.7095 (acc: 0.7669) |           v6: 0.6626 (acc: 0.7910)
+[2018/09/25 11:06:14 __main__ INFO] - -            c10_50k       : 0.2376 (acc: 0.9225)
+[2018/09/25 11:06:14 __main__ INFO] - Elapsed 20.22
+keys:  dict_keys(['epoch', 'c10h_train_loss', 'c10h_train_acc', 'c10h_val_loss', 'c10h_val_acc', 'c10h_train_c10_loss', 'c10h_train_c10_acc', 'c10h_val_c10_loss', 'c10h_val_c10_acc', 'v4_loss', 'v4_acc', 'v6_loss', 'v6_acc', 'c10_50k_loss', 'c10_50k_acc']) 
+ c10h_outdir:  /tigress/ruairidh/model_results/run_1/saves/vgg_15_BN_64/con_False_lr_0.1_seed_2
+[2018/09/25 11:06:15 __main__ INFO] - Train 28
+[2018/09/25 11:06:19 __main__ INFO] - TEST 28
+[2018/09/25 11:06:39 __main__ INFO] - - epoch 28    c10h_train    : 0.2519 (acc: 0.9690) | c10h_val    : 0.4910 (acc: 0.8770)
+[2018/09/25 11:06:39 __main__ INFO] - -            c10h_train_c10: 0.1200 (acc: 0.9669) | c10h_val_c10: 0.3649 (acc: 0.8810)
+[2018/09/25 11:06:39 __main__ INFO] - -            v4            : 0.7851 (acc: 0.7595) |           v6: 0.7369 (acc: 0.7735)
+[2018/09/25 11:06:39 __main__ INFO] - -            c10_50k       : 0.2636 (acc: 0.9162)
+[2018/09/25 11:06:39 __main__ INFO] - Elapsed 20.12
+keys:  dict_keys(['epoch', 'c10h_train_loss', 'c10h_train_acc', 'c10h_val_loss', 'c10h_val_acc', 'c10h_train_c10_loss', 'c10h_train_c10_acc', 'c10h_val_c10_loss', 'c10h_val_c10_acc', 'v4_loss', 'v4_acc', 'v6_loss', 'v6_acc', 'c10_50k_loss', 'c10_50k_acc']) 
+ c10h_outdir:  /tigress/ruairidh/model_results/run_1/saves/vgg_15_BN_64/con_False_lr_0.1_seed_2
+[2018/09/25 11:06:39 __main__ INFO] - Train 29
+[2018/09/25 11:06:43 __main__ INFO] - TEST 29
+[2018/09/25 11:07:03 __main__ INFO] - - epoch 29    c10h_train    : 0.2441 (acc: 0.9728) | c10h_val    : 0.4696 (acc: 0.8860)
+[2018/09/25 11:07:03 __main__ INFO] - -            c10h_train_c10: 0.1095 (acc: 0.9701) | c10h_val_c10: 0.3469 (acc: 0.8840)
+[2018/09/25 11:07:03 __main__ INFO] - -            v4            : 0.6817 (acc: 0.7838) |           v6: 0.6362 (acc: 0.7960)
+[2018/09/25 11:07:03 __main__ INFO] - -            c10_50k       : 0.2527 (acc: 0.9200)
+[2018/09/25 11:07:03 __main__ INFO] - Elapsed 20.22
+keys:  dict_keys(['epoch', 'c10h_train_loss', 'c10h_train_acc', 'c10h_val_loss', 'c10h_val_acc', 'c10h_train_c10_loss', 'c10h_train_c10_acc', 'c10h_val_c10_loss', 'c10h_val_c10_acc', 'v4_loss', 'v4_acc', 'v6_loss', 'v6_acc', 'c10_50k_loss', 'c10_50k_acc']) 
+ c10h_outdir:  /tigress/ruairidh/model_results/run_1/saves/vgg_15_BN_64/con_False_lr_0.1_seed_2
+[2018/09/25 11:07:04 __main__ INFO] - Train 30
+[2018/09/25 11:07:07 __main__ INFO] - TEST 30
+[2018/09/25 11:07:28 __main__ INFO] - - epoch 30    c10h_train    : 0.2415 (acc: 0.9749) | c10h_val    : 0.4682 (acc: 0.8930)
+[2018/09/25 11:07:28 __main__ INFO] - -            c10h_train_c10: 0.0943 (acc: 0.9733) | c10h_val_c10: 0.3376 (acc: 0.8930)
+[2018/09/25 11:07:28 __main__ INFO] - -            v4            : 0.6769 (acc: 0.7833) |           v6: 0.6483 (acc: 0.7995)
+[2018/09/25 11:07:28 __main__ INFO] - -            c10_50k       : 0.2445 (acc: 0.9205)
+[2018/09/25 11:07:28 __main__ INFO] - Elapsed 20.16
+keys:  dict_keys(['epoch', 'c10h_train_loss', 'c10h_train_acc', 'c10h_val_loss', 'c10h_val_acc', 'c10h_train_c10_loss', 'c10h_train_c10_acc', 'c10h_val_c10_loss', 'c10h_val_c10_acc', 'v4_loss', 'v4_acc', 'v6_loss', 'v6_acc', 'c10_50k_loss', 'c10_50k_acc']) 
+ c10h_outdir:  /tigress/ruairidh/model_results/run_1/saves/vgg_15_BN_64/con_False_lr_0.1_seed_2
+[2018/09/25 11:07:29 __main__ INFO] - Train 31
+[2018/09/25 11:07:33 __main__ INFO] - TEST 31
+[2018/09/25 11:07:53 __main__ INFO] - - epoch 31    c10h_train    : 0.2468 (acc: 0.9719) | c10h_val    : 0.4690 (acc: 0.8970)
+[2018/09/25 11:07:53 __main__ INFO] - -            c10h_train_c10: 0.1058 (acc: 0.9701) | c10h_val_c10: 0.3329 (acc: 0.8970)
+[2018/09/25 11:07:53 __main__ INFO] - -            v4            : 0.7294 (acc: 0.7674) |           v6: 0.6789 (acc: 0.7845)
+[2018/09/25 11:07:53 __main__ INFO] - -            c10_50k       : 0.2510 (acc: 0.9204)
+[2018/09/25 11:07:53 __main__ INFO] - Elapsed 20.26
+keys:  dict_keys(['epoch', 'c10h_train_loss', 'c10h_train_acc', 'c10h_val_loss', 'c10h_val_acc', 'c10h_train_c10_loss', 'c10h_train_c10_acc', 'c10h_val_c10_loss', 'c10h_val_c10_acc', 'v4_loss', 'v4_acc', 'v6_loss', 'v6_acc', 'c10_50k_loss', 'c10_50k_acc']) 
+ c10h_outdir:  /tigress/ruairidh/model_results/run_1/saves/vgg_15_BN_64/con_False_lr_0.1_seed_2
+[2018/09/25 11:07:53 __main__ INFO] - Train 32
+[2018/09/25 11:07:57 __main__ INFO] - TEST 32
+[2018/09/25 11:08:17 __main__ INFO] - - epoch 32    c10h_train    : 0.2351 (acc: 0.9747) | c10h_val    : 0.4546 (acc: 0.8960)
+[2018/09/25 11:08:17 __main__ INFO] - -            c10h_train_c10: 0.0962 (acc: 0.9727) | c10h_val_c10: 0.3250 (acc: 0.8970)
+[2018/09/25 11:08:17 __main__ INFO] - -            v4            : 0.6582 (acc: 0.7803) |           v6: 0.6245 (acc: 0.8025)
+[2018/09/25 11:08:17 __main__ INFO] - -            c10_50k       : 0.2412 (acc: 0.9210)
+[2018/09/25 11:08:17 __main__ INFO] - Elapsed 20.14
+keys:  dict_keys(['epoch', 'c10h_train_loss', 'c10h_train_acc', 'c10h_val_loss', 'c10h_val_acc', 'c10h_train_c10_loss', 'c10h_train_c10_acc', 'c10h_val_c10_loss', 'c10h_val_c10_acc', 'v4_loss', 'v4_acc', 'v6_loss', 'v6_acc', 'c10_50k_loss', 'c10_50k_acc']) 
+ c10h_outdir:  /tigress/ruairidh/model_results/run_1/saves/vgg_15_BN_64/con_False_lr_0.1_seed_2
+[2018/09/25 11:08:18 __main__ INFO] - Train 33
+[2018/09/25 11:08:22 __main__ INFO] - TEST 33
+[2018/09/25 11:08:42 __main__ INFO] - - epoch 33    c10h_train    : 0.2397 (acc: 0.9760) | c10h_val    : 0.4835 (acc: 0.8870)
+[2018/09/25 11:08:42 __main__ INFO] - -            c10h_train_c10: 0.0970 (acc: 0.9740) | c10h_val_c10: 0.3531 (acc: 0.8910)
+[2018/09/25 11:08:42 __main__ INFO] - -            v4            : 0.6887 (acc: 0.7793) |           v6: 0.6472 (acc: 0.7910)
+[2018/09/25 11:08:42 __main__ INFO] - -            c10_50k       : 0.2530 (acc: 0.9176)
+[2018/09/25 11:08:42 __main__ INFO] - Elapsed 20.13
+keys:  dict_keys(['epoch', 'c10h_train_loss', 'c10h_train_acc', 'c10h_val_loss', 'c10h_val_acc', 'c10h_train_c10_loss', 'c10h_train_c10_acc', 'c10h_val_c10_loss', 'c10h_val_c10_acc', 'v4_loss', 'v4_acc', 'v6_loss', 'v6_acc', 'c10_50k_loss', 'c10_50k_acc']) 
+ c10h_outdir:  /tigress/ruairidh/model_results/run_1/saves/vgg_15_BN_64/con_False_lr_0.1_seed_2
+[2018/09/25 11:08:42 __main__ INFO] - Train 34
+[2018/09/25 11:08:46 __main__ INFO] - TEST 34
+[2018/09/25 11:09:07 __main__ INFO] - - epoch 34    c10h_train    : 0.2469 (acc: 0.9726) | c10h_val    : 0.5016 (acc: 0.8840)
+[2018/09/25 11:09:07 __main__ INFO] - -            c10h_train_c10: 0.1072 (acc: 0.9711) | c10h_val_c10: 0.3617 (acc: 0.8880)
+[2018/09/25 11:09:07 __main__ INFO] - -            v4            : 0.6805 (acc: 0.7684) |           v6: 0.6293 (acc: 0.7925)
+[2018/09/25 11:09:07 __main__ INFO] - -            c10_50k       : 0.2655 (acc: 0.9142)
+[2018/09/25 11:09:07 __main__ INFO] - Elapsed 20.17
+keys:  dict_keys(['epoch', 'c10h_train_loss', 'c10h_train_acc', 'c10h_val_loss', 'c10h_val_acc', 'c10h_train_c10_loss', 'c10h_train_c10_acc', 'c10h_val_c10_loss', 'c10h_val_c10_acc', 'v4_loss', 'v4_acc', 'v6_loss', 'v6_acc', 'c10_50k_loss', 'c10_50k_acc']) 
+ c10h_outdir:  /tigress/ruairidh/model_results/run_1/saves/vgg_15_BN_64/con_False_lr_0.1_seed_2
+[2018/09/25 11:09:08 __main__ INFO] - Train 35
+[2018/09/25 11:09:12 __main__ INFO] - TEST 35
+[2018/09/25 11:09:32 __main__ INFO] - - epoch 35    c10h_train    : 0.2355 (acc: 0.9763) | c10h_val    : 0.4732 (acc: 0.8950)
+[2018/09/25 11:09:32 __main__ INFO] - -            c10h_train_c10: 0.0958 (acc: 0.9737) | c10h_val_c10: 0.3351 (acc: 0.8970)
+[2018/09/25 11:09:32 __main__ INFO] - -            v4            : 0.6833 (acc: 0.7857) |           v6: 0.6353 (acc: 0.8065)
+[2018/09/25 11:09:32 __main__ INFO] - -            c10_50k       : 0.2400 (acc: 0.9244)
+[2018/09/25 11:09:32 __main__ INFO] - Elapsed 20.11
+keys:  dict_keys(['epoch', 'c10h_train_loss', 'c10h_train_acc', 'c10h_val_loss', 'c10h_val_acc', 'c10h_train_c10_loss', 'c10h_train_c10_acc', 'c10h_val_c10_loss', 'c10h_val_c10_acc', 'v4_loss', 'v4_acc', 'v6_loss', 'v6_acc', 'c10_50k_loss', 'c10_50k_acc']) 
+ c10h_outdir:  /tigress/ruairidh/model_results/run_1/saves/vgg_15_BN_64/con_False_lr_0.1_seed_2
+[2018/09/25 11:09:33 __main__ INFO] - Train 36
+[2018/09/25 11:09:37 __main__ INFO] - TEST 36
+[2018/09/25 11:09:57 __main__ INFO] - - epoch 36    c10h_train    : 0.2358 (acc: 0.9768) | c10h_val    : 0.4456 (acc: 0.8970)
+[2018/09/25 11:09:57 __main__ INFO] - -            c10h_train_c10: 0.0975 (acc: 0.9748) | c10h_val_c10: 0.3153 (acc: 0.8980)
+[2018/09/25 11:09:57 __main__ INFO] - -            v4            : 0.6903 (acc: 0.7808) |           v6: 0.6543 (acc: 0.7920)
+[2018/09/25 11:09:57 __main__ INFO] - -            c10_50k       : 0.2549 (acc: 0.9196)
+[2018/09/25 11:09:57 __main__ INFO] - Elapsed 20.25
+keys:  dict_keys(['epoch', 'c10h_train_loss', 'c10h_train_acc', 'c10h_val_loss', 'c10h_val_acc', 'c10h_train_c10_loss', 'c10h_train_c10_acc', 'c10h_val_c10_loss', 'c10h_val_c10_acc', 'v4_loss', 'v4_acc', 'v6_loss', 'v6_acc', 'c10_50k_loss', 'c10_50k_acc']) 
+ c10h_outdir:  /tigress/ruairidh/model_results/run_1/saves/vgg_15_BN_64/con_False_lr_0.1_seed_2
+[2018/09/25 11:09:58 __main__ INFO] - Train 37
+[2018/09/25 11:10:02 __main__ INFO] - TEST 37
+[2018/09/25 11:10:22 __main__ INFO] - - epoch 37    c10h_train    : 0.2340 (acc: 0.9770) | c10h_val    : 0.4770 (acc: 0.8950)
+[2018/09/25 11:10:22 __main__ INFO] - -            c10h_train_c10: 0.0911 (acc: 0.9741) | c10h_val_c10: 0.3461 (acc: 0.8970)
+[2018/09/25 11:10:22 __main__ INFO] - -            v4            : 0.6766 (acc: 0.7803) |           v6: 0.6472 (acc: 0.7900)
+[2018/09/25 11:10:22 __main__ INFO] - -            c10_50k       : 0.2466 (acc: 0.9195)
+[2018/09/25 11:10:22 __main__ INFO] - Elapsed 20.15
+keys:  dict_keys(['epoch', 'c10h_train_loss', 'c10h_train_acc', 'c10h_val_loss', 'c10h_val_acc', 'c10h_train_c10_loss', 'c10h_train_c10_acc', 'c10h_val_c10_loss', 'c10h_val_c10_acc', 'v4_loss', 'v4_acc', 'v6_loss', 'v6_acc', 'c10_50k_loss', 'c10_50k_acc']) 
+ c10h_outdir:  /tigress/ruairidh/model_results/run_1/saves/vgg_15_BN_64/con_False_lr_0.1_seed_2
+[2018/09/25 11:10:22 __main__ INFO] - Train 38
+[2018/09/25 11:10:26 __main__ INFO] - TEST 38
+[2018/09/25 11:10:47 __main__ INFO] - - epoch 38    c10h_train    : 0.2372 (acc: 0.9740) | c10h_val    : 0.4579 (acc: 0.8910)
+[2018/09/25 11:10:47 __main__ INFO] - -            c10h_train_c10: 0.0907 (acc: 0.9737) | c10h_val_c10: 0.3197 (acc: 0.8930)
+[2018/09/25 11:10:47 __main__ INFO] - -            v4            : 0.6327 (acc: 0.7892) |           v6: 0.5994 (acc: 0.8105)
+[2018/09/25 11:10:47 __main__ INFO] - -            c10_50k       : 0.2485 (acc: 0.9182)
+[2018/09/25 11:10:47 __main__ INFO] - Elapsed 20.24
+keys:  dict_keys(['epoch', 'c10h_train_loss', 'c10h_train_acc', 'c10h_val_loss', 'c10h_val_acc', 'c10h_train_c10_loss', 'c10h_train_c10_acc', 'c10h_val_c10_loss', 'c10h_val_c10_acc', 'v4_loss', 'v4_acc', 'v6_loss', 'v6_acc', 'c10_50k_loss', 'c10_50k_acc']) 
+ c10h_outdir:  /tigress/ruairidh/model_results/run_1/saves/vgg_15_BN_64/con_False_lr_0.1_seed_2
+[2018/09/25 11:10:48 __main__ INFO] - Train 39
+[2018/09/25 11:10:51 __main__ INFO] - TEST 39
+[2018/09/25 11:11:12 __main__ INFO] - - epoch 39    c10h_train    : 0.2298 (acc: 0.9798) | c10h_val    : 0.4498 (acc: 0.9040)
+[2018/09/25 11:11:12 __main__ INFO] - -            c10h_train_c10: 0.0902 (acc: 0.9762) | c10h_val_c10: 0.3171 (acc: 0.9040)
+[2018/09/25 11:11:12 __main__ INFO] - -            v4            : 0.6805 (acc: 0.7714) |           v6: 0.6318 (acc: 0.7950)
+[2018/09/25 11:11:12 __main__ INFO] - -            c10_50k       : 0.2513 (acc: 0.9191)
+[2018/09/25 11:11:12 __main__ INFO] - Elapsed 20.25
+keys:  dict_keys(['epoch', 'c10h_train_loss', 'c10h_train_acc', 'c10h_val_loss', 'c10h_val_acc', 'c10h_train_c10_loss', 'c10h_train_c10_acc', 'c10h_val_c10_loss', 'c10h_val_c10_acc', 'v4_loss', 'v4_acc', 'v6_loss', 'v6_acc', 'c10_50k_loss', 'c10_50k_acc']) 
+ c10h_outdir:  /tigress/ruairidh/model_results/run_1/saves/vgg_15_BN_64/con_False_lr_0.1_seed_2
+[2018/09/25 11:11:12 __main__ INFO] - Train 40
+[2018/09/25 11:11:16 __main__ INFO] - TEST 40
+[2018/09/25 11:11:36 __main__ INFO] - - epoch 40    c10h_train    : 0.2419 (acc: 0.9737) | c10h_val    : 0.4749 (acc: 0.8820)
+[2018/09/25 11:11:36 __main__ INFO] - -            c10h_train_c10: 0.0979 (acc: 0.9709) | c10h_val_c10: 0.3366 (acc: 0.8870)
+[2018/09/25 11:11:36 __main__ INFO] - -            v4            : 0.7275 (acc: 0.7674) |           v6: 0.6840 (acc: 0.7815)
+[2018/09/25 11:11:36 __main__ INFO] - -            c10_50k       : 0.2653 (acc: 0.9145)
+[2018/09/25 11:11:36 __main__ INFO] - Elapsed 20.18
+keys:  dict_keys(['epoch', 'c10h_train_loss', 'c10h_train_acc', 'c10h_val_loss', 'c10h_val_acc', 'c10h_train_c10_loss', 'c10h_train_c10_acc', 'c10h_val_c10_loss', 'c10h_val_c10_acc', 'v4_loss', 'v4_acc', 'v6_loss', 'v6_acc', 'c10_50k_loss', 'c10_50k_acc']) 
+ c10h_outdir:  /tigress/ruairidh/model_results/run_1/saves/vgg_15_BN_64/con_False_lr_0.1_seed_2
+[2018/09/25 11:11:36 __main__ INFO] - Train 41
+[2018/09/25 11:11:40 __main__ INFO] - TEST 41
+[2018/09/25 11:12:00 __main__ INFO] - - epoch 41    c10h_train    : 0.2328 (acc: 0.9769) | c10h_val    : 0.4688 (acc: 0.8870)
+[2018/09/25 11:12:00 __main__ INFO] - -            c10h_train_c10: 0.0940 (acc: 0.9748) | c10h_val_c10: 0.3427 (acc: 0.8890)
+[2018/09/25 11:12:00 __main__ INFO] - -            v4            : 0.6808 (acc: 0.7813) |           v6: 0.6320 (acc: 0.7920)
+[2018/09/25 11:12:00 __main__ INFO] - -            c10_50k       : 0.2522 (acc: 0.9201)
+[2018/09/25 11:12:00 __main__ INFO] - Elapsed 20.07
+keys:  dict_keys(['epoch', 'c10h_train_loss', 'c10h_train_acc', 'c10h_val_loss', 'c10h_val_acc', 'c10h_train_c10_loss', 'c10h_train_c10_acc', 'c10h_val_c10_loss', 'c10h_val_c10_acc', 'v4_loss', 'v4_acc', 'v6_loss', 'v6_acc', 'c10_50k_loss', 'c10_50k_acc']) 
+ c10h_outdir:  /tigress/ruairidh/model_results/run_1/saves/vgg_15_BN_64/con_False_lr_0.1_seed_2
+[2018/09/25 11:12:01 __main__ INFO] - Train 42
+[2018/09/25 11:12:05 __main__ INFO] - TEST 42
+[2018/09/25 11:12:25 __main__ INFO] - - epoch 42    c10h_train    : 0.2414 (acc: 0.9721) | c10h_val    : 0.4607 (acc: 0.8950)
+[2018/09/25 11:12:25 __main__ INFO] - -            c10h_train_c10: 0.1062 (acc: 0.9704) | c10h_val_c10: 0.3346 (acc: 0.8950)
+[2018/09/25 11:12:25 __main__ INFO] - -            v4            : 0.6884 (acc: 0.7803) |           v6: 0.6483 (acc: 0.7910)
+[2018/09/25 11:12:25 __main__ INFO] - -            c10_50k       : 0.2748 (acc: 0.9119)
+[2018/09/25 11:12:25 __main__ INFO] - Elapsed 20.17
+keys:  dict_keys(['epoch', 'c10h_train_loss', 'c10h_train_acc', 'c10h_val_loss', 'c10h_val_acc', 'c10h_train_c10_loss', 'c10h_train_c10_acc', 'c10h_val_c10_loss', 'c10h_val_c10_acc', 'v4_loss', 'v4_acc', 'v6_loss', 'v6_acc', 'c10_50k_loss', 'c10_50k_acc']) 
+ c10h_outdir:  /tigress/ruairidh/model_results/run_1/saves/vgg_15_BN_64/con_False_lr_0.1_seed_2
+[2018/09/25 11:12:26 __main__ INFO] - Train 43
+[2018/09/25 11:12:30 __main__ INFO] - TEST 43
+[2018/09/25 11:12:50 __main__ INFO] - - epoch 43    c10h_train    : 0.2628 (acc: 0.9640) | c10h_val    : 0.5184 (acc: 0.8690)
+[2018/09/25 11:12:50 __main__ INFO] - -            c10h_train_c10: 0.1330 (acc: 0.9608) | c10h_val_c10: 0.3962 (acc: 0.8710)
+[2018/09/25 11:12:50 __main__ INFO] - -            v4            : 0.7361 (acc: 0.7620) |           v6: 0.7070 (acc: 0.7670)
+[2018/09/25 11:12:50 __main__ INFO] - -            c10_50k       : 0.3217 (acc: 0.8955)
+[2018/09/25 11:12:50 __main__ INFO] - Elapsed 20.12
+keys:  dict_keys(['epoch', 'c10h_train_loss', 'c10h_train_acc', 'c10h_val_loss', 'c10h_val_acc', 'c10h_train_c10_loss', 'c10h_train_c10_acc', 'c10h_val_c10_loss', 'c10h_val_c10_acc', 'v4_loss', 'v4_acc', 'v6_loss', 'v6_acc', 'c10_50k_loss', 'c10_50k_acc']) 
+ c10h_outdir:  /tigress/ruairidh/model_results/run_1/saves/vgg_15_BN_64/con_False_lr_0.1_seed_2
+[2018/09/25 11:12:51 __main__ INFO] - Train 44
+[2018/09/25 11:12:55 __main__ INFO] - TEST 44
+[2018/09/25 11:13:15 __main__ INFO] - - epoch 44    c10h_train    : 0.2391 (acc: 0.9778) | c10h_val    : 0.4951 (acc: 0.8790)
+[2018/09/25 11:13:15 __main__ INFO] - -            c10h_train_c10: 0.1033 (acc: 0.9744) | c10h_val_c10: 0.3681 (acc: 0.8790)
+[2018/09/25 11:13:15 __main__ INFO] - -            v4            : 0.6998 (acc: 0.7729) |           v6: 0.6548 (acc: 0.7895)
+[2018/09/25 11:13:15 __main__ INFO] - -            c10_50k       : 0.2682 (acc: 0.9136)
+[2018/09/25 11:13:15 __main__ INFO] - Elapsed 20.20
+keys:  dict_keys(['epoch', 'c10h_train_loss', 'c10h_train_acc', 'c10h_val_loss', 'c10h_val_acc', 'c10h_train_c10_loss', 'c10h_train_c10_acc', 'c10h_val_c10_loss', 'c10h_val_c10_acc', 'v4_loss', 'v4_acc', 'v6_loss', 'v6_acc', 'c10_50k_loss', 'c10_50k_acc']) 
+ c10h_outdir:  /tigress/ruairidh/model_results/run_1/saves/vgg_15_BN_64/con_False_lr_0.1_seed_2
+[2018/09/25 11:13:16 __main__ INFO] - Train 45
+[2018/09/25 11:13:20 __main__ INFO] - TEST 45
+[2018/09/25 11:13:40 __main__ INFO] - - epoch 45    c10h_train    : 0.2413 (acc: 0.9738) | c10h_val    : 0.5167 (acc: 0.8810)
+[2018/09/25 11:13:40 __main__ INFO] - -            c10h_train_c10: 0.0978 (acc: 0.9714) | c10h_val_c10: 0.3841 (acc: 0.8830)
+[2018/09/25 11:13:40 __main__ INFO] - -            v4            : 0.7246 (acc: 0.7669) |           v6: 0.6641 (acc: 0.7945)
+[2018/09/25 11:13:40 __main__ INFO] - -            c10_50k       : 0.2724 (acc: 0.9112)
+[2018/09/25 11:13:40 __main__ INFO] - Elapsed 20.11
+keys:  dict_keys(['epoch', 'c10h_train_loss', 'c10h_train_acc', 'c10h_val_loss', 'c10h_val_acc', 'c10h_train_c10_loss', 'c10h_train_c10_acc', 'c10h_val_c10_loss', 'c10h_val_c10_acc', 'v4_loss', 'v4_acc', 'v6_loss', 'v6_acc', 'c10_50k_loss', 'c10_50k_acc']) 
+ c10h_outdir:  /tigress/ruairidh/model_results/run_1/saves/vgg_15_BN_64/con_False_lr_0.1_seed_2
+[2018/09/25 11:13:41 __main__ INFO] - Train 46
+[2018/09/25 11:13:45 __main__ INFO] - TEST 46
+[2018/09/25 11:14:05 __main__ INFO] - - epoch 46    c10h_train    : 0.2452 (acc: 0.9726) | c10h_val    : 0.5006 (acc: 0.8790)
+[2018/09/25 11:14:05 __main__ INFO] - -            c10h_train_c10: 0.1053 (acc: 0.9696) | c10h_val_c10: 0.3755 (acc: 0.8800)
+[2018/09/25 11:14:05 __main__ INFO] - -            v4            : 0.7373 (acc: 0.7645) |           v6: 0.6707 (acc: 0.7855)
+[2018/09/25 11:14:05 __main__ INFO] - -            c10_50k       : 0.2913 (acc: 0.9059)
+[2018/09/25 11:14:05 __main__ INFO] - Elapsed 20.18
+keys:  dict_keys(['epoch', 'c10h_train_loss', 'c10h_train_acc', 'c10h_val_loss', 'c10h_val_acc', 'c10h_train_c10_loss', 'c10h_train_c10_acc', 'c10h_val_c10_loss', 'c10h_val_c10_acc', 'v4_loss', 'v4_acc', 'v6_loss', 'v6_acc', 'c10_50k_loss', 'c10_50k_acc']) 
+ c10h_outdir:  /tigress/ruairidh/model_results/run_1/saves/vgg_15_BN_64/con_False_lr_0.1_seed_2
+[2018/09/25 11:14:07 __main__ INFO] - Train 47
+[2018/09/25 11:14:11 __main__ INFO] - TEST 47
+[2018/09/25 11:14:31 __main__ INFO] - - epoch 47    c10h_train    : 0.2508 (acc: 0.9704) | c10h_val    : 0.4941 (acc: 0.8750)
+[2018/09/25 11:14:32 __main__ INFO] - -            c10h_train_c10: 0.1167 (acc: 0.9674) | c10h_val_c10: 0.3658 (acc: 0.8760)
+[2018/09/25 11:14:32 __main__ INFO] - -            v4            : 0.7183 (acc: 0.7660) |           v6: 0.6758 (acc: 0.7815)
+[2018/09/25 11:14:32 __main__ INFO] - -            c10_50k       : 0.2976 (acc: 0.9037)
+[2018/09/25 11:14:32 __main__ INFO] - Elapsed 20.15
+keys:  dict_keys(['epoch', 'c10h_train_loss', 'c10h_train_acc', 'c10h_val_loss', 'c10h_val_acc', 'c10h_train_c10_loss', 'c10h_train_c10_acc', 'c10h_val_c10_loss', 'c10h_val_c10_acc', 'v4_loss', 'v4_acc', 'v6_loss', 'v6_acc', 'c10_50k_loss', 'c10_50k_acc']) 
+ c10h_outdir:  /tigress/ruairidh/model_results/run_1/saves/vgg_15_BN_64/con_False_lr_0.1_seed_2
+[2018/09/25 11:14:32 __main__ INFO] - Train 48
+[2018/09/25 11:14:36 __main__ INFO] - TEST 48
+[2018/09/25 11:14:56 __main__ INFO] - - epoch 48    c10h_train    : 0.2657 (acc: 0.9666) | c10h_val    : 0.5396 (acc: 0.8630)
+[2018/09/25 11:14:56 __main__ INFO] - -            c10h_train_c10: 0.1225 (acc: 0.9634) | c10h_val_c10: 0.4092 (acc: 0.8630)
+[2018/09/25 11:14:56 __main__ INFO] - -            v4            : 0.7997 (acc: 0.7486) |           v6: 0.7562 (acc: 0.7685)
+[2018/09/25 11:14:56 __main__ INFO] - -            c10_50k       : 0.3323 (acc: 0.8932)
+[2018/09/25 11:14:56 __main__ INFO] - Elapsed 20.44
+keys:  dict_keys(['epoch', 'c10h_train_loss', 'c10h_train_acc', 'c10h_val_loss', 'c10h_val_acc', 'c10h_train_c10_loss', 'c10h_train_c10_acc', 'c10h_val_c10_loss', 'c10h_val_c10_acc', 'v4_loss', 'v4_acc', 'v6_loss', 'v6_acc', 'c10_50k_loss', 'c10_50k_acc']) 
+ c10h_outdir:  /tigress/ruairidh/model_results/run_1/saves/vgg_15_BN_64/con_False_lr_0.1_seed_2
+[2018/09/25 11:14:57 __main__ INFO] - Train 49
+[2018/09/25 11:15:01 __main__ INFO] - TEST 49
+[2018/09/25 11:15:21 __main__ INFO] - - epoch 49    c10h_train    : 0.2501 (acc: 0.9691) | c10h_val    : 0.5050 (acc: 0.8790)
+[2018/09/25 11:15:21 __main__ INFO] - -            c10h_train_c10: 0.1110 (acc: 0.9658) | c10h_val_c10: 0.3759 (acc: 0.8810)
+[2018/09/25 11:15:21 __main__ INFO] - -            v4            : 0.7605 (acc: 0.7551) |           v6: 0.7098 (acc: 0.7745)
+[2018/09/25 11:15:21 __main__ INFO] - -            c10_50k       : 0.3123 (acc: 0.8995)
+[2018/09/25 11:15:21 __main__ INFO] - Elapsed 20.23
+keys:  dict_keys(['epoch', 'c10h_train_loss', 'c10h_train_acc', 'c10h_val_loss', 'c10h_val_acc', 'c10h_train_c10_loss', 'c10h_train_c10_acc', 'c10h_val_c10_loss', 'c10h_val_c10_acc', 'v4_loss', 'v4_acc', 'v6_loss', 'v6_acc', 'c10_50k_loss', 'c10_50k_acc']) 
+ c10h_outdir:  /tigress/ruairidh/model_results/run_1/saves/vgg_15_BN_64/con_False_lr_0.1_seed_2
+[2018/09/25 11:15:21 __main__ INFO] - Train 50
+[2018/09/25 11:15:25 __main__ INFO] - TEST 50
+[2018/09/25 11:15:45 __main__ INFO] - - epoch 50    c10h_train    : 0.2304 (acc: 0.9807) | c10h_val    : 0.4978 (acc: 0.8690)
+[2018/09/25 11:15:45 __main__ INFO] - -            c10h_train_c10: 0.0851 (acc: 0.9772) | c10h_val_c10: 0.3683 (acc: 0.8700)
+[2018/09/25 11:15:45 __main__ INFO] - -            v4            : 0.7086 (acc: 0.7759) |           v6: 0.6681 (acc: 0.7955)
+[2018/09/25 11:15:45 __main__ INFO] - -            c10_50k       : 0.2738 (acc: 0.9116)
+[2018/09/25 11:15:45 __main__ INFO] - Elapsed 20.21
+keys:  dict_keys(['epoch', 'c10h_train_loss', 'c10h_train_acc', 'c10h_val_loss', 'c10h_val_acc', 'c10h_train_c10_loss', 'c10h_train_c10_acc', 'c10h_val_c10_loss', 'c10h_val_c10_acc', 'v4_loss', 'v4_acc', 'v6_loss', 'v6_acc', 'c10_50k_loss', 'c10_50k_acc']) 
+ c10h_outdir:  /tigress/ruairidh/model_results/run_1/saves/vgg_15_BN_64/con_False_lr_0.1_seed_2
+[2018/09/25 11:15:46 __main__ INFO] - Train 51
+[2018/09/25 11:15:50 __main__ INFO] - TEST 51
+[2018/09/25 11:16:10 __main__ INFO] - - epoch 51    c10h_train    : 0.2437 (acc: 0.9710) | c10h_val    : 0.5316 (acc: 0.8660)
+[2018/09/25 11:16:10 __main__ INFO] - -            c10h_train_c10: 0.1026 (acc: 0.9704) | c10h_val_c10: 0.4074 (acc: 0.8660)
+[2018/09/25 11:16:10 __main__ INFO] - -            v4            : 0.7538 (acc: 0.7526) |           v6: 0.7377 (acc: 0.7660)
+[2018/09/25 11:16:10 __main__ INFO] - -            c10_50k       : 0.3022 (acc: 0.9024)
+[2018/09/25 11:16:10 __main__ INFO] - Elapsed 20.15
+keys:  dict_keys(['epoch', 'c10h_train_loss', 'c10h_train_acc', 'c10h_val_loss', 'c10h_val_acc', 'c10h_train_c10_loss', 'c10h_train_c10_acc', 'c10h_val_c10_loss', 'c10h_val_c10_acc', 'v4_loss', 'v4_acc', 'v6_loss', 'v6_acc', 'c10_50k_loss', 'c10_50k_acc']) 
+ c10h_outdir:  /tigress/ruairidh/model_results/run_1/saves/vgg_15_BN_64/con_False_lr_0.1_seed_2
+[2018/09/25 11:16:11 __main__ INFO] - Train 52
+[2018/09/25 11:16:15 __main__ INFO] - TEST 52
+[2018/09/25 11:16:35 __main__ INFO] - - epoch 52    c10h_train    : 0.2499 (acc: 0.9684) | c10h_val    : 0.5277 (acc: 0.8770)
+[2018/09/25 11:16:35 __main__ INFO] - -            c10h_train_c10: 0.1087 (acc: 0.9671) | c10h_val_c10: 0.4033 (acc: 0.8790)
+[2018/09/25 11:16:35 __main__ INFO] - -            v4            : 0.7854 (acc: 0.7501) |           v6: 0.7510 (acc: 0.7630)
+[2018/09/25 11:16:35 __main__ INFO] - -            c10_50k       : 0.3204 (acc: 0.8981)
+[2018/09/25 11:16:35 __main__ INFO] - Elapsed 20.27
+keys:  dict_keys(['epoch', 'c10h_train_loss', 'c10h_train_acc', 'c10h_val_loss', 'c10h_val_acc', 'c10h_train_c10_loss', 'c10h_train_c10_acc', 'c10h_val_c10_loss', 'c10h_val_c10_acc', 'v4_loss', 'v4_acc', 'v6_loss', 'v6_acc', 'c10_50k_loss', 'c10_50k_acc']) 
+ c10h_outdir:  /tigress/ruairidh/model_results/run_1/saves/vgg_15_BN_64/con_False_lr_0.1_seed_2
+[2018/09/25 11:16:36 __main__ INFO] - Train 53
+[2018/09/25 11:16:40 __main__ INFO] - TEST 53
+[2018/09/25 11:17:00 __main__ INFO] - - epoch 53    c10h_train    : 0.2333 (acc: 0.9762) | c10h_val    : 0.4742 (acc: 0.8850)
+[2018/09/25 11:17:00 __main__ INFO] - -            c10h_train_c10: 0.1011 (acc: 0.9724) | c10h_val_c10: 0.3521 (acc: 0.8850)
+[2018/09/25 11:17:00 __main__ INFO] - -            v4            : 0.7501 (acc: 0.7605) |           v6: 0.6663 (acc: 0.7825)
+[2018/09/25 11:17:00 __main__ INFO] - -            c10_50k       : 0.2895 (acc: 0.9077)
+[2018/09/25 11:17:00 __main__ INFO] - Elapsed 20.12
+keys:  dict_keys(['epoch', 'c10h_train_loss', 'c10h_train_acc', 'c10h_val_loss', 'c10h_val_acc', 'c10h_train_c10_loss', 'c10h_train_c10_acc', 'c10h_val_c10_loss', 'c10h_val_c10_acc', 'v4_loss', 'v4_acc', 'v6_loss', 'v6_acc', 'c10_50k_loss', 'c10_50k_acc']) 
+ c10h_outdir:  /tigress/ruairidh/model_results/run_1/saves/vgg_15_BN_64/con_False_lr_0.1_seed_2
+[2018/09/25 11:17:01 __main__ INFO] - Train 54
+[2018/09/25 11:17:04 __main__ INFO] - TEST 54
+[2018/09/25 11:17:25 __main__ INFO] - - epoch 54    c10h_train    : 0.2659 (acc: 0.9610) | c10h_val    : 0.5526 (acc: 0.8560)
+[2018/09/25 11:17:25 __main__ INFO] - -            c10h_train_c10: 0.1303 (acc: 0.9593) | c10h_val_c10: 0.4305 (acc: 0.8590)
+[2018/09/25 11:17:25 __main__ INFO] - -            v4            : 0.7990 (acc: 0.7501) |           v6: 0.7382 (acc: 0.7730)
+[2018/09/25 11:17:25 __main__ INFO] - -            c10_50k       : 0.3463 (acc: 0.8875)
+[2018/09/25 11:17:25 __main__ INFO] - Elapsed 20.32
+keys:  dict_keys(['epoch', 'c10h_train_loss', 'c10h_train_acc', 'c10h_val_loss', 'c10h_val_acc', 'c10h_train_c10_loss', 'c10h_train_c10_acc', 'c10h_val_c10_loss', 'c10h_val_c10_acc', 'v4_loss', 'v4_acc', 'v6_loss', 'v6_acc', 'c10_50k_loss', 'c10_50k_acc']) 
+ c10h_outdir:  /tigress/ruairidh/model_results/run_1/saves/vgg_15_BN_64/con_False_lr_0.1_seed_2
+[2018/09/25 11:17:25 __main__ INFO] - Train 55
+[2018/09/25 11:17:29 __main__ INFO] - TEST 55
+[2018/09/25 11:17:49 __main__ INFO] - - epoch 55    c10h_train    : 0.2361 (acc: 0.9750) | c10h_val    : 0.5035 (acc: 0.8780)
+[2018/09/25 11:17:49 __main__ INFO] - -            c10h_train_c10: 0.1009 (acc: 0.9709) | c10h_val_c10: 0.3816 (acc: 0.8800)
+[2018/09/25 11:17:49 __main__ INFO] - -            v4            : 0.7145 (acc: 0.7739) |           v6: 0.6541 (acc: 0.7910)
+[2018/09/25 11:17:49 __main__ INFO] - -            c10_50k       : 0.2938 (acc: 0.9052)
+[2018/09/25 11:17:49 __main__ INFO] - Elapsed 20.24
+keys:  dict_keys(['epoch', 'c10h_train_loss', 'c10h_train_acc', 'c10h_val_loss', 'c10h_val_acc', 'c10h_train_c10_loss', 'c10h_train_c10_acc', 'c10h_val_c10_loss', 'c10h_val_c10_acc', 'v4_loss', 'v4_acc', 'v6_loss', 'v6_acc', 'c10_50k_loss', 'c10_50k_acc']) 
+ c10h_outdir:  /tigress/ruairidh/model_results/run_1/saves/vgg_15_BN_64/con_False_lr_0.1_seed_2
+[2018/09/25 11:17:50 __main__ INFO] - Train 56
+[2018/09/25 11:17:54 __main__ INFO] - TEST 56
+[2018/09/25 11:18:14 __main__ INFO] - - epoch 56    c10h_train    : 0.2394 (acc: 0.9736) | c10h_val    : 0.4784 (acc: 0.8890)
+[2018/09/25 11:18:14 __main__ INFO] - -            c10h_train_c10: 0.0952 (acc: 0.9711) | c10h_val_c10: 0.3431 (acc: 0.8900)
+[2018/09/25 11:18:14 __main__ INFO] - -            v4            : 0.7116 (acc: 0.7754) |           v6: 0.6303 (acc: 0.8010)
+[2018/09/25 11:18:14 __main__ INFO] - -            c10_50k       : 0.2848 (acc: 0.9062)
+[2018/09/25 11:18:14 __main__ INFO] - Elapsed 20.26
+keys:  dict_keys(['epoch', 'c10h_train_loss', 'c10h_train_acc', 'c10h_val_loss', 'c10h_val_acc', 'c10h_train_c10_loss', 'c10h_train_c10_acc', 'c10h_val_c10_loss', 'c10h_val_c10_acc', 'v4_loss', 'v4_acc', 'v6_loss', 'v6_acc', 'c10_50k_loss', 'c10_50k_acc']) 
+ c10h_outdir:  /tigress/ruairidh/model_results/run_1/saves/vgg_15_BN_64/con_False_lr_0.1_seed_2
+[2018/09/25 11:18:15 __main__ INFO] - Train 57
+[2018/09/25 11:18:19 __main__ INFO] - TEST 57
+[2018/09/25 11:18:39 __main__ INFO] - - epoch 57    c10h_train    : 0.2342 (acc: 0.9766) | c10h_val    : 0.4882 (acc: 0.8860)
+[2018/09/25 11:18:39 __main__ INFO] - -            c10h_train_c10: 0.0959 (acc: 0.9751) | c10h_val_c10: 0.3566 (acc: 0.8850)
+[2018/09/25 11:18:39 __main__ INFO] - -            v4            : 0.7369 (acc: 0.7610) |           v6: 0.6768 (acc: 0.7800)
+[2018/09/25 11:18:39 __main__ INFO] - -            c10_50k       : 0.2963 (acc: 0.9051)
+[2018/09/25 11:18:39 __main__ INFO] - Elapsed 20.30
+keys:  dict_keys(['epoch', 'c10h_train_loss', 'c10h_train_acc', 'c10h_val_loss', 'c10h_val_acc', 'c10h_train_c10_loss', 'c10h_train_c10_acc', 'c10h_val_c10_loss', 'c10h_val_c10_acc', 'v4_loss', 'v4_acc', 'v6_loss', 'v6_acc', 'c10_50k_loss', 'c10_50k_acc']) 
+ c10h_outdir:  /tigress/ruairidh/model_results/run_1/saves/vgg_15_BN_64/con_False_lr_0.1_seed_2
+[2018/09/25 11:18:42 __main__ INFO] - Train 58
+[2018/09/25 11:18:45 __main__ INFO] - TEST 58
+[2018/09/25 11:19:06 __main__ INFO] - - epoch 58    c10h_train    : 0.2491 (acc: 0.9720) | c10h_val    : 0.5026 (acc: 0.8820)
+[2018/09/25 11:19:06 __main__ INFO] - -            c10h_train_c10: 0.1023 (acc: 0.9712) | c10h_val_c10: 0.3626 (acc: 0.8840)
+[2018/09/25 11:19:06 __main__ INFO] - -            v4            : 0.7672 (acc: 0.7610) |           v6: 0.7065 (acc: 0.7760)
+[2018/09/25 11:19:06 __main__ INFO] - -            c10_50k       : 0.3081 (acc: 0.9008)
+[2018/09/25 11:19:06 __main__ INFO] - Elapsed 20.26
+keys:  dict_keys(['epoch', 'c10h_train_loss', 'c10h_train_acc', 'c10h_val_loss', 'c10h_val_acc', 'c10h_train_c10_loss', 'c10h_train_c10_acc', 'c10h_val_c10_loss', 'c10h_val_c10_acc', 'v4_loss', 'v4_acc', 'v6_loss', 'v6_acc', 'c10_50k_loss', 'c10_50k_acc']) 
+ c10h_outdir:  /tigress/ruairidh/model_results/run_1/saves/vgg_15_BN_64/con_False_lr_0.1_seed_2
+[2018/09/25 11:19:07 __main__ INFO] - Train 59
+[2018/09/25 11:19:10 __main__ INFO] - TEST 59
+[2018/09/25 11:19:31 __main__ INFO] - - epoch 59    c10h_train    : 0.2457 (acc: 0.9711) | c10h_val    : 0.4820 (acc: 0.8870)
+[2018/09/25 11:19:31 __main__ INFO] - -            c10h_train_c10: 0.1089 (acc: 0.9703) | c10h_val_c10: 0.3563 (acc: 0.8890)
+[2018/09/25 11:19:31 __main__ INFO] - -            v4            : 0.7676 (acc: 0.7546) |           v6: 0.7079 (acc: 0.7785)
+[2018/09/25 11:19:31 __main__ INFO] - -            c10_50k       : 0.3122 (acc: 0.8984)
+[2018/09/25 11:19:31 __main__ INFO] - Elapsed 20.26
+keys:  dict_keys(['epoch', 'c10h_train_loss', 'c10h_train_acc', 'c10h_val_loss', 'c10h_val_acc', 'c10h_train_c10_loss', 'c10h_train_c10_acc', 'c10h_val_c10_loss', 'c10h_val_c10_acc', 'v4_loss', 'v4_acc', 'v6_loss', 'v6_acc', 'c10_50k_loss', 'c10_50k_acc']) 
+ c10h_outdir:  /tigress/ruairidh/model_results/run_1/saves/vgg_15_BN_64/con_False_lr_0.1_seed_2
+[2018/09/25 11:19:32 __main__ INFO] - Train 60
+[2018/09/25 11:19:36 __main__ INFO] - TEST 60
+[2018/09/25 11:19:56 __main__ INFO] - - epoch 60    c10h_train    : 0.2572 (acc: 0.9689) | c10h_val    : 0.5261 (acc: 0.8750)
+[2018/09/25 11:19:56 __main__ INFO] - -            c10h_train_c10: 0.1191 (acc: 0.9652) | c10h_val_c10: 0.3933 (acc: 0.8760)
+[2018/09/25 11:19:56 __main__ INFO] - -            v4            : 0.8340 (acc: 0.7363) |           v6: 0.7729 (acc: 0.7595)
+[2018/09/25 11:19:56 __main__ INFO] - -            c10_50k       : 0.3455 (acc: 0.8898)
+[2018/09/25 11:19:56 __main__ INFO] - Elapsed 20.27
+keys:  dict_keys(['epoch', 'c10h_train_loss', 'c10h_train_acc', 'c10h_val_loss', 'c10h_val_acc', 'c10h_train_c10_loss', 'c10h_train_c10_acc', 'c10h_val_c10_loss', 'c10h_val_c10_acc', 'v4_loss', 'v4_acc', 'v6_loss', 'v6_acc', 'c10_50k_loss', 'c10_50k_acc']) 
+ c10h_outdir:  /tigress/ruairidh/model_results/run_1/saves/vgg_15_BN_64/con_False_lr_0.1_seed_2
+[2018/09/25 11:19:56 __main__ INFO] - Train 61
+[2018/09/25 11:20:00 __main__ INFO] - TEST 61
+[2018/09/25 11:20:21 __main__ INFO] - - epoch 61    c10h_train    : 0.2550 (acc: 0.9672) | c10h_val    : 0.5146 (acc: 0.8810)
+[2018/09/25 11:20:21 __main__ INFO] - -            c10h_train_c10: 0.1085 (acc: 0.9662) | c10h_val_c10: 0.3751 (acc: 0.8810)
+[2018/09/25 11:20:21 __main__ INFO] - -            v4            : 0.7882 (acc: 0.7615) |           v6: 0.7176 (acc: 0.7705)
+[2018/09/25 11:20:21 __main__ INFO] - -            c10_50k       : 0.3283 (acc: 0.8938)
+[2018/09/25 11:20:21 __main__ INFO] - Elapsed 20.44
+keys:  dict_keys(['epoch', 'c10h_train_loss', 'c10h_train_acc', 'c10h_val_loss', 'c10h_val_acc', 'c10h_train_c10_loss', 'c10h_train_c10_acc', 'c10h_val_c10_loss', 'c10h_val_c10_acc', 'v4_loss', 'v4_acc', 'v6_loss', 'v6_acc', 'c10_50k_loss', 'c10_50k_acc']) 
+ c10h_outdir:  /tigress/ruairidh/model_results/run_1/saves/vgg_15_BN_64/con_False_lr_0.1_seed_2
+[2018/09/25 11:20:22 __main__ INFO] - Train 62
+[2018/09/25 11:20:26 __main__ INFO] - TEST 62
+[2018/09/25 11:20:46 __main__ INFO] - - epoch 62    c10h_train    : 0.2505 (acc: 0.9712) | c10h_val    : 0.5103 (acc: 0.8760)
+[2018/09/25 11:20:46 __main__ INFO] - -            c10h_train_c10: 0.1087 (acc: 0.9686) | c10h_val_c10: 0.3778 (acc: 0.8770)
+[2018/09/25 11:20:46 __main__ INFO] - -            v4            : 0.7703 (acc: 0.7491) |           v6: 0.6963 (acc: 0.7835)
+[2018/09/25 11:20:46 __main__ INFO] - -            c10_50k       : 0.3170 (acc: 0.8980)
+[2018/09/25 11:20:46 __main__ INFO] - Elapsed 20.28
+keys:  dict_keys(['epoch', 'c10h_train_loss', 'c10h_train_acc', 'c10h_val_loss', 'c10h_val_acc', 'c10h_train_c10_loss', 'c10h_train_c10_acc', 'c10h_val_c10_loss', 'c10h_val_c10_acc', 'v4_loss', 'v4_acc', 'v6_loss', 'v6_acc', 'c10_50k_loss', 'c10_50k_acc']) 
+ c10h_outdir:  /tigress/ruairidh/model_results/run_1/saves/vgg_15_BN_64/con_False_lr_0.1_seed_2
+[2018/09/25 11:20:46 __main__ INFO] - Train 63
+[2018/09/25 11:20:50 __main__ INFO] - TEST 63
+[2018/09/25 11:21:10 __main__ INFO] - - epoch 63    c10h_train    : 0.2500 (acc: 0.9718) | c10h_val    : 0.5340 (acc: 0.8740)
+[2018/09/25 11:21:10 __main__ INFO] - -            c10h_train_c10: 0.1119 (acc: 0.9681) | c10h_val_c10: 0.4096 (acc: 0.8750)
+[2018/09/25 11:21:10 __main__ INFO] - -            v4            : 0.7276 (acc: 0.7674) |           v6: 0.6880 (acc: 0.7795)
+[2018/09/25 11:21:10 __main__ INFO] - -            c10_50k       : 0.3232 (acc: 0.8959)
+[2018/09/25 11:21:10 __main__ INFO] - Elapsed 20.10
+keys:  dict_keys(['epoch', 'c10h_train_loss', 'c10h_train_acc', 'c10h_val_loss', 'c10h_val_acc', 'c10h_train_c10_loss', 'c10h_train_c10_acc', 'c10h_val_c10_loss', 'c10h_val_c10_acc', 'v4_loss', 'v4_acc', 'v6_loss', 'v6_acc', 'c10_50k_loss', 'c10_50k_acc']) 
+ c10h_outdir:  /tigress/ruairidh/model_results/run_1/saves/vgg_15_BN_64/con_False_lr_0.1_seed_2
+[2018/09/25 11:21:11 __main__ INFO] - Train 64
+[2018/09/25 11:21:15 __main__ INFO] - TEST 64
+[2018/09/25 11:21:35 __main__ INFO] - - epoch 64    c10h_train    : 0.2485 (acc: 0.9719) | c10h_val    : 0.5292 (acc: 0.8730)
+[2018/09/25 11:21:35 __main__ INFO] - -            c10h_train_c10: 0.1067 (acc: 0.9689) | c10h_val_c10: 0.3975 (acc: 0.8760)
+[2018/09/25 11:21:35 __main__ INFO] - -            v4            : 0.7945 (acc: 0.7481) |           v6: 0.7293 (acc: 0.7770)
+[2018/09/25 11:21:35 __main__ INFO] - -            c10_50k       : 0.3337 (acc: 0.8905)
+[2018/09/25 11:21:35 __main__ INFO] - Elapsed 20.18
+keys:  dict_keys(['epoch', 'c10h_train_loss', 'c10h_train_acc', 'c10h_val_loss', 'c10h_val_acc', 'c10h_train_c10_loss', 'c10h_train_c10_acc', 'c10h_val_c10_loss', 'c10h_val_c10_acc', 'v4_loss', 'v4_acc', 'v6_loss', 'v6_acc', 'c10_50k_loss', 'c10_50k_acc']) 
+ c10h_outdir:  /tigress/ruairidh/model_results/run_1/saves/vgg_15_BN_64/con_False_lr_0.1_seed_2
+[2018/09/25 11:21:36 __main__ INFO] - Train 65
+[2018/09/25 11:21:40 __main__ INFO] - TEST 65
+[2018/09/25 11:22:00 __main__ INFO] - - epoch 65    c10h_train    : 0.2492 (acc: 0.9706) | c10h_val    : 0.5350 (acc: 0.8730)
+[2018/09/25 11:22:00 __main__ INFO] - -            c10h_train_c10: 0.1114 (acc: 0.9668) | c10h_val_c10: 0.4062 (acc: 0.8740)
+[2018/09/25 11:22:00 __main__ INFO] - -            v4            : 0.7842 (acc: 0.7630) |           v6: 0.7196 (acc: 0.7765)
+[2018/09/25 11:22:00 __main__ INFO] - -            c10_50k       : 0.3229 (acc: 0.8954)
+[2018/09/25 11:22:00 __main__ INFO] - Elapsed 20.21
+keys:  dict_keys(['epoch', 'c10h_train_loss', 'c10h_train_acc', 'c10h_val_loss', 'c10h_val_acc', 'c10h_train_c10_loss', 'c10h_train_c10_acc', 'c10h_val_c10_loss', 'c10h_val_c10_acc', 'v4_loss', 'v4_acc', 'v6_loss', 'v6_acc', 'c10_50k_loss', 'c10_50k_acc']) 
+ c10h_outdir:  /tigress/ruairidh/model_results/run_1/saves/vgg_15_BN_64/con_False_lr_0.1_seed_2
+[2018/09/25 11:22:00 __main__ INFO] - Train 66
+[2018/09/25 11:22:04 __main__ INFO] - TEST 66
+[2018/09/25 11:22:24 __main__ INFO] - - epoch 66    c10h_train    : 0.2514 (acc: 0.9664) | c10h_val    : 0.5417 (acc: 0.8660)
+[2018/09/25 11:22:25 __main__ INFO] - -            c10h_train_c10: 0.1172 (acc: 0.9652) | c10h_val_c10: 0.4165 (acc: 0.8680)
+[2018/09/25 11:22:25 __main__ INFO] - -            v4            : 0.7884 (acc: 0.7476) |           v6: 0.7299 (acc: 0.7725)
+[2018/09/25 11:22:25 __main__ INFO] - -            c10_50k       : 0.3398 (acc: 0.8890)
+[2018/09/25 11:22:25 __main__ INFO] - Elapsed 20.30
+keys:  dict_keys(['epoch', 'c10h_train_loss', 'c10h_train_acc', 'c10h_val_loss', 'c10h_val_acc', 'c10h_train_c10_loss', 'c10h_train_c10_acc', 'c10h_val_c10_loss', 'c10h_val_c10_acc', 'v4_loss', 'v4_acc', 'v6_loss', 'v6_acc', 'c10_50k_loss', 'c10_50k_acc']) 
+ c10h_outdir:  /tigress/ruairidh/model_results/run_1/saves/vgg_15_BN_64/con_False_lr_0.1_seed_2
+[2018/09/25 11:22:26 __main__ INFO] - Train 67
+[2018/09/25 11:22:30 __main__ INFO] - TEST 67
+[2018/09/25 11:22:50 __main__ INFO] - - epoch 67    c10h_train    : 0.2342 (acc: 0.9768) | c10h_val    : 0.5182 (acc: 0.8610)
+[2018/09/25 11:22:50 __main__ INFO] - -            c10h_train_c10: 0.0942 (acc: 0.9737) | c10h_val_c10: 0.3930 (acc: 0.8630)
+[2018/09/25 11:22:50 __main__ INFO] - -            v4            : 0.7530 (acc: 0.7719) |           v6: 0.7051 (acc: 0.7830)
+[2018/09/25 11:22:50 __main__ INFO] - -            c10_50k       : 0.3092 (acc: 0.9000)
+[2018/09/25 11:22:50 __main__ INFO] - Elapsed 20.20
+keys:  dict_keys(['epoch', 'c10h_train_loss', 'c10h_train_acc', 'c10h_val_loss', 'c10h_val_acc', 'c10h_train_c10_loss', 'c10h_train_c10_acc', 'c10h_val_c10_loss', 'c10h_val_c10_acc', 'v4_loss', 'v4_acc', 'v6_loss', 'v6_acc', 'c10_50k_loss', 'c10_50k_acc']) 
+ c10h_outdir:  /tigress/ruairidh/model_results/run_1/saves/vgg_15_BN_64/con_False_lr_0.1_seed_2
+[2018/09/25 11:22:51 __main__ INFO] - Train 68
+[2018/09/25 11:22:55 __main__ INFO] - TEST 68
+[2018/09/25 11:23:15 __main__ INFO] - - epoch 68    c10h_train    : 0.2299 (acc: 0.9781) | c10h_val    : 0.4861 (acc: 0.8810)
+[2018/09/25 11:23:15 __main__ INFO] - -            c10h_train_c10: 0.0925 (acc: 0.9751) | c10h_val_c10: 0.3633 (acc: 0.8830)
+[2018/09/25 11:23:15 __main__ INFO] - -            v4            : 0.7316 (acc: 0.7590) |           v6: 0.6620 (acc: 0.7925)
+[2018/09/25 11:23:15 __main__ INFO] - -            c10_50k       : 0.3005 (acc: 0.9049)
+[2018/09/25 11:23:15 __main__ INFO] - Elapsed 20.20
+keys:  dict_keys(['epoch', 'c10h_train_loss', 'c10h_train_acc', 'c10h_val_loss', 'c10h_val_acc', 'c10h_train_c10_loss', 'c10h_train_c10_acc', 'c10h_val_c10_loss', 'c10h_val_c10_acc', 'v4_loss', 'v4_acc', 'v6_loss', 'v6_acc', 'c10_50k_loss', 'c10_50k_acc']) 
+ c10h_outdir:  /tigress/ruairidh/model_results/run_1/saves/vgg_15_BN_64/con_False_lr_0.1_seed_2
+[2018/09/25 11:23:16 __main__ INFO] - Train 69
+[2018/09/25 11:23:20 __main__ INFO] - TEST 69
+[2018/09/25 11:23:40 __main__ INFO] - - epoch 69    c10h_train    : 0.2358 (acc: 0.9772) | c10h_val    : 0.4792 (acc: 0.8840)
+[2018/09/25 11:23:40 __main__ INFO] - -            c10h_train_c10: 0.0988 (acc: 0.9750) | c10h_val_c10: 0.3556 (acc: 0.8860)
+[2018/09/25 11:23:40 __main__ INFO] - -            v4            : 0.7260 (acc: 0.7625) |           v6: 0.6798 (acc: 0.7850)
+[2018/09/25 11:23:40 __main__ INFO] - -            c10_50k       : 0.3079 (acc: 0.9010)
+[2018/09/25 11:23:40 __main__ INFO] - Elapsed 20.16
+keys:  dict_keys(['epoch', 'c10h_train_loss', 'c10h_train_acc', 'c10h_val_loss', 'c10h_val_acc', 'c10h_train_c10_loss', 'c10h_train_c10_acc', 'c10h_val_c10_loss', 'c10h_val_c10_acc', 'v4_loss', 'v4_acc', 'v6_loss', 'v6_acc', 'c10_50k_loss', 'c10_50k_acc']) 
+ c10h_outdir:  /tigress/ruairidh/model_results/run_1/saves/vgg_15_BN_64/con_False_lr_0.1_seed_2
+[2018/09/25 11:23:41 __main__ INFO] - Train 70
+[2018/09/25 11:23:44 __main__ INFO] - TEST 70
+[2018/09/25 11:24:05 __main__ INFO] - - epoch 70    c10h_train    : 0.2492 (acc: 0.9706) | c10h_val    : 0.5143 (acc: 0.8660)
+[2018/09/25 11:24:05 __main__ INFO] - -            c10h_train_c10: 0.1131 (acc: 0.9662) | c10h_val_c10: 0.3881 (acc: 0.8680)
+[2018/09/25 11:24:05 __main__ INFO] - -            v4            : 0.7784 (acc: 0.7546) |           v6: 0.7273 (acc: 0.7720)
+[2018/09/25 11:24:05 __main__ INFO] - -            c10_50k       : 0.3302 (acc: 0.8937)
+[2018/09/25 11:24:05 __main__ INFO] - Elapsed 20.35
+keys:  dict_keys(['epoch', 'c10h_train_loss', 'c10h_train_acc', 'c10h_val_loss', 'c10h_val_acc', 'c10h_train_c10_loss', 'c10h_train_c10_acc', 'c10h_val_c10_loss', 'c10h_val_c10_acc', 'v4_loss', 'v4_acc', 'v6_loss', 'v6_acc', 'c10_50k_loss', 'c10_50k_acc']) 
+ c10h_outdir:  /tigress/ruairidh/model_results/run_1/saves/vgg_15_BN_64/con_False_lr_0.1_seed_2
+[2018/09/25 11:24:06 __main__ INFO] - Train 71
+[2018/09/25 11:24:10 __main__ INFO] - TEST 71
+[2018/09/25 11:24:30 __main__ INFO] - - epoch 71    c10h_train    : 0.2429 (acc: 0.9729) | c10h_val    : 0.5519 (acc: 0.8580)
+[2018/09/25 11:24:30 __main__ INFO] - -            c10h_train_c10: 0.1138 (acc: 0.9701) | c10h_val_c10: 0.4376 (acc: 0.8570)
+[2018/09/25 11:24:30 __main__ INFO] - -            v4            : 0.7317 (acc: 0.7660) |           v6: 0.6953 (acc: 0.7830)
+[2018/09/25 11:24:30 __main__ INFO] - -            c10_50k       : 0.3305 (acc: 0.8942)
+[2018/09/25 11:24:30 __main__ INFO] - Elapsed 20.21
+keys:  dict_keys(['epoch', 'c10h_train_loss', 'c10h_train_acc', 'c10h_val_loss', 'c10h_val_acc', 'c10h_train_c10_loss', 'c10h_train_c10_acc', 'c10h_val_c10_loss', 'c10h_val_c10_acc', 'v4_loss', 'v4_acc', 'v6_loss', 'v6_acc', 'c10_50k_loss', 'c10_50k_acc']) 
+ c10h_outdir:  /tigress/ruairidh/model_results/run_1/saves/vgg_15_BN_64/con_False_lr_0.1_seed_2
+[2018/09/25 11:24:31 __main__ INFO] - Train 72
+[2018/09/25 11:24:35 __main__ INFO] - TEST 72
+[2018/09/25 11:24:55 __main__ INFO] - - epoch 72    c10h_train    : 0.2329 (acc: 0.9763) | c10h_val    : 0.4908 (acc: 0.8890)
+[2018/09/25 11:24:55 __main__ INFO] - -            c10h_train_c10: 0.0978 (acc: 0.9741) | c10h_val_c10: 0.3655 (acc: 0.8880)
+[2018/09/25 11:24:55 __main__ INFO] - -            v4            : 0.7224 (acc: 0.7645) |           v6: 0.6741 (acc: 0.7850)
+[2018/09/25 11:24:55 __main__ INFO] - -            c10_50k       : 0.3117 (acc: 0.9006)
+[2018/09/25 11:24:55 __main__ INFO] - Elapsed 20.23
+keys:  dict_keys(['epoch', 'c10h_train_loss', 'c10h_train_acc', 'c10h_val_loss', 'c10h_val_acc', 'c10h_train_c10_loss', 'c10h_train_c10_acc', 'c10h_val_c10_loss', 'c10h_val_c10_acc', 'v4_loss', 'v4_acc', 'v6_loss', 'v6_acc', 'c10_50k_loss', 'c10_50k_acc']) 
+ c10h_outdir:  /tigress/ruairidh/model_results/run_1/saves/vgg_15_BN_64/con_False_lr_0.1_seed_2
+[2018/09/25 11:24:56 __main__ INFO] - Train 73
+[2018/09/25 11:25:00 __main__ INFO] - TEST 73
+[2018/09/25 11:25:20 __main__ INFO] - - epoch 73    c10h_train    : 0.2451 (acc: 0.9732) | c10h_val    : 0.5157 (acc: 0.8720)
+[2018/09/25 11:25:20 __main__ INFO] - -            c10h_train_c10: 0.1064 (acc: 0.9721) | c10h_val_c10: 0.3929 (acc: 0.8720)
+[2018/09/25 11:25:20 __main__ INFO] - -            v4            : 0.8100 (acc: 0.7427) |           v6: 0.7259 (acc: 0.7715)
+[2018/09/25 11:25:20 __main__ INFO] - -            c10_50k       : 0.3301 (acc: 0.8944)
+[2018/09/25 11:25:20 __main__ INFO] - Elapsed 20.22
+keys:  dict_keys(['epoch', 'c10h_train_loss', 'c10h_train_acc', 'c10h_val_loss', 'c10h_val_acc', 'c10h_train_c10_loss', 'c10h_train_c10_acc', 'c10h_val_c10_loss', 'c10h_val_c10_acc', 'v4_loss', 'v4_acc', 'v6_loss', 'v6_acc', 'c10_50k_loss', 'c10_50k_acc']) 
+ c10h_outdir:  /tigress/ruairidh/model_results/run_1/saves/vgg_15_BN_64/con_False_lr_0.1_seed_2
+[2018/09/25 11:25:21 __main__ INFO] - Train 74
+[2018/09/25 11:25:25 __main__ INFO] - TEST 74
+[2018/09/25 11:25:46 __main__ INFO] - - epoch 74    c10h_train    : 0.2577 (acc: 0.9638) | c10h_val    : 0.5347 (acc: 0.8680)
+[2018/09/25 11:25:46 __main__ INFO] - -            c10h_train_c10: 0.1178 (acc: 0.9629) | c10h_val_c10: 0.4157 (acc: 0.8670)
+[2018/09/25 11:25:46 __main__ INFO] - -            v4            : 0.7679 (acc: 0.7571) |           v6: 0.7241 (acc: 0.7790)
+[2018/09/25 11:25:46 __main__ INFO] - -            c10_50k       : 0.3521 (acc: 0.8859)
+[2018/09/25 11:25:46 __main__ INFO] - Elapsed 20.41
+keys:  dict_keys(['epoch', 'c10h_train_loss', 'c10h_train_acc', 'c10h_val_loss', 'c10h_val_acc', 'c10h_train_c10_loss', 'c10h_train_c10_acc', 'c10h_val_c10_loss', 'c10h_val_c10_acc', 'v4_loss', 'v4_acc', 'v6_loss', 'v6_acc', 'c10_50k_loss', 'c10_50k_acc']) 
+ c10h_outdir:  /tigress/ruairidh/model_results/run_1/saves/vgg_15_BN_64/con_False_lr_0.1_seed_2
+[2018/09/25 11:25:47 __main__ INFO] - Train 75
+[2018/09/25 11:25:50 __main__ INFO] - TEST 75
+[2018/09/25 11:26:11 __main__ INFO] - - epoch 75    c10h_train    : 0.2631 (acc: 0.9618) | c10h_val    : 0.5280 (acc: 0.8690)
+[2018/09/25 11:26:11 __main__ INFO] - -            c10h_train_c10: 0.1300 (acc: 0.9594) | c10h_val_c10: 0.4140 (acc: 0.8700)
+[2018/09/25 11:26:11 __main__ INFO] - -            v4            : 0.8636 (acc: 0.7397) |           v6: 0.8021 (acc: 0.7525)
+[2018/09/25 11:26:11 __main__ INFO] - -            c10_50k       : 0.3863 (acc: 0.8783)
+[2018/09/25 11:26:11 __main__ INFO] - Elapsed 20.19
+keys:  dict_keys(['epoch', 'c10h_train_loss', 'c10h_train_acc', 'c10h_val_loss', 'c10h_val_acc', 'c10h_train_c10_loss', 'c10h_train_c10_acc', 'c10h_val_c10_loss', 'c10h_val_c10_acc', 'v4_loss', 'v4_acc', 'v6_loss', 'v6_acc', 'c10_50k_loss', 'c10_50k_acc']) 
+ c10h_outdir:  /tigress/ruairidh/model_results/run_1/saves/vgg_15_BN_64/con_False_lr_0.1_seed_2
+[2018/09/25 11:26:11 __main__ INFO] - Train 76
+[2018/09/25 11:26:15 __main__ INFO] - TEST 76
+[2018/09/25 11:26:35 __main__ INFO] - - epoch 76    c10h_train    : 0.2422 (acc: 0.9714) | c10h_val    : 0.5025 (acc: 0.8820)
+[2018/09/25 11:26:35 __main__ INFO] - -            c10h_train_c10: 0.1052 (acc: 0.9680) | c10h_val_c10: 0.3787 (acc: 0.8830)
+[2018/09/25 11:26:35 __main__ INFO] - -            v4            : 0.7749 (acc: 0.7546) |           v6: 0.6947 (acc: 0.7830)
+[2018/09/25 11:26:35 __main__ INFO] - -            c10_50k       : 0.3373 (acc: 0.8907)
+[2018/09/25 11:26:35 __main__ INFO] - Elapsed 20.05
+keys:  dict_keys(['epoch', 'c10h_train_loss', 'c10h_train_acc', 'c10h_val_loss', 'c10h_val_acc', 'c10h_train_c10_loss', 'c10h_train_c10_acc', 'c10h_val_c10_loss', 'c10h_val_c10_acc', 'v4_loss', 'v4_acc', 'v6_loss', 'v6_acc', 'c10_50k_loss', 'c10_50k_acc']) 
+ c10h_outdir:  /tigress/ruairidh/model_results/run_1/saves/vgg_15_BN_64/con_False_lr_0.1_seed_2
+[2018/09/25 11:26:36 __main__ INFO] - Train 77
+[2018/09/25 11:26:40 __main__ INFO] - TEST 77
+[2018/09/25 11:27:00 __main__ INFO] - - epoch 77    c10h_train    : 0.2493 (acc: 0.9683) | c10h_val    : 0.5239 (acc: 0.8660)
+[2018/09/25 11:27:00 __main__ INFO] - -            c10h_train_c10: 0.1151 (acc: 0.9666) | c10h_val_c10: 0.3997 (acc: 0.8680)
+[2018/09/25 11:27:00 __main__ INFO] - -            v4            : 0.7834 (acc: 0.7521) |           v6: 0.7079 (acc: 0.7735)
+[2018/09/25 11:27:00 __main__ INFO] - -            c10_50k       : 0.3568 (acc: 0.8862)
+[2018/09/25 11:27:00 __main__ INFO] - Elapsed 20.17
+keys:  dict_keys(['epoch', 'c10h_train_loss', 'c10h_train_acc', 'c10h_val_loss', 'c10h_val_acc', 'c10h_train_c10_loss', 'c10h_train_c10_acc', 'c10h_val_c10_loss', 'c10h_val_c10_acc', 'v4_loss', 'v4_acc', 'v6_loss', 'v6_acc', 'c10_50k_loss', 'c10_50k_acc']) 
+ c10h_outdir:  /tigress/ruairidh/model_results/run_1/saves/vgg_15_BN_64/con_False_lr_0.1_seed_2
+[2018/09/25 11:27:00 __main__ INFO] - Train 78
+[2018/09/25 11:27:04 __main__ INFO] - TEST 78
+[2018/09/25 11:27:25 __main__ INFO] - - epoch 78    c10h_train    : 0.2700 (acc: 0.9597) | c10h_val    : 0.5658 (acc: 0.8540)
+[2018/09/25 11:27:25 __main__ INFO] - -            c10h_train_c10: 0.1324 (acc: 0.9589) | c10h_val_c10: 0.4423 (acc: 0.8560)
+[2018/09/25 11:27:25 __main__ INFO] - -            v4            : 0.8447 (acc: 0.7293) |           v6: 0.7782 (acc: 0.7595)
+[2018/09/25 11:27:25 __main__ INFO] - -            c10_50k       : 0.3891 (acc: 0.8770)
+[2018/09/25 11:27:25 __main__ INFO] - Elapsed 20.30
+keys:  dict_keys(['epoch', 'c10h_train_loss', 'c10h_train_acc', 'c10h_val_loss', 'c10h_val_acc', 'c10h_train_c10_loss', 'c10h_train_c10_acc', 'c10h_val_c10_loss', 'c10h_val_c10_acc', 'v4_loss', 'v4_acc', 'v6_loss', 'v6_acc', 'c10_50k_loss', 'c10_50k_acc']) 
+ c10h_outdir:  /tigress/ruairidh/model_results/run_1/saves/vgg_15_BN_64/con_False_lr_0.1_seed_2
+[2018/09/25 11:27:25 __main__ INFO] - Train 79
+[2018/09/25 11:27:29 __main__ INFO] - TEST 79
+[2018/09/25 11:27:49 __main__ INFO] - - epoch 79    c10h_train    : 0.2627 (acc: 0.9664) | c10h_val    : 0.5221 (acc: 0.8680)
+[2018/09/25 11:27:49 __main__ INFO] - -            c10h_train_c10: 0.1216 (acc: 0.9619) | c10h_val_c10: 0.3983 (acc: 0.8660)
+[2018/09/25 11:27:49 __main__ INFO] - -            v4            : 0.8426 (acc: 0.7378) |           v6: 0.7772 (acc: 0.7625)
+[2018/09/25 11:27:49 __main__ INFO] - -            c10_50k       : 0.3753 (acc: 0.8791)
+[2018/09/25 11:27:49 __main__ INFO] - Elapsed 20.34
+keys:  dict_keys(['epoch', 'c10h_train_loss', 'c10h_train_acc', 'c10h_val_loss', 'c10h_val_acc', 'c10h_train_c10_loss', 'c10h_train_c10_acc', 'c10h_val_c10_loss', 'c10h_val_c10_acc', 'v4_loss', 'v4_acc', 'v6_loss', 'v6_acc', 'c10_50k_loss', 'c10_50k_acc']) 
+ c10h_outdir:  /tigress/ruairidh/model_results/run_1/saves/vgg_15_BN_64/con_False_lr_0.1_seed_2
+[2018/09/25 11:27:50 __main__ INFO] - Train 80
+[2018/09/25 11:27:54 __main__ INFO] - TEST 80
+[2018/09/25 11:28:14 __main__ INFO] - - epoch 80    c10h_train    : 0.2580 (acc: 0.9657) | c10h_val    : 0.5152 (acc: 0.8770)
+[2018/09/25 11:28:14 __main__ INFO] - -            c10h_train_c10: 0.1221 (acc: 0.9634) | c10h_val_c10: 0.3871 (acc: 0.8760)
+[2018/09/25 11:28:14 __main__ INFO] - -            v4            : 0.7943 (acc: 0.7447) |           v6: 0.7303 (acc: 0.7630)
+[2018/09/25 11:28:14 __main__ INFO] - -            c10_50k       : 0.3643 (acc: 0.8837)
+[2018/09/25 11:28:14 __main__ INFO] - Elapsed 20.31
+keys:  dict_keys(['epoch', 'c10h_train_loss', 'c10h_train_acc', 'c10h_val_loss', 'c10h_val_acc', 'c10h_train_c10_loss', 'c10h_train_c10_acc', 'c10h_val_c10_loss', 'c10h_val_c10_acc', 'v4_loss', 'v4_acc', 'v6_loss', 'v6_acc', 'c10_50k_loss', 'c10_50k_acc']) 
+ c10h_outdir:  /tigress/ruairidh/model_results/run_1/saves/vgg_15_BN_64/con_False_lr_0.1_seed_2
+[2018/09/25 11:28:15 __main__ INFO] - Train 81
+[2018/09/25 11:28:18 __main__ INFO] - TEST 81
+[2018/09/25 11:28:39 __main__ INFO] - - epoch 81    c10h_train    : 0.2186 (acc: 0.9844) | c10h_val    : 0.4409 (acc: 0.8930)
+[2018/09/25 11:28:39 __main__ INFO] - -            c10h_train_c10: 0.0758 (acc: 0.9820) | c10h_val_c10: 0.3113 (acc: 0.8920)
+[2018/09/25 11:28:39 __main__ INFO] - -            v4            : 0.6828 (acc: 0.7778) |           v6: 0.6234 (acc: 0.7965)
+[2018/09/25 11:28:39 __main__ INFO] - -            c10_50k       : 0.2788 (acc: 0.9112)
+[2018/09/25 11:28:39 __main__ INFO] - Elapsed 20.11
+keys:  dict_keys(['epoch', 'c10h_train_loss', 'c10h_train_acc', 'c10h_val_loss', 'c10h_val_acc', 'c10h_train_c10_loss', 'c10h_train_c10_acc', 'c10h_val_c10_loss', 'c10h_val_c10_acc', 'v4_loss', 'v4_acc', 'v6_loss', 'v6_acc', 'c10_50k_loss', 'c10_50k_acc']) 
+ c10h_outdir:  /tigress/ruairidh/model_results/run_1/saves/vgg_15_BN_64/con_False_lr_0.1_seed_2
+[2018/09/25 11:28:39 __main__ INFO] - Train 82
+[2018/09/25 11:28:43 __main__ INFO] - TEST 82
+[2018/09/25 11:29:03 __main__ INFO] - - epoch 82    c10h_train    : 0.2117 (acc: 0.9863) | c10h_val    : 0.4336 (acc: 0.8930)
+[2018/09/25 11:29:03 __main__ INFO] - -            c10h_train_c10: 0.0690 (acc: 0.9839) | c10h_val_c10: 0.3058 (acc: 0.8910)
+[2018/09/25 11:29:03 __main__ INFO] - -            v4            : 0.6508 (acc: 0.7897) |           v6: 0.6041 (acc: 0.8020)
+[2018/09/25 11:29:03 __main__ INFO] - -            c10_50k       : 0.2738 (acc: 0.9123)
+[2018/09/25 11:29:03 __main__ INFO] - Elapsed 20.22
+keys:  dict_keys(['epoch', 'c10h_train_loss', 'c10h_train_acc', 'c10h_val_loss', 'c10h_val_acc', 'c10h_train_c10_loss', 'c10h_train_c10_acc', 'c10h_val_c10_loss', 'c10h_val_c10_acc', 'v4_loss', 'v4_acc', 'v6_loss', 'v6_acc', 'c10_50k_loss', 'c10_50k_acc']) 
+ c10h_outdir:  /tigress/ruairidh/model_results/run_1/saves/vgg_15_BN_64/con_False_lr_0.1_seed_2
+[2018/09/25 11:29:03 __main__ INFO] - Train 83
+[2018/09/25 11:29:07 __main__ INFO] - TEST 83
+[2018/09/25 11:29:28 __main__ INFO] - - epoch 83    c10h_train    : 0.2098 (acc: 0.9868) | c10h_val    : 0.4221 (acc: 0.9010)
+[2018/09/25 11:29:28 __main__ INFO] - -            c10h_train_c10: 0.0668 (acc: 0.9842) | c10h_val_c10: 0.2939 (acc: 0.8990)
+[2018/09/25 11:29:28 __main__ INFO] - -            v4            : 0.6345 (acc: 0.7952) |           v6: 0.5863 (acc: 0.8090)
+[2018/09/25 11:29:28 __main__ INFO] - -            c10_50k       : 0.2624 (acc: 0.9158)
+[2018/09/25 11:29:28 __main__ INFO] - Elapsed 20.33
+keys:  dict_keys(['epoch', 'c10h_train_loss', 'c10h_train_acc', 'c10h_val_loss', 'c10h_val_acc', 'c10h_train_c10_loss', 'c10h_train_c10_acc', 'c10h_val_c10_loss', 'c10h_val_c10_acc', 'v4_loss', 'v4_acc', 'v6_loss', 'v6_acc', 'c10_50k_loss', 'c10_50k_acc']) 
+ c10h_outdir:  /tigress/ruairidh/model_results/run_1/saves/vgg_15_BN_64/con_False_lr_0.1_seed_2
+[2018/09/25 11:29:28 __main__ INFO] - Train 84
+[2018/09/25 11:29:32 __main__ INFO] - TEST 84
+[2018/09/25 11:29:53 __main__ INFO] - - epoch 84    c10h_train    : 0.2068 (acc: 0.9879) | c10h_val    : 0.4187 (acc: 0.8980)
+[2018/09/25 11:29:53 __main__ INFO] - -            c10h_train_c10: 0.0663 (acc: 0.9852) | c10h_val_c10: 0.2908 (acc: 0.8960)
+[2018/09/25 11:29:53 __main__ INFO] - -            v4            : 0.6538 (acc: 0.7887) |           v6: 0.5811 (acc: 0.8115)
+[2018/09/25 11:29:53 __main__ INFO] - -            c10_50k       : 0.2573 (acc: 0.9177)
+[2018/09/25 11:29:53 __main__ INFO] - Elapsed 20.17
+keys:  dict_keys(['epoch', 'c10h_train_loss', 'c10h_train_acc', 'c10h_val_loss', 'c10h_val_acc', 'c10h_train_c10_loss', 'c10h_train_c10_acc', 'c10h_val_c10_loss', 'c10h_val_c10_acc', 'v4_loss', 'v4_acc', 'v6_loss', 'v6_acc', 'c10_50k_loss', 'c10_50k_acc']) 
+ c10h_outdir:  /tigress/ruairidh/model_results/run_1/saves/vgg_15_BN_64/con_False_lr_0.1_seed_2
+[2018/09/25 11:29:53 __main__ INFO] - Train 85
+[2018/09/25 11:29:57 __main__ INFO] - TEST 85
+[2018/09/25 11:30:17 __main__ INFO] - - epoch 85    c10h_train    : 0.2064 (acc: 0.9887) | c10h_val    : 0.4172 (acc: 0.9030)
+[2018/09/25 11:30:17 __main__ INFO] - -            c10h_train_c10: 0.0667 (acc: 0.9844) | c10h_val_c10: 0.2909 (acc: 0.9010)
+[2018/09/25 11:30:17 __main__ INFO] - -            v4            : 0.6289 (acc: 0.7882) |           v6: 0.5705 (acc: 0.8120)
+[2018/09/25 11:30:17 __main__ INFO] - -            c10_50k       : 0.2539 (acc: 0.9193)
+[2018/09/25 11:30:17 __main__ INFO] - Elapsed 20.14
+keys:  dict_keys(['epoch', 'c10h_train_loss', 'c10h_train_acc', 'c10h_val_loss', 'c10h_val_acc', 'c10h_train_c10_loss', 'c10h_train_c10_acc', 'c10h_val_c10_loss', 'c10h_val_c10_acc', 'v4_loss', 'v4_acc', 'v6_loss', 'v6_acc', 'c10_50k_loss', 'c10_50k_acc']) 
+ c10h_outdir:  /tigress/ruairidh/model_results/run_1/saves/vgg_15_BN_64/con_False_lr_0.1_seed_2
+[2018/09/25 11:30:18 __main__ INFO] - Train 86
+[2018/09/25 11:30:22 __main__ INFO] - TEST 86
+[2018/09/25 11:30:42 __main__ INFO] - - epoch 86    c10h_train    : 0.2061 (acc: 0.9877) | c10h_val    : 0.4142 (acc: 0.9040)
+[2018/09/25 11:30:42 __main__ INFO] - -            c10h_train_c10: 0.0655 (acc: 0.9840) | c10h_val_c10: 0.2867 (acc: 0.9020)
+[2018/09/25 11:30:42 __main__ INFO] - -            v4            : 0.6402 (acc: 0.7872) |           v6: 0.5692 (acc: 0.8180)
+[2018/09/25 11:30:42 __main__ INFO] - -            c10_50k       : 0.2490 (acc: 0.9211)
+[2018/09/25 11:30:42 __main__ INFO] - Elapsed 20.12
+keys:  dict_keys(['epoch', 'c10h_train_loss', 'c10h_train_acc', 'c10h_val_loss', 'c10h_val_acc', 'c10h_train_c10_loss', 'c10h_train_c10_acc', 'c10h_val_c10_loss', 'c10h_val_c10_acc', 'v4_loss', 'v4_acc', 'v6_loss', 'v6_acc', 'c10_50k_loss', 'c10_50k_acc']) 
+ c10h_outdir:  /tigress/ruairidh/model_results/run_1/saves/vgg_15_BN_64/con_False_lr_0.1_seed_2
+[2018/09/25 11:30:42 __main__ INFO] - Train 87
+[2018/09/25 11:30:46 __main__ INFO] - TEST 87
+[2018/09/25 11:31:06 __main__ INFO] - - epoch 87    c10h_train    : 0.2038 (acc: 0.9897) | c10h_val    : 0.4117 (acc: 0.9070)
+[2018/09/25 11:31:07 __main__ INFO] - -            c10h_train_c10: 0.0642 (acc: 0.9850) | c10h_val_c10: 0.2848 (acc: 0.9050)
+[2018/09/25 11:31:07 __main__ INFO] - -            v4            : 0.6208 (acc: 0.7952) |           v6: 0.5630 (acc: 0.8145)
+[2018/09/25 11:31:07 __main__ INFO] - -            c10_50k       : 0.2455 (acc: 0.9214)
+[2018/09/25 11:31:07 __main__ INFO] - Elapsed 20.25
+keys:  dict_keys(['epoch', 'c10h_train_loss', 'c10h_train_acc', 'c10h_val_loss', 'c10h_val_acc', 'c10h_train_c10_loss', 'c10h_train_c10_acc', 'c10h_val_c10_loss', 'c10h_val_c10_acc', 'v4_loss', 'v4_acc', 'v6_loss', 'v6_acc', 'c10_50k_loss', 'c10_50k_acc']) 
+ c10h_outdir:  /tigress/ruairidh/model_results/run_1/saves/vgg_15_BN_64/con_False_lr_0.1_seed_2
+[2018/09/25 11:31:07 __main__ INFO] - Train 88
+[2018/09/25 11:31:11 __main__ INFO] - TEST 88
+[2018/09/25 11:31:32 __main__ INFO] - - epoch 88    c10h_train    : 0.2038 (acc: 0.9896) | c10h_val    : 0.4100 (acc: 0.9000)
+[2018/09/25 11:31:32 __main__ INFO] - -            c10h_train_c10: 0.0634 (acc: 0.9857) | c10h_val_c10: 0.2844 (acc: 0.8980)
+[2018/09/25 11:31:32 __main__ INFO] - -            v4            : 0.6259 (acc: 0.7952) |           v6: 0.5645 (acc: 0.8160)
+[2018/09/25 11:31:32 __main__ INFO] - -            c10_50k       : 0.2461 (acc: 0.9223)
+[2018/09/25 11:31:32 __main__ INFO] - Elapsed 20.27
+keys:  dict_keys(['epoch', 'c10h_train_loss', 'c10h_train_acc', 'c10h_val_loss', 'c10h_val_acc', 'c10h_train_c10_loss', 'c10h_train_c10_acc', 'c10h_val_c10_loss', 'c10h_val_c10_acc', 'v4_loss', 'v4_acc', 'v6_loss', 'v6_acc', 'c10_50k_loss', 'c10_50k_acc']) 
+ c10h_outdir:  /tigress/ruairidh/model_results/run_1/saves/vgg_15_BN_64/con_False_lr_0.1_seed_2
+[2018/09/25 11:31:32 __main__ INFO] - Train 89
+[2018/09/25 11:31:36 __main__ INFO] - TEST 89
+[2018/09/25 11:31:56 __main__ INFO] - - epoch 89    c10h_train    : 0.2023 (acc: 0.9901) | c10h_val    : 0.4096 (acc: 0.9060)
+[2018/09/25 11:31:56 __main__ INFO] - -            c10h_train_c10: 0.0620 (acc: 0.9860) | c10h_val_c10: 0.2837 (acc: 0.9040)
+[2018/09/25 11:31:56 __main__ INFO] - -            v4            : 0.6257 (acc: 0.7952) |           v6: 0.5616 (acc: 0.8170)
+[2018/09/25 11:31:56 __main__ INFO] - -            c10_50k       : 0.2459 (acc: 0.9218)
+[2018/09/25 11:31:56 __main__ INFO] - Elapsed 20.19
+keys:  dict_keys(['epoch', 'c10h_train_loss', 'c10h_train_acc', 'c10h_val_loss', 'c10h_val_acc', 'c10h_train_c10_loss', 'c10h_train_c10_acc', 'c10h_val_c10_loss', 'c10h_val_c10_acc', 'v4_loss', 'v4_acc', 'v6_loss', 'v6_acc', 'c10_50k_loss', 'c10_50k_acc']) 
+ c10h_outdir:  /tigress/ruairidh/model_results/run_1/saves/vgg_15_BN_64/con_False_lr_0.1_seed_2
+[2018/09/25 11:31:57 __main__ INFO] - Train 90
+[2018/09/25 11:32:01 __main__ INFO] - TEST 90
+[2018/09/25 11:32:21 __main__ INFO] - - epoch 90    c10h_train    : 0.2032 (acc: 0.9889) | c10h_val    : 0.4098 (acc: 0.9050)
+[2018/09/25 11:32:22 __main__ INFO] - -            c10h_train_c10: 0.0632 (acc: 0.9858) | c10h_val_c10: 0.2824 (acc: 0.9030)
+[2018/09/25 11:32:22 __main__ INFO] - -            v4            : 0.6122 (acc: 0.7942) |           v6: 0.5513 (acc: 0.8210)
+[2018/09/25 11:32:22 __main__ INFO] - -            c10_50k       : 0.2430 (acc: 0.9226)
+[2018/09/25 11:32:22 __main__ INFO] - Elapsed 20.29
+keys:  dict_keys(['epoch', 'c10h_train_loss', 'c10h_train_acc', 'c10h_val_loss', 'c10h_val_acc', 'c10h_train_c10_loss', 'c10h_train_c10_acc', 'c10h_val_c10_loss', 'c10h_val_c10_acc', 'v4_loss', 'v4_acc', 'v6_loss', 'v6_acc', 'c10_50k_loss', 'c10_50k_acc']) 
+ c10h_outdir:  /tigress/ruairidh/model_results/run_1/saves/vgg_15_BN_64/con_False_lr_0.1_seed_2
+[2018/09/25 11:32:22 __main__ INFO] - Train 91
+[2018/09/25 11:32:26 __main__ INFO] - TEST 91
+[2018/09/25 11:32:46 __main__ INFO] - - epoch 91    c10h_train    : 0.2027 (acc: 0.9889) | c10h_val    : 0.4108 (acc: 0.8980)
+[2018/09/25 11:32:46 __main__ INFO] - -            c10h_train_c10: 0.0628 (acc: 0.9857) | c10h_val_c10: 0.2852 (acc: 0.8960)
+[2018/09/25 11:32:46 __main__ INFO] - -            v4            : 0.6071 (acc: 0.7986) |           v6: 0.5594 (acc: 0.8150)
+[2018/09/25 11:32:46 __main__ INFO] - -            c10_50k       : 0.2419 (acc: 0.9222)
+[2018/09/25 11:32:46 __main__ INFO] - Elapsed 20.25
+keys:  dict_keys(['epoch', 'c10h_train_loss', 'c10h_train_acc', 'c10h_val_loss', 'c10h_val_acc', 'c10h_train_c10_loss', 'c10h_train_c10_acc', 'c10h_val_c10_loss', 'c10h_val_c10_acc', 'v4_loss', 'v4_acc', 'v6_loss', 'v6_acc', 'c10_50k_loss', 'c10_50k_acc']) 
+ c10h_outdir:  /tigress/ruairidh/model_results/run_1/saves/vgg_15_BN_64/con_False_lr_0.1_seed_2
+[2018/09/25 11:32:47 __main__ INFO] - Train 92
+[2018/09/25 11:32:51 __main__ INFO] - TEST 92
+[2018/09/25 11:33:11 __main__ INFO] - - epoch 92    c10h_train    : 0.2015 (acc: 0.9893) | c10h_val    : 0.4132 (acc: 0.8980)
+[2018/09/25 11:33:11 __main__ INFO] - -            c10h_train_c10: 0.0637 (acc: 0.9852) | c10h_val_c10: 0.2890 (acc: 0.8960)
+[2018/09/25 11:33:11 __main__ INFO] - -            v4            : 0.6330 (acc: 0.7942) |           v6: 0.5583 (acc: 0.8170)
+[2018/09/25 11:33:11 __main__ INFO] - -            c10_50k       : 0.2419 (acc: 0.9229)
+[2018/09/25 11:33:11 __main__ INFO] - Elapsed 20.30
+keys:  dict_keys(['epoch', 'c10h_train_loss', 'c10h_train_acc', 'c10h_val_loss', 'c10h_val_acc', 'c10h_train_c10_loss', 'c10h_train_c10_acc', 'c10h_val_c10_loss', 'c10h_val_c10_acc', 'v4_loss', 'v4_acc', 'v6_loss', 'v6_acc', 'c10_50k_loss', 'c10_50k_acc']) 
+ c10h_outdir:  /tigress/ruairidh/model_results/run_1/saves/vgg_15_BN_64/con_False_lr_0.1_seed_2
+[2018/09/25 11:33:12 __main__ INFO] - Train 93
+[2018/09/25 11:33:16 __main__ INFO] - TEST 93
+[2018/09/25 11:33:36 __main__ INFO] - - epoch 93    c10h_train    : 0.2014 (acc: 0.9898) | c10h_val    : 0.4141 (acc: 0.9000)
+[2018/09/25 11:33:36 __main__ INFO] - -            c10h_train_c10: 0.0600 (acc: 0.9867) | c10h_val_c10: 0.2868 (acc: 0.8980)
+[2018/09/25 11:33:36 __main__ INFO] - -            v4            : 0.6259 (acc: 0.7976) |           v6: 0.5551 (acc: 0.8190)
+[2018/09/25 11:33:36 __main__ INFO] - -            c10_50k       : 0.2405 (acc: 0.9241)
+[2018/09/25 11:33:36 __main__ INFO] - Elapsed 20.33
+keys:  dict_keys(['epoch', 'c10h_train_loss', 'c10h_train_acc', 'c10h_val_loss', 'c10h_val_acc', 'c10h_train_c10_loss', 'c10h_train_c10_acc', 'c10h_val_c10_loss', 'c10h_val_c10_acc', 'v4_loss', 'v4_acc', 'v6_loss', 'v6_acc', 'c10_50k_loss', 'c10_50k_acc']) 
+ c10h_outdir:  /tigress/ruairidh/model_results/run_1/saves/vgg_15_BN_64/con_False_lr_0.1_seed_2
+[2018/09/25 11:33:37 __main__ INFO] - Train 94
+[2018/09/25 11:33:41 __main__ INFO] - TEST 94
+[2018/09/25 11:34:01 __main__ INFO] - - epoch 94    c10h_train    : 0.2002 (acc: 0.9878) | c10h_val    : 0.4145 (acc: 0.8990)
+[2018/09/25 11:34:01 __main__ INFO] - -            c10h_train_c10: 0.0628 (acc: 0.9844) | c10h_val_c10: 0.2897 (acc: 0.8990)
+[2018/09/25 11:34:01 __main__ INFO] - -            v4            : 0.6076 (acc: 0.8001) |           v6: 0.5538 (acc: 0.8165)
+[2018/09/25 11:34:01 __main__ INFO] - -            c10_50k       : 0.2388 (acc: 0.9245)
+[2018/09/25 11:34:01 __main__ INFO] - Elapsed 20.27
+keys:  dict_keys(['epoch', 'c10h_train_loss', 'c10h_train_acc', 'c10h_val_loss', 'c10h_val_acc', 'c10h_train_c10_loss', 'c10h_train_c10_acc', 'c10h_val_c10_loss', 'c10h_val_c10_acc', 'v4_loss', 'v4_acc', 'v6_loss', 'v6_acc', 'c10_50k_loss', 'c10_50k_acc']) 
+ c10h_outdir:  /tigress/ruairidh/model_results/run_1/saves/vgg_15_BN_64/con_False_lr_0.1_seed_2
+[2018/09/25 11:34:02 __main__ INFO] - Train 95
+[2018/09/25 11:34:06 __main__ INFO] - TEST 95
+[2018/09/25 11:34:26 __main__ INFO] - - epoch 95    c10h_train    : 0.2011 (acc: 0.9872) | c10h_val    : 0.4147 (acc: 0.8980)
+[2018/09/25 11:34:26 __main__ INFO] - -            c10h_train_c10: 0.0618 (acc: 0.9841) | c10h_val_c10: 0.2883 (acc: 0.8960)
+[2018/09/25 11:34:26 __main__ INFO] - -            v4            : 0.5911 (acc: 0.8090) |           v6: 0.5474 (acc: 0.8220)
+[2018/09/25 11:34:26 __main__ INFO] - -            c10_50k       : 0.2380 (acc: 0.9247)
+[2018/09/25 11:34:26 __main__ INFO] - Elapsed 20.26
+keys:  dict_keys(['epoch', 'c10h_train_loss', 'c10h_train_acc', 'c10h_val_loss', 'c10h_val_acc', 'c10h_train_c10_loss', 'c10h_train_c10_acc', 'c10h_val_c10_loss', 'c10h_val_c10_acc', 'v4_loss', 'v4_acc', 'v6_loss', 'v6_acc', 'c10_50k_loss', 'c10_50k_acc']) 
+ c10h_outdir:  /tigress/ruairidh/model_results/run_1/saves/vgg_15_BN_64/con_False_lr_0.1_seed_2
+[2018/09/25 11:34:27 __main__ INFO] - Train 96
+[2018/09/25 11:34:31 __main__ INFO] - TEST 96
+[2018/09/25 11:34:51 __main__ INFO] - - epoch 96    c10h_train    : 0.1997 (acc: 0.9891) | c10h_val    : 0.4134 (acc: 0.9040)
+[2018/09/25 11:34:51 __main__ INFO] - -            c10h_train_c10: 0.0621 (acc: 0.9852) | c10h_val_c10: 0.2873 (acc: 0.9020)
+[2018/09/25 11:34:51 __main__ INFO] - -            v4            : 0.6042 (acc: 0.8026) |           v6: 0.5509 (acc: 0.8200)
+[2018/09/25 11:34:51 __main__ INFO] - -            c10_50k       : 0.2362 (acc: 0.9255)
+[2018/09/25 11:34:51 __main__ INFO] - Elapsed 20.30
+keys:  dict_keys(['epoch', 'c10h_train_loss', 'c10h_train_acc', 'c10h_val_loss', 'c10h_val_acc', 'c10h_train_c10_loss', 'c10h_train_c10_acc', 'c10h_val_c10_loss', 'c10h_val_c10_acc', 'v4_loss', 'v4_acc', 'v6_loss', 'v6_acc', 'c10_50k_loss', 'c10_50k_acc']) 
+ c10h_outdir:  /tigress/ruairidh/model_results/run_1/saves/vgg_15_BN_64/con_False_lr_0.1_seed_2
+[2018/09/25 11:34:52 __main__ INFO] - Train 97
+[2018/09/25 11:34:56 __main__ INFO] - TEST 97
+[2018/09/25 11:35:16 __main__ INFO] - - epoch 97    c10h_train    : 0.1991 (acc: 0.9887) | c10h_val    : 0.4099 (acc: 0.9040)
+[2018/09/25 11:35:16 __main__ INFO] - -            c10h_train_c10: 0.0608 (acc: 0.9857) | c10h_val_c10: 0.2832 (acc: 0.9020)
+[2018/09/25 11:35:16 __main__ INFO] - -            v4            : 0.6130 (acc: 0.8050) |           v6: 0.5508 (acc: 0.8220)
+[2018/09/25 11:35:16 __main__ INFO] - -            c10_50k       : 0.2369 (acc: 0.9243)
+[2018/09/25 11:35:16 __main__ INFO] - Elapsed 20.36
+keys:  dict_keys(['epoch', 'c10h_train_loss', 'c10h_train_acc', 'c10h_val_loss', 'c10h_val_acc', 'c10h_train_c10_loss', 'c10h_train_c10_acc', 'c10h_val_c10_loss', 'c10h_val_c10_acc', 'v4_loss', 'v4_acc', 'v6_loss', 'v6_acc', 'c10_50k_loss', 'c10_50k_acc']) 
+ c10h_outdir:  /tigress/ruairidh/model_results/run_1/saves/vgg_15_BN_64/con_False_lr_0.1_seed_2
+[2018/09/25 11:35:17 __main__ INFO] - Train 98
+[2018/09/25 11:35:21 __main__ INFO] - TEST 98
+[2018/09/25 11:35:41 __main__ INFO] - - epoch 98    c10h_train    : 0.2000 (acc: 0.9898) | c10h_val    : 0.4093 (acc: 0.9020)
+[2018/09/25 11:35:41 __main__ INFO] - -            c10h_train_c10: 0.0615 (acc: 0.9860) | c10h_val_c10: 0.2830 (acc: 0.9000)
+[2018/09/25 11:35:41 __main__ INFO] - -            v4            : 0.5977 (acc: 0.8090) |           v6: 0.5476 (acc: 0.8225)
+[2018/09/25 11:35:41 __main__ INFO] - -            c10_50k       : 0.2394 (acc: 0.9234)
+[2018/09/25 11:35:41 __main__ INFO] - Elapsed 20.25
+keys:  dict_keys(['epoch', 'c10h_train_loss', 'c10h_train_acc', 'c10h_val_loss', 'c10h_val_acc', 'c10h_train_c10_loss', 'c10h_train_c10_acc', 'c10h_val_c10_loss', 'c10h_val_c10_acc', 'v4_loss', 'v4_acc', 'v6_loss', 'v6_acc', 'c10_50k_loss', 'c10_50k_acc']) 
+ c10h_outdir:  /tigress/ruairidh/model_results/run_1/saves/vgg_15_BN_64/con_False_lr_0.1_seed_2
+[2018/09/25 11:35:41 __main__ INFO] - Train 99
+[2018/09/25 11:35:45 __main__ INFO] - TEST 99
+[2018/09/25 11:36:05 __main__ INFO] - - epoch 99    c10h_train    : 0.1994 (acc: 0.9898) | c10h_val    : 0.4115 (acc: 0.8980)
+[2018/09/25 11:36:05 __main__ INFO] - -            c10h_train_c10: 0.0629 (acc: 0.9856) | c10h_val_c10: 0.2852 (acc: 0.8980)
+[2018/09/25 11:36:05 __main__ INFO] - -            v4            : 0.5966 (acc: 0.8031) |           v6: 0.5515 (acc: 0.8215)
+[2018/09/25 11:36:05 __main__ INFO] - -            c10_50k       : 0.2363 (acc: 0.9255)
+[2018/09/25 11:36:05 __main__ INFO] - Elapsed 20.13
+keys:  dict_keys(['epoch', 'c10h_train_loss', 'c10h_train_acc', 'c10h_val_loss', 'c10h_val_acc', 'c10h_train_c10_loss', 'c10h_train_c10_acc', 'c10h_val_c10_loss', 'c10h_val_c10_acc', 'v4_loss', 'v4_acc', 'v6_loss', 'v6_acc', 'c10_50k_loss', 'c10_50k_acc']) 
+ c10h_outdir:  /tigress/ruairidh/model_results/run_1/saves/vgg_15_BN_64/con_False_lr_0.1_seed_2
+[2018/09/25 11:36:06 __main__ INFO] - Train 100
+[2018/09/25 11:36:10 __main__ INFO] - TEST 100
+[2018/09/25 11:36:32 __main__ INFO] - - epoch 100    c10h_train    : 0.1995 (acc: 0.9896) | c10h_val    : 0.4128 (acc: 0.8990)
+[2018/09/25 11:36:32 __main__ INFO] - -            c10h_train_c10: 0.0634 (acc: 0.9847) | c10h_val_c10: 0.2865 (acc: 0.8970)
+[2018/09/25 11:36:32 __main__ INFO] - -            v4            : 0.6140 (acc: 0.8036) |           v6: 0.5524 (acc: 0.8170)
+[2018/09/25 11:36:32 __main__ INFO] - -            c10_50k       : 0.2359 (acc: 0.9254)
+[2018/09/25 11:36:32 __main__ INFO] - Elapsed 21.32
+keys:  dict_keys(['epoch', 'c10h_train_loss', 'c10h_train_acc', 'c10h_val_loss', 'c10h_val_acc', 'c10h_train_c10_loss', 'c10h_train_c10_acc', 'c10h_val_c10_loss', 'c10h_val_c10_acc', 'v4_loss', 'v4_acc', 'v6_loss', 'v6_acc', 'c10_50k_loss', 'c10_50k_acc']) 
+ c10h_outdir:  /tigress/ruairidh/model_results/run_1/saves/vgg_15_BN_64/con_False_lr_0.1_seed_2
+inner done
