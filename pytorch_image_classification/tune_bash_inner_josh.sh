@@ -25,7 +25,7 @@ echo ${resume}
 echo ${SV_DIR}
 
 
-python -u ./tune_with_cifar10h.py ${python_args} --resume=${resume} --c10h_scores_outdir=${SV_DIR}
+python -u ./tune_with_cifar10h_150epochs.py ${python_args} --resume=${resume} --c10h_scores_outdir=${SV_DIR}
 
 cp ./${logfile} ${JDIR}/run_1/${model}/.
 
