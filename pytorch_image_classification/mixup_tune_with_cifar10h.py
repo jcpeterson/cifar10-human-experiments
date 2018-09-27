@@ -36,7 +36,7 @@ except Exception:
 from dataloader_c10h import get_loader
 
 from utils import (str2bool, load_model, save_checkpoint, create_optimizer,
-                   AverageMeter, mixup, human_mixup, CrossEntropyLoss, onehot)
+                   AverageMeter, mixup, mixup_human, CrossEntropyLoss, onehot)
 
 from rutils_run import save_checkpoint_epoch
 
@@ -144,8 +144,8 @@ def parse_args():
         '--random_erasing_min_aspect_ratio', type=float, default=0.3)
     parser.add_argument('--random_erasing_max_attempt', type=int, default=20)
     # mixup configuration
-    parser.add_argument('--use_mixup', action='store_true', default=False)
-    parser.add_argument('--mixup_alpha', type=float, default=0.5)
+    parser.add_argument('--use_mixup', action='store_true', default=True)
+    parser.add_argument('--mixup_alpha', type=str, default='0.5')
 
     # previous model weights to load if any
     parser.add_argument('--resume', type=str)
@@ -206,14 +206,15 @@ def train(epoch, model, optimizer, scheduler, criterion, train_loader, config,
                 data, targets, _ = batch_data
 
             # apply mixup!
-	        data, targets = human_mixup(data, targets, 0.5,
-	                  data_config['n_classes'])
+            data, targets = mixup_human(data, targets, 
+                                        float(data_config['mixup_alpha']),
+                                        data_config['n_classes'])
         else:
             data, targets = batch_data
 
-        if data_config['use_mixup']:
-            data, targets = mixup(data, targets, data_config['mixup_alpha'],
-                                  data_config['n_classes'])
+        # if data_config['use_mixup']:
+        #     data, targets = mixup(data, targets, data_config['mixup_alpha'],
+        #                           data_config['n_classes'])
 
         if run_config['tensorboard_train_images']:
             if step == 0:
@@ -644,6 +645,7 @@ def main():
 
                     # save model
                     save_checkpoint(state, c10h_outdir)
+                    save_checkpoint_epoch(state, epoch, c10h_outdir)
 
     if not run_config['no_output'] and run_config['tensorboard']:
         outpath = os.path.join(outdir, 'all_scalars.json')
