@@ -11,7 +11,8 @@ echo 'inner: activating env'
 source activate pytorch_env
 echo ${model}
 echo ${identifier}
+echo ${epoch}
 
 #uncomment below for post
-python extract_softmax.py --dataset CIFAR10 --arch ${token} --config /tigress/ruairidh/model_results/run_1/${model}/config.json --resume /tigress/ruairidh/model_results/run_1/saves/${model}/${identifier}/model_state_100.pth --outdir /home/ruairidh/superman/cifar10-human-experiments/confusion_matrices/post --gpu 0
+python extract_softmax.py --dataset CIFAR10 --arch ${token} --config /tigress/ruairidh/model_results/run_1/${model}/config.json --resume /tigress/ruairidh/model_results/run_1/saves/${model}/${identifier}/model_state_${epoch}.pth --outdir /home/ruairidh/superman/cifar10-human-experiments/confusion_matrices/post --gpu 0
 echo 'inner done'
