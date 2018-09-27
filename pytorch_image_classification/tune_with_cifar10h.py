@@ -679,6 +679,7 @@ def main():
 
                     # save model
                     save_checkpoint(state, c10h_outdir)
+                    save_checkpoint_epoch(state, epoch, c10h_outdir)
 
     if not run_config['no_output'] and run_config['tensorboard']:
         outpath = os.path.join(outdir, 'all_scalars.json')

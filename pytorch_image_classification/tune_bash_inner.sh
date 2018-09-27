@@ -18,15 +18,16 @@ echo 'identifier: '${identifier}
 echo ${python_args}
 echo ${logfile}
 echo 'entering python script'
-resume="${SDIR}/run_1/${model}/model_best_state.pth"
-SV_DIR="${SDIR}/run_1/saves/${model}/${identifier}"
+resume="${SDIR}/run_2/${model}/model_best_state.pth"
+SV_DIR="${SDIR}/run_2/saves/${model}/${identifier}"
+config="{SDIR}/run_2/${model}/config.json"
 echo ${resume}
 echo ${SV_DIR}
 
 
-python -u ./tune_with_cifar10h.py ${python_args} --resume=${resume} --c10h_scores_outdir=${SV_DIR}
+python -u ./tune_with_cifar10h.py ${python_args} --resume=${resume} --c10h_scores_outdir=${SV_DIR} --config=${config}
 
-cp ./${logfile} ${SDIR}/run_1/saves/${model}/.
+cp ./${logfile} ${SDIR}/run_2/saves/${model}/.
 
 echo 'inner done'
 
