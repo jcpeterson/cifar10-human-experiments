@@ -10,7 +10,7 @@ assert torch.__version__[:3] in ['0.3', '0.4']
 # use_gpu = torch.cuda.is_available()
 # print(use_gpu)
 
-use_gpu = True
+use_gpu = False
 
 # MISTER ED SPECIFIC IMPORT BLOCK
 # (here we do things so relative imports work )
