@@ -103,7 +103,7 @@ def parse_args():
     parser.add_argument('--tensorboard_model_params', action='store_true')
 
     # configuration of optimizer
-    parser.add_argument('--epochs', type=int)
+    parser.add_argument('--epochs', type=int, default=200)
     parser.add_argument('--batch_size', type=int)
     parser.add_argument('--optimizer', type=str, choices=['sgd', 'adam'])
     parser.add_argument('--base_lr', type=float)
@@ -582,7 +582,7 @@ def main():
 
     save_counter = 0
 
-    optim_config['epochs']=100
+    #optim_config['epochs']=100
 
     for epoch in range(0, optim_config['epochs'] + 1):
 

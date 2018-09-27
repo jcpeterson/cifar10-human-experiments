@@ -1,0 +1,8 @@
+all remaining models tuning on run_1: these will now output weights for every run
+after, run csv scraping, graphing, table
+
+all models running on run_2
+
+softmax extract scripts running for pretrained models
+softmax extract post scripts waiting for particular hyperparameters. These need epoch-based weights
+
