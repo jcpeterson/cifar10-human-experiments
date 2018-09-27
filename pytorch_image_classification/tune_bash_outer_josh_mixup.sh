@@ -38,8 +38,8 @@ for model in $models
 
                 for a in "${alphas[@]}"
                     do
-                    identifier=con_${con}_lr_${l}_seed_${s} 
-                    logfile=${model}_control:${con}_lr:${l}_seed:${s}.out
+                    identifier=con_${con}_lr_${l}_seed_${s}_mixupalpha_${a} 
+                    logfile=${model}_control:${con}_lr:${l}_seed:${s}_mixupalpha:${a}.out
                     interval=2
     #                echo $s
                     python_args="--arch=${arch} --c10h_save_interval=${interval} --dataset=CIFAR10H --no_output --c10h_datasplit_seed=${s} --human_tune --nonhuman_control=${con} --base_lr=${l} --mixup_alpha=${a}"
