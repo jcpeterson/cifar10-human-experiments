@@ -144,7 +144,7 @@ def parse_args():
         '--random_erasing_min_aspect_ratio', type=float, default=0.3)
     parser.add_argument('--random_erasing_max_attempt', type=int, default=20)
     # mixup configuration
-    parser.add_argument('--use_mixup', action='store_true', default=False)
+    parser.add_argument('--use_mixup', action='store_true', default=True)
     parser.add_argument('--mixup_alpha', type=str, default='0.5')
 
     # previous model weights to load if any

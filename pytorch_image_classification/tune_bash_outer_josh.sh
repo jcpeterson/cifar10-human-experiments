@@ -8,10 +8,7 @@ declare -A archs=([vgg_15_BN_64]=vgg [resnet_basic_110]=resnet [resnet_preact_bo
 
 declare -a control=(True False)
 
-#declare -a lr=(0.1 0.01 0.001)
 declare -a lr=(0.1 0.01 0.001)
-
-declare -a alphas=(0.25 0.5 1)
 
 declare -a seeds=(0)
 # for every model
@@ -35,17 +32,13 @@ for model in $models
             # use different seeds
             for s in "${seeds[@]}"
                 do
-
-                for a in "${alphas[@]}"
-                    do
-                    identifier=con_${con}_lr_${l}_seed_${s} 
-                    logfile=${model}_control:${con}_lr:${l}_seed:${s}.out
-                    interval=2
-    #                echo $s
-                    python_args="--arch=${arch} --c10h_save_interval=${interval} --dataset=CIFAR10H --no_output --c10h_datasplit_seed=${s} --human_tune --nonhuman_control=${con} --base_lr=${l} --mixup_alpha=${a}"
-                    echo 'python args: '"${python_args}"
-                    sbatch --output=${logfile} --export=model=$model,identifier=${identifier},python_args="${python_args}",logfile=${logfile} tune_bash_inner_josh_mixup.sh
-                    done
+                identifier=con_${con}_lr_${l}_seed_${s} 
+                logfile=${model}_control:${con}_lr:${l}_seed:${s}.out
+                interval=2
+#                echo $s
+                python_args="--arch=${arch} --c10h_save_interval=${interval} --dataset=CIFAR10H --no_output --c10h_datasplit_seed=${s} --human_tune --nonhuman_control=${con} --base_lr=${l} --mixup_alpha=${a}"
+                echo 'python args: '"${python_args}"
+                sbatch --output=${logfile} --export=model=$model,identifier=${identifier},python_args="${python_args}",logfile=${logfile} tune_bash_inner_josh.sh
                 done
             done
 
