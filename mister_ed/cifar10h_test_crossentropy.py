@@ -219,8 +219,6 @@ run_config['resume'] = 'tmp_reference_model/model_state_resnet_basic_110_con_Fal
 model_human = load_our_model(config, run_config['resume'])
 
 if use_gpu:
-    examples = examples.cuda()
-    labels = labels.cuda() 
     model_gt.cuda()
     model_human.cuda()
     
@@ -244,6 +242,9 @@ delta_threat = ap.ThreatModel(ap.DeltaAddition, {'lp_style': 'inf',
                                                  'lp_bound': 8.0 / 255,
                                                  'use_gpu': use_gpu}) 
 for examples, labels in iter(cifar_valset):
+	if use_gpu:
+	    examples = examples.cuda()
+	    labels = labels.cuda() 
     for i, m in enumerate(models):
 
         attack_loss = plf.VanillaXentropy(m, normalizer)
