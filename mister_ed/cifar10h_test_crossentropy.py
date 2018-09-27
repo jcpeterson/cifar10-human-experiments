@@ -12,7 +12,7 @@ from pytorch_image_classification_dataloader_c10h import get_loader
 # use_gpu = torch.cuda.is_available()
 # print(use_gpu)
 
-use_gpu = False
+use_gpu = True
 
 # MISTER ED SPECIFIC IMPORT BLOCK
 # (here we do things so relative imports work )
@@ -48,10 +48,14 @@ from pytorch_image_classification_argparser import get_config
 
 sys.argv = ['']
 
-def parse_args():
+def parse_args(arch='resnet', 
+		mdl_config='tmp_reference_model/resnet_basic_110_config.json'):
+
     parser = argparse.ArgumentParser()
-    parser.add_argument('--arch', type=str, default='resnet')
-    parser.add_argument('--config', type=str, default='tmp_reference_model/resnet_basic_110_config.json')
+    # parser.add_argument('--arch', type=str, default='resnet')
+    parser.add_argument('--arch', type=str, default=arch)
+    # parser.add_argument('--config', type=str, default='tmp_reference_model/resnet_basic_110_config.json')
+    parser.add_argument('--config', type=str, default=mdl_config)
     # model config (VGG)
     parser.add_argument('--n_channels', type=str)
     parser.add_argument('--n_layers', type=str)
@@ -96,7 +100,7 @@ def parse_args():
     parser.add_argument('--tensorboard_model_params', action='store_true')
     # configuration of optimizer
     parser.add_argument('--epochs', type=int)
-    parser.add_argument('--batch_size', type=int, default=16)
+    parser.add_argument('--batch_size', type=int, default=500)
     parser.add_argument('--optimizer', type=str, choices=['sgd', 'adam'])
     parser.add_argument('--base_lr', type=float)
     parser.add_argument('--weight_decay', type=float)
@@ -167,10 +171,6 @@ def parse_args():
 
     return config
 
-config = parse_args()
-
-run_config = config['run_config']
-
 
 def load_our_model(config, weights_path):
         
@@ -208,18 +208,69 @@ cifar_valset = cifar_loader.load_cifar_data('val', batch_size=32)
 _, normalizer = cifar_loader.load_pretrained_cifar_resnet(flavor=32, use_gpu=use_gpu,
                                                           return_normalizer=True)
 
-run_config['resume'] = 'tmp_reference_model/model_state_resnet_basic_110_con_True_lr_001_seed_0.pth'
-#run_config['resume'] = 'tmp_reference_model/model_best_state.pth'
-model_gt = load_our_model(config, run_config['resume'])
 
-run_config['resume'] = 'tmp_reference_model/model_state_resnet_basic_110_con_False_lr_001_seed_0.pth'
-model_human = load_our_model(config, run_config['resume'])
+# run_config['resume'] = 'tmp_reference_model/model_state_resnet_basic_110_con_True_lr_001_seed_0.pth'
+# model_gt = load_our_model(config, run_config['resume'])
+
+# run_config['resume'] = 'tmp_reference_model/model_state_resnet_basic_110_con_False_lr_001_seed_0.pth'
+# model_human = load_our_model(config, run_config['resume'])
+
+
+# root = '/tigress/ruairidh/model_results/run_1/'
+
+# mdl = 'pyramidnet_basic_110_270'
+# config = parse_args(mdl_config=root+mdl+'/config.json')
+# resume_path = root + 'saves/' + 'mdl' + '/con_False_lr_0.00001_seed_0/model_state_100.pth'
+
+
+
+
+
+root = 'best_mdls_for_adv/'
+
+# mdl = 'shake_shake_26_2x64d_SSI_cutout16'
+# config = parse_args(arch='shake_shake', mdl_config=root+mdl+'/config.json')
+# resume_path = root + mdl + '/gt_model_state_46.pth'
+# # resume_path = root + mdl + '/human_model_state_69.pth'
+
+# # model_gt = load_our_model(config, resume_path)
+# model_ = load_our_model(config, resume_path)
+
+# mdl = 'pyramidnet_basic_110_270'
+# config = parse_args(arch='pyramidnet', mdl_config=root+mdl+'/config.json')
+# resume_path = root + mdl + '/gt_model_state_4.pth'
+# # resume_path = root + mdl + '/human_model_state_15.pth'
+
+
+
+mdl = 'resnet_preact_bottleneck_164'
+config = parse_args(arch='resnet_preact', mdl_config=root+mdl+'/config.json')
+resume_path = root + mdl + '/gt_model_state_53.pth'
+# resume_path = root + mdl + '/human_model_state_69.pth'
+
+model_ = load_our_model(config, resume_path)
+
+
+
+
+# resume_path = root + mdl + '/human_model_state_69.pth'
+# model_human = load_our_model(config, resume_path)
+
+
+
+# model_human = load_our_model(config, run_config['resume'])
+# model_gt = load_our_model(config, resume_path)
+
+
+
 
 if use_gpu:
-    model_gt.cuda()
-    model_human.cuda()
+    model_.cuda()
+    # model_gt.cuda()
+    # model_human.cuda()
     
-models = [model_gt, model_human]
+# models = [model_gt, model_human]
+models = [model_]
 
 
 
@@ -233,17 +284,17 @@ gt_before_acc = []
 human_after_acc = []
 gt_after_acc = []
 
-# cifar_valset = cifar_loader.load_cifar_data('val', batch_size=500)
+cifar_valset = cifar_loader.load_cifar_data('val', batch_size=32)
+# cifar_train = cifar_loader.load_cifar_data('train', batch_size=500)
 
-train_loader, test_loader, _50k_loader, v4_loader, v6_loader = \
-    get_loader(config['data_config'])
+# train_loader, test_loader, _50k_loader, v4_loader, v6_loader = \
+    # get_loader(config['data_config'])
 
 
 delta_threat = ap.ThreatModel(ap.DeltaAddition, {'lp_style': 'inf', 
                                                  'lp_bound': 8.0 / 255,
                                                  'use_gpu': use_gpu}) 
-# for examples, labels in iter(cifar_valset):
-for examples, labels in iter(v4_loader):
+for examples, labels in iter(cifar_valset):
     if use_gpu:
         examples = examples.cuda()
         labels = labels.cuda() 
@@ -255,7 +306,7 @@ for examples, labels in iter(v4_loader):
 
         # verbose prints out accuracy
         perturbation_out, loss_before, loss_after, acc_before, acc_after = \
-            fgsm_attack_object.attack_josh(examples, labels, verbose=True)
+            fgsm_attack_object.attack_josh(examples, labels, verbose=True, cuda=use_gpu)
 
 #         print(loss_before, loss_after, acc_before, acc_after)
         

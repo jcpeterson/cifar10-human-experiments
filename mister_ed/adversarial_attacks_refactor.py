@@ -228,7 +228,7 @@ class FGSM(AdversarialAttack):
         
         return perturbation
     
-    def attack_josh(self, examples, labels, step_size=0.05, verbose=True):
+    def attack_josh(self, examples, labels, step_size=0.05, verbose=True, cuda=True):
 
         """ Builds FGSM examples for the given examples with l_inf bound
         ARGS:
@@ -289,8 +289,11 @@ class FGSM(AdversarialAttack):
         # JOSH everything below this line should not be here (from me)
         loss_after = self.loss_fxn.forward(perturbation(var_examples), var_labels,
                                      perturbation=perturbation)
-        
-        return perturbation, loss_before.detach().numpy(), loss_after.detach().numpy(), acc_before, acc_after 
+
+        if cuda:
+            return perturbation, loss_before.cpu().detach().numpy(), loss_after.cpu().detach().numpy(), acc_before, acc_after 
+        else:
+            return perturbation, loss_before.detach().numpy(), loss_after.detach().numpy(), acc_before, acc_after 
 
 
 ##############################################################################
