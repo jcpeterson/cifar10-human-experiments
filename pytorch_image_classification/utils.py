@@ -117,6 +117,20 @@ def mixup(data, targets, alpha, n_classes):
 
     return data, targets
 
+def mixup_human(data, targets, alpha, n_classes):
+    indices = torch.randperm(data.size(0))
+    data2 = data[indices]
+    targets2 = targets[indices]
+
+    # targets = onehot(targets, n_classes)
+    # targets2 = onehot(targets2, n_classes)
+
+    lam = torch.FloatTensor([np.random.beta(alpha, alpha)])
+    data = data * lam + data2 * (1 - lam)
+    targets = targets * lam + targets2 * (1 - lam)
+
+    return data, targets
+
 
 def cross_entropy_loss(input, target, size_average=True):
     input = F.log_softmax(input, dim=1)
