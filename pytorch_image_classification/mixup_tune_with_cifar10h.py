@@ -206,7 +206,7 @@ def train(epoch, model, optimizer, scheduler, criterion, train_loader, config,
                 data, targets, _ = batch_data
 
             # apply mixup!
-	        data, targets = human_mixup(data, targets, 0.5,
+	        data, targets = mixup_human(data, targets, 0.5,
 	                  data_config['n_classes'])
         else:
             data, targets = batch_data
