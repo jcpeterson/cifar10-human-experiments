@@ -7,6 +7,8 @@ import torch.nn as nn
 import torch.optim as optim 
 assert torch.__version__[:3] in ['0.3', '0.4']
 
+from pytorch_image_classification_dataloader_c10h import get_loader
+
 # use_gpu = torch.cuda.is_available()
 # print(use_gpu)
 
@@ -38,11 +40,6 @@ import spatial_transformers as st
 
 ### START pytorch_image_classification imports
 import time, random, json, logging, argparse, csv
-# import numpy as np
-# import torch.optim
-# import torch.utils.data
-# import torch.backends.cudnn
-# import torchvision.utils
 from pytorch_image_classification_dataloader_c10h import get_loader
 from pytorch_image_classification_utils import (str2bool, load_model, save_checkpoint, create_optimizer,
                                                 AverageMeter, mixup, CrossEntropyLoss, onehot)
@@ -99,7 +96,7 @@ def parse_args():
     parser.add_argument('--tensorboard_model_params', action='store_true')
     # configuration of optimizer
     parser.add_argument('--epochs', type=int)
-    parser.add_argument('--batch_size', type=int)
+    parser.add_argument('--batch_size', type=int, default=16)
     parser.add_argument('--optimizer', type=str, choices=['sgd', 'adam'])
     parser.add_argument('--base_lr', type=float)
     parser.add_argument('--weight_decay', type=float)
@@ -120,7 +117,7 @@ def parse_args():
     parser.add_argument(
         '--dataset',
         type=str,
-        default='CIFAR10',
+        default='CIFAR10H',
         choices=['CIFAR10', 'CIFAR10H'])
     parser.add_argument('--num_workers', type=int, default=7)
     # cutout configuration
@@ -236,12 +233,17 @@ gt_before_acc = []
 human_after_acc = []
 gt_after_acc = []
 
-cifar_valset = cifar_loader.load_cifar_data('val', batch_size=500)
+# cifar_valset = cifar_loader.load_cifar_data('val', batch_size=500)
+
+train_loader, test_loader, _50k_loader, v4_loader, v6_loader = \
+    get_loader(config['data_config'])
+
 
 delta_threat = ap.ThreatModel(ap.DeltaAddition, {'lp_style': 'inf', 
                                                  'lp_bound': 8.0 / 255,
                                                  'use_gpu': use_gpu}) 
-for examples, labels in iter(cifar_valset):
+# for examples, labels in iter(cifar_valset):
+for examples, labels in iter(v4_loader):
     if use_gpu:
         examples = examples.cuda()
         labels = labels.cuda() 
