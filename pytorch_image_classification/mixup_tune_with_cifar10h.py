@@ -36,7 +36,7 @@ except Exception:
 from dataloader_c10h import get_loader
 
 from utils import (str2bool, load_model, save_checkpoint, create_optimizer,
-                   AverageMeter, mixup, human_mixup, CrossEntropyLoss, onehot)
+                   AverageMeter, mixup, mixup_human, CrossEntropyLoss, onehot)
 
 from rutils_run import save_checkpoint_epoch
 
