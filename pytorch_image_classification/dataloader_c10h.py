@@ -323,12 +323,12 @@ class Dataset(object):
 
             # cifar10 50,000 training images
             _50k_dataset = CIFAR10H(
-                self.dataset_dir, which_set='50k', transform=self.train_transform, 
+                self.dataset_dir, which_set='50k', transform=self.test_transform, 
                 download=True)
 
             # cifar 10.1 versions
             v4_dataset = CIFAR10H(
-                self.dataset_dir, which_set='v4', transform=self.train_transform, 
+                self.dataset_dir, which_set='v4', transform=self.test_transform, 
                 download=True)
             v6_dataset = CIFAR10H(
                 self.dataset_dir, which_set='v6', transform=self.test_transform, 
