@@ -145,7 +145,7 @@ def parse_args():
     parser.add_argument('--random_erasing_max_attempt', type=int, default=20)
     # mixup configuration
     parser.add_argument('--use_mixup', action='store_true', default=False)
-    parser.add_argument('--mixup_alpha', type=float, default=0.5)
+    parser.add_argument('--mixup_alpha', type=str, default='0.5')
 
     # previous model weights to load if any
     parser.add_argument('--resume', type=str)
@@ -206,14 +206,15 @@ def train(epoch, model, optimizer, scheduler, criterion, train_loader, config,
                 data, targets, _ = batch_data
 
             # apply mixup!
-	        data, targets = mixup_human(data, targets, 0.5,
-	                  data_config['n_classes'])
+	        data, targets = mixup_human(data, targets, 
+	        	                        float(data_config['mixup_alpha']),
+	                                    data_config['n_classes'])
         else:
             data, targets = batch_data
 
-        if data_config['use_mixup']:
-            data, targets = mixup(data, targets, data_config['mixup_alpha'],
-                                  data_config['n_classes'])
+        # if data_config['use_mixup']:
+        #     data, targets = mixup(data, targets, data_config['mixup_alpha'],
+        #                           data_config['n_classes'])
 
         if run_config['tensorboard_train_images']:
             if step == 0:

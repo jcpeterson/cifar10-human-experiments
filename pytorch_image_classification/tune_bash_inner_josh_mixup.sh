@@ -4,7 +4,7 @@
 #SBATCH --ntasks-per-node=1
 #SBATCH --gres=gpu:1
 #SBATCH --mem=16000
-#SBATCH --time=350
+#SBATCH --time=1440
 
 
 echo 'entering inner script'
@@ -20,15 +20,15 @@ echo ${python_args}
 echo ${logfile}
 echo 'entering python script'
 resume="${SDIR}/run_1/${model}/model_best_state.pth"
-SV_DIR="${JDIR}/run_1/saves/${model}/${identifier}"
+SV_DIR="${JDIR}/mixup_run_1/saves/${model}/${identifier}"
 config="{SDIR}/run_1/${model}/config.json"
 echo ${resume}
 echo ${SV_DIR}
 
 
-python -u ./tune_with_cifar10h_150epochs.py ${python_args} --resume=${resume} --c10h_scores_outdir=${SV_DIR} --config=${config}
+python -u ./mixup_tune_with_cifar10h.py ${python_args} --resume=${resume} --c10h_scores_outdir=${SV_DIR} --config=${config}
 
-cp ./${logfile} ${JDIR}/run_1/${model}/.
+cp ./${logfile} ${JDIR}/mixup_run_1/${model}/.
 
 echo 'inner done'
 
