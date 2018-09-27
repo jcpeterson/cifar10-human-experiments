@@ -154,6 +154,7 @@ class AdversarialAttack(object):
         print_str += " %s correct" % float(new_prec[0])
 
         print(print_str)
+        return new_prec
 
 
 
@@ -212,7 +213,6 @@ class FGSM(AdversarialAttack):
                                      perturbation=perturbation)
         torch.autograd.backward(loss)
 
-
         # add adversarial noise to each parameter
         update_fxn = lambda grad_data: step_size * torch.sign(grad_data)
         perturbation.update_params(update_fxn)
@@ -225,7 +225,72 @@ class FGSM(AdversarialAttack):
         # output tensor with the data
         self.loss_fxn.cleanup_attack_batch()
         perturbation.attach_originals(examples)
+        
         return perturbation
+    
+    def attack_josh(self, examples, labels, step_size=0.05, verbose=True):
+
+        """ Builds FGSM examples for the given examples with l_inf bound
+        ARGS:
+            classifier: Pytorch NN
+            examples: Nxcxwxh tensor for N examples. NOT NORMALIZED (i.e. all
+                      vals are between 0.0 and 1.0 )
+            labels: single-dimension tensor with labels of examples (in same
+                    order)
+            step_size: float - how much we nudge each parameter along the
+                               signs of its gradient
+            normalizer: DifferentiableNormalize object to prep objects into
+                        classifier
+            evaluate: boolean, if True will validation results
+            loss_fxn:  RegularizedLoss object - partially applied loss fxn that
+                         takes [0.0, 1.0] image Variables and labels and outputs
+                         a scalar loss variable. Also has a zero_grad method
+        RETURNS:
+            AdversarialPerturbation object with correct parameters.
+            Calling perturbation() gets Variable of output and
+            calling perturbation().data gets tensor of output
+        """
+        self.classifier_net.eval() # ALWAYS EVAL FOR BUILDING ADV EXAMPLES
+
+        perturbation = self.threat_model(examples)
+
+        var_examples = Variable(examples, requires_grad=True)
+        var_labels = Variable(labels, requires_grad=False)
+
+        ######################################################################
+        #   Build adversarial examples                                       #
+        ######################################################################
+
+        acc_before = self.validation_loop(perturbation(examples), labels,
+                             iter_no='Pre FGSM')
+        
+        # Fix the 'reference' images for the loss function
+        self.loss_fxn.setup_attack_batch(var_examples)
+
+        # take gradients
+        loss = self.loss_fxn.forward(perturbation(var_examples), var_labels,
+                                     perturbation=perturbation)
+        torch.autograd.backward(loss)
+        loss_before = loss
+
+
+        # add adversarial noise to each parameter
+        update_fxn = lambda grad_data: step_size * torch.sign(grad_data)
+        perturbation.update_params(update_fxn)
+
+
+        acc_after = self.validation_loop(perturbation(var_examples), var_labels,
+                             iter_no='Post FGSM')
+
+        # output tensor with the data
+        self.loss_fxn.cleanup_attack_batch()
+        perturbation.attach_originals(examples)
+        
+        # JOSH everything below this line should not be here (from me)
+        loss_after = self.loss_fxn.forward(perturbation(var_examples), var_labels,
+                                     perturbation=perturbation)
+        
+        return perturbation, loss_before.detach().numpy(), loss_after.detach().numpy(), acc_before, acc_after 
 
 
 ##############################################################################
