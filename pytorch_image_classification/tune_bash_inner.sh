@@ -20,7 +20,7 @@ echo ${logfile}
 echo 'entering python script'
 resume="${SDIR}/run_2/${model}/model_best_state.pth"
 SV_DIR="${SDIR}/run_2/saves/${model}/${identifier}"
-config="{SDIR}/run_2/${model}/config.json"
+config="${SDIR}/run_2/${model}/config.json"
 echo ${resume}
 echo ${SV_DIR}
 
