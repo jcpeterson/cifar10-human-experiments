@@ -434,7 +434,7 @@ def main():
         print('outdir 2: ', outdir)
         # save model
         save_checkpoint(state, outdir)
-#        save_checkpoint_epoch(state, epoch, outdir)
+        save_checkpoint_epoch(state, epoch, outdir)
 
     if run_config['tensorboard']:
         outpath = os.path.join(outdir, 'all_scalars.json')
