@@ -1,0 +1,19 @@
+,Model,Mean
+0,['vgg_15_BN_64'],"[Accuracy    0.931
+dtype: float64]"
+1,['pyramidnet_basic_110_270'],"[Accuracy    0.961167
+dtype: float64]"
+2,['shake_shake_26_2x64d_SSI_cutout16'],"[Accuracy    0.971833
+dtype: float64]"
+3,['wrn_28_10'],"[Accuracy    0.960633
+dtype: float64]"
+4,['densenet_BC_100_12'],"[Accuracy    0.953267
+dtype: float64]"
+5,['wrn_28_10_cutout16'],"[Accuracy    0.960833
+dtype: float64]"
+6,['resnet_preact_bottleneck_164'],"[Accuracy    0.941433
+dtype: float64]"
+7,['resnet_basic_110'],"[Accuracy    0.934633
+dtype: float64]"
+8,['resnext_29_8x64d'],"[Accuracy    0.963033
+dtype: float64]"

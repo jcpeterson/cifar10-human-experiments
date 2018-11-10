@@ -1,22 +1,131 @@
 entering inner script
 activating virtual env
 densenet_BC_100_12
---arch=dense --c10h_save_interval=2 --dataset=CIFAR10H --no_output --c10h_datasplit_seed=1 --human_tune --nonhuman_control=True --base_lr=0.1
+identifier: con_True_lr_0.1_seed_1
+--arch=densenet --c10h_save_interval=2 --dataset=CIFAR10H --no_output --c10h_datasplit_seed=1 --human_tune --nonhuman_control=True --base_lr=0.1
 densenet_BC_100_12_control:True_lr:0.1_seed:1.out
 entering python script
-/tigress/ruairidh/model_results/run_1/densenet_BC_100_12/model_best_state.pth
-/tigress/ruairidh/model_results/run_1/saves/densenet_BC_100_12
+/tigress/ruairidh/model_results/run_2/densenet_BC_100_12/model_best_state.pth
+/tigress/ruairidh/model_results/run_2/saves/densenet_BC_100_12/con_True_lr_0.1_seed_1
 Using TensorFlow backend.
+[2018/09/27 15:16:51 __main__ INFO] - {
+  "model_config": {
+    "arch": "densenet",
+    "input_shape": [
+      1,
+      3,
+      32,
+      32
+    ],
+    "n_classes": 10,
+    "block_type": "bottleneck",
+    "depth": 100,
+    "growth_rate": 12,
+    "compression_rate": 0.5,
+    "drop_rate": 0
+  },
+  "optim_config": {
+    "epochs": 300,
+    "batch_size": 64,
+    "optimizer": "sgd",
+    "base_lr": 0.1,
+    "weight_decay": 0.0001,
+    "momentum": 0.9,
+    "nesterov": true,
+    "scheduler": "multistep",
+    "milestones": [
+      150,
+      225
+    ],
+    "lr_decay": 0.1
+  },
+  "data_config": {
+    "dataset": "CIFAR10H",
+    "n_classes": 10,
+    "num_workers": 7,
+    "batch_size": 64,
+    "use_cutout": false,
+    "use_random_erasing": false,
+    "use_mixup": false,
+    "c10h_sample": false,
+    "c10h_testsplit_percent": 0.1,
+    "c10h_datasplit_seed": 1,
+    "use_gpu": true
+  },
+  "run_config": {
+    "outdir": "/tigress/ruairidh/model_results/densenet_BC_100_12",
+    "seed": 17,
+    "test_first": true,
+    "gpu": "0",
+    "tensorboard": false,
+    "tensorboard_train_images": false,
+    "tensorboard_test_images": false,
+    "tensorboard_model_params": false,
+    "resume": "/tigress/ruairidh/model_results/run_2/densenet_BC_100_12/model_best_state.pth",
+    "human_tune": true,
+    "no_output": true,
+    "test_only": false,
+    "nonhuman_control": true,
+    "c10h_scores_outdir": "/tigress/ruairidh/model_results/run_2/saves/densenet_BC_100_12/con_True_lr_0.1_seed_1",
+    "c10h_save_interval": "2",
+    "use_gpu": true
+  },
+  "env_info": {
+    "pytorch_version": "0.4.1",
+    "cuda_version": "9.0.176",
+    "cudnn_version": 7102,
+    "gpu0": {
+      "name": "Tesla P100-PCIE-16GB",
+      "capability": "6.0"
+    }
+  }
+}
+Files already downloaded and verified
+Files already downloaded and verified
+Files already downloaded and verified
+Files already downloaded and verified
+Files already downloaded and verified
+[2018/09/27 15:16:55 __main__ INFO] - Loading model...
+[2018/09/27 15:16:55 __main__ INFO] - n_params: 769162
+[2018/09/27 15:16:56 __main__ INFO] - Done
+=> loading checkpoint '/tigress/ruairidh/model_results/run_2/densenet_BC_100_12/model_best_state.pth'
+=> loaded checkpoint '/tigress/ruairidh/model_results/run_2/densenet_BC_100_12/model_best_state.pth' (epoch 248)
+[2018/09/27 15:16:56 __main__ INFO] - TEST 0
+[2018/09/27 15:17:31 __main__ INFO] - - epoch 0    c10h_train    : 0.6171 (acc: 0.9446) | c10h_val    : 0.6748 (acc: 0.9560)
+[2018/09/27 15:17:31 __main__ INFO] - -            c10h_train_c10: 0.1945 (acc: 0.9472) | c10h_val_c10: 0.1628 (acc: 0.9600)
+[2018/09/27 15:17:31 __main__ INFO] - -            v4            : 0.4732 (acc: 0.8877) |           v6: 0.5400 (acc: 0.8830)
+[2018/09/27 15:17:31 __main__ INFO] - -            c10_50k       : 0.0009 (acc: 0.9999)
+[2018/09/27 15:17:31 __main__ INFO] - Elapsed 34.97
+keys:  dict_keys(['epoch', 'c10h_train_loss', 'c10h_train_acc', 'c10h_val_loss', 'c10h_val_acc', 'c10h_train_c10_loss', 'c10h_train_c10_acc', 'c10h_val_c10_loss', 'c10h_val_c10_acc', 'v4_loss', 'v4_acc', 'v6_loss', 'v6_acc', 'c10_50k_loss', 'c10_50k_acc']) 
+ c10h_outdir:  /tigress/ruairidh/model_results/run_2/saves/densenet_BC_100_12/con_True_lr_0.1_seed_1
+[2018/09/27 15:17:31 __main__ INFO] - Train 1
+[2018/09/27 15:17:47 __main__ INFO] - TEST 1
+[2018/09/27 15:18:21 __main__ INFO] - - epoch 1    c10h_train    : 0.8329 (acc: 0.7337) | c10h_val    : 0.9126 (acc: 0.7250)
+[2018/09/27 15:18:21 __main__ INFO] - -            c10h_train_c10: 0.7386 (acc: 0.7348) | c10h_val_c10: 0.8050 (acc: 0.7250)
+[2018/09/27 15:18:21 __main__ INFO] - -            v4            : 1.1959 (acc: 0.5804) |           v6: 1.1897 (acc: 0.5980)
+[2018/09/27 15:18:21 __main__ INFO] - -            c10_50k       : 0.7927 (acc: 0.7170)
+[2018/09/27 15:18:21 __main__ INFO] - Elapsed 33.56
+keys:  dict_keys(['epoch', 'c10h_train_loss', 'c10h_train_acc', 'c10h_val_loss', 'c10h_val_acc', 'c10h_train_c10_loss', 'c10h_train_c10_acc', 'c10h_val_c10_loss', 'c10h_val_c10_acc', 'v4_loss', 'v4_acc', 'v6_loss', 'v6_acc', 'c10_50k_loss', 'c10_50k_acc']) 
+ c10h_outdir:  /tigress/ruairidh/model_results/run_2/saves/densenet_BC_100_12/con_True_lr_0.1_seed_1
+[2018/09/27 15:18:21 __main__ INFO] - Train 2
+[2018/09/27 15:18:36 __main__ INFO] - TEST 2
+[2018/09/27 15:19:10 __main__ INFO] - - epoch 2    c10h_train    : 0.8585 (acc: 0.7499) | c10h_val    : 1.0508 (acc: 0.7200)
+[2018/09/27 15:19:10 __main__ INFO] - -            c10h_train_c10: 0.7373 (acc: 0.7520) | c10h_val_c10: 0.9192 (acc: 0.7210)
+[2018/09/27 15:19:10 __main__ INFO] - -            v4            : 1.2347 (acc: 0.6012) |           v6: 1.3396 (acc: 0.5915)
+[2018/09/27 15:19:10 __main__ INFO] - -            c10_50k       : 0.8222 (acc: 0.7289)
+[2018/09/27 15:19:10 __main__ INFO] - Elapsed 33.71
+keys:  dict_keys(['epoch', 'c10h_train_loss', 'c10h_train_acc', 'c10h_val_loss', 'c10h_val_acc', 'c10h_train_c10_loss', 'c10h_train_c10_acc', 'c10h_val_c10_loss', 'c10h_val_c10_acc', 'v4_loss', 'v4_acc', 'v6_loss', 'v6_acc', 'c10_50k_loss', 'c10_50k_acc']) 
+ c10h_outdir:  /tigress/ruairidh/model_results/run_2/saves/densenet_BC_100_12/con_True_lr_0.1_seed_1
 Traceback (most recent call last):
-  File "./tune_with_cifar10h.py", line 685, in <module>
+  File "./tune_with_cifar10h.py", line 689, in <module>
     main()
-  File "./tune_with_cifar10h.py", line 515, in main
-    config = parse_args()
-  File "./tune_with_cifar10h.py", line 169, in parse_args
-    config = get_config(args)
-  File "/home/ruairidh/superman/cifar10-human-experiments/pytorch_image_classification/argparser.py", line 309, in get_config
-    args = _set_default_values(args)
-  File "/home/ruairidh/superman/cifar10-human-experiments/pytorch_image_classification/argparser.py", line 285, in _set_default_values
-    with open(args.config, 'r') as fin:
-FileNotFoundError: [Errno 2] No such file or directory: 'configs/dense.json'
+  File "./tune_with_cifar10h.py", line 681, in main
+    save_checkpoint(state, c10h_outdir)
+  File "/home/ruairidh/superman/cifar10-human-experiments/pytorch_image_classification/utils.py", line 29, in save_checkpoint
+    torch.save(state, model_path)
+  File "/home/ruairidh/miniconda3/envs/pytorch_env/lib/python3.6/site-packages/torch/serialization.py", line 209, in save
+    return _with_file_like(f, "wb", lambda f: _save(obj, f, pickle_module, pickle_protocol))
+  File "/home/ruairidh/miniconda3/envs/pytorch_env/lib/python3.6/site-packages/torch/serialization.py", line 137, in _with_file_like
+    f.close()
+OSError: [Errno 122] Disk quota exceeded
 inner done

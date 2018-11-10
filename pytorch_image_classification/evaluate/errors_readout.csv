@@ -1,0 +1,19 @@
+,Model,Errors
+0,['vgg_15_BN_64'],"[Error    0.069
+dtype: float64]"
+1,['pyramidnet_basic_110_270'],"[Error    0.038833
+dtype: float64]"
+2,['shake_shake_26_2x64d_SSI_cutout16'],"[Error    0.028167
+dtype: float64]"
+3,['wrn_28_10'],"[Error    0.039367
+dtype: float64]"
+4,['densenet_BC_100_12'],"[Error    0.046733
+dtype: float64]"
+5,['wrn_28_10_cutout16'],"[Error    0.039167
+dtype: float64]"
+6,['resnet_preact_bottleneck_164'],"[Error    0.058567
+dtype: float64]"
+7,['resnet_basic_110'],"[Error    0.065367
+dtype: float64]"
+8,['resnext_29_8x64d'],"[Error    0.036967
+dtype: float64]"

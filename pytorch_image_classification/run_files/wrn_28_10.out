@@ -2,7 +2,7 @@
 --arch=wrn --depth 28 --widening_factor 10
 wrn_28_10.out
 entering python script
-[2018/09/21 23:13:11 __main__ INFO] - {
+[2018/11/01 14:44:21 __main__ INFO] - {
   "model_config": {
     "arch": "wrn",
     "input_shape": [
@@ -41,6 +41,9 @@ entering python script
     "use_cutout": false,
     "use_random_erasing": false,
     "use_mixup": false,
+    "c10h_sample": false,
+    "c10h_testsplit_percent": 0.1,
+    "c10h_datasplit_seed": 999,
     "use_gpu": true
   },
   "run_config": {
@@ -52,12 +55,18 @@ entering python script
     "tensorboard_train_images": false,
     "tensorboard_test_images": false,
     "tensorboard_model_params": false,
+    "human_tune": false,
+    "no_output": false,
+    "test_only": false,
+    "nonhuman_control": false,
+    "c10h_scores_outdir": "tmp",
+    "c10h_save_interval": 1,
     "use_gpu": true
   },
   "env_info": {
     "pytorch_version": "0.4.1",
-    "cuda_version": "9.2.148",
-    "cudnn_version": 7104,
+    "cuda_version": "9.0.176",
+    "cudnn_version": 7102,
     "gpu0": {
       "name": "Tesla P100-PCIE-16GB",
       "capability": "6.0"
@@ -67,133 +76,2012 @@ entering python script
 outdir:  /tigress/ruairidh/model_results/wrn_28_10
 Files already downloaded and verified
 Files already downloaded and verified
-[2018/09/21 23:13:13 __main__ INFO] - Loading model...
-[2018/09/21 23:13:14 __main__ INFO] - n_params: 36479194
-[2018/09/21 23:13:16 __main__ INFO] - Done
-/home/ruairidh/miniconda3/envs/pytorch_env/lib/python3.7/site-packages/torch/nn/functional.py:52: UserWarning: size_average and reduce args will be deprecated, please use reduction='elementwise_mean' instead.
+[2018/11/01 14:44:23 __main__ INFO] - Loading model...
+[2018/11/01 14:44:23 __main__ INFO] - n_params: 36479194
+[2018/11/01 14:44:25 __main__ INFO] - Done
+/home/ruairidh/miniconda3/envs/pytorch_env/lib/python3.6/site-packages/torch/nn/functional.py:52: UserWarning: size_average and reduce args will be deprecated, please use reduction='elementwise_mean' instead.
   warnings.warn(warning.format(ret))
-[2018/09/21 23:13:16 __main__ INFO] - Test 0
-[2018/09/21 23:13:24 __main__ INFO] - Epoch 0 Loss 2.3303 Accuracy 0.1085
-[2018/09/21 23:13:24 __main__ INFO] - Elapsed 8.18
-[2018/09/21 23:13:24 __main__ INFO] - Train 1
-[2018/09/21 23:13:26 __main__ INFO] - Epoch 1 Step 0/390 Loss 2.3316 (2.3316) Accuracy 0.0703 (0.0703)
-[2018/09/21 23:13:54 __main__ INFO] - Epoch 1 Step 100/390 Loss 1.5469 (1.7486) Accuracy 0.4297 (0.3462)
-[2018/09/21 23:14:23 __main__ INFO] - Epoch 1 Step 200/390 Loss 1.0906 (1.5464) Accuracy 0.5938 (0.4253)
-[2018/09/21 23:14:51 __main__ INFO] - Epoch 1 Step 300/390 Loss 0.9272 (1.3987) Accuracy 0.6641 (0.4857)
-[2018/09/21 23:15:16 __main__ INFO] - Elapsed 112.10
-[2018/09/21 23:15:16 __main__ INFO] - Test 1
-[2018/09/21 23:15:24 __main__ INFO] - Epoch 1 Loss 1.6646 Accuracy 0.5068
-[2018/09/21 23:15:24 __main__ INFO] - Elapsed 7.60
+[2018/11/01 14:44:25 __main__ INFO] - Test 0
+[2018/11/01 14:44:34 __main__ INFO] - Epoch 0 Loss 2.3303 Accuracy 0.1085
+[2018/11/01 14:44:34 __main__ INFO] - Elapsed 8.92
+[2018/11/01 14:44:34 __main__ INFO] - Train 1
+[2018/11/01 14:44:35 __main__ INFO] - Epoch 1 Step 0/390 Loss 2.3316 (2.3316) Accuracy 0.0703 (0.0703)
+[2018/11/01 14:45:03 __main__ INFO] - Epoch 1 Step 100/390 Loss 1.5496 (1.7539) Accuracy 0.5000 (0.3403)
+[2018/11/01 14:45:32 __main__ INFO] - Epoch 1 Step 200/390 Loss 1.0341 (1.5536) Accuracy 0.5859 (0.4207)
+[2018/11/01 14:46:00 __main__ INFO] - Epoch 1 Step 300/390 Loss 0.9555 (1.4079) Accuracy 0.6406 (0.4813)
+[2018/11/01 14:46:25 __main__ INFO] - Elapsed 111.12
+[2018/11/01 14:46:25 __main__ INFO] - Test 1
+[2018/11/01 14:46:32 __main__ INFO] - Epoch 1 Loss 1.1531 Accuracy 0.6047
+[2018/11/01 14:46:32 __main__ INFO] - Elapsed 7.61
 outdir 2:  /tigress/ruairidh/model_results/wrn_28_10
-[2018/09/21 23:15:25 __main__ INFO] - Train 2
-[2018/09/21 23:15:26 __main__ INFO] - Epoch 2 Step 0/390 Loss 0.9371 (0.9371) Accuracy 0.6953 (0.6953)
-[2018/09/21 23:15:54 __main__ INFO] - Epoch 2 Step 100/390 Loss 0.7606 (0.8874) Accuracy 0.6953 (0.6892)
-[2018/09/21 23:16:23 __main__ INFO] - Epoch 2 Step 200/390 Loss 0.9539 (0.8459) Accuracy 0.7031 (0.7011)
-[2018/09/21 23:16:51 __main__ INFO] - Epoch 2 Step 300/390 Loss 0.6632 (0.8144) Accuracy 0.7344 (0.7134)
-[2018/09/21 23:17:16 __main__ INFO] - Elapsed 111.10
-[2018/09/21 23:17:16 __main__ INFO] - Test 2
-[2018/09/21 23:17:24 __main__ INFO] - Epoch 2 Loss 1.0309 Accuracy 0.6777
-[2018/09/21 23:17:24 __main__ INFO] - Elapsed 7.51
+[2018/11/01 14:46:33 __main__ INFO] - Train 2
+[2018/11/01 14:46:34 __main__ INFO] - Epoch 2 Step 0/390 Loss 0.9249 (0.9249) Accuracy 0.6953 (0.6953)
+[2018/11/01 14:47:02 __main__ INFO] - Epoch 2 Step 100/390 Loss 0.7342 (0.8940) Accuracy 0.7109 (0.6846)
+[2018/11/01 14:47:30 __main__ INFO] - Epoch 2 Step 200/390 Loss 0.9105 (0.8540) Accuracy 0.7266 (0.6975)
+[2018/11/01 14:47:59 __main__ INFO] - Epoch 2 Step 300/390 Loss 0.6744 (0.8187) Accuracy 0.7812 (0.7122)
+[2018/11/01 14:48:24 __main__ INFO] - Elapsed 110.26
+[2018/11/01 14:48:24 __main__ INFO] - Test 2
+[2018/11/01 14:48:31 __main__ INFO] - Epoch 2 Loss 0.9807 Accuracy 0.6778
+[2018/11/01 14:48:31 __main__ INFO] - Elapsed 7.61
 outdir 2:  /tigress/ruairidh/model_results/wrn_28_10
-[2018/09/21 23:17:25 __main__ INFO] - Train 3
-[2018/09/21 23:17:26 __main__ INFO] - Epoch 3 Step 0/390 Loss 0.5408 (0.5408) Accuracy 0.7969 (0.7969)
-[2018/09/21 23:17:54 __main__ INFO] - Epoch 3 Step 100/390 Loss 0.6503 (0.6483) Accuracy 0.7891 (0.7742)
-[2018/09/21 23:18:23 __main__ INFO] - Epoch 3 Step 200/390 Loss 0.5973 (0.6392) Accuracy 0.7969 (0.7776)
-[2018/09/21 23:18:51 __main__ INFO] - Epoch 3 Step 300/390 Loss 0.7684 (0.6280) Accuracy 0.7422 (0.7830)
-[2018/09/21 23:19:16 __main__ INFO] - Elapsed 111.13
-[2018/09/21 23:19:17 __main__ INFO] - Test 3
-[2018/09/21 23:19:24 __main__ INFO] - Epoch 3 Loss 0.9220 Accuracy 0.7116
-[2018/09/21 23:19:24 __main__ INFO] - Elapsed 7.59
+[2018/11/01 14:48:33 __main__ INFO] - Train 3
+[2018/11/01 14:48:33 __main__ INFO] - Epoch 3 Step 0/390 Loss 0.4964 (0.4964) Accuracy 0.8438 (0.8438)
+[2018/11/01 14:49:01 __main__ INFO] - Epoch 3 Step 100/390 Loss 0.6212 (0.6493) Accuracy 0.7656 (0.7740)
+[2018/11/01 14:49:29 __main__ INFO] - Epoch 3 Step 200/390 Loss 0.5742 (0.6399) Accuracy 0.8125 (0.7768)
+[2018/11/01 14:49:58 __main__ INFO] - Epoch 3 Step 300/390 Loss 0.7333 (0.6327) Accuracy 0.7344 (0.7809)
+[2018/11/01 14:50:23 __main__ INFO] - Elapsed 110.17
+[2018/11/01 14:50:23 __main__ INFO] - Test 3
+[2018/11/01 14:50:30 __main__ INFO] - Epoch 3 Loss 1.0363 Accuracy 0.6958
+[2018/11/01 14:50:30 __main__ INFO] - Elapsed 7.53
 outdir 2:  /tigress/ruairidh/model_results/wrn_28_10
-[2018/09/21 23:19:25 __main__ INFO] - Train 4
-[2018/09/21 23:19:26 __main__ INFO] - Epoch 4 Step 0/390 Loss 0.6984 (0.6984) Accuracy 0.7891 (0.7891)
-[2018/09/21 23:19:54 __main__ INFO] - Epoch 4 Step 100/390 Loss 0.7608 (0.5393) Accuracy 0.7578 (0.8179)
-[2018/09/21 23:20:23 __main__ INFO] - Epoch 4 Step 200/390 Loss 0.5208 (0.5471) Accuracy 0.7812 (0.8122)
-[2018/09/21 23:20:51 __main__ INFO] - Epoch 4 Step 300/390 Loss 0.4182 (0.5450) Accuracy 0.8672 (0.8131)
-[2018/09/21 23:21:17 __main__ INFO] - Elapsed 111.15
-[2018/09/21 23:21:17 __main__ INFO] - Test 4
-[2018/09/21 23:21:24 __main__ INFO] - Epoch 4 Loss 0.6600 Accuracy 0.7739
-[2018/09/21 23:21:24 __main__ INFO] - Elapsed 7.70
+[2018/11/01 14:50:31 __main__ INFO] - Train 4
+[2018/11/01 14:50:32 __main__ INFO] - Epoch 4 Step 0/390 Loss 0.7109 (0.7109) Accuracy 0.7344 (0.7344)
+[2018/11/01 14:51:00 __main__ INFO] - Epoch 4 Step 100/390 Loss 0.8020 (0.5441) Accuracy 0.7109 (0.8154)
+[2018/11/01 14:51:28 __main__ INFO] - Epoch 4 Step 200/390 Loss 0.5109 (0.5504) Accuracy 0.8047 (0.8128)
+[2018/11/01 14:51:56 __main__ INFO] - Epoch 4 Step 300/390 Loss 0.4658 (0.5465) Accuracy 0.8438 (0.8138)
+[2018/11/01 14:52:21 __main__ INFO] - Elapsed 110.14
+[2018/11/01 14:52:21 __main__ INFO] - Test 4
+[2018/11/01 14:52:29 __main__ INFO] - Epoch 4 Loss 0.7365 Accuracy 0.7558
+[2018/11/01 14:52:29 __main__ INFO] - Elapsed 7.48
 outdir 2:  /tigress/ruairidh/model_results/wrn_28_10
-[2018/09/21 23:21:26 __main__ INFO] - Train 5
-[2018/09/21 23:21:26 __main__ INFO] - Epoch 5 Step 0/390 Loss 0.5520 (0.5520) Accuracy 0.8125 (0.8125)
-[2018/09/21 23:21:55 __main__ INFO] - Epoch 5 Step 100/390 Loss 0.5367 (0.4954) Accuracy 0.7812 (0.8310)
-[2018/09/21 23:22:23 __main__ INFO] - Epoch 5 Step 200/390 Loss 0.5251 (0.4915) Accuracy 0.8125 (0.8312)
-[2018/09/21 23:22:52 __main__ INFO] - Epoch 5 Step 300/390 Loss 0.3961 (0.4852) Accuracy 0.8438 (0.8339)
-[2018/09/21 23:23:17 __main__ INFO] - Elapsed 111.18
-[2018/09/21 23:23:17 __main__ INFO] - Test 5
-[2018/09/21 23:23:24 __main__ INFO] - Epoch 5 Loss 0.5777 Accuracy 0.8033
-[2018/09/21 23:23:24 __main__ INFO] - Elapsed 7.54
+[2018/11/01 14:52:30 __main__ INFO] - Train 5
+[2018/11/01 14:52:30 __main__ INFO] - Epoch 5 Step 0/390 Loss 0.5760 (0.5760) Accuracy 0.7969 (0.7969)
+[2018/11/01 14:52:59 __main__ INFO] - Epoch 5 Step 100/390 Loss 0.4866 (0.4978) Accuracy 0.8047 (0.8285)
+[2018/11/01 14:53:27 __main__ INFO] - Epoch 5 Step 200/390 Loss 0.5966 (0.4975) Accuracy 0.8281 (0.8281)
+[2018/11/01 14:53:55 __main__ INFO] - Epoch 5 Step 300/390 Loss 0.5547 (0.4910) Accuracy 0.7969 (0.8303)
+[2018/11/01 14:54:20 __main__ INFO] - Elapsed 110.35
+[2018/11/01 14:54:20 __main__ INFO] - Test 5
+[2018/11/01 14:54:28 __main__ INFO] - Epoch 5 Loss 0.9231 Accuracy 0.7291
+[2018/11/01 14:54:28 __main__ INFO] - Elapsed 7.51
 outdir 2:  /tigress/ruairidh/model_results/wrn_28_10
-[2018/09/21 23:23:26 __main__ INFO] - Train 6
-[2018/09/21 23:23:26 __main__ INFO] - Epoch 6 Step 0/390 Loss 0.4994 (0.4994) Accuracy 0.8281 (0.8281)
-[2018/09/21 23:23:55 __main__ INFO] - Epoch 6 Step 100/390 Loss 0.4082 (0.4442) Accuracy 0.8516 (0.8496)
-[2018/09/21 23:24:23 __main__ INFO] - Epoch 6 Step 200/390 Loss 0.5165 (0.4505) Accuracy 0.8672 (0.8465)
-[2018/09/21 23:24:52 __main__ INFO] - Epoch 6 Step 300/390 Loss 0.4131 (0.4532) Accuracy 0.8516 (0.8457)
-[2018/09/21 23:25:17 __main__ INFO] - Elapsed 111.04
-[2018/09/21 23:25:17 __main__ INFO] - Test 6
-[2018/09/21 23:25:24 __main__ INFO] - Epoch 6 Loss 0.6589 Accuracy 0.7841
-[2018/09/21 23:25:24 __main__ INFO] - Elapsed 7.55
+[2018/11/01 14:54:28 __main__ INFO] - Train 6
+[2018/11/01 14:54:29 __main__ INFO] - Epoch 6 Step 0/390 Loss 0.5107 (0.5107) Accuracy 0.8359 (0.8359)
+[2018/11/01 14:54:57 __main__ INFO] - Epoch 6 Step 100/390 Loss 0.4515 (0.4551) Accuracy 0.8359 (0.8451)
+[2018/11/01 14:55:25 __main__ INFO] - Epoch 6 Step 200/390 Loss 0.5158 (0.4574) Accuracy 0.8516 (0.8440)
+[2018/11/01 14:55:53 __main__ INFO] - Epoch 6 Step 300/390 Loss 0.3707 (0.4583) Accuracy 0.8672 (0.8439)
+[2018/11/01 14:56:18 __main__ INFO] - Elapsed 109.98
+[2018/11/01 14:56:18 __main__ INFO] - Test 6
+[2018/11/01 14:56:26 __main__ INFO] - Epoch 6 Loss 0.8141 Accuracy 0.7430
+[2018/11/01 14:56:26 __main__ INFO] - Elapsed 7.51
 outdir 2:  /tigress/ruairidh/model_results/wrn_28_10
-[2018/09/21 23:25:25 __main__ INFO] - Train 7
-[2018/09/21 23:25:26 __main__ INFO] - Epoch 7 Step 0/390 Loss 0.3876 (0.3876) Accuracy 0.8750 (0.8750)
-[2018/09/21 23:25:54 __main__ INFO] - Epoch 7 Step 100/390 Loss 0.4395 (0.4193) Accuracy 0.8125 (0.8564)
-[2018/09/21 23:26:23 __main__ INFO] - Epoch 7 Step 200/390 Loss 0.5062 (0.4305) Accuracy 0.7969 (0.8542)
-[2018/09/21 23:26:51 __main__ INFO] - Epoch 7 Step 300/390 Loss 0.4354 (0.4244) Accuracy 0.8281 (0.8565)
-[2018/09/21 23:27:16 __main__ INFO] - Elapsed 111.15
-[2018/09/21 23:27:16 __main__ INFO] - Test 7
-[2018/09/21 23:27:24 __main__ INFO] - Epoch 7 Loss 0.8199 Accuracy 0.7637
-[2018/09/21 23:27:24 __main__ INFO] - Elapsed 7.60
+[2018/11/01 14:56:26 __main__ INFO] - Train 7
+[2018/11/01 14:56:27 __main__ INFO] - Epoch 7 Step 0/390 Loss 0.4475 (0.4475) Accuracy 0.8594 (0.8594)
+[2018/11/01 14:56:55 __main__ INFO] - Epoch 7 Step 100/390 Loss 0.4905 (0.4276) Accuracy 0.8281 (0.8535)
+[2018/11/01 14:57:23 __main__ INFO] - Epoch 7 Step 200/390 Loss 0.4684 (0.4358) Accuracy 0.8125 (0.8523)
+[2018/11/01 14:57:51 __main__ INFO] - Epoch 7 Step 300/390 Loss 0.4017 (0.4301) Accuracy 0.8281 (0.8549)
+[2018/11/01 14:58:16 __main__ INFO] - Elapsed 110.11
+[2018/11/01 14:58:16 __main__ INFO] - Test 7
+[2018/11/01 14:58:24 __main__ INFO] - Epoch 7 Loss 0.6731 Accuracy 0.7810
+[2018/11/01 14:58:24 __main__ INFO] - Elapsed 7.46
 outdir 2:  /tigress/ruairidh/model_results/wrn_28_10
-[2018/09/21 23:27:25 __main__ INFO] - Train 8
-[2018/09/21 23:27:25 __main__ INFO] - Epoch 8 Step 0/390 Loss 0.4174 (0.4174) Accuracy 0.8672 (0.8672)
-[2018/09/21 23:27:54 __main__ INFO] - Epoch 8 Step 100/390 Loss 0.3284 (0.3879) Accuracy 0.8906 (0.8680)
-[2018/09/21 23:28:22 __main__ INFO] - Epoch 8 Step 200/390 Loss 0.4047 (0.3929) Accuracy 0.8750 (0.8663)
-[2018/09/21 23:28:51 __main__ INFO] - Epoch 8 Step 300/390 Loss 0.4055 (0.3949) Accuracy 0.8672 (0.8649)
-[2018/09/21 23:29:16 __main__ INFO] - Elapsed 110.96
-[2018/09/21 23:29:16 __main__ INFO] - Test 8
-[2018/09/21 23:29:23 __main__ INFO] - Epoch 8 Loss 0.7409 Accuracy 0.7653
-[2018/09/21 23:29:23 __main__ INFO] - Elapsed 7.47
+[2018/11/01 14:58:25 __main__ INFO] - Train 8
+[2018/11/01 14:58:25 __main__ INFO] - Epoch 8 Step 0/390 Loss 0.3697 (0.3697) Accuracy 0.9062 (0.9062)
+[2018/11/01 14:58:53 __main__ INFO] - Epoch 8 Step 100/390 Loss 0.4138 (0.3778) Accuracy 0.8594 (0.8700)
+[2018/11/01 14:59:22 __main__ INFO] - Epoch 8 Step 200/390 Loss 0.4420 (0.3923) Accuracy 0.8594 (0.8665)
+[2018/11/01 14:59:50 __main__ INFO] - Epoch 8 Step 300/390 Loss 0.4537 (0.3954) Accuracy 0.8359 (0.8646)
+[2018/11/01 15:00:15 __main__ INFO] - Elapsed 110.19
+[2018/11/01 15:00:15 __main__ INFO] - Test 8
+[2018/11/01 15:00:22 __main__ INFO] - Epoch 8 Loss 0.9711 Accuracy 0.7314
+[2018/11/01 15:00:22 __main__ INFO] - Elapsed 7.53
 outdir 2:  /tigress/ruairidh/model_results/wrn_28_10
-[2018/09/21 23:29:24 __main__ INFO] - Train 9
-[2018/09/21 23:29:25 __main__ INFO] - Epoch 9 Step 0/390 Loss 0.4270 (0.4270) Accuracy 0.8828 (0.8828)
-[2018/09/21 23:29:53 __main__ INFO] - Epoch 9 Step 100/390 Loss 0.3565 (0.3700) Accuracy 0.8750 (0.8762)
-[2018/09/21 23:30:22 __main__ INFO] - Epoch 9 Step 200/390 Loss 0.3867 (0.3790) Accuracy 0.8516 (0.8719)
-[2018/09/21 23:30:50 __main__ INFO] - Epoch 9 Step 300/390 Loss 0.3532 (0.3841) Accuracy 0.8984 (0.8694)
-[2018/09/21 23:31:15 __main__ INFO] - Elapsed 111.19
-[2018/09/21 23:31:15 __main__ INFO] - Test 9
-[2018/09/21 23:31:23 __main__ INFO] - Epoch 9 Loss 0.6203 Accuracy 0.8091
-[2018/09/21 23:31:23 __main__ INFO] - Elapsed 7.56
+[2018/11/01 15:00:23 __main__ INFO] - Train 9
+[2018/11/01 15:00:24 __main__ INFO] - Epoch 9 Step 0/390 Loss 0.4666 (0.4666) Accuracy 0.8359 (0.8359)
+[2018/11/01 15:00:52 __main__ INFO] - Epoch 9 Step 100/390 Loss 0.3865 (0.3787) Accuracy 0.8594 (0.8704)
+[2018/11/01 15:01:20 __main__ INFO] - Epoch 9 Step 200/390 Loss 0.4144 (0.3853) Accuracy 0.8594 (0.8677)
+[2018/11/01 15:01:48 __main__ INFO] - Epoch 9 Step 300/390 Loss 0.3987 (0.3916) Accuracy 0.8516 (0.8650)
+[2018/11/01 15:02:13 __main__ INFO] - Elapsed 110.04
+[2018/11/01 15:02:13 __main__ INFO] - Test 9
+[2018/11/01 15:02:20 __main__ INFO] - Epoch 9 Loss 0.6005 Accuracy 0.8049
+[2018/11/01 15:02:21 __main__ INFO] - Elapsed 7.53
 outdir 2:  /tigress/ruairidh/model_results/wrn_28_10
-[2018/09/21 23:31:24 __main__ INFO] - Train 10
-[2018/09/21 23:31:25 __main__ INFO] - Epoch 10 Step 0/390 Loss 0.2598 (0.2598) Accuracy 0.9141 (0.9141)
-[2018/09/21 23:31:53 __main__ INFO] - Epoch 10 Step 100/390 Loss 0.3490 (0.3537) Accuracy 0.8750 (0.8804)
-[2018/09/21 23:32:22 __main__ INFO] - Epoch 10 Step 200/390 Loss 0.3567 (0.3699) Accuracy 0.8750 (0.8740)
-[2018/09/21 23:32:51 __main__ INFO] - Epoch 10 Step 300/390 Loss 0.2527 (0.3735) Accuracy 0.9141 (0.8729)
-[2018/09/21 23:33:16 __main__ INFO] - Elapsed 111.52
-[2018/09/21 23:33:16 __main__ INFO] - Test 10
-[2018/09/21 23:33:23 __main__ INFO] - Epoch 10 Loss 0.5058 Accuracy 0.8330
-[2018/09/21 23:33:23 __main__ INFO] - Elapsed 7.50
+[2018/11/01 15:02:21 __main__ INFO] - Train 10
+[2018/11/01 15:02:22 __main__ INFO] - Epoch 10 Step 0/390 Loss 0.2780 (0.2780) Accuracy 0.8906 (0.8906)
+[2018/11/01 15:02:50 __main__ INFO] - Epoch 10 Step 100/390 Loss 0.3063 (0.3579) Accuracy 0.8906 (0.8782)
+[2018/11/01 15:03:18 __main__ INFO] - Epoch 10 Step 200/390 Loss 0.3110 (0.3680) Accuracy 0.9141 (0.8743)
+[2018/11/01 15:03:47 __main__ INFO] - Epoch 10 Step 300/390 Loss 0.2460 (0.3711) Accuracy 0.9297 (0.8734)
+[2018/11/01 15:04:12 __main__ INFO] - Elapsed 110.29
+[2018/11/01 15:04:12 __main__ INFO] - Test 10
+[2018/11/01 15:04:19 __main__ INFO] - Epoch 10 Loss 0.5047 Accuracy 0.8352
+[2018/11/01 15:04:19 __main__ INFO] - Elapsed 7.48
 outdir 2:  /tigress/ruairidh/model_results/wrn_28_10
-[2018/09/21 23:33:25 __main__ INFO] - Train 11
-[2018/09/21 23:33:25 __main__ INFO] - Epoch 11 Step 0/390 Loss 0.3811 (0.3811) Accuracy 0.8984 (0.8984)
-[2018/09/21 23:33:54 __main__ INFO] - Epoch 11 Step 100/390 Loss 0.3005 (0.3530) Accuracy 0.8984 (0.8800)
-[2018/09/21 23:34:22 __main__ INFO] - Epoch 11 Step 200/390 Loss 0.4317 (0.3508) Accuracy 0.8672 (0.8816)
-[2018/09/21 23:34:51 __main__ INFO] - Epoch 11 Step 300/390 Loss 0.5303 (0.3567) Accuracy 0.8594 (0.8788)
-[2018/09/21 23:35:16 __main__ INFO] - Elapsed 111.19
-[2018/09/21 23:35:16 __main__ INFO] - Test 11
-[2018/09/21 23:35:24 __main__ INFO] - Epoch 11 Loss 0.4558 Accuracy 0.8455
-[2018/09/21 23:35:24 __main__ INFO] - Elapsed 7.71
+[2018/11/01 15:04:20 __main__ INFO] - Train 11
+[2018/11/01 15:04:21 __main__ INFO] - Epoch 11 Step 0/390 Loss 0.3927 (0.3927) Accuracy 0.8750 (0.8750)
+[2018/11/01 15:04:49 __main__ INFO] - Epoch 11 Step 100/390 Loss 0.2882 (0.3513) Accuracy 0.9062 (0.8792)
+[2018/11/01 15:05:17 __main__ INFO] - Epoch 11 Step 200/390 Loss 0.4185 (0.3522) Accuracy 0.8594 (0.8798)
+[2018/11/01 15:05:45 __main__ INFO] - Epoch 11 Step 300/390 Loss 0.5253 (0.3587) Accuracy 0.8125 (0.8772)
+[2018/11/01 15:06:10 __main__ INFO] - Elapsed 110.13
+[2018/11/01 15:06:10 __main__ INFO] - Test 11
+[2018/11/01 15:06:18 __main__ INFO] - Epoch 11 Loss 0.4383 Accuracy 0.8504
+[2018/11/01 15:06:18 __main__ INFO] - Elapsed 7.52
 outdir 2:  /tigress/ruairidh/model_results/wrn_28_10
-[2018/09/21 23:35:25 __main__ INFO] - Train 12
-[2018/09/21 23:35:26 __main__ INFO] - Epoch 12 Step 0/390 Loss 0.2625 (0.2625) Accuracy 0.9141 (0.9141)
-[2018/09/21 23:35:54 __main__ INFO] - Epoch 12 Step 100/390 Loss 0.3842 (0.3303) Accuracy 0.8906 (0.8892)
-[2018/09/21 23:36:23 __main__ INFO] - Epoch 12 Step 200/390 Loss 0.3670 (0.3467) Accuracy 0.8750 (0.8824)
-[2018/09/21 23:36:51 __main__ INFO] - Epoch 12 Step 300/390 Loss 0.3440 (0.3486) Accuracy 0.8828 (0.8815)
-[2018/09/21 23:37:16 __main__ INFO] - Elapsed 110.94
-[2018/09/21 23:37:16 __main__ INFO] - Test 12
-[2018/09/21 23:37:24 __main__ INFO] - Epoch 12 Loss 0.6727 Accuracy 0.7895
-[2018/09/21 23:37:24 __main__ INFO] - Elapsed 7.63
+[2018/11/01 15:06:19 __main__ INFO] - Train 12
+[2018/11/01 15:06:19 __main__ INFO] - Epoch 12 Step 0/390 Loss 0.2352 (0.2352) Accuracy 0.9297 (0.9297)
+[2018/11/01 15:06:47 __main__ INFO] - Epoch 12 Step 100/390 Loss 0.3055 (0.3346) Accuracy 0.8906 (0.8870)
+[2018/11/01 15:07:16 __main__ INFO] - Epoch 12 Step 200/390 Loss 0.3774 (0.3461) Accuracy 0.8594 (0.8814)
+[2018/11/01 15:07:44 __main__ INFO] - Epoch 12 Step 300/390 Loss 0.3552 (0.3487) Accuracy 0.8750 (0.8790)
+[2018/11/01 15:08:09 __main__ INFO] - Elapsed 110.26
+[2018/11/01 15:08:09 __main__ INFO] - Test 12
+[2018/11/01 15:08:17 __main__ INFO] - Epoch 12 Loss 0.5206 Accuracy 0.8280
+[2018/11/01 15:08:17 __main__ INFO] - Elapsed 7.58
 outdir 2:  /tigress/ruairidh/model_results/wrn_28_10
-[2018/09/21 23:37:25 __main__ INFO] - Train 13
-[2018/09/21 23:37:25 __main__ INFO] - Epoch 13 Step 0/390 Loss 0.2295 (0.2295) Accuracy 0.9062 (0.9062)
+[2018/11/01 15:08:17 __main__ INFO] - Train 13
+[2018/11/01 15:08:18 __main__ INFO] - Epoch 13 Step 0/390 Loss 0.2228 (0.2228) Accuracy 0.9453 (0.9453)
+[2018/11/01 15:08:46 __main__ INFO] - Epoch 13 Step 100/390 Loss 0.3352 (0.3265) Accuracy 0.8828 (0.8868)
+[2018/11/01 15:09:14 __main__ INFO] - Epoch 13 Step 200/390 Loss 0.3849 (0.3301) Accuracy 0.8516 (0.8873)
+[2018/11/01 15:09:42 __main__ INFO] - Epoch 13 Step 300/390 Loss 0.3016 (0.3365) Accuracy 0.8984 (0.8858)
+[2018/11/01 15:10:07 __main__ INFO] - Elapsed 110.08
+[2018/11/01 15:10:07 __main__ INFO] - Test 13
+[2018/11/01 15:10:15 __main__ INFO] - Epoch 13 Loss 0.7227 Accuracy 0.7854
+[2018/11/01 15:10:15 __main__ INFO] - Elapsed 7.45
+outdir 2:  /tigress/ruairidh/model_results/wrn_28_10
+[2018/11/01 15:10:15 __main__ INFO] - Train 14
+[2018/11/01 15:10:16 __main__ INFO] - Epoch 14 Step 0/390 Loss 0.3888 (0.3888) Accuracy 0.8750 (0.8750)
+[2018/11/01 15:10:44 __main__ INFO] - Epoch 14 Step 100/390 Loss 0.3423 (0.3216) Accuracy 0.8594 (0.8888)
+[2018/11/01 15:11:12 __main__ INFO] - Epoch 14 Step 200/390 Loss 0.4302 (0.3315) Accuracy 0.8594 (0.8863)
+[2018/11/01 15:11:40 __main__ INFO] - Epoch 14 Step 300/390 Loss 0.3471 (0.3319) Accuracy 0.8594 (0.8863)
+[2018/11/01 15:12:05 __main__ INFO] - Elapsed 110.26
+[2018/11/01 15:12:05 __main__ INFO] - Test 14
+[2018/11/01 15:12:13 __main__ INFO] - Epoch 14 Loss 0.6653 Accuracy 0.8051
+[2018/11/01 15:12:13 __main__ INFO] - Elapsed 7.53
+outdir 2:  /tigress/ruairidh/model_results/wrn_28_10
+[2018/11/01 15:12:13 __main__ INFO] - Train 15
+[2018/11/01 15:12:14 __main__ INFO] - Epoch 15 Step 0/390 Loss 0.3420 (0.3420) Accuracy 0.8828 (0.8828)
+[2018/11/01 15:12:42 __main__ INFO] - Epoch 15 Step 100/390 Loss 0.3569 (0.3071) Accuracy 0.8906 (0.8950)
+[2018/11/01 15:13:10 __main__ INFO] - Epoch 15 Step 200/390 Loss 0.5598 (0.3175) Accuracy 0.8281 (0.8920)
+[2018/11/01 15:13:38 __main__ INFO] - Epoch 15 Step 300/390 Loss 0.3173 (0.3147) Accuracy 0.8828 (0.8925)
+[2018/11/01 15:14:03 __main__ INFO] - Elapsed 109.91
+[2018/11/01 15:14:03 __main__ INFO] - Test 15
+[2018/11/01 15:14:11 __main__ INFO] - Epoch 15 Loss 0.4818 Accuracy 0.8457
+[2018/11/01 15:14:11 __main__ INFO] - Elapsed 7.50
+outdir 2:  /tigress/ruairidh/model_results/wrn_28_10
+[2018/11/01 15:14:11 __main__ INFO] - Train 16
+[2018/11/01 15:14:12 __main__ INFO] - Epoch 16 Step 0/390 Loss 0.3068 (0.3068) Accuracy 0.8906 (0.8906)
+[2018/11/01 15:14:40 __main__ INFO] - Epoch 16 Step 100/390 Loss 0.2581 (0.3004) Accuracy 0.8828 (0.8968)
+[2018/11/01 15:15:08 __main__ INFO] - Epoch 16 Step 200/390 Loss 0.3010 (0.3133) Accuracy 0.9141 (0.8946)
+[2018/11/01 15:15:37 __main__ INFO] - Epoch 16 Step 300/390 Loss 0.2151 (0.3125) Accuracy 0.9375 (0.8937)
+[2018/11/01 15:16:01 __main__ INFO] - Elapsed 110.08
+[2018/11/01 15:16:01 __main__ INFO] - Test 16
+[2018/11/01 15:16:09 __main__ INFO] - Epoch 16 Loss 0.4223 Accuracy 0.8614
+[2018/11/01 15:16:09 __main__ INFO] - Elapsed 7.48
+outdir 2:  /tigress/ruairidh/model_results/wrn_28_10
+[2018/11/01 15:16:12 __main__ INFO] - Train 17
+[2018/11/01 15:16:12 __main__ INFO] - Epoch 17 Step 0/390 Loss 0.2106 (0.2106) Accuracy 0.9297 (0.9297)
+[2018/11/01 15:16:40 __main__ INFO] - Epoch 17 Step 100/390 Loss 0.4508 (0.2952) Accuracy 0.8594 (0.8980)
+[2018/11/01 15:17:09 __main__ INFO] - Epoch 17 Step 200/390 Loss 0.3122 (0.2966) Accuracy 0.8906 (0.8975)
+[2018/11/01 15:17:37 __main__ INFO] - Epoch 17 Step 300/390 Loss 0.2398 (0.3071) Accuracy 0.9375 (0.8941)
+[2018/11/01 15:18:02 __main__ INFO] - Elapsed 110.02
+[2018/11/01 15:18:02 __main__ INFO] - Test 17
+[2018/11/01 15:18:09 __main__ INFO] - Epoch 17 Loss 0.4201 Accuracy 0.8618
+[2018/11/01 15:18:09 __main__ INFO] - Elapsed 7.54
+outdir 2:  /tigress/ruairidh/model_results/wrn_28_10
+[2018/11/01 15:18:10 __main__ INFO] - Train 18
+[2018/11/01 15:18:11 __main__ INFO] - Epoch 18 Step 0/390 Loss 0.3678 (0.3678) Accuracy 0.8750 (0.8750)
+[2018/11/01 15:18:39 __main__ INFO] - Epoch 18 Step 100/390 Loss 0.3443 (0.2892) Accuracy 0.9062 (0.8993)
+[2018/11/01 15:19:07 __main__ INFO] - Epoch 18 Step 200/390 Loss 0.4132 (0.2993) Accuracy 0.8359 (0.8958)
+[2018/11/01 15:19:36 __main__ INFO] - Epoch 18 Step 300/390 Loss 0.2600 (0.3053) Accuracy 0.8828 (0.8944)
+[2018/11/01 15:20:00 __main__ INFO] - Elapsed 110.19
+[2018/11/01 15:20:01 __main__ INFO] - Test 18
+[2018/11/01 15:20:08 __main__ INFO] - Epoch 18 Loss 0.5338 Accuracy 0.8276
+[2018/11/01 15:20:08 __main__ INFO] - Elapsed 7.47
+outdir 2:  /tigress/ruairidh/model_results/wrn_28_10
+[2018/11/01 15:20:08 __main__ INFO] - Train 19
+[2018/11/01 15:20:09 __main__ INFO] - Epoch 19 Step 0/390 Loss 0.2083 (0.2083) Accuracy 0.9219 (0.9219)
+[2018/11/01 15:20:37 __main__ INFO] - Epoch 19 Step 100/390 Loss 0.4251 (0.2906) Accuracy 0.8516 (0.8994)
+[2018/11/01 15:21:05 __main__ INFO] - Epoch 19 Step 200/390 Loss 0.3435 (0.2997) Accuracy 0.8984 (0.8966)
+[2018/11/01 15:21:34 __main__ INFO] - Epoch 19 Step 300/390 Loss 0.2355 (0.2992) Accuracy 0.9062 (0.8972)
+[2018/11/01 15:21:59 __main__ INFO] - Elapsed 110.08
+[2018/11/01 15:21:59 __main__ INFO] - Test 19
+[2018/11/01 15:22:06 __main__ INFO] - Epoch 19 Loss 0.6249 Accuracy 0.8131
+[2018/11/01 15:22:06 __main__ INFO] - Elapsed 7.63
+outdir 2:  /tigress/ruairidh/model_results/wrn_28_10
+[2018/11/01 15:22:07 __main__ INFO] - Train 20
+[2018/11/01 15:22:07 __main__ INFO] - Epoch 20 Step 0/390 Loss 0.3489 (0.3489) Accuracy 0.8672 (0.8672)
+[2018/11/01 15:22:36 __main__ INFO] - Epoch 20 Step 100/390 Loss 0.2913 (0.2781) Accuracy 0.8984 (0.9065)
+[2018/11/01 15:23:04 __main__ INFO] - Epoch 20 Step 200/390 Loss 0.3834 (0.2914) Accuracy 0.8984 (0.9003)
+[2018/11/01 15:23:32 __main__ INFO] - Epoch 20 Step 300/390 Loss 0.3325 (0.2983) Accuracy 0.8750 (0.8980)
+[2018/11/01 15:23:57 __main__ INFO] - Elapsed 110.09
+[2018/11/01 15:23:57 __main__ INFO] - Test 20
+[2018/11/01 15:24:04 __main__ INFO] - Epoch 20 Loss 0.5059 Accuracy 0.8330
+[2018/11/01 15:24:04 __main__ INFO] - Elapsed 7.47
+outdir 2:  /tigress/ruairidh/model_results/wrn_28_10
+[2018/11/01 15:24:05 __main__ INFO] - Train 21
+[2018/11/01 15:24:06 __main__ INFO] - Epoch 21 Step 0/390 Loss 0.2002 (0.2002) Accuracy 0.9219 (0.9219)
+[2018/11/01 15:24:34 __main__ INFO] - Epoch 21 Step 100/390 Loss 0.3155 (0.2958) Accuracy 0.8828 (0.9005)
+[2018/11/01 15:25:02 __main__ INFO] - Epoch 21 Step 200/390 Loss 0.1960 (0.2867) Accuracy 0.9375 (0.9042)
+[2018/11/01 15:25:30 __main__ INFO] - Epoch 21 Step 300/390 Loss 0.1870 (0.2916) Accuracy 0.9531 (0.9019)
+[2018/11/01 15:25:55 __main__ INFO] - Elapsed 110.19
+[2018/11/01 15:25:55 __main__ INFO] - Test 21
+[2018/11/01 15:26:03 __main__ INFO] - Epoch 21 Loss 0.4832 Accuracy 0.8421
+[2018/11/01 15:26:03 __main__ INFO] - Elapsed 7.60
+outdir 2:  /tigress/ruairidh/model_results/wrn_28_10
+[2018/11/01 15:26:03 __main__ INFO] - Train 22
+[2018/11/01 15:26:04 __main__ INFO] - Epoch 22 Step 0/390 Loss 0.2415 (0.2415) Accuracy 0.8984 (0.8984)
+[2018/11/01 15:26:32 __main__ INFO] - Epoch 22 Step 100/390 Loss 0.2795 (0.2803) Accuracy 0.8984 (0.9042)
+[2018/11/01 15:27:00 __main__ INFO] - Epoch 22 Step 200/390 Loss 0.2840 (0.2810) Accuracy 0.8750 (0.9048)
+[2018/11/01 15:27:29 __main__ INFO] - Epoch 22 Step 300/390 Loss 0.3698 (0.2819) Accuracy 0.8984 (0.9040)
+[2018/11/01 15:27:54 __main__ INFO] - Elapsed 110.17
+[2018/11/01 15:27:54 __main__ INFO] - Test 22
+[2018/11/01 15:28:01 __main__ INFO] - Epoch 22 Loss 0.5635 Accuracy 0.8269
+[2018/11/01 15:28:01 __main__ INFO] - Elapsed 7.67
+outdir 2:  /tigress/ruairidh/model_results/wrn_28_10
+[2018/11/01 15:28:02 __main__ INFO] - Train 23
+[2018/11/01 15:28:02 __main__ INFO] - Epoch 23 Step 0/390 Loss 0.3158 (0.3158) Accuracy 0.8906 (0.8906)
+[2018/11/01 15:28:31 __main__ INFO] - Epoch 23 Step 100/390 Loss 0.3811 (0.2596) Accuracy 0.8672 (0.9131)
+[2018/11/01 15:28:59 __main__ INFO] - Epoch 23 Step 200/390 Loss 0.3300 (0.2713) Accuracy 0.8906 (0.9082)
+[2018/11/01 15:29:27 __main__ INFO] - Epoch 23 Step 300/390 Loss 0.3064 (0.2797) Accuracy 0.9062 (0.9052)
+[2018/11/01 15:29:52 __main__ INFO] - Elapsed 109.94
+[2018/11/01 15:29:52 __main__ INFO] - Test 23
+[2018/11/01 15:29:59 __main__ INFO] - Epoch 23 Loss 0.5775 Accuracy 0.8193
+[2018/11/01 15:29:59 __main__ INFO] - Elapsed 7.48
+outdir 2:  /tigress/ruairidh/model_results/wrn_28_10
+[2018/11/01 15:30:00 __main__ INFO] - Train 24
+[2018/11/01 15:30:00 __main__ INFO] - Epoch 24 Step 0/390 Loss 0.3478 (0.3478) Accuracy 0.8984 (0.8984)
+[2018/11/01 15:30:28 __main__ INFO] - Epoch 24 Step 100/390 Loss 0.2880 (0.2620) Accuracy 0.9219 (0.9127)
+[2018/11/01 15:30:57 __main__ INFO] - Epoch 24 Step 200/390 Loss 0.2340 (0.2755) Accuracy 0.9297 (0.9075)
+[2018/11/01 15:31:25 __main__ INFO] - Epoch 24 Step 300/390 Loss 0.3351 (0.2816) Accuracy 0.8438 (0.9041)
+[2018/11/01 15:31:50 __main__ INFO] - Elapsed 109.95
+[2018/11/01 15:31:50 __main__ INFO] - Test 24
+[2018/11/01 15:31:57 __main__ INFO] - Epoch 24 Loss 0.5277 Accuracy 0.8345
+[2018/11/01 15:31:57 __main__ INFO] - Elapsed 7.54
+outdir 2:  /tigress/ruairidh/model_results/wrn_28_10
+[2018/11/01 15:31:58 __main__ INFO] - Train 25
+[2018/11/01 15:31:58 __main__ INFO] - Epoch 25 Step 0/390 Loss 0.3152 (0.3152) Accuracy 0.8750 (0.8750)
+[2018/11/01 15:32:27 __main__ INFO] - Epoch 25 Step 100/390 Loss 0.2585 (0.2653) Accuracy 0.9141 (0.9093)
+[2018/11/01 15:32:55 __main__ INFO] - Epoch 25 Step 200/390 Loss 0.2565 (0.2740) Accuracy 0.9062 (0.9058)
+[2018/11/01 15:33:23 __main__ INFO] - Epoch 25 Step 300/390 Loss 0.1948 (0.2769) Accuracy 0.9297 (0.9050)
+[2018/11/01 15:33:48 __main__ INFO] - Elapsed 110.14
+[2018/11/01 15:33:48 __main__ INFO] - Test 25
+[2018/11/01 15:33:56 __main__ INFO] - Epoch 25 Loss 0.4075 Accuracy 0.8653
+[2018/11/01 15:33:56 __main__ INFO] - Elapsed 7.62
+outdir 2:  /tigress/ruairidh/model_results/wrn_28_10
+[2018/11/01 15:33:57 __main__ INFO] - Train 26
+[2018/11/01 15:33:58 __main__ INFO] - Epoch 26 Step 0/390 Loss 0.3019 (0.3019) Accuracy 0.8828 (0.8828)
+[2018/11/01 15:34:26 __main__ INFO] - Epoch 26 Step 100/390 Loss 0.3155 (0.2591) Accuracy 0.8672 (0.9109)
+[2018/11/01 15:34:54 __main__ INFO] - Epoch 26 Step 200/390 Loss 0.2346 (0.2655) Accuracy 0.9141 (0.9090)
+[2018/11/01 15:35:22 __main__ INFO] - Epoch 26 Step 300/390 Loss 0.2405 (0.2733) Accuracy 0.9062 (0.9059)
+[2018/11/01 15:35:47 __main__ INFO] - Elapsed 110.12
+[2018/11/01 15:35:47 __main__ INFO] - Test 26
+[2018/11/01 15:35:55 __main__ INFO] - Epoch 26 Loss 0.4612 Accuracy 0.8514
+[2018/11/01 15:35:55 __main__ INFO] - Elapsed 7.59
+outdir 2:  /tigress/ruairidh/model_results/wrn_28_10
+[2018/11/01 15:35:55 __main__ INFO] - Train 27
+[2018/11/01 15:35:56 __main__ INFO] - Epoch 27 Step 0/390 Loss 0.1617 (0.1617) Accuracy 0.9688 (0.9688)
+[2018/11/01 15:36:24 __main__ INFO] - Epoch 27 Step 100/390 Loss 0.2777 (0.2597) Accuracy 0.9062 (0.9091)
+[2018/11/01 15:36:52 __main__ INFO] - Epoch 27 Step 200/390 Loss 0.1831 (0.2606) Accuracy 0.9453 (0.9086)
+[2018/11/01 15:37:20 __main__ INFO] - Epoch 27 Step 300/390 Loss 0.3379 (0.2689) Accuracy 0.8750 (0.9075)
+[2018/11/01 15:37:45 __main__ INFO] - Elapsed 110.08
+[2018/11/01 15:37:46 __main__ INFO] - Test 27
+[2018/11/01 15:37:53 __main__ INFO] - Epoch 27 Loss 0.5115 Accuracy 0.8339
+[2018/11/01 15:37:53 __main__ INFO] - Elapsed 7.49
+outdir 2:  /tigress/ruairidh/model_results/wrn_28_10
+[2018/11/01 15:37:54 __main__ INFO] - Train 28
+[2018/11/01 15:37:54 __main__ INFO] - Epoch 28 Step 0/390 Loss 0.2194 (0.2194) Accuracy 0.9141 (0.9141)
+[2018/11/01 15:38:22 __main__ INFO] - Epoch 28 Step 100/390 Loss 0.1717 (0.2513) Accuracy 0.9375 (0.9150)
+[2018/11/01 15:38:51 __main__ INFO] - Epoch 28 Step 200/390 Loss 0.3629 (0.2733) Accuracy 0.8516 (0.9063)
+[2018/11/01 15:39:19 __main__ INFO] - Epoch 28 Step 300/390 Loss 0.2521 (0.2764) Accuracy 0.9219 (0.9060)
+[2018/11/01 15:39:44 __main__ INFO] - Elapsed 110.17
+[2018/11/01 15:39:44 __main__ INFO] - Test 28
+[2018/11/01 15:39:51 __main__ INFO] - Epoch 28 Loss 0.3791 Accuracy 0.8737
+[2018/11/01 15:39:51 __main__ INFO] - Elapsed 7.50
+outdir 2:  /tigress/ruairidh/model_results/wrn_28_10
+[2018/11/01 15:39:53 __main__ INFO] - Train 29
+[2018/11/01 15:39:54 __main__ INFO] - Epoch 29 Step 0/390 Loss 0.1979 (0.1979) Accuracy 0.9453 (0.9453)
+[2018/11/01 15:40:22 __main__ INFO] - Epoch 29 Step 100/390 Loss 0.1554 (0.2416) Accuracy 0.9688 (0.9151)
+[2018/11/01 15:40:50 __main__ INFO] - Epoch 29 Step 200/390 Loss 0.2932 (0.2558) Accuracy 0.9219 (0.9109)
+[2018/11/01 15:41:18 __main__ INFO] - Epoch 29 Step 300/390 Loss 0.3919 (0.2600) Accuracy 0.8672 (0.9101)
+[2018/11/01 15:41:43 __main__ INFO] - Elapsed 110.18
+[2018/11/01 15:41:43 __main__ INFO] - Test 29
+[2018/11/01 15:41:50 __main__ INFO] - Epoch 29 Loss 0.3683 Accuracy 0.8839
+[2018/11/01 15:41:51 __main__ INFO] - Elapsed 7.53
+outdir 2:  /tigress/ruairidh/model_results/wrn_28_10
+[2018/11/01 15:41:52 __main__ INFO] - Train 30
+[2018/11/01 15:41:53 __main__ INFO] - Epoch 30 Step 0/390 Loss 0.2826 (0.2826) Accuracy 0.8672 (0.8672)
+[2018/11/01 15:42:21 __main__ INFO] - Epoch 30 Step 100/390 Loss 0.2600 (0.2486) Accuracy 0.8906 (0.9169)
+[2018/11/01 15:42:49 __main__ INFO] - Epoch 30 Step 200/390 Loss 0.1955 (0.2517) Accuracy 0.9453 (0.9139)
+[2018/11/01 15:43:17 __main__ INFO] - Epoch 30 Step 300/390 Loss 0.2559 (0.2641) Accuracy 0.9141 (0.9104)
+[2018/11/01 15:43:42 __main__ INFO] - Elapsed 110.04
+[2018/11/01 15:43:42 __main__ INFO] - Test 30
+[2018/11/01 15:43:50 __main__ INFO] - Epoch 30 Loss 0.4421 Accuracy 0.8552
+[2018/11/01 15:43:50 __main__ INFO] - Elapsed 7.58
+outdir 2:  /tigress/ruairidh/model_results/wrn_28_10
+[2018/11/01 15:43:50 __main__ INFO] - Train 31
+[2018/11/01 15:43:51 __main__ INFO] - Epoch 31 Step 0/390 Loss 0.1258 (0.1258) Accuracy 0.9688 (0.9688)
+[2018/11/01 15:44:19 __main__ INFO] - Epoch 31 Step 100/390 Loss 0.2514 (0.2412) Accuracy 0.9062 (0.9158)
+[2018/11/01 15:44:47 __main__ INFO] - Epoch 31 Step 200/390 Loss 0.3766 (0.2549) Accuracy 0.8750 (0.9128)
+[2018/11/01 15:45:16 __main__ INFO] - Epoch 31 Step 300/390 Loss 0.3177 (0.2642) Accuracy 0.9062 (0.9093)
+[2018/11/01 15:45:41 __main__ INFO] - Elapsed 110.30
+[2018/11/01 15:45:41 __main__ INFO] - Test 31
+[2018/11/01 15:45:48 __main__ INFO] - Epoch 31 Loss 0.5236 Accuracy 0.8303
+[2018/11/01 15:45:48 __main__ INFO] - Elapsed 7.66
+outdir 2:  /tigress/ruairidh/model_results/wrn_28_10
+[2018/11/01 15:45:49 __main__ INFO] - Train 32
+[2018/11/01 15:45:50 __main__ INFO] - Epoch 32 Step 0/390 Loss 0.2939 (0.2939) Accuracy 0.8750 (0.8750)
+[2018/11/01 15:46:18 __main__ INFO] - Epoch 32 Step 100/390 Loss 0.2043 (0.2283) Accuracy 0.9375 (0.9233)
+[2018/11/01 15:46:46 __main__ INFO] - Epoch 32 Step 200/390 Loss 0.2057 (0.2548) Accuracy 0.9297 (0.9135)
+[2018/11/01 15:47:14 __main__ INFO] - Epoch 32 Step 300/390 Loss 0.2216 (0.2607) Accuracy 0.9219 (0.9118)
+[2018/11/01 15:47:39 __main__ INFO] - Elapsed 110.10
+[2018/11/01 15:47:39 __main__ INFO] - Test 32
+[2018/11/01 15:47:47 __main__ INFO] - Epoch 32 Loss 0.5134 Accuracy 0.8332
+[2018/11/01 15:47:47 __main__ INFO] - Elapsed 7.57
+outdir 2:  /tigress/ruairidh/model_results/wrn_28_10
+[2018/11/01 15:47:47 __main__ INFO] - Train 33
+[2018/11/01 15:47:48 __main__ INFO] - Epoch 33 Step 0/390 Loss 0.3233 (0.3233) Accuracy 0.8906 (0.8906)
+[2018/11/01 15:48:16 __main__ INFO] - Epoch 33 Step 100/390 Loss 0.2484 (0.2556) Accuracy 0.8984 (0.9133)
+[2018/11/01 15:48:44 __main__ INFO] - Epoch 33 Step 200/390 Loss 0.1970 (0.2561) Accuracy 0.9297 (0.9126)
+[2018/11/01 15:49:12 __main__ INFO] - Epoch 33 Step 300/390 Loss 0.2132 (0.2620) Accuracy 0.9297 (0.9111)
+[2018/11/01 15:49:37 __main__ INFO] - Elapsed 110.24
+[2018/11/01 15:49:37 __main__ INFO] - Test 33
+[2018/11/01 15:49:45 __main__ INFO] - Epoch 33 Loss 0.4829 Accuracy 0.8400
+[2018/11/01 15:49:45 __main__ INFO] - Elapsed 7.47
+outdir 2:  /tigress/ruairidh/model_results/wrn_28_10
+[2018/11/01 15:49:45 __main__ INFO] - Train 34
+[2018/11/01 15:49:46 __main__ INFO] - Epoch 34 Step 0/390 Loss 0.2301 (0.2301) Accuracy 0.9375 (0.9375)
+[2018/11/01 15:50:14 __main__ INFO] - Epoch 34 Step 100/390 Loss 0.2507 (0.2474) Accuracy 0.8984 (0.9147)
+[2018/11/01 15:50:42 __main__ INFO] - Epoch 34 Step 200/390 Loss 0.1827 (0.2575) Accuracy 0.9375 (0.9112)
+[2018/11/01 15:51:11 __main__ INFO] - Epoch 34 Step 300/390 Loss 0.1850 (0.2590) Accuracy 0.9375 (0.9116)
+[2018/11/01 15:51:35 __main__ INFO] - Elapsed 110.10
+[2018/11/01 15:51:35 __main__ INFO] - Test 34
+[2018/11/01 15:51:43 __main__ INFO] - Epoch 34 Loss 0.3949 Accuracy 0.8673
+[2018/11/01 15:51:43 __main__ INFO] - Elapsed 7.61
+outdir 2:  /tigress/ruairidh/model_results/wrn_28_10
+[2018/11/01 15:51:44 __main__ INFO] - Train 35
+[2018/11/01 15:51:44 __main__ INFO] - Epoch 35 Step 0/390 Loss 0.2173 (0.2173) Accuracy 0.9375 (0.9375)
+[2018/11/01 15:52:12 __main__ INFO] - Epoch 35 Step 100/390 Loss 0.3792 (0.2455) Accuracy 0.8516 (0.9144)
+[2018/11/01 15:52:40 __main__ INFO] - Epoch 35 Step 200/390 Loss 0.2552 (0.2518) Accuracy 0.9062 (0.9115)
+[2018/11/01 15:53:09 __main__ INFO] - Epoch 35 Step 300/390 Loss 0.1955 (0.2587) Accuracy 0.9375 (0.9102)
+[2018/11/01 15:53:34 __main__ INFO] - Elapsed 110.01
+[2018/11/01 15:53:34 __main__ INFO] - Test 35
+[2018/11/01 15:53:41 __main__ INFO] - Epoch 35 Loss 0.4766 Accuracy 0.8439
+[2018/11/01 15:53:41 __main__ INFO] - Elapsed 7.50
+outdir 2:  /tigress/ruairidh/model_results/wrn_28_10
+[2018/11/01 15:53:42 __main__ INFO] - Train 36
+[2018/11/01 15:53:42 __main__ INFO] - Epoch 36 Step 0/390 Loss 0.2363 (0.2363) Accuracy 0.9375 (0.9375)
+[2018/11/01 15:54:10 __main__ INFO] - Epoch 36 Step 100/390 Loss 0.2258 (0.2415) Accuracy 0.9297 (0.9199)
+[2018/11/01 15:54:39 __main__ INFO] - Epoch 36 Step 200/390 Loss 0.2454 (0.2452) Accuracy 0.9219 (0.9169)
+[2018/11/01 15:55:07 __main__ INFO] - Epoch 36 Step 300/390 Loss 0.2468 (0.2499) Accuracy 0.8984 (0.9149)
+[2018/11/01 15:55:32 __main__ INFO] - Elapsed 110.02
+[2018/11/01 15:55:32 __main__ INFO] - Test 36
+[2018/11/01 15:55:39 __main__ INFO] - Epoch 36 Loss 0.4361 Accuracy 0.8579
+[2018/11/01 15:55:39 __main__ INFO] - Elapsed 7.48
+outdir 2:  /tigress/ruairidh/model_results/wrn_28_10
+[2018/11/01 15:55:40 __main__ INFO] - Train 37
+[2018/11/01 15:55:41 __main__ INFO] - Epoch 37 Step 0/390 Loss 0.3029 (0.3029) Accuracy 0.8984 (0.8984)
+[2018/11/01 15:56:09 __main__ INFO] - Epoch 37 Step 100/390 Loss 0.3792 (0.2486) Accuracy 0.8906 (0.9136)
+[2018/11/01 15:56:37 __main__ INFO] - Epoch 37 Step 200/390 Loss 0.2115 (0.2518) Accuracy 0.9297 (0.9130)
+[2018/11/01 15:57:05 __main__ INFO] - Epoch 37 Step 300/390 Loss 0.2734 (0.2522) Accuracy 0.9141 (0.9134)
+[2018/11/01 15:57:30 __main__ INFO] - Elapsed 110.25
+[2018/11/01 15:57:30 __main__ INFO] - Test 37
+[2018/11/01 15:57:38 __main__ INFO] - Epoch 37 Loss 0.4696 Accuracy 0.8496
+[2018/11/01 15:57:38 __main__ INFO] - Elapsed 7.58
+outdir 2:  /tigress/ruairidh/model_results/wrn_28_10
+[2018/11/01 15:57:39 __main__ INFO] - Train 38
+[2018/11/01 15:57:39 __main__ INFO] - Epoch 38 Step 0/390 Loss 0.2031 (0.2031) Accuracy 0.9531 (0.9531)
+[2018/11/01 15:58:08 __main__ INFO] - Epoch 38 Step 100/390 Loss 0.2394 (0.2359) Accuracy 0.8906 (0.9209)
+[2018/11/01 15:58:36 __main__ INFO] - Epoch 38 Step 200/390 Loss 0.3549 (0.2531) Accuracy 0.8594 (0.9133)
+[2018/11/01 15:59:04 __main__ INFO] - Epoch 38 Step 300/390 Loss 0.3255 (0.2550) Accuracy 0.8984 (0.9134)
+[2018/11/01 15:59:29 __main__ INFO] - Elapsed 110.23
+[2018/11/01 15:59:29 __main__ INFO] - Test 38
+[2018/11/01 15:59:37 __main__ INFO] - Epoch 38 Loss 0.3617 Accuracy 0.8846
+[2018/11/01 15:59:37 __main__ INFO] - Elapsed 7.50
+outdir 2:  /tigress/ruairidh/model_results/wrn_28_10
+[2018/11/01 15:59:38 __main__ INFO] - Train 39
+[2018/11/01 15:59:39 __main__ INFO] - Epoch 39 Step 0/390 Loss 0.2164 (0.2164) Accuracy 0.9453 (0.9453)
+[2018/11/01 16:00:07 __main__ INFO] - Epoch 39 Step 100/390 Loss 0.2394 (0.2412) Accuracy 0.9141 (0.9172)
+[2018/11/01 16:00:35 __main__ INFO] - Epoch 39 Step 200/390 Loss 0.1944 (0.2534) Accuracy 0.9297 (0.9129)
+[2018/11/01 16:01:03 __main__ INFO] - Epoch 39 Step 300/390 Loss 0.2297 (0.2547) Accuracy 0.9297 (0.9123)
+[2018/11/01 16:01:28 __main__ INFO] - Elapsed 110.07
+[2018/11/01 16:01:28 __main__ INFO] - Test 39
+[2018/11/01 16:01:36 __main__ INFO] - Epoch 39 Loss 0.5825 Accuracy 0.8163
+[2018/11/01 16:01:36 __main__ INFO] - Elapsed 7.57
+outdir 2:  /tigress/ruairidh/model_results/wrn_28_10
+[2018/11/01 16:01:36 __main__ INFO] - Train 40
+[2018/11/01 16:01:37 __main__ INFO] - Epoch 40 Step 0/390 Loss 0.2361 (0.2361) Accuracy 0.8984 (0.8984)
+[2018/11/01 16:02:05 __main__ INFO] - Epoch 40 Step 100/390 Loss 0.4691 (0.2380) Accuracy 0.8281 (0.9163)
+[2018/11/01 16:02:33 __main__ INFO] - Epoch 40 Step 200/390 Loss 0.2795 (0.2372) Accuracy 0.9141 (0.9176)
+[2018/11/01 16:03:01 __main__ INFO] - Epoch 40 Step 300/390 Loss 0.3412 (0.2479) Accuracy 0.8516 (0.9137)
+[2018/11/01 16:03:26 __main__ INFO] - Elapsed 110.20
+[2018/11/01 16:03:26 __main__ INFO] - Test 40
+[2018/11/01 16:03:34 __main__ INFO] - Epoch 40 Loss 0.5319 Accuracy 0.8359
+[2018/11/01 16:03:34 __main__ INFO] - Elapsed 7.56
+outdir 2:  /tigress/ruairidh/model_results/wrn_28_10
+[2018/11/01 16:03:34 __main__ INFO] - Train 41
+[2018/11/01 16:03:35 __main__ INFO] - Epoch 41 Step 0/390 Loss 0.1798 (0.1798) Accuracy 0.9375 (0.9375)
+[2018/11/01 16:04:03 __main__ INFO] - Epoch 41 Step 100/390 Loss 0.3768 (0.2437) Accuracy 0.8828 (0.9172)
+[2018/11/01 16:04:31 __main__ INFO] - Epoch 41 Step 200/390 Loss 0.3333 (0.2496) Accuracy 0.8906 (0.9157)
+[2018/11/01 16:04:59 __main__ INFO] - Epoch 41 Step 300/390 Loss 0.1425 (0.2523) Accuracy 0.9531 (0.9146)
+[2018/11/01 16:05:24 __main__ INFO] - Elapsed 110.01
+[2018/11/01 16:05:25 __main__ INFO] - Test 41
+[2018/11/01 16:05:32 __main__ INFO] - Epoch 41 Loss 0.4820 Accuracy 0.8472
+[2018/11/01 16:05:32 __main__ INFO] - Elapsed 7.59
+outdir 2:  /tigress/ruairidh/model_results/wrn_28_10
+[2018/11/01 16:05:33 __main__ INFO] - Train 42
+[2018/11/01 16:05:33 __main__ INFO] - Epoch 42 Step 0/390 Loss 0.2439 (0.2439) Accuracy 0.8984 (0.8984)
+[2018/11/01 16:06:01 __main__ INFO] - Epoch 42 Step 100/390 Loss 0.3601 (0.2372) Accuracy 0.8594 (0.9193)
+[2018/11/01 16:06:30 __main__ INFO] - Epoch 42 Step 200/390 Loss 0.2849 (0.2446) Accuracy 0.8906 (0.9169)
+[2018/11/01 16:06:58 __main__ INFO] - Epoch 42 Step 300/390 Loss 0.2873 (0.2520) Accuracy 0.9062 (0.9145)
+[2018/11/01 16:07:23 __main__ INFO] - Elapsed 110.14
+[2018/11/01 16:07:23 __main__ INFO] - Test 42
+[2018/11/01 16:07:30 __main__ INFO] - Epoch 42 Loss 0.3852 Accuracy 0.8745
+[2018/11/01 16:07:30 __main__ INFO] - Elapsed 7.49
+outdir 2:  /tigress/ruairidh/model_results/wrn_28_10
+[2018/11/01 16:07:31 __main__ INFO] - Train 43
+[2018/11/01 16:07:31 __main__ INFO] - Epoch 43 Step 0/390 Loss 0.2844 (0.2844) Accuracy 0.9219 (0.9219)
+[2018/11/01 16:07:59 __main__ INFO] - Epoch 43 Step 100/390 Loss 0.3331 (0.2391) Accuracy 0.8906 (0.9194)
+[2018/11/01 16:08:28 __main__ INFO] - Epoch 43 Step 200/390 Loss 0.3304 (0.2454) Accuracy 0.8672 (0.9153)
+[2018/11/01 16:08:56 __main__ INFO] - Epoch 43 Step 300/390 Loss 0.2215 (0.2514) Accuracy 0.9297 (0.9136)
+[2018/11/01 16:09:21 __main__ INFO] - Elapsed 110.03
+[2018/11/01 16:09:21 __main__ INFO] - Test 43
+[2018/11/01 16:09:28 __main__ INFO] - Epoch 43 Loss 0.5651 Accuracy 0.8378
+[2018/11/01 16:09:28 __main__ INFO] - Elapsed 7.52
+outdir 2:  /tigress/ruairidh/model_results/wrn_28_10
+[2018/11/01 16:09:29 __main__ INFO] - Train 44
+[2018/11/01 16:09:29 __main__ INFO] - Epoch 44 Step 0/390 Loss 0.1817 (0.1817) Accuracy 0.9375 (0.9375)
+[2018/11/01 16:09:57 __main__ INFO] - Epoch 44 Step 100/390 Loss 0.2504 (0.2340) Accuracy 0.8906 (0.9206)
+[2018/11/01 16:10:26 __main__ INFO] - Epoch 44 Step 200/390 Loss 0.1776 (0.2403) Accuracy 0.9297 (0.9178)
+[2018/11/01 16:10:54 __main__ INFO] - Epoch 44 Step 300/390 Loss 0.4291 (0.2485) Accuracy 0.8828 (0.9153)
+[2018/11/01 16:11:19 __main__ INFO] - Elapsed 109.86
+[2018/11/01 16:11:19 __main__ INFO] - Test 44
+[2018/11/01 16:11:26 __main__ INFO] - Epoch 44 Loss 0.4254 Accuracy 0.8600
+[2018/11/01 16:11:26 __main__ INFO] - Elapsed 7.53
+outdir 2:  /tigress/ruairidh/model_results/wrn_28_10
+[2018/11/01 16:11:27 __main__ INFO] - Train 45
+[2018/11/01 16:11:27 __main__ INFO] - Epoch 45 Step 0/390 Loss 0.1749 (0.1749) Accuracy 0.9297 (0.9297)
+[2018/11/01 16:11:56 __main__ INFO] - Epoch 45 Step 100/390 Loss 0.2104 (0.2333) Accuracy 0.9141 (0.9205)
+[2018/11/01 16:12:24 __main__ INFO] - Epoch 45 Step 200/390 Loss 0.3168 (0.2359) Accuracy 0.9141 (0.9195)
+[2018/11/01 16:12:52 __main__ INFO] - Epoch 45 Step 300/390 Loss 0.3512 (0.2378) Accuracy 0.8672 (0.9194)
+[2018/11/01 16:13:17 __main__ INFO] - Elapsed 110.12
+[2018/11/01 16:13:17 __main__ INFO] - Test 45
+[2018/11/01 16:13:24 __main__ INFO] - Epoch 45 Loss 0.5766 Accuracy 0.8199
+[2018/11/01 16:13:25 __main__ INFO] - Elapsed 7.64
+outdir 2:  /tigress/ruairidh/model_results/wrn_28_10
+[2018/11/01 16:13:25 __main__ INFO] - Train 46
+[2018/11/01 16:13:26 __main__ INFO] - Epoch 46 Step 0/390 Loss 0.1995 (0.1995) Accuracy 0.9453 (0.9453)
+[2018/11/01 16:13:54 __main__ INFO] - Epoch 46 Step 100/390 Loss 0.1510 (0.2275) Accuracy 0.9609 (0.9238)
+[2018/11/01 16:14:22 __main__ INFO] - Epoch 46 Step 200/390 Loss 0.2910 (0.2383) Accuracy 0.8828 (0.9189)
+[2018/11/01 16:14:50 __main__ INFO] - Epoch 46 Step 300/390 Loss 0.2422 (0.2433) Accuracy 0.8984 (0.9173)
+[2018/11/01 16:15:15 __main__ INFO] - Elapsed 109.83
+[2018/11/01 16:15:15 __main__ INFO] - Test 46
+[2018/11/01 16:15:22 __main__ INFO] - Epoch 46 Loss 0.4503 Accuracy 0.8542
+[2018/11/01 16:15:22 __main__ INFO] - Elapsed 7.44
+outdir 2:  /tigress/ruairidh/model_results/wrn_28_10
+[2018/11/01 16:15:23 __main__ INFO] - Train 47
+[2018/11/01 16:15:24 __main__ INFO] - Epoch 47 Step 0/390 Loss 0.3327 (0.3327) Accuracy 0.8750 (0.8750)
+[2018/11/01 16:15:52 __main__ INFO] - Epoch 47 Step 100/390 Loss 0.1674 (0.2389) Accuracy 0.9297 (0.9176)
+[2018/11/01 16:16:20 __main__ INFO] - Epoch 47 Step 200/390 Loss 0.2088 (0.2449) Accuracy 0.9297 (0.9150)
+[2018/11/01 16:16:48 __main__ INFO] - Epoch 47 Step 300/390 Loss 0.1878 (0.2515) Accuracy 0.9453 (0.9121)
+[2018/11/01 16:17:13 __main__ INFO] - Elapsed 110.12
+[2018/11/01 16:17:13 __main__ INFO] - Test 47
+[2018/11/01 16:17:20 __main__ INFO] - Epoch 47 Loss 0.4322 Accuracy 0.8581
+[2018/11/01 16:17:21 __main__ INFO] - Elapsed 7.41
+outdir 2:  /tigress/ruairidh/model_results/wrn_28_10
+[2018/11/01 16:17:21 __main__ INFO] - Train 48
+[2018/11/01 16:17:22 __main__ INFO] - Epoch 48 Step 0/390 Loss 0.1647 (0.1647) Accuracy 0.9453 (0.9453)
+[2018/11/01 16:17:50 __main__ INFO] - Epoch 48 Step 100/390 Loss 0.2277 (0.2256) Accuracy 0.9141 (0.9201)
+[2018/11/01 16:18:18 __main__ INFO] - Epoch 48 Step 200/390 Loss 0.2807 (0.2385) Accuracy 0.9141 (0.9169)
+[2018/11/01 16:18:46 __main__ INFO] - Epoch 48 Step 300/390 Loss 0.1598 (0.2442) Accuracy 0.9375 (0.9152)
+[2018/11/01 16:19:11 __main__ INFO] - Elapsed 110.14
+[2018/11/01 16:19:11 __main__ INFO] - Test 48
+[2018/11/01 16:19:19 __main__ INFO] - Epoch 48 Loss 0.3781 Accuracy 0.8724
+[2018/11/01 16:19:19 __main__ INFO] - Elapsed 7.53
+outdir 2:  /tigress/ruairidh/model_results/wrn_28_10
+[2018/11/01 16:19:19 __main__ INFO] - Train 49
+[2018/11/01 16:19:20 __main__ INFO] - Epoch 49 Step 0/390 Loss 0.1547 (0.1547) Accuracy 0.9453 (0.9453)
+[2018/11/01 16:19:48 __main__ INFO] - Epoch 49 Step 100/390 Loss 0.1891 (0.2264) Accuracy 0.9297 (0.9209)
+[2018/11/01 16:20:16 __main__ INFO] - Epoch 49 Step 200/390 Loss 0.2637 (0.2328) Accuracy 0.8828 (0.9183)
+[2018/11/01 16:20:44 __main__ INFO] - Epoch 49 Step 300/390 Loss 0.3531 (0.2406) Accuracy 0.8750 (0.9162)
+[2018/11/01 16:21:09 __main__ INFO] - Elapsed 110.16
+[2018/11/01 16:21:09 __main__ INFO] - Test 49
+[2018/11/01 16:21:17 __main__ INFO] - Epoch 49 Loss 0.3918 Accuracy 0.8774
+[2018/11/01 16:21:17 __main__ INFO] - Elapsed 7.59
+outdir 2:  /tigress/ruairidh/model_results/wrn_28_10
+[2018/11/01 16:21:17 __main__ INFO] - Train 50
+[2018/11/01 16:21:18 __main__ INFO] - Epoch 50 Step 0/390 Loss 0.1977 (0.1977) Accuracy 0.9375 (0.9375)
+[2018/11/01 16:21:46 __main__ INFO] - Epoch 50 Step 100/390 Loss 0.1888 (0.2292) Accuracy 0.9297 (0.9220)
+[2018/11/01 16:22:14 __main__ INFO] - Epoch 50 Step 200/390 Loss 0.4037 (0.2343) Accuracy 0.8672 (0.9196)
+[2018/11/01 16:22:43 __main__ INFO] - Epoch 50 Step 300/390 Loss 0.3503 (0.2411) Accuracy 0.8906 (0.9175)
+[2018/11/01 16:23:08 __main__ INFO] - Elapsed 110.17
+[2018/11/01 16:23:08 __main__ INFO] - Test 50
+[2018/11/01 16:23:15 __main__ INFO] - Epoch 50 Loss 0.5488 Accuracy 0.8430
+[2018/11/01 16:23:15 __main__ INFO] - Elapsed 7.58
+outdir 2:  /tigress/ruairidh/model_results/wrn_28_10
+[2018/11/01 16:23:16 __main__ INFO] - Train 51
+[2018/11/01 16:23:16 __main__ INFO] - Epoch 51 Step 0/390 Loss 0.3034 (0.3034) Accuracy 0.9062 (0.9062)
+[2018/11/01 16:23:44 __main__ INFO] - Epoch 51 Step 100/390 Loss 0.2361 (0.2151) Accuracy 0.9297 (0.9267)
+[2018/11/01 16:24:13 __main__ INFO] - Epoch 51 Step 200/390 Loss 0.3025 (0.2284) Accuracy 0.9141 (0.9225)
+[2018/11/01 16:24:41 __main__ INFO] - Epoch 51 Step 300/390 Loss 0.2058 (0.2351) Accuracy 0.9375 (0.9206)
+[2018/11/01 16:25:06 __main__ INFO] - Elapsed 109.95
+[2018/11/01 16:25:06 __main__ INFO] - Test 51
+[2018/11/01 16:25:13 __main__ INFO] - Epoch 51 Loss 0.3879 Accuracy 0.8719
+[2018/11/01 16:25:13 __main__ INFO] - Elapsed 7.46
+outdir 2:  /tigress/ruairidh/model_results/wrn_28_10
+[2018/11/01 16:25:14 __main__ INFO] - Train 52
+[2018/11/01 16:25:14 __main__ INFO] - Epoch 52 Step 0/390 Loss 0.1712 (0.1712) Accuracy 0.9453 (0.9453)
+[2018/11/01 16:25:42 __main__ INFO] - Epoch 52 Step 100/390 Loss 0.2823 (0.2291) Accuracy 0.8984 (0.9220)
+[2018/11/01 16:26:11 __main__ INFO] - Epoch 52 Step 200/390 Loss 0.3031 (0.2385) Accuracy 0.9297 (0.9188)
+[2018/11/01 16:26:39 __main__ INFO] - Epoch 52 Step 300/390 Loss 0.2286 (0.2413) Accuracy 0.9141 (0.9176)
+[2018/11/01 16:27:04 __main__ INFO] - Elapsed 110.24
+[2018/11/01 16:27:04 __main__ INFO] - Test 52
+[2018/11/01 16:27:11 __main__ INFO] - Epoch 52 Loss 0.3676 Accuracy 0.8821
+[2018/11/01 16:27:11 __main__ INFO] - Elapsed 7.56
+outdir 2:  /tigress/ruairidh/model_results/wrn_28_10
+[2018/11/01 16:27:12 __main__ INFO] - Train 53
+[2018/11/01 16:27:13 __main__ INFO] - Epoch 53 Step 0/390 Loss 0.1882 (0.1882) Accuracy 0.9609 (0.9609)
+[2018/11/01 16:27:41 __main__ INFO] - Epoch 53 Step 100/390 Loss 0.1712 (0.2310) Accuracy 0.9375 (0.9236)
+[2018/11/01 16:28:09 __main__ INFO] - Epoch 53 Step 200/390 Loss 0.2592 (0.2387) Accuracy 0.8906 (0.9192)
+[2018/11/01 16:28:37 __main__ INFO] - Epoch 53 Step 300/390 Loss 0.3220 (0.2405) Accuracy 0.9141 (0.9191)
+[2018/11/01 16:29:02 __main__ INFO] - Elapsed 110.04
+[2018/11/01 16:29:02 __main__ INFO] - Test 53
+[2018/11/01 16:29:10 __main__ INFO] - Epoch 53 Loss 0.3873 Accuracy 0.8763
+[2018/11/01 16:29:10 __main__ INFO] - Elapsed 7.59
+outdir 2:  /tigress/ruairidh/model_results/wrn_28_10
+[2018/11/01 16:29:10 __main__ INFO] - Train 54
+[2018/11/01 16:29:11 __main__ INFO] - Epoch 54 Step 0/390 Loss 0.1949 (0.1949) Accuracy 0.9375 (0.9375)
+[2018/11/01 16:29:39 __main__ INFO] - Epoch 54 Step 100/390 Loss 0.1923 (0.2296) Accuracy 0.9062 (0.9226)
+[2018/11/01 16:30:07 __main__ INFO] - Epoch 54 Step 200/390 Loss 0.1897 (0.2306) Accuracy 0.9375 (0.9219)
+[2018/11/01 16:30:35 __main__ INFO] - Epoch 54 Step 300/390 Loss 0.3161 (0.2395) Accuracy 0.8906 (0.9182)
+[2018/11/01 16:31:00 __main__ INFO] - Elapsed 110.11
+[2018/11/01 16:31:00 __main__ INFO] - Test 54
+[2018/11/01 16:31:08 __main__ INFO] - Epoch 54 Loss 0.4063 Accuracy 0.8694
+[2018/11/01 16:31:08 __main__ INFO] - Elapsed 7.60
+outdir 2:  /tigress/ruairidh/model_results/wrn_28_10
+[2018/11/01 16:31:08 __main__ INFO] - Train 55
+[2018/11/01 16:31:09 __main__ INFO] - Epoch 55 Step 0/390 Loss 0.1884 (0.1884) Accuracy 0.9453 (0.9453)
+[2018/11/01 16:31:37 __main__ INFO] - Epoch 55 Step 100/390 Loss 0.2469 (0.2356) Accuracy 0.8984 (0.9200)
+[2018/11/01 16:32:05 __main__ INFO] - Epoch 55 Step 200/390 Loss 0.1610 (0.2445) Accuracy 0.9609 (0.9164)
+[2018/11/01 16:32:33 __main__ INFO] - Epoch 55 Step 300/390 Loss 0.2181 (0.2461) Accuracy 0.9297 (0.9153)
+[2018/11/01 16:32:58 __main__ INFO] - Elapsed 110.00
+[2018/11/01 16:32:58 __main__ INFO] - Test 55
+[2018/11/01 16:33:06 __main__ INFO] - Epoch 55 Loss 0.3806 Accuracy 0.8734
+[2018/11/01 16:33:06 __main__ INFO] - Elapsed 7.56
+outdir 2:  /tigress/ruairidh/model_results/wrn_28_10
+[2018/11/01 16:33:06 __main__ INFO] - Train 56
+[2018/11/01 16:33:07 __main__ INFO] - Epoch 56 Step 0/390 Loss 0.1131 (0.1131) Accuracy 0.9609 (0.9609)
+[2018/11/01 16:33:35 __main__ INFO] - Epoch 56 Step 100/390 Loss 0.2100 (0.2237) Accuracy 0.9375 (0.9233)
+[2018/11/01 16:34:03 __main__ INFO] - Epoch 56 Step 200/390 Loss 0.3405 (0.2360) Accuracy 0.9062 (0.9204)
+[2018/11/01 16:34:31 __main__ INFO] - Epoch 56 Step 300/390 Loss 0.2619 (0.2335) Accuracy 0.9219 (0.9221)
+[2018/11/01 16:34:57 __main__ INFO] - Elapsed 110.09
+[2018/11/01 16:34:57 __main__ INFO] - Test 56
+[2018/11/01 16:35:04 __main__ INFO] - Epoch 56 Loss 0.4506 Accuracy 0.8637
+[2018/11/01 16:35:04 __main__ INFO] - Elapsed 7.65
+outdir 2:  /tigress/ruairidh/model_results/wrn_28_10
+[2018/11/01 16:35:05 __main__ INFO] - Train 57
+[2018/11/01 16:35:05 __main__ INFO] - Epoch 57 Step 0/390 Loss 0.1963 (0.1963) Accuracy 0.9141 (0.9141)
+[2018/11/01 16:35:33 __main__ INFO] - Epoch 57 Step 100/390 Loss 0.2366 (0.2227) Accuracy 0.9141 (0.9251)
+[2018/11/01 16:36:01 __main__ INFO] - Epoch 57 Step 200/390 Loss 0.3051 (0.2408) Accuracy 0.8828 (0.9189)
+[2018/11/01 16:36:30 __main__ INFO] - Epoch 57 Step 300/390 Loss 0.1865 (0.2386) Accuracy 0.9531 (0.9197)
+[2018/11/01 16:36:55 __main__ INFO] - Elapsed 109.98
+[2018/11/01 16:36:55 __main__ INFO] - Test 57
+[2018/11/01 16:37:02 __main__ INFO] - Epoch 57 Loss 0.3722 Accuracy 0.8826
+[2018/11/01 16:37:02 __main__ INFO] - Elapsed 7.63
+outdir 2:  /tigress/ruairidh/model_results/wrn_28_10
+[2018/11/01 16:37:03 __main__ INFO] - Train 58
+[2018/11/01 16:37:04 __main__ INFO] - Epoch 58 Step 0/390 Loss 0.1727 (0.1727) Accuracy 0.9375 (0.9375)
+[2018/11/01 16:37:32 __main__ INFO] - Epoch 58 Step 100/390 Loss 0.2137 (0.2073) Accuracy 0.9375 (0.9308)
+[2018/11/01 16:38:00 __main__ INFO] - Epoch 58 Step 200/390 Loss 0.1574 (0.2253) Accuracy 0.9609 (0.9247)
+[2018/11/01 16:38:28 __main__ INFO] - Epoch 58 Step 300/390 Loss 0.2158 (0.2353) Accuracy 0.9219 (0.9201)
+[2018/11/01 16:38:53 __main__ INFO] - Elapsed 110.22
+[2018/11/01 16:38:53 __main__ INFO] - Test 58
+[2018/11/01 16:39:01 __main__ INFO] - Epoch 58 Loss 0.4787 Accuracy 0.8540
+[2018/11/01 16:39:01 __main__ INFO] - Elapsed 7.53
+outdir 2:  /tigress/ruairidh/model_results/wrn_28_10
+[2018/11/01 16:39:01 __main__ INFO] - Train 59
+[2018/11/01 16:39:02 __main__ INFO] - Epoch 59 Step 0/390 Loss 0.1820 (0.1820) Accuracy 0.9531 (0.9531)
+[2018/11/01 16:39:30 __main__ INFO] - Epoch 59 Step 100/390 Loss 0.2497 (0.2298) Accuracy 0.9062 (0.9215)
+[2018/11/01 16:39:58 __main__ INFO] - Epoch 59 Step 200/390 Loss 0.2507 (0.2381) Accuracy 0.9062 (0.9185)
+[2018/11/01 16:40:26 __main__ INFO] - Epoch 59 Step 300/390 Loss 0.2826 (0.2423) Accuracy 0.8984 (0.9170)
+[2018/11/01 16:40:51 __main__ INFO] - Elapsed 110.08
+[2018/11/01 16:40:52 __main__ INFO] - Test 59
+[2018/11/01 16:40:59 __main__ INFO] - Epoch 59 Loss 0.3573 Accuracy 0.8847
+[2018/11/01 16:40:59 __main__ INFO] - Elapsed 7.49
+outdir 2:  /tigress/ruairidh/model_results/wrn_28_10
+[2018/11/01 16:41:00 __main__ INFO] - Train 60
+[2018/11/01 16:41:01 __main__ INFO] - Epoch 60 Step 0/390 Loss 0.1364 (0.1364) Accuracy 0.9453 (0.9453)
+[2018/11/01 16:41:29 __main__ INFO] - Epoch 60 Step 100/390 Loss 0.1733 (0.2147) Accuracy 0.9531 (0.9254)
+[2018/11/01 16:41:57 __main__ INFO] - Epoch 60 Step 200/390 Loss 0.2893 (0.2227) Accuracy 0.8828 (0.9246)
+[2018/11/01 16:42:25 __main__ INFO] - Epoch 60 Step 300/390 Loss 0.1524 (0.2336) Accuracy 0.9453 (0.9205)
+[2018/11/01 16:42:50 __main__ INFO] - Elapsed 110.07
+[2018/11/01 16:42:50 __main__ INFO] - Test 60
+[2018/11/01 16:42:58 __main__ INFO] - Epoch 60 Loss 0.7133 Accuracy 0.8019
+[2018/11/01 16:42:58 __main__ INFO] - Elapsed 7.58
+outdir 2:  /tigress/ruairidh/model_results/wrn_28_10
+[2018/11/01 16:42:58 __main__ INFO] - Train 61
+[2018/11/01 16:42:59 __main__ INFO] - Epoch 61 Step 0/390 Loss 0.1861 (0.1861) Accuracy 0.9375 (0.9375)
+[2018/11/01 16:43:27 __main__ INFO] - Epoch 61 Step 100/390 Loss 0.0706 (0.1400) Accuracy 0.9609 (0.9540)
+[2018/11/01 16:43:55 __main__ INFO] - Epoch 61 Step 200/390 Loss 0.1049 (0.1192) Accuracy 0.9609 (0.9605)
+[2018/11/01 16:44:24 __main__ INFO] - Epoch 61 Step 300/390 Loss 0.0811 (0.1074) Accuracy 0.9766 (0.9645)
+[2018/11/01 16:44:48 __main__ INFO] - Elapsed 110.30
+[2018/11/01 16:44:49 __main__ INFO] - Test 61
+[2018/11/01 16:44:56 __main__ INFO] - Epoch 61 Loss 0.1897 Accuracy 0.9404
+[2018/11/01 16:44:56 __main__ INFO] - Elapsed 7.59
+outdir 2:  /tigress/ruairidh/model_results/wrn_28_10
+[2018/11/01 16:44:57 __main__ INFO] - Train 62
+[2018/11/01 16:44:58 __main__ INFO] - Epoch 62 Step 0/390 Loss 0.0459 (0.0459) Accuracy 0.9922 (0.9922)
+[2018/11/01 16:45:26 __main__ INFO] - Epoch 62 Step 100/390 Loss 0.0830 (0.0702) Accuracy 0.9766 (0.9766)
+[2018/11/01 16:45:54 __main__ INFO] - Epoch 62 Step 200/390 Loss 0.0422 (0.0692) Accuracy 0.9844 (0.9778)
+[2018/11/01 16:46:22 __main__ INFO] - Epoch 62 Step 300/390 Loss 0.0679 (0.0662) Accuracy 0.9844 (0.9787)
+[2018/11/01 16:46:47 __main__ INFO] - Elapsed 110.17
+[2018/11/01 16:46:47 __main__ INFO] - Test 62
+[2018/11/01 16:46:55 __main__ INFO] - Epoch 62 Loss 0.1834 Accuracy 0.9423
+[2018/11/01 16:46:55 __main__ INFO] - Elapsed 7.52
+outdir 2:  /tigress/ruairidh/model_results/wrn_28_10
+[2018/11/01 16:46:56 __main__ INFO] - Train 63
+[2018/11/01 16:46:56 __main__ INFO] - Epoch 63 Step 0/390 Loss 0.0260 (0.0260) Accuracy 0.9922 (0.9922)
+[2018/11/01 16:47:24 __main__ INFO] - Epoch 63 Step 100/390 Loss 0.0316 (0.0467) Accuracy 1.0000 (0.9856)
+[2018/11/01 16:47:52 __main__ INFO] - Epoch 63 Step 200/390 Loss 0.0377 (0.0494) Accuracy 0.9844 (0.9844)
+[2018/11/01 16:48:21 __main__ INFO] - Epoch 63 Step 300/390 Loss 0.0768 (0.0521) Accuracy 0.9766 (0.9832)
+[2018/11/01 16:48:46 __main__ INFO] - Elapsed 109.98
+[2018/11/01 16:48:46 __main__ INFO] - Test 63
+[2018/11/01 16:48:53 __main__ INFO] - Epoch 63 Loss 0.1911 Accuracy 0.9400
+[2018/11/01 16:48:53 __main__ INFO] - Elapsed 7.66
+outdir 2:  /tigress/ruairidh/model_results/wrn_28_10
+[2018/11/01 16:48:54 __main__ INFO] - Train 64
+[2018/11/01 16:48:54 __main__ INFO] - Epoch 64 Step 0/390 Loss 0.0472 (0.0472) Accuracy 0.9766 (0.9766)
+[2018/11/01 16:49:23 __main__ INFO] - Epoch 64 Step 100/390 Loss 0.0676 (0.0403) Accuracy 0.9766 (0.9880)
+[2018/11/01 16:49:51 __main__ INFO] - Epoch 64 Step 200/390 Loss 0.0416 (0.0413) Accuracy 0.9922 (0.9878)
+[2018/11/01 16:50:19 __main__ INFO] - Epoch 64 Step 300/390 Loss 0.0603 (0.0426) Accuracy 0.9766 (0.9872)
+[2018/11/01 16:50:44 __main__ INFO] - Elapsed 110.06
+[2018/11/01 16:50:44 __main__ INFO] - Test 64
+[2018/11/01 16:50:51 __main__ INFO] - Epoch 64 Loss 0.2043 Accuracy 0.9386
+[2018/11/01 16:50:51 __main__ INFO] - Elapsed 7.47
+outdir 2:  /tigress/ruairidh/model_results/wrn_28_10
+[2018/11/01 16:50:52 __main__ INFO] - Train 65
+[2018/11/01 16:50:52 __main__ INFO] - Epoch 65 Step 0/390 Loss 0.0368 (0.0368) Accuracy 0.9766 (0.9766)
+[2018/11/01 16:51:21 __main__ INFO] - Epoch 65 Step 100/390 Loss 0.0681 (0.0424) Accuracy 0.9844 (0.9865)
+[2018/11/01 16:51:49 __main__ INFO] - Epoch 65 Step 200/390 Loss 0.0257 (0.0428) Accuracy 1.0000 (0.9860)
+[2018/11/01 16:52:17 __main__ INFO] - Epoch 65 Step 300/390 Loss 0.0145 (0.0412) Accuracy 1.0000 (0.9868)
+[2018/11/01 16:52:42 __main__ INFO] - Elapsed 109.94
+[2018/11/01 16:52:42 __main__ INFO] - Test 65
+[2018/11/01 16:52:49 __main__ INFO] - Epoch 65 Loss 0.1853 Accuracy 0.9453
+[2018/11/01 16:52:49 __main__ INFO] - Elapsed 7.38
+outdir 2:  /tigress/ruairidh/model_results/wrn_28_10
+[2018/11/01 16:52:50 __main__ INFO] - Train 66
+[2018/11/01 16:52:51 __main__ INFO] - Epoch 66 Step 0/390 Loss 0.0345 (0.0345) Accuracy 0.9844 (0.9844)
+[2018/11/01 16:53:19 __main__ INFO] - Epoch 66 Step 100/390 Loss 0.0219 (0.0349) Accuracy 1.0000 (0.9887)
+[2018/11/01 16:53:47 __main__ INFO] - Epoch 66 Step 200/390 Loss 0.0387 (0.0332) Accuracy 0.9844 (0.9893)
+[2018/11/01 16:54:15 __main__ INFO] - Epoch 66 Step 300/390 Loss 0.0255 (0.0362) Accuracy 0.9922 (0.9884)
+[2018/11/01 16:54:40 __main__ INFO] - Elapsed 110.28
+[2018/11/01 16:54:40 __main__ INFO] - Test 66
+[2018/11/01 16:54:48 __main__ INFO] - Epoch 66 Loss 0.2186 Accuracy 0.9387
+[2018/11/01 16:54:48 __main__ INFO] - Elapsed 7.50
+outdir 2:  /tigress/ruairidh/model_results/wrn_28_10
+[2018/11/01 16:54:48 __main__ INFO] - Train 67
+[2018/11/01 16:54:49 __main__ INFO] - Epoch 67 Step 0/390 Loss 0.0414 (0.0414) Accuracy 0.9766 (0.9766)
+[2018/11/01 16:55:17 __main__ INFO] - Epoch 67 Step 100/390 Loss 0.0468 (0.0383) Accuracy 0.9766 (0.9883)
+[2018/11/01 16:55:45 __main__ INFO] - Epoch 67 Step 200/390 Loss 0.0612 (0.0408) Accuracy 0.9844 (0.9870)
+[2018/11/01 16:56:14 __main__ INFO] - Epoch 67 Step 300/390 Loss 0.0504 (0.0404) Accuracy 0.9922 (0.9870)
+[2018/11/01 16:56:38 __main__ INFO] - Elapsed 109.84
+[2018/11/01 16:56:38 __main__ INFO] - Test 67
+[2018/11/01 16:56:46 __main__ INFO] - Epoch 67 Loss 0.2314 Accuracy 0.9338
+[2018/11/01 16:56:46 __main__ INFO] - Elapsed 7.54
+outdir 2:  /tigress/ruairidh/model_results/wrn_28_10
+[2018/11/01 16:56:46 __main__ INFO] - Train 68
+[2018/11/01 16:56:47 __main__ INFO] - Epoch 68 Step 0/390 Loss 0.0836 (0.0836) Accuracy 0.9766 (0.9766)
+[2018/11/01 16:57:15 __main__ INFO] - Epoch 68 Step 100/390 Loss 0.0464 (0.0373) Accuracy 0.9922 (0.9887)
+[2018/11/01 16:57:43 __main__ INFO] - Epoch 68 Step 200/390 Loss 0.0307 (0.0350) Accuracy 0.9922 (0.9888)
+[2018/11/01 16:58:12 __main__ INFO] - Epoch 68 Step 300/390 Loss 0.0399 (0.0349) Accuracy 0.9844 (0.9889)
+[2018/11/01 16:58:37 __main__ INFO] - Elapsed 110.21
+[2018/11/01 16:58:37 __main__ INFO] - Test 68
+[2018/11/01 16:58:44 __main__ INFO] - Epoch 68 Loss 0.2040 Accuracy 0.9402
+[2018/11/01 16:58:44 __main__ INFO] - Elapsed 7.47
+outdir 2:  /tigress/ruairidh/model_results/wrn_28_10
+[2018/11/01 16:58:45 __main__ INFO] - Train 69
+[2018/11/01 16:58:45 __main__ INFO] - Epoch 69 Step 0/390 Loss 0.0134 (0.0134) Accuracy 1.0000 (1.0000)
+[2018/11/01 16:59:13 __main__ INFO] - Epoch 69 Step 100/390 Loss 0.0247 (0.0354) Accuracy 0.9922 (0.9893)
+[2018/11/01 16:59:42 __main__ INFO] - Epoch 69 Step 200/390 Loss 0.0529 (0.0389) Accuracy 0.9766 (0.9876)
+[2018/11/01 17:00:10 __main__ INFO] - Epoch 69 Step 300/390 Loss 0.0609 (0.0409) Accuracy 0.9844 (0.9869)
+[2018/11/01 17:00:35 __main__ INFO] - Elapsed 110.12
+[2018/11/01 17:00:35 __main__ INFO] - Test 69
+[2018/11/01 17:00:42 __main__ INFO] - Epoch 69 Loss 0.2511 Accuracy 0.9325
+[2018/11/01 17:00:42 __main__ INFO] - Elapsed 7.63
+outdir 2:  /tigress/ruairidh/model_results/wrn_28_10
+[2018/11/01 17:00:43 __main__ INFO] - Train 70
+[2018/11/01 17:00:44 __main__ INFO] - Epoch 70 Step 0/390 Loss 0.0558 (0.0558) Accuracy 0.9844 (0.9844)
+[2018/11/01 17:01:12 __main__ INFO] - Epoch 70 Step 100/390 Loss 0.0422 (0.0391) Accuracy 0.9922 (0.9883)
+[2018/11/01 17:01:40 __main__ INFO] - Epoch 70 Step 200/390 Loss 0.0396 (0.0372) Accuracy 0.9844 (0.9883)
+[2018/11/01 17:02:08 __main__ INFO] - Epoch 70 Step 300/390 Loss 0.0526 (0.0404) Accuracy 0.9844 (0.9872)
+[2018/11/01 17:02:33 __main__ INFO] - Elapsed 110.01
+[2018/11/01 17:02:33 __main__ INFO] - Test 70
+[2018/11/01 17:02:40 __main__ INFO] - Epoch 70 Loss 0.2437 Accuracy 0.9331
+[2018/11/01 17:02:40 __main__ INFO] - Elapsed 7.45
+outdir 2:  /tigress/ruairidh/model_results/wrn_28_10
+[2018/11/01 17:02:41 __main__ INFO] - Train 71
+[2018/11/01 17:02:42 __main__ INFO] - Epoch 71 Step 0/390 Loss 0.0086 (0.0086) Accuracy 1.0000 (1.0000)
+[2018/11/01 17:03:10 __main__ INFO] - Epoch 71 Step 100/390 Loss 0.0295 (0.0474) Accuracy 0.9922 (0.9845)
+[2018/11/01 17:03:38 __main__ INFO] - Epoch 71 Step 200/390 Loss 0.0135 (0.0467) Accuracy 1.0000 (0.9847)
+[2018/11/01 17:04:06 __main__ INFO] - Epoch 71 Step 300/390 Loss 0.0552 (0.0455) Accuracy 0.9844 (0.9853)
+[2018/11/01 17:04:31 __main__ INFO] - Elapsed 110.11
+[2018/11/01 17:04:31 __main__ INFO] - Test 71
+[2018/11/01 17:04:39 __main__ INFO] - Epoch 71 Loss 0.2528 Accuracy 0.9335
+[2018/11/01 17:04:39 __main__ INFO] - Elapsed 7.63
+outdir 2:  /tigress/ruairidh/model_results/wrn_28_10
+[2018/11/01 17:04:39 __main__ INFO] - Train 72
+[2018/11/01 17:04:40 __main__ INFO] - Epoch 72 Step 0/390 Loss 0.0298 (0.0298) Accuracy 0.9922 (0.9922)
+[2018/11/01 17:05:08 __main__ INFO] - Epoch 72 Step 100/390 Loss 0.0583 (0.0459) Accuracy 0.9922 (0.9850)
+[2018/11/01 17:05:36 __main__ INFO] - Epoch 72 Step 200/390 Loss 0.0679 (0.0432) Accuracy 0.9609 (0.9860)
+[2018/11/01 17:06:04 __main__ INFO] - Epoch 72 Step 300/390 Loss 0.0587 (0.0447) Accuracy 0.9766 (0.9855)
+[2018/11/01 17:06:29 __main__ INFO] - Elapsed 109.93
+[2018/11/01 17:06:29 __main__ INFO] - Test 72
+[2018/11/01 17:06:37 __main__ INFO] - Epoch 72 Loss 0.2333 Accuracy 0.9362
+[2018/11/01 17:06:37 __main__ INFO] - Elapsed 7.49
+outdir 2:  /tigress/ruairidh/model_results/wrn_28_10
+[2018/11/01 17:06:37 __main__ INFO] - Train 73
+[2018/11/01 17:06:38 __main__ INFO] - Epoch 73 Step 0/390 Loss 0.0341 (0.0341) Accuracy 0.9922 (0.9922)
+[2018/11/01 17:07:06 __main__ INFO] - Epoch 73 Step 100/390 Loss 0.0558 (0.0438) Accuracy 0.9844 (0.9864)
+[2018/11/01 17:07:34 __main__ INFO] - Epoch 73 Step 200/390 Loss 0.0637 (0.0490) Accuracy 0.9766 (0.9843)
+[2018/11/01 17:08:02 __main__ INFO] - Epoch 73 Step 300/390 Loss 0.0463 (0.0515) Accuracy 0.9844 (0.9834)
+[2018/11/01 17:08:27 __main__ INFO] - Elapsed 109.97
+[2018/11/01 17:08:27 __main__ INFO] - Test 73
+[2018/11/01 17:08:35 __main__ INFO] - Epoch 73 Loss 0.2511 Accuracy 0.9306
+[2018/11/01 17:08:35 __main__ INFO] - Elapsed 7.58
+outdir 2:  /tigress/ruairidh/model_results/wrn_28_10
+[2018/11/01 17:08:35 __main__ INFO] - Train 74
+[2018/11/01 17:08:36 __main__ INFO] - Epoch 74 Step 0/390 Loss 0.0531 (0.0531) Accuracy 0.9922 (0.9922)
+[2018/11/01 17:09:04 __main__ INFO] - Epoch 74 Step 100/390 Loss 0.1078 (0.0464) Accuracy 0.9688 (0.9851)
+[2018/11/01 17:09:32 __main__ INFO] - Epoch 74 Step 200/390 Loss 0.0689 (0.0491) Accuracy 0.9609 (0.9843)
+[2018/11/01 17:10:00 __main__ INFO] - Epoch 74 Step 300/390 Loss 0.0652 (0.0533) Accuracy 0.9844 (0.9828)
+[2018/11/01 17:10:26 __main__ INFO] - Elapsed 110.31
+[2018/11/01 17:10:26 __main__ INFO] - Test 74
+[2018/11/01 17:10:33 __main__ INFO] - Epoch 74 Loss 0.2508 Accuracy 0.9302
+[2018/11/01 17:10:33 __main__ INFO] - Elapsed 7.61
+outdir 2:  /tigress/ruairidh/model_results/wrn_28_10
+[2018/11/01 17:10:34 __main__ INFO] - Train 75
+[2018/11/01 17:10:34 __main__ INFO] - Epoch 75 Step 0/390 Loss 0.0181 (0.0181) Accuracy 1.0000 (1.0000)
+[2018/11/01 17:11:02 __main__ INFO] - Epoch 75 Step 100/390 Loss 0.0568 (0.0488) Accuracy 0.9844 (0.9841)
+[2018/11/01 17:11:31 __main__ INFO] - Epoch 75 Step 200/390 Loss 0.0880 (0.0497) Accuracy 0.9688 (0.9840)
+[2018/11/01 17:11:59 __main__ INFO] - Epoch 75 Step 300/390 Loss 0.0804 (0.0492) Accuracy 0.9766 (0.9841)
+[2018/11/01 17:12:24 __main__ INFO] - Elapsed 110.03
+[2018/11/01 17:12:24 __main__ INFO] - Test 75
+[2018/11/01 17:12:31 __main__ INFO] - Epoch 75 Loss 0.2892 Accuracy 0.9179
+[2018/11/01 17:12:31 __main__ INFO] - Elapsed 7.46
+outdir 2:  /tigress/ruairidh/model_results/wrn_28_10
+[2018/11/01 17:12:32 __main__ INFO] - Train 76
+[2018/11/01 17:12:32 __main__ INFO] - Epoch 76 Step 0/390 Loss 0.0600 (0.0600) Accuracy 0.9844 (0.9844)
+[2018/11/01 17:13:00 __main__ INFO] - Epoch 76 Step 100/390 Loss 0.0745 (0.0545) Accuracy 0.9609 (0.9826)
+[2018/11/01 17:13:29 __main__ INFO] - Epoch 76 Step 200/390 Loss 0.0500 (0.0577) Accuracy 0.9766 (0.9810)
+[2018/11/01 17:13:57 __main__ INFO] - Epoch 76 Step 300/390 Loss 0.0835 (0.0574) Accuracy 0.9766 (0.9811)
+[2018/11/01 17:14:22 __main__ INFO] - Elapsed 109.95
+[2018/11/01 17:14:22 __main__ INFO] - Test 76
+[2018/11/01 17:14:29 __main__ INFO] - Epoch 76 Loss 0.2394 Accuracy 0.9309
+[2018/11/01 17:14:29 __main__ INFO] - Elapsed 7.54
+outdir 2:  /tigress/ruairidh/model_results/wrn_28_10
+[2018/11/01 17:14:30 __main__ INFO] - Train 77
+[2018/11/01 17:14:30 __main__ INFO] - Epoch 77 Step 0/390 Loss 0.0525 (0.0525) Accuracy 0.9766 (0.9766)
+[2018/11/01 17:14:58 __main__ INFO] - Epoch 77 Step 100/390 Loss 0.0708 (0.0535) Accuracy 0.9922 (0.9819)
+[2018/11/01 17:15:27 __main__ INFO] - Epoch 77 Step 200/390 Loss 0.0760 (0.0555) Accuracy 0.9766 (0.9815)
+[2018/11/01 17:15:55 __main__ INFO] - Epoch 77 Step 300/390 Loss 0.0910 (0.0574) Accuracy 0.9766 (0.9807)
+[2018/11/01 17:16:20 __main__ INFO] - Elapsed 109.94
+[2018/11/01 17:16:20 __main__ INFO] - Test 77
+[2018/11/01 17:16:27 __main__ INFO] - Epoch 77 Loss 0.2595 Accuracy 0.9261
+[2018/11/01 17:16:27 __main__ INFO] - Elapsed 7.48
+outdir 2:  /tigress/ruairidh/model_results/wrn_28_10
+[2018/11/01 17:16:28 __main__ INFO] - Train 78
+[2018/11/01 17:16:28 __main__ INFO] - Epoch 78 Step 0/390 Loss 0.0519 (0.0519) Accuracy 0.9844 (0.9844)
+[2018/11/01 17:16:56 __main__ INFO] - Epoch 78 Step 100/390 Loss 0.0553 (0.0553) Accuracy 0.9766 (0.9822)
+[2018/11/01 17:17:25 __main__ INFO] - Epoch 78 Step 200/390 Loss 0.0443 (0.0568) Accuracy 0.9844 (0.9818)
+[2018/11/01 17:17:53 __main__ INFO] - Epoch 78 Step 300/390 Loss 0.0337 (0.0576) Accuracy 0.9922 (0.9816)
+[2018/11/01 17:18:18 __main__ INFO] - Elapsed 109.99
+[2018/11/01 17:18:18 __main__ INFO] - Test 78
+[2018/11/01 17:18:25 __main__ INFO] - Epoch 78 Loss 0.2338 Accuracy 0.9322
+[2018/11/01 17:18:25 __main__ INFO] - Elapsed 7.53
+outdir 2:  /tigress/ruairidh/model_results/wrn_28_10
+[2018/11/01 17:18:26 __main__ INFO] - Train 79
+[2018/11/01 17:18:26 __main__ INFO] - Epoch 79 Step 0/390 Loss 0.0742 (0.0742) Accuracy 0.9688 (0.9688)
+[2018/11/01 17:18:55 __main__ INFO] - Epoch 79 Step 100/390 Loss 0.0641 (0.0575) Accuracy 0.9688 (0.9809)
+[2018/11/01 17:19:23 __main__ INFO] - Epoch 79 Step 200/390 Loss 0.0221 (0.0587) Accuracy 0.9922 (0.9811)
+[2018/11/01 17:19:51 __main__ INFO] - Epoch 79 Step 300/390 Loss 0.0579 (0.0635) Accuracy 0.9766 (0.9791)
+[2018/11/01 17:20:16 __main__ INFO] - Elapsed 110.09
+[2018/11/01 17:20:16 __main__ INFO] - Test 79
+[2018/11/01 17:20:23 __main__ INFO] - Epoch 79 Loss 0.2869 Accuracy 0.9155
+[2018/11/01 17:20:23 __main__ INFO] - Elapsed 7.52
+outdir 2:  /tigress/ruairidh/model_results/wrn_28_10
+[2018/11/01 17:20:24 __main__ INFO] - Train 80
+[2018/11/01 17:20:24 __main__ INFO] - Epoch 80 Step 0/390 Loss 0.0706 (0.0706) Accuracy 0.9766 (0.9766)
+[2018/11/01 17:20:53 __main__ INFO] - Epoch 80 Step 100/390 Loss 0.0180 (0.0505) Accuracy 1.0000 (0.9834)
+[2018/11/01 17:21:21 __main__ INFO] - Epoch 80 Step 200/390 Loss 0.0280 (0.0522) Accuracy 0.9922 (0.9831)
+[2018/11/01 17:21:49 __main__ INFO] - Epoch 80 Step 300/390 Loss 0.0339 (0.0552) Accuracy 0.9922 (0.9818)
+[2018/11/01 17:22:14 __main__ INFO] - Elapsed 110.12
+[2018/11/01 17:22:14 __main__ INFO] - Test 80
+[2018/11/01 17:22:21 __main__ INFO] - Epoch 80 Loss 0.2450 Accuracy 0.9318
+[2018/11/01 17:22:22 __main__ INFO] - Elapsed 7.50
+outdir 2:  /tigress/ruairidh/model_results/wrn_28_10
+[2018/11/01 17:22:22 __main__ INFO] - Train 81
+[2018/11/01 17:22:23 __main__ INFO] - Epoch 81 Step 0/390 Loss 0.0312 (0.0312) Accuracy 0.9844 (0.9844)
+[2018/11/01 17:22:51 __main__ INFO] - Epoch 81 Step 100/390 Loss 0.0588 (0.0557) Accuracy 0.9922 (0.9816)
+[2018/11/01 17:23:19 __main__ INFO] - Epoch 81 Step 200/390 Loss 0.0704 (0.0631) Accuracy 0.9844 (0.9796)
+[2018/11/01 17:23:47 __main__ INFO] - Epoch 81 Step 300/390 Loss 0.0545 (0.0609) Accuracy 0.9766 (0.9802)
+[2018/11/01 17:24:12 __main__ INFO] - Elapsed 109.93
+[2018/11/01 17:24:12 __main__ INFO] - Test 81
+[2018/11/01 17:24:20 __main__ INFO] - Epoch 81 Loss 0.2778 Accuracy 0.9248
+[2018/11/01 17:24:20 __main__ INFO] - Elapsed 7.57
+outdir 2:  /tigress/ruairidh/model_results/wrn_28_10
+[2018/11/01 17:24:20 __main__ INFO] - Train 82
+[2018/11/01 17:24:21 __main__ INFO] - Epoch 82 Step 0/390 Loss 0.0219 (0.0219) Accuracy 0.9922 (0.9922)
+[2018/11/01 17:24:49 __main__ INFO] - Epoch 82 Step 100/390 Loss 0.0327 (0.0555) Accuracy 0.9922 (0.9813)
+[2018/11/01 17:25:17 __main__ INFO] - Epoch 82 Step 200/390 Loss 0.0476 (0.0599) Accuracy 0.9844 (0.9805)
+[2018/11/01 17:25:45 __main__ INFO] - Epoch 82 Step 300/390 Loss 0.0827 (0.0611) Accuracy 0.9766 (0.9801)
+[2018/11/01 17:26:10 __main__ INFO] - Elapsed 110.05
+[2018/11/01 17:26:10 __main__ INFO] - Test 82
+[2018/11/01 17:26:18 __main__ INFO] - Epoch 82 Loss 0.2813 Accuracy 0.9204
+[2018/11/01 17:26:18 __main__ INFO] - Elapsed 7.52
+outdir 2:  /tigress/ruairidh/model_results/wrn_28_10
+[2018/11/01 17:26:18 __main__ INFO] - Train 83
+[2018/11/01 17:26:19 __main__ INFO] - Epoch 83 Step 0/390 Loss 0.0873 (0.0873) Accuracy 0.9688 (0.9688)
+[2018/11/01 17:26:47 __main__ INFO] - Epoch 83 Step 100/390 Loss 0.0754 (0.0485) Accuracy 0.9609 (0.9840)
+[2018/11/01 17:27:15 __main__ INFO] - Epoch 83 Step 200/390 Loss 0.0554 (0.0551) Accuracy 0.9766 (0.9821)
+[2018/11/01 17:27:43 __main__ INFO] - Epoch 83 Step 300/390 Loss 0.0993 (0.0590) Accuracy 0.9688 (0.9809)
+[2018/11/01 17:28:08 __main__ INFO] - Elapsed 110.13
+[2018/11/01 17:28:08 __main__ INFO] - Test 83
+[2018/11/01 17:28:16 __main__ INFO] - Epoch 83 Loss 0.2921 Accuracy 0.9143
+[2018/11/01 17:28:16 __main__ INFO] - Elapsed 7.43
+outdir 2:  /tigress/ruairidh/model_results/wrn_28_10
+[2018/11/01 17:28:16 __main__ INFO] - Train 84
+[2018/11/01 17:28:17 __main__ INFO] - Epoch 84 Step 0/390 Loss 0.0882 (0.0882) Accuracy 0.9609 (0.9609)
+[2018/11/01 17:28:45 __main__ INFO] - Epoch 84 Step 100/390 Loss 0.0648 (0.0621) Accuracy 0.9766 (0.9787)
+[2018/11/01 17:29:13 __main__ INFO] - Epoch 84 Step 200/390 Loss 0.1020 (0.0694) Accuracy 0.9609 (0.9759)
+[2018/11/01 17:29:41 __main__ INFO] - Epoch 84 Step 300/390 Loss 0.0392 (0.0651) Accuracy 0.9922 (0.9779)
+[2018/11/01 17:30:06 __main__ INFO] - Elapsed 109.82
+[2018/11/01 17:30:06 __main__ INFO] - Test 84
+[2018/11/01 17:30:14 __main__ INFO] - Epoch 84 Loss 0.2727 Accuracy 0.9213
+[2018/11/01 17:30:14 __main__ INFO] - Elapsed 7.56
+outdir 2:  /tigress/ruairidh/model_results/wrn_28_10
+[2018/11/01 17:30:14 __main__ INFO] - Train 85
+[2018/11/01 17:30:15 __main__ INFO] - Epoch 85 Step 0/390 Loss 0.0473 (0.0473) Accuracy 0.9766 (0.9766)
+[2018/11/01 17:30:43 __main__ INFO] - Epoch 85 Step 100/390 Loss 0.0072 (0.0480) Accuracy 1.0000 (0.9844)
+[2018/11/01 17:31:11 __main__ INFO] - Epoch 85 Step 200/390 Loss 0.0963 (0.0566) Accuracy 0.9688 (0.9819)
+[2018/11/01 17:31:39 __main__ INFO] - Epoch 85 Step 300/390 Loss 0.0831 (0.0650) Accuracy 0.9844 (0.9785)
+[2018/11/01 17:32:04 __main__ INFO] - Elapsed 109.96
+[2018/11/01 17:32:04 __main__ INFO] - Test 85
+[2018/11/01 17:32:12 __main__ INFO] - Epoch 85 Loss 0.2642 Accuracy 0.9234
+[2018/11/01 17:32:12 __main__ INFO] - Elapsed 7.51
+outdir 2:  /tigress/ruairidh/model_results/wrn_28_10
+[2018/11/01 17:32:12 __main__ INFO] - Train 86
+[2018/11/01 17:32:13 __main__ INFO] - Epoch 86 Step 0/390 Loss 0.0593 (0.0593) Accuracy 0.9766 (0.9766)
+[2018/11/01 17:32:41 __main__ INFO] - Epoch 86 Step 100/390 Loss 0.0253 (0.0583) Accuracy 1.0000 (0.9810)
+[2018/11/01 17:33:09 __main__ INFO] - Epoch 86 Step 200/390 Loss 0.0116 (0.0576) Accuracy 1.0000 (0.9810)
+[2018/11/01 17:33:37 __main__ INFO] - Epoch 86 Step 300/390 Loss 0.0637 (0.0598) Accuracy 0.9766 (0.9804)
+[2018/11/01 17:34:02 __main__ INFO] - Elapsed 109.80
+[2018/11/01 17:34:02 __main__ INFO] - Test 86
+[2018/11/01 17:34:10 __main__ INFO] - Epoch 86 Loss 0.2794 Accuracy 0.9209
+[2018/11/01 17:34:10 __main__ INFO] - Elapsed 7.52
+outdir 2:  /tigress/ruairidh/model_results/wrn_28_10
+[2018/11/01 17:34:10 __main__ INFO] - Train 87
+[2018/11/01 17:34:11 __main__ INFO] - Epoch 87 Step 0/390 Loss 0.0381 (0.0381) Accuracy 1.0000 (1.0000)
+[2018/11/01 17:34:39 __main__ INFO] - Epoch 87 Step 100/390 Loss 0.0396 (0.0556) Accuracy 0.9766 (0.9811)
+[2018/11/01 17:35:07 __main__ INFO] - Epoch 87 Step 200/390 Loss 0.0214 (0.0546) Accuracy 0.9922 (0.9817)
+[2018/11/01 17:35:35 __main__ INFO] - Epoch 87 Step 300/390 Loss 0.0574 (0.0575) Accuracy 0.9766 (0.9811)
+[2018/11/01 17:36:00 __main__ INFO] - Elapsed 110.02
+[2018/11/01 17:36:00 __main__ INFO] - Test 87
+[2018/11/01 17:36:08 __main__ INFO] - Epoch 87 Loss 0.2483 Accuracy 0.9272
+[2018/11/01 17:36:08 __main__ INFO] - Elapsed 7.56
+outdir 2:  /tigress/ruairidh/model_results/wrn_28_10
+[2018/11/01 17:36:08 __main__ INFO] - Train 88
+[2018/11/01 17:36:09 __main__ INFO] - Epoch 88 Step 0/390 Loss 0.0557 (0.0557) Accuracy 0.9844 (0.9844)
+[2018/11/01 17:36:37 __main__ INFO] - Epoch 88 Step 100/390 Loss 0.0582 (0.0577) Accuracy 0.9844 (0.9818)
+[2018/11/01 17:37:05 __main__ INFO] - Epoch 88 Step 200/390 Loss 0.0425 (0.0624) Accuracy 0.9922 (0.9801)
+[2018/11/01 17:37:33 __main__ INFO] - Epoch 88 Step 300/390 Loss 0.0646 (0.0652) Accuracy 0.9766 (0.9791)
+[2018/11/01 17:37:58 __main__ INFO] - Elapsed 110.02
+[2018/11/01 17:37:58 __main__ INFO] - Test 88
+[2018/11/01 17:38:06 __main__ INFO] - Epoch 88 Loss 0.2549 Accuracy 0.9258
+[2018/11/01 17:38:06 __main__ INFO] - Elapsed 7.58
+outdir 2:  /tigress/ruairidh/model_results/wrn_28_10
+[2018/11/01 17:38:06 __main__ INFO] - Train 89
+[2018/11/01 17:38:07 __main__ INFO] - Epoch 89 Step 0/390 Loss 0.0542 (0.0542) Accuracy 0.9766 (0.9766)
+[2018/11/01 17:38:35 __main__ INFO] - Epoch 89 Step 100/390 Loss 0.0515 (0.0572) Accuracy 0.9766 (0.9820)
+[2018/11/01 17:39:03 __main__ INFO] - Epoch 89 Step 200/390 Loss 0.0597 (0.0596) Accuracy 0.9844 (0.9808)
+[2018/11/01 17:39:32 __main__ INFO] - Epoch 89 Step 300/390 Loss 0.0560 (0.0625) Accuracy 0.9766 (0.9797)
+[2018/11/01 17:39:57 __main__ INFO] - Elapsed 110.27
+[2018/11/01 17:39:57 __main__ INFO] - Test 89
+[2018/11/01 17:40:04 __main__ INFO] - Epoch 89 Loss 0.2524 Accuracy 0.9267
+[2018/11/01 17:40:04 __main__ INFO] - Elapsed 7.61
+outdir 2:  /tigress/ruairidh/model_results/wrn_28_10
+[2018/11/01 17:40:05 __main__ INFO] - Train 90
+[2018/11/01 17:40:05 __main__ INFO] - Epoch 90 Step 0/390 Loss 0.0431 (0.0431) Accuracy 0.9922 (0.9922)
+[2018/11/01 17:40:33 __main__ INFO] - Epoch 90 Step 100/390 Loss 0.0908 (0.0556) Accuracy 0.9688 (0.9814)
+[2018/11/01 17:41:02 __main__ INFO] - Epoch 90 Step 200/390 Loss 0.0857 (0.0571) Accuracy 0.9688 (0.9808)
+[2018/11/01 17:41:30 __main__ INFO] - Epoch 90 Step 300/390 Loss 0.0476 (0.0587) Accuracy 0.9844 (0.9804)
+[2018/11/01 17:41:55 __main__ INFO] - Elapsed 109.90
+[2018/11/01 17:41:55 __main__ INFO] - Test 90
+[2018/11/01 17:42:02 __main__ INFO] - Epoch 90 Loss 0.2519 Accuracy 0.9277
+[2018/11/01 17:42:02 __main__ INFO] - Elapsed 7.56
+outdir 2:  /tigress/ruairidh/model_results/wrn_28_10
+[2018/11/01 17:42:03 __main__ INFO] - Train 91
+[2018/11/01 17:42:03 __main__ INFO] - Epoch 91 Step 0/390 Loss 0.0337 (0.0337) Accuracy 0.9922 (0.9922)
+[2018/11/01 17:42:32 __main__ INFO] - Epoch 91 Step 100/390 Loss 0.0231 (0.0488) Accuracy 1.0000 (0.9851)
+[2018/11/01 17:43:00 __main__ INFO] - Epoch 91 Step 200/390 Loss 0.1226 (0.0565) Accuracy 0.9609 (0.9829)
+[2018/11/01 17:43:28 __main__ INFO] - Epoch 91 Step 300/390 Loss 0.0860 (0.0588) Accuracy 0.9609 (0.9816)
+[2018/11/01 17:43:53 __main__ INFO] - Elapsed 110.01
+[2018/11/01 17:43:53 __main__ INFO] - Test 91
+[2018/11/01 17:44:00 __main__ INFO] - Epoch 91 Loss 0.2623 Accuracy 0.9261
+[2018/11/01 17:44:00 __main__ INFO] - Elapsed 7.57
+outdir 2:  /tigress/ruairidh/model_results/wrn_28_10
+[2018/11/01 17:44:01 __main__ INFO] - Train 92
+[2018/11/01 17:44:02 __main__ INFO] - Epoch 92 Step 0/390 Loss 0.0561 (0.0561) Accuracy 0.9766 (0.9766)
+[2018/11/01 17:44:30 __main__ INFO] - Epoch 92 Step 100/390 Loss 0.1301 (0.0662) Accuracy 0.9219 (0.9784)
+[2018/11/01 17:44:58 __main__ INFO] - Epoch 92 Step 200/390 Loss 0.0183 (0.0618) Accuracy 1.0000 (0.9800)
+[2018/11/01 17:45:26 __main__ INFO] - Epoch 92 Step 300/390 Loss 0.0809 (0.0606) Accuracy 0.9688 (0.9805)
+[2018/11/01 17:45:51 __main__ INFO] - Elapsed 109.96
+[2018/11/01 17:45:51 __main__ INFO] - Test 92
+[2018/11/01 17:45:58 __main__ INFO] - Epoch 92 Loss 0.2809 Accuracy 0.9239
+[2018/11/01 17:45:58 __main__ INFO] - Elapsed 7.49
+outdir 2:  /tigress/ruairidh/model_results/wrn_28_10
+[2018/11/01 17:45:59 __main__ INFO] - Train 93
+[2018/11/01 17:46:00 __main__ INFO] - Epoch 93 Step 0/390 Loss 0.0642 (0.0642) Accuracy 0.9688 (0.9688)
+[2018/11/01 17:46:28 __main__ INFO] - Epoch 93 Step 100/390 Loss 0.0669 (0.0603) Accuracy 0.9844 (0.9806)
+[2018/11/01 17:46:56 __main__ INFO] - Epoch 93 Step 200/390 Loss 0.0385 (0.0617) Accuracy 0.9922 (0.9799)
+[2018/11/01 17:47:24 __main__ INFO] - Epoch 93 Step 300/390 Loss 0.0948 (0.0643) Accuracy 0.9531 (0.9789)
+[2018/11/01 17:47:49 __main__ INFO] - Elapsed 110.06
+[2018/11/01 17:47:49 __main__ INFO] - Test 93
+[2018/11/01 17:47:57 __main__ INFO] - Epoch 93 Loss 0.2828 Accuracy 0.9206
+[2018/11/01 17:47:57 __main__ INFO] - Elapsed 7.69
+outdir 2:  /tigress/ruairidh/model_results/wrn_28_10
+[2018/11/01 17:47:57 __main__ INFO] - Train 94
+[2018/11/01 17:47:58 __main__ INFO] - Epoch 94 Step 0/390 Loss 0.0528 (0.0528) Accuracy 0.9844 (0.9844)
+[2018/11/01 17:48:26 __main__ INFO] - Epoch 94 Step 100/390 Loss 0.0332 (0.0548) Accuracy 0.9844 (0.9818)
+[2018/11/01 17:48:54 __main__ INFO] - Epoch 94 Step 200/390 Loss 0.0739 (0.0566) Accuracy 0.9844 (0.9815)
+[2018/11/01 17:49:22 __main__ INFO] - Epoch 94 Step 300/390 Loss 0.0789 (0.0605) Accuracy 0.9766 (0.9800)
+[2018/11/01 17:49:47 __main__ INFO] - Elapsed 110.08
+[2018/11/01 17:49:47 __main__ INFO] - Test 94
+[2018/11/01 17:49:55 __main__ INFO] - Epoch 94 Loss 0.2384 Accuracy 0.9342
+[2018/11/01 17:49:55 __main__ INFO] - Elapsed 7.59
+outdir 2:  /tigress/ruairidh/model_results/wrn_28_10
+[2018/11/01 17:49:56 __main__ INFO] - Train 95
+[2018/11/01 17:49:56 __main__ INFO] - Epoch 95 Step 0/390 Loss 0.0401 (0.0401) Accuracy 0.9922 (0.9922)
+[2018/11/01 17:50:24 __main__ INFO] - Epoch 95 Step 100/390 Loss 0.0785 (0.0555) Accuracy 0.9688 (0.9809)
+[2018/11/01 17:50:52 __main__ INFO] - Epoch 95 Step 200/390 Loss 0.0787 (0.0562) Accuracy 0.9766 (0.9811)
+[2018/11/01 17:51:20 __main__ INFO] - Epoch 95 Step 300/390 Loss 0.1126 (0.0590) Accuracy 0.9688 (0.9802)
+[2018/11/01 17:51:45 __main__ INFO] - Elapsed 109.84
+[2018/11/01 17:51:45 __main__ INFO] - Test 95
+[2018/11/01 17:51:53 __main__ INFO] - Epoch 95 Loss 0.3012 Accuracy 0.9171
+[2018/11/01 17:51:53 __main__ INFO] - Elapsed 7.51
+outdir 2:  /tigress/ruairidh/model_results/wrn_28_10
+[2018/11/01 17:51:53 __main__ INFO] - Train 96
+[2018/11/01 17:51:54 __main__ INFO] - Epoch 96 Step 0/390 Loss 0.0394 (0.0394) Accuracy 0.9844 (0.9844)
+[2018/11/01 17:52:22 __main__ INFO] - Epoch 96 Step 100/390 Loss 0.0493 (0.0568) Accuracy 0.9844 (0.9805)
+[2018/11/01 17:52:50 __main__ INFO] - Epoch 96 Step 200/390 Loss 0.0258 (0.0624) Accuracy 1.0000 (0.9791)
+[2018/11/01 17:53:19 __main__ INFO] - Epoch 96 Step 300/390 Loss 0.0846 (0.0616) Accuracy 0.9766 (0.9791)
+[2018/11/01 17:53:44 __main__ INFO] - Elapsed 110.16
+[2018/11/01 17:53:44 __main__ INFO] - Test 96
+[2018/11/01 17:53:51 __main__ INFO] - Epoch 96 Loss 0.2958 Accuracy 0.9186
+[2018/11/01 17:53:51 __main__ INFO] - Elapsed 7.56
+outdir 2:  /tigress/ruairidh/model_results/wrn_28_10
+[2018/11/01 17:53:52 __main__ INFO] - Train 97
+[2018/11/01 17:53:52 __main__ INFO] - Epoch 97 Step 0/390 Loss 0.0445 (0.0445) Accuracy 0.9766 (0.9766)
+[2018/11/01 17:54:20 __main__ INFO] - Epoch 97 Step 100/390 Loss 0.0530 (0.0600) Accuracy 0.9766 (0.9800)
+[2018/11/01 17:54:49 __main__ INFO] - Epoch 97 Step 200/390 Loss 0.0856 (0.0639) Accuracy 0.9766 (0.9791)
+[2018/11/01 17:55:17 __main__ INFO] - Epoch 97 Step 300/390 Loss 0.0518 (0.0635) Accuracy 0.9766 (0.9791)
+[2018/11/01 17:55:42 __main__ INFO] - Elapsed 110.16
+[2018/11/01 17:55:42 __main__ INFO] - Test 97
+[2018/11/01 17:55:49 __main__ INFO] - Epoch 97 Loss 0.2696 Accuracy 0.9222
+[2018/11/01 17:55:49 __main__ INFO] - Elapsed 7.50
+outdir 2:  /tigress/ruairidh/model_results/wrn_28_10
+[2018/11/01 17:55:50 __main__ INFO] - Train 98
+[2018/11/01 17:55:51 __main__ INFO] - Epoch 98 Step 0/390 Loss 0.0452 (0.0452) Accuracy 0.9922 (0.9922)
+[2018/11/01 17:56:19 __main__ INFO] - Epoch 98 Step 100/390 Loss 0.0516 (0.0496) Accuracy 0.9766 (0.9843)
+[2018/11/01 17:56:47 __main__ INFO] - Epoch 98 Step 200/390 Loss 0.0511 (0.0547) Accuracy 0.9766 (0.9821)
+[2018/11/01 17:57:15 __main__ INFO] - Epoch 98 Step 300/390 Loss 0.0134 (0.0577) Accuracy 1.0000 (0.9813)
+[2018/11/01 17:57:40 __main__ INFO] - Elapsed 110.01
+[2018/11/01 17:57:40 __main__ INFO] - Test 98
+[2018/11/01 17:57:47 __main__ INFO] - Epoch 98 Loss 0.2752 Accuracy 0.9225
+[2018/11/01 17:57:47 __main__ INFO] - Elapsed 7.43
+outdir 2:  /tigress/ruairidh/model_results/wrn_28_10
+[2018/11/01 17:57:48 __main__ INFO] - Train 99
+[2018/11/01 17:57:49 __main__ INFO] - Epoch 99 Step 0/390 Loss 0.0787 (0.0787) Accuracy 0.9766 (0.9766)
+[2018/11/01 17:58:17 __main__ INFO] - Epoch 99 Step 100/390 Loss 0.0553 (0.0522) Accuracy 0.9766 (0.9820)
+[2018/11/01 17:58:45 __main__ INFO] - Epoch 99 Step 200/390 Loss 0.0494 (0.0578) Accuracy 0.9844 (0.9806)
+[2018/11/01 17:59:13 __main__ INFO] - Epoch 99 Step 300/390 Loss 0.0680 (0.0589) Accuracy 0.9688 (0.9804)
+[2018/11/01 17:59:38 __main__ INFO] - Elapsed 110.09
+[2018/11/01 17:59:38 __main__ INFO] - Test 99
+[2018/11/01 17:59:46 __main__ INFO] - Epoch 99 Loss 0.2859 Accuracy 0.9231
+[2018/11/01 17:59:46 __main__ INFO] - Elapsed 7.59
+outdir 2:  /tigress/ruairidh/model_results/wrn_28_10
+[2018/11/01 17:59:46 __main__ INFO] - Train 100
+[2018/11/01 17:59:47 __main__ INFO] - Epoch 100 Step 0/390 Loss 0.0676 (0.0676) Accuracy 0.9844 (0.9844)
+[2018/11/01 18:00:15 __main__ INFO] - Epoch 100 Step 100/390 Loss 0.0406 (0.0520) Accuracy 0.9844 (0.9819)
+[2018/11/01 18:00:43 __main__ INFO] - Epoch 100 Step 200/390 Loss 0.0993 (0.0577) Accuracy 0.9844 (0.9807)
+[2018/11/01 18:01:11 __main__ INFO] - Epoch 100 Step 300/390 Loss 0.0448 (0.0625) Accuracy 0.9844 (0.9795)
+[2018/11/01 18:01:36 __main__ INFO] - Elapsed 109.96
+[2018/11/01 18:01:36 __main__ INFO] - Test 100
+[2018/11/01 18:01:44 __main__ INFO] - Epoch 100 Loss 0.3097 Accuracy 0.9131
+[2018/11/01 18:01:44 __main__ INFO] - Elapsed 7.51
+outdir 2:  /tigress/ruairidh/model_results/wrn_28_10
+[2018/11/01 18:01:44 __main__ INFO] - Train 101
+[2018/11/01 18:01:45 __main__ INFO] - Epoch 101 Step 0/390 Loss 0.0256 (0.0256) Accuracy 1.0000 (1.0000)
+[2018/11/01 18:02:13 __main__ INFO] - Epoch 101 Step 100/390 Loss 0.0130 (0.0598) Accuracy 1.0000 (0.9801)
+[2018/11/01 18:02:41 __main__ INFO] - Epoch 101 Step 200/390 Loss 0.0248 (0.0575) Accuracy 0.9922 (0.9808)
+[2018/11/01 18:03:10 __main__ INFO] - Epoch 101 Step 300/390 Loss 0.0922 (0.0589) Accuracy 0.9609 (0.9805)
+[2018/11/01 18:03:34 __main__ INFO] - Elapsed 110.22
+[2018/11/01 18:03:35 __main__ INFO] - Test 101
+[2018/11/01 18:03:42 __main__ INFO] - Epoch 101 Loss 0.3652 Accuracy 0.9008
+[2018/11/01 18:03:42 __main__ INFO] - Elapsed 7.61
+outdir 2:  /tigress/ruairidh/model_results/wrn_28_10
+[2018/11/01 18:03:43 __main__ INFO] - Train 102
+[2018/11/01 18:03:43 __main__ INFO] - Epoch 102 Step 0/390 Loss 0.1000 (0.1000) Accuracy 0.9609 (0.9609)
+[2018/11/01 18:04:11 __main__ INFO] - Epoch 102 Step 100/390 Loss 0.0291 (0.0538) Accuracy 0.9844 (0.9829)
+[2018/11/01 18:04:40 __main__ INFO] - Epoch 102 Step 200/390 Loss 0.0201 (0.0550) Accuracy 0.9922 (0.9825)
+[2018/11/01 18:05:08 __main__ INFO] - Epoch 102 Step 300/390 Loss 0.0443 (0.0574) Accuracy 0.9766 (0.9815)
+[2018/11/01 18:05:33 __main__ INFO] - Elapsed 110.16
+[2018/11/01 18:05:33 __main__ INFO] - Test 102
+[2018/11/01 18:05:40 __main__ INFO] - Epoch 102 Loss 0.2730 Accuracy 0.9251
+[2018/11/01 18:05:40 __main__ INFO] - Elapsed 7.47
+outdir 2:  /tigress/ruairidh/model_results/wrn_28_10
+[2018/11/01 18:05:41 __main__ INFO] - Train 103
+[2018/11/01 18:05:41 __main__ INFO] - Epoch 103 Step 0/390 Loss 0.0248 (0.0248) Accuracy 0.9922 (0.9922)
+[2018/11/01 18:06:10 __main__ INFO] - Epoch 103 Step 100/390 Loss 0.0332 (0.0600) Accuracy 0.9922 (0.9804)
+[2018/11/01 18:06:38 __main__ INFO] - Epoch 103 Step 200/390 Loss 0.0316 (0.0630) Accuracy 1.0000 (0.9797)
+[2018/11/01 18:07:06 __main__ INFO] - Epoch 103 Step 300/390 Loss 0.0785 (0.0644) Accuracy 0.9688 (0.9789)
+[2018/11/01 18:07:31 __main__ INFO] - Elapsed 110.14
+[2018/11/01 18:07:31 __main__ INFO] - Test 103
+[2018/11/01 18:07:38 __main__ INFO] - Epoch 103 Loss 0.2720 Accuracy 0.9223
+[2018/11/01 18:07:39 __main__ INFO] - Elapsed 7.50
+outdir 2:  /tigress/ruairidh/model_results/wrn_28_10
+[2018/11/01 18:07:39 __main__ INFO] - Train 104
+[2018/11/01 18:07:40 __main__ INFO] - Epoch 104 Step 0/390 Loss 0.0437 (0.0437) Accuracy 0.9766 (0.9766)
+[2018/11/01 18:08:08 __main__ INFO] - Epoch 104 Step 100/390 Loss 0.1325 (0.0600) Accuracy 0.9453 (0.9797)
+[2018/11/01 18:08:36 __main__ INFO] - Epoch 104 Step 200/390 Loss 0.0713 (0.0630) Accuracy 0.9766 (0.9788)
+[2018/11/01 18:09:04 __main__ INFO] - Epoch 104 Step 300/390 Loss 0.0635 (0.0620) Accuracy 0.9766 (0.9795)
+[2018/11/01 18:09:29 __main__ INFO] - Elapsed 110.03
+[2018/11/01 18:09:29 __main__ INFO] - Test 104
+[2018/11/01 18:09:37 __main__ INFO] - Epoch 104 Loss 0.2618 Accuracy 0.9266
+[2018/11/01 18:09:37 __main__ INFO] - Elapsed 7.58
+outdir 2:  /tigress/ruairidh/model_results/wrn_28_10
+[2018/11/01 18:09:38 __main__ INFO] - Train 105
+[2018/11/01 18:09:39 __main__ INFO] - Epoch 105 Step 0/390 Loss 0.0255 (0.0255) Accuracy 1.0000 (1.0000)
+[2018/11/01 18:10:07 __main__ INFO] - Epoch 105 Step 100/390 Loss 0.0164 (0.0451) Accuracy 0.9922 (0.9859)
+[2018/11/01 18:10:35 __main__ INFO] - Epoch 105 Step 200/390 Loss 0.0500 (0.0462) Accuracy 0.9766 (0.9857)
+[2018/11/01 18:11:03 __main__ INFO] - Epoch 105 Step 300/390 Loss 0.0684 (0.0514) Accuracy 0.9766 (0.9837)
+[2018/11/01 18:11:28 __main__ INFO] - Elapsed 110.07
+[2018/11/01 18:11:28 __main__ INFO] - Test 105
+[2018/11/01 18:11:36 __main__ INFO] - Epoch 105 Loss 0.3290 Accuracy 0.9081
+[2018/11/01 18:11:36 __main__ INFO] - Elapsed 7.43
+outdir 2:  /tigress/ruairidh/model_results/wrn_28_10
+[2018/11/01 18:11:36 __main__ INFO] - Train 106
+[2018/11/01 18:11:37 __main__ INFO] - Epoch 106 Step 0/390 Loss 0.1035 (0.1035) Accuracy 0.9688 (0.9688)
+[2018/11/01 18:12:05 __main__ INFO] - Epoch 106 Step 100/390 Loss 0.0454 (0.0543) Accuracy 0.9844 (0.9827)
+[2018/11/01 18:12:33 __main__ INFO] - Epoch 106 Step 200/390 Loss 0.0798 (0.0591) Accuracy 0.9531 (0.9802)
+[2018/11/01 18:13:01 __main__ INFO] - Epoch 106 Step 300/390 Loss 0.0226 (0.0607) Accuracy 0.9922 (0.9800)
+[2018/11/01 18:13:26 __main__ INFO] - Elapsed 110.05
+[2018/11/01 18:13:26 __main__ INFO] - Test 106
+[2018/11/01 18:13:34 __main__ INFO] - Epoch 106 Loss 0.2723 Accuracy 0.9248
+[2018/11/01 18:13:34 __main__ INFO] - Elapsed 7.56
+outdir 2:  /tigress/ruairidh/model_results/wrn_28_10
+[2018/11/01 18:13:34 __main__ INFO] - Train 107
+[2018/11/01 18:13:35 __main__ INFO] - Epoch 107 Step 0/390 Loss 0.0240 (0.0240) Accuracy 0.9922 (0.9922)
+[2018/11/01 18:14:03 __main__ INFO] - Epoch 107 Step 100/390 Loss 0.0366 (0.0555) Accuracy 0.9922 (0.9827)
+[2018/11/01 18:14:31 __main__ INFO] - Epoch 107 Step 200/390 Loss 0.0482 (0.0574) Accuracy 0.9922 (0.9817)
+[2018/11/01 18:15:00 __main__ INFO] - Epoch 107 Step 300/390 Loss 0.0430 (0.0588) Accuracy 0.9766 (0.9807)
+[2018/11/01 18:15:24 __main__ INFO] - Elapsed 110.03
+[2018/11/01 18:15:25 __main__ INFO] - Test 107
+[2018/11/01 18:15:32 __main__ INFO] - Epoch 107 Loss 0.2929 Accuracy 0.9212
+[2018/11/01 18:15:32 __main__ INFO] - Elapsed 7.51
+outdir 2:  /tigress/ruairidh/model_results/wrn_28_10
+[2018/11/01 18:15:33 __main__ INFO] - Train 108
+[2018/11/01 18:15:33 __main__ INFO] - Epoch 108 Step 0/390 Loss 0.0551 (0.0551) Accuracy 0.9766 (0.9766)
+[2018/11/01 18:16:01 __main__ INFO] - Epoch 108 Step 100/390 Loss 0.0379 (0.0489) Accuracy 0.9922 (0.9851)
+[2018/11/01 18:16:29 __main__ INFO] - Epoch 108 Step 200/390 Loss 0.0413 (0.0562) Accuracy 0.9844 (0.9819)
+[2018/11/01 18:16:58 __main__ INFO] - Epoch 108 Step 300/390 Loss 0.1342 (0.0598) Accuracy 0.9531 (0.9805)
+[2018/11/01 18:17:23 __main__ INFO] - Elapsed 110.07
+[2018/11/01 18:17:23 __main__ INFO] - Test 108
+[2018/11/01 18:17:30 __main__ INFO] - Epoch 108 Loss 0.3209 Accuracy 0.9135
+[2018/11/01 18:17:30 __main__ INFO] - Elapsed 7.51
+outdir 2:  /tigress/ruairidh/model_results/wrn_28_10
+[2018/11/01 18:17:31 __main__ INFO] - Train 109
+[2018/11/01 18:17:31 __main__ INFO] - Epoch 109 Step 0/390 Loss 0.0416 (0.0416) Accuracy 0.9844 (0.9844)
+[2018/11/01 18:17:59 __main__ INFO] - Epoch 109 Step 100/390 Loss 0.0924 (0.0534) Accuracy 0.9609 (0.9822)
+[2018/11/01 18:18:28 __main__ INFO] - Epoch 109 Step 200/390 Loss 0.0256 (0.0573) Accuracy 1.0000 (0.9810)
+[2018/11/01 18:18:56 __main__ INFO] - Epoch 109 Step 300/390 Loss 0.0584 (0.0567) Accuracy 0.9688 (0.9813)
+[2018/11/01 18:19:21 __main__ INFO] - Elapsed 110.07
+[2018/11/01 18:19:21 __main__ INFO] - Test 109
+[2018/11/01 18:19:28 __main__ INFO] - Epoch 109 Loss 0.2679 Accuracy 0.9274
+[2018/11/01 18:19:28 __main__ INFO] - Elapsed 7.56
+outdir 2:  /tigress/ruairidh/model_results/wrn_28_10
+[2018/11/01 18:19:29 __main__ INFO] - Train 110
+[2018/11/01 18:19:29 __main__ INFO] - Epoch 110 Step 0/390 Loss 0.0876 (0.0876) Accuracy 0.9844 (0.9844)
+[2018/11/01 18:19:58 __main__ INFO] - Epoch 110 Step 100/390 Loss 0.0520 (0.0494) Accuracy 0.9844 (0.9846)
+[2018/11/01 18:20:26 __main__ INFO] - Epoch 110 Step 200/390 Loss 0.0723 (0.0529) Accuracy 0.9766 (0.9835)
+[2018/11/01 18:20:54 __main__ INFO] - Epoch 110 Step 300/390 Loss 0.0623 (0.0552) Accuracy 0.9844 (0.9825)
+[2018/11/01 18:21:19 __main__ INFO] - Elapsed 109.91
+[2018/11/01 18:21:19 __main__ INFO] - Test 110
+[2018/11/01 18:21:26 __main__ INFO] - Epoch 110 Loss 0.3102 Accuracy 0.9126
+[2018/11/01 18:21:26 __main__ INFO] - Elapsed 7.47
+outdir 2:  /tigress/ruairidh/model_results/wrn_28_10
+[2018/11/01 18:21:27 __main__ INFO] - Train 111
+[2018/11/01 18:21:27 __main__ INFO] - Epoch 111 Step 0/390 Loss 0.0396 (0.0396) Accuracy 0.9844 (0.9844)
+[2018/11/01 18:21:56 __main__ INFO] - Epoch 111 Step 100/390 Loss 0.0851 (0.0561) Accuracy 0.9609 (0.9817)
+[2018/11/01 18:22:24 __main__ INFO] - Epoch 111 Step 200/390 Loss 0.1139 (0.0573) Accuracy 0.9531 (0.9815)
+[2018/11/01 18:22:52 __main__ INFO] - Epoch 111 Step 300/390 Loss 0.0572 (0.0588) Accuracy 0.9766 (0.9807)
+[2018/11/01 18:23:17 __main__ INFO] - Elapsed 110.31
+[2018/11/01 18:23:17 __main__ INFO] - Test 111
+[2018/11/01 18:23:25 __main__ INFO] - Epoch 111 Loss 0.3251 Accuracy 0.9088
+[2018/11/01 18:23:25 __main__ INFO] - Elapsed 7.62
+outdir 2:  /tigress/ruairidh/model_results/wrn_28_10
+[2018/11/01 18:23:25 __main__ INFO] - Train 112
+[2018/11/01 18:23:26 __main__ INFO] - Epoch 112 Step 0/390 Loss 0.0311 (0.0311) Accuracy 1.0000 (1.0000)
+[2018/11/01 18:23:54 __main__ INFO] - Epoch 112 Step 100/390 Loss 0.0648 (0.0598) Accuracy 0.9688 (0.9810)
+[2018/11/01 18:24:22 __main__ INFO] - Epoch 112 Step 200/390 Loss 0.0600 (0.0608) Accuracy 0.9766 (0.9802)
+[2018/11/01 18:24:51 __main__ INFO] - Epoch 112 Step 300/390 Loss 0.0914 (0.0582) Accuracy 0.9766 (0.9813)
+[2018/11/01 18:25:15 __main__ INFO] - Elapsed 110.18
+[2018/11/01 18:25:15 __main__ INFO] - Test 112
+[2018/11/01 18:25:23 __main__ INFO] - Epoch 112 Loss 0.2813 Accuracy 0.9197
+[2018/11/01 18:25:23 __main__ INFO] - Elapsed 7.47
+outdir 2:  /tigress/ruairidh/model_results/wrn_28_10
+[2018/11/01 18:25:23 __main__ INFO] - Train 113
+[2018/11/01 18:25:24 __main__ INFO] - Epoch 113 Step 0/390 Loss 0.0232 (0.0232) Accuracy 0.9922 (0.9922)
+[2018/11/01 18:25:52 __main__ INFO] - Epoch 113 Step 100/390 Loss 0.0209 (0.0514) Accuracy 1.0000 (0.9833)
+[2018/11/01 18:26:20 __main__ INFO] - Epoch 113 Step 200/390 Loss 0.0616 (0.0528) Accuracy 0.9844 (0.9834)
+[2018/11/01 18:26:49 __main__ INFO] - Epoch 113 Step 300/390 Loss 0.0825 (0.0543) Accuracy 0.9688 (0.9827)
+[2018/11/01 18:27:14 __main__ INFO] - Elapsed 110.15
+[2018/11/01 18:27:14 __main__ INFO] - Test 113
+[2018/11/01 18:27:21 __main__ INFO] - Epoch 113 Loss 0.2691 Accuracy 0.9259
+[2018/11/01 18:27:21 __main__ INFO] - Elapsed 7.47
+outdir 2:  /tigress/ruairidh/model_results/wrn_28_10
+[2018/11/01 18:27:22 __main__ INFO] - Train 114
+[2018/11/01 18:27:22 __main__ INFO] - Epoch 114 Step 0/390 Loss 0.0501 (0.0501) Accuracy 0.9844 (0.9844)
+[2018/11/01 18:27:50 __main__ INFO] - Epoch 114 Step 100/390 Loss 0.0164 (0.0504) Accuracy 1.0000 (0.9838)
+[2018/11/01 18:28:19 __main__ INFO] - Epoch 114 Step 200/390 Loss 0.1642 (0.0537) Accuracy 0.9375 (0.9820)
+[2018/11/01 18:28:47 __main__ INFO] - Epoch 114 Step 300/390 Loss 0.1325 (0.0563) Accuracy 0.9531 (0.9815)
+[2018/11/01 18:29:11 __main__ INFO] - Elapsed 109.84
+[2018/11/01 18:29:12 __main__ INFO] - Test 114
+[2018/11/01 18:29:19 __main__ INFO] - Epoch 114 Loss 0.2678 Accuracy 0.9227
+[2018/11/01 18:29:19 __main__ INFO] - Elapsed 7.49
+outdir 2:  /tigress/ruairidh/model_results/wrn_28_10
+[2018/11/01 18:29:19 __main__ INFO] - Train 115
+[2018/11/01 18:29:20 __main__ INFO] - Epoch 115 Step 0/390 Loss 0.0664 (0.0664) Accuracy 0.9844 (0.9844)
+[2018/11/01 18:29:48 __main__ INFO] - Epoch 115 Step 100/390 Loss 0.0876 (0.0554) Accuracy 0.9766 (0.9817)
+[2018/11/01 18:30:16 __main__ INFO] - Epoch 115 Step 200/390 Loss 0.0472 (0.0564) Accuracy 0.9844 (0.9817)
+[2018/11/01 18:30:45 __main__ INFO] - Epoch 115 Step 300/390 Loss 0.0609 (0.0550) Accuracy 0.9609 (0.9818)
+[2018/11/01 18:31:10 __main__ INFO] - Elapsed 110.06
+[2018/11/01 18:31:10 __main__ INFO] - Test 115
+[2018/11/01 18:31:17 __main__ INFO] - Epoch 115 Loss 0.2748 Accuracy 0.9233
+[2018/11/01 18:31:17 __main__ INFO] - Elapsed 7.54
+outdir 2:  /tigress/ruairidh/model_results/wrn_28_10
+[2018/11/01 18:31:18 __main__ INFO] - Train 116
+[2018/11/01 18:31:18 __main__ INFO] - Epoch 116 Step 0/390 Loss 0.0650 (0.0650) Accuracy 0.9766 (0.9766)
+[2018/11/01 18:31:47 __main__ INFO] - Epoch 116 Step 100/390 Loss 0.0783 (0.0453) Accuracy 0.9688 (0.9847)
+[2018/11/01 18:32:15 __main__ INFO] - Epoch 116 Step 200/390 Loss 0.0473 (0.0522) Accuracy 0.9766 (0.9826)
+[2018/11/01 18:32:43 __main__ INFO] - Epoch 116 Step 300/390 Loss 0.0816 (0.0569) Accuracy 0.9531 (0.9808)
+[2018/11/01 18:33:08 __main__ INFO] - Elapsed 110.28
+[2018/11/01 18:33:08 __main__ INFO] - Test 116
+[2018/11/01 18:33:15 __main__ INFO] - Epoch 116 Loss 0.2586 Accuracy 0.9252
+[2018/11/01 18:33:16 __main__ INFO] - Elapsed 7.49
+outdir 2:  /tigress/ruairidh/model_results/wrn_28_10
+[2018/11/01 18:33:16 __main__ INFO] - Train 117
+[2018/11/01 18:33:17 __main__ INFO] - Epoch 117 Step 0/390 Loss 0.0691 (0.0691) Accuracy 0.9844 (0.9844)
+[2018/11/01 18:33:45 __main__ INFO] - Epoch 117 Step 100/390 Loss 0.0233 (0.0510) Accuracy 1.0000 (0.9838)
+[2018/11/01 18:34:13 __main__ INFO] - Epoch 117 Step 200/390 Loss 0.0570 (0.0507) Accuracy 0.9688 (0.9838)
+[2018/11/01 18:34:41 __main__ INFO] - Epoch 117 Step 300/390 Loss 0.1130 (0.0536) Accuracy 0.9688 (0.9830)
+[2018/11/01 18:35:06 __main__ INFO] - Elapsed 110.08
+[2018/11/01 18:35:06 __main__ INFO] - Test 117
+[2018/11/01 18:35:14 __main__ INFO] - Epoch 117 Loss 0.4035 Accuracy 0.8986
+[2018/11/01 18:35:14 __main__ INFO] - Elapsed 7.59
+outdir 2:  /tigress/ruairidh/model_results/wrn_28_10
+[2018/11/01 18:35:14 __main__ INFO] - Train 118
+[2018/11/01 18:35:15 __main__ INFO] - Epoch 118 Step 0/390 Loss 0.0523 (0.0523) Accuracy 0.9688 (0.9688)
+[2018/11/01 18:35:43 __main__ INFO] - Epoch 118 Step 100/390 Loss 0.0045 (0.0551) Accuracy 1.0000 (0.9816)
+[2018/11/01 18:36:11 __main__ INFO] - Epoch 118 Step 200/390 Loss 0.0252 (0.0547) Accuracy 0.9922 (0.9819)
+[2018/11/01 18:36:39 __main__ INFO] - Epoch 118 Step 300/390 Loss 0.0789 (0.0571) Accuracy 0.9766 (0.9812)
+[2018/11/01 18:37:04 __main__ INFO] - Elapsed 109.84
+[2018/11/01 18:37:04 __main__ INFO] - Test 118
+[2018/11/01 18:37:12 __main__ INFO] - Epoch 118 Loss 0.2434 Accuracy 0.9306
+[2018/11/01 18:37:12 __main__ INFO] - Elapsed 7.46
+outdir 2:  /tigress/ruairidh/model_results/wrn_28_10
+[2018/11/01 18:37:12 __main__ INFO] - Train 119
+[2018/11/01 18:37:13 __main__ INFO] - Epoch 119 Step 0/390 Loss 0.0451 (0.0451) Accuracy 0.9766 (0.9766)
+[2018/11/01 18:37:41 __main__ INFO] - Epoch 119 Step 100/390 Loss 0.0551 (0.0537) Accuracy 0.9844 (0.9832)
+[2018/11/01 18:38:09 __main__ INFO] - Epoch 119 Step 200/390 Loss 0.0538 (0.0529) Accuracy 0.9844 (0.9832)
+[2018/11/01 18:38:37 __main__ INFO] - Epoch 119 Step 300/390 Loss 0.0438 (0.0537) Accuracy 0.9844 (0.9827)
+[2018/11/01 18:39:02 __main__ INFO] - Elapsed 109.98
+[2018/11/01 18:39:02 __main__ INFO] - Test 119
+[2018/11/01 18:39:10 __main__ INFO] - Epoch 119 Loss 0.2828 Accuracy 0.9214
+[2018/11/01 18:39:10 __main__ INFO] - Elapsed 7.61
+outdir 2:  /tigress/ruairidh/model_results/wrn_28_10
+[2018/11/01 18:39:10 __main__ INFO] - Train 120
+[2018/11/01 18:39:11 __main__ INFO] - Epoch 120 Step 0/390 Loss 0.0111 (0.0111) Accuracy 1.0000 (1.0000)
+[2018/11/01 18:39:39 __main__ INFO] - Epoch 120 Step 100/390 Loss 0.0648 (0.0533) Accuracy 0.9766 (0.9834)
+[2018/11/01 18:40:07 __main__ INFO] - Epoch 120 Step 200/390 Loss 0.0536 (0.0496) Accuracy 0.9766 (0.9841)
+[2018/11/01 18:40:35 __main__ INFO] - Epoch 120 Step 300/390 Loss 0.0192 (0.0529) Accuracy 0.9922 (0.9829)
+[2018/11/01 18:41:00 __main__ INFO] - Elapsed 110.26
+[2018/11/01 18:41:01 __main__ INFO] - Test 120
+[2018/11/01 18:41:08 __main__ INFO] - Epoch 120 Loss 0.2919 Accuracy 0.9194
+[2018/11/01 18:41:08 __main__ INFO] - Elapsed 7.63
+outdir 2:  /tigress/ruairidh/model_results/wrn_28_10
+[2018/11/01 18:41:10 __main__ INFO] - Train 121
+[2018/11/01 18:41:10 __main__ INFO] - Epoch 121 Step 0/390 Loss 0.1319 (0.1319) Accuracy 0.9609 (0.9609)
+[2018/11/01 18:41:38 __main__ INFO] - Epoch 121 Step 100/390 Loss 0.0261 (0.0347) Accuracy 0.9922 (0.9895)
+[2018/11/01 18:42:07 __main__ INFO] - Epoch 121 Step 200/390 Loss 0.0037 (0.0279) Accuracy 1.0000 (0.9917)
+[2018/11/01 18:42:35 __main__ INFO] - Epoch 121 Step 300/390 Loss 0.0063 (0.0231) Accuracy 1.0000 (0.9933)
+[2018/11/01 18:43:00 __main__ INFO] - Elapsed 110.08
+[2018/11/01 18:43:00 __main__ INFO] - Test 121
+[2018/11/01 18:43:07 __main__ INFO] - Epoch 121 Loss 0.1872 Accuracy 0.9504
+[2018/11/01 18:43:07 __main__ INFO] - Elapsed 7.44
+outdir 2:  /tigress/ruairidh/model_results/wrn_28_10
+[2018/11/01 18:43:08 __main__ INFO] - Train 122
+[2018/11/01 18:43:09 __main__ INFO] - Epoch 122 Step 0/390 Loss 0.0080 (0.0080) Accuracy 1.0000 (1.0000)
+[2018/11/01 18:43:37 __main__ INFO] - Epoch 122 Step 100/390 Loss 0.0086 (0.0088) Accuracy 1.0000 (0.9987)
+[2018/11/01 18:44:05 __main__ INFO] - Epoch 122 Step 200/390 Loss 0.0073 (0.0082) Accuracy 1.0000 (0.9985)
+[2018/11/01 18:44:33 __main__ INFO] - Epoch 122 Step 300/390 Loss 0.0159 (0.0079) Accuracy 0.9922 (0.9985)
+[2018/11/01 18:44:58 __main__ INFO] - Elapsed 110.33
+[2018/11/01 18:44:59 __main__ INFO] - Test 122
+[2018/11/01 18:45:06 __main__ INFO] - Epoch 122 Loss 0.1841 Accuracy 0.9520
+[2018/11/01 18:45:06 __main__ INFO] - Elapsed 7.51
+outdir 2:  /tigress/ruairidh/model_results/wrn_28_10
+[2018/11/01 18:45:07 __main__ INFO] - Train 123
+[2018/11/01 18:45:08 __main__ INFO] - Epoch 123 Step 0/390 Loss 0.0023 (0.0023) Accuracy 1.0000 (1.0000)
+[2018/11/01 18:45:36 __main__ INFO] - Epoch 123 Step 100/390 Loss 0.0173 (0.0072) Accuracy 0.9922 (0.9983)
+[2018/11/01 18:46:04 __main__ INFO] - Epoch 123 Step 200/390 Loss 0.0011 (0.0068) Accuracy 1.0000 (0.9986)
+[2018/11/01 18:46:32 __main__ INFO] - Epoch 123 Step 300/390 Loss 0.0041 (0.0064) Accuracy 1.0000 (0.9987)
+[2018/11/01 18:46:57 __main__ INFO] - Elapsed 110.29
+[2018/11/01 18:46:57 __main__ INFO] - Test 123
+[2018/11/01 18:47:05 __main__ INFO] - Epoch 123 Loss 0.1803 Accuracy 0.9535
+[2018/11/01 18:47:05 __main__ INFO] - Elapsed 7.53
+outdir 2:  /tigress/ruairidh/model_results/wrn_28_10
+[2018/11/01 18:47:06 __main__ INFO] - Train 124
+[2018/11/01 18:47:06 __main__ INFO] - Epoch 124 Step 0/390 Loss 0.0068 (0.0068) Accuracy 1.0000 (1.0000)
+[2018/11/01 18:47:35 __main__ INFO] - Epoch 124 Step 100/390 Loss 0.0030 (0.0048) Accuracy 1.0000 (0.9993)
+[2018/11/01 18:48:03 __main__ INFO] - Epoch 124 Step 200/390 Loss 0.0019 (0.0042) Accuracy 1.0000 (0.9996)
+[2018/11/01 18:48:31 __main__ INFO] - Epoch 124 Step 300/390 Loss 0.0023 (0.0043) Accuracy 1.0000 (0.9995)
+[2018/11/01 18:48:56 __main__ INFO] - Elapsed 110.05
+[2018/11/01 18:48:56 __main__ INFO] - Test 124
+[2018/11/01 18:49:03 __main__ INFO] - Epoch 124 Loss 0.1759 Accuracy 0.9550
+[2018/11/01 18:49:03 __main__ INFO] - Elapsed 7.46
+outdir 2:  /tigress/ruairidh/model_results/wrn_28_10
+[2018/11/01 18:49:04 __main__ INFO] - Train 125
+[2018/11/01 18:49:05 __main__ INFO] - Epoch 125 Step 0/390 Loss 0.0019 (0.0019) Accuracy 1.0000 (1.0000)
+[2018/11/01 18:49:33 __main__ INFO] - Epoch 125 Step 100/390 Loss 0.0024 (0.0034) Accuracy 1.0000 (0.9998)
+[2018/11/01 18:50:01 __main__ INFO] - Epoch 125 Step 200/390 Loss 0.0028 (0.0038) Accuracy 1.0000 (0.9995)
+[2018/11/01 18:50:29 __main__ INFO] - Epoch 125 Step 300/390 Loss 0.0022 (0.0038) Accuracy 1.0000 (0.9995)
+[2018/11/01 18:50:54 __main__ INFO] - Elapsed 109.99
+[2018/11/01 18:50:54 __main__ INFO] - Test 125
+[2018/11/01 18:51:02 __main__ INFO] - Epoch 125 Loss 0.1760 Accuracy 0.9561
+[2018/11/01 18:51:02 __main__ INFO] - Elapsed 7.50
+outdir 2:  /tigress/ruairidh/model_results/wrn_28_10
+[2018/11/01 18:51:03 __main__ INFO] - Train 126
+[2018/11/01 18:51:04 __main__ INFO] - Epoch 126 Step 0/390 Loss 0.0038 (0.0038) Accuracy 1.0000 (1.0000)
+[2018/11/01 18:51:32 __main__ INFO] - Epoch 126 Step 100/390 Loss 0.0014 (0.0036) Accuracy 1.0000 (0.9995)
+[2018/11/01 18:52:00 __main__ INFO] - Epoch 126 Step 200/390 Loss 0.0043 (0.0034) Accuracy 1.0000 (0.9996)
+[2018/11/01 18:52:28 __main__ INFO] - Epoch 126 Step 300/390 Loss 0.0021 (0.0035) Accuracy 1.0000 (0.9996)
+[2018/11/01 18:52:53 __main__ INFO] - Elapsed 109.85
+[2018/11/01 18:52:53 __main__ INFO] - Test 126
+[2018/11/01 18:53:00 __main__ INFO] - Epoch 126 Loss 0.1760 Accuracy 0.9561
+[2018/11/01 18:53:00 __main__ INFO] - Elapsed 7.49
+outdir 2:  /tigress/ruairidh/model_results/wrn_28_10
+[2018/11/01 18:53:01 __main__ INFO] - Train 127
+[2018/11/01 18:53:01 __main__ INFO] - Epoch 127 Step 0/390 Loss 0.0035 (0.0035) Accuracy 1.0000 (1.0000)
+[2018/11/01 18:53:30 __main__ INFO] - Epoch 127 Step 100/390 Loss 0.0016 (0.0031) Accuracy 1.0000 (0.9998)
+[2018/11/01 18:53:58 __main__ INFO] - Epoch 127 Step 200/390 Loss 0.0134 (0.0032) Accuracy 0.9922 (0.9998)
+[2018/11/01 18:54:26 __main__ INFO] - Epoch 127 Step 300/390 Loss 0.0114 (0.0031) Accuracy 0.9922 (0.9998)
+[2018/11/01 18:54:51 __main__ INFO] - Elapsed 110.36
+[2018/11/01 18:54:51 __main__ INFO] - Test 127
+[2018/11/01 18:54:59 __main__ INFO] - Epoch 127 Loss 0.1736 Accuracy 0.9554
+[2018/11/01 18:54:59 __main__ INFO] - Elapsed 7.51
+outdir 2:  /tigress/ruairidh/model_results/wrn_28_10
+[2018/11/01 18:54:59 __main__ INFO] - Train 128
+[2018/11/01 18:55:00 __main__ INFO] - Epoch 128 Step 0/390 Loss 0.0011 (0.0011) Accuracy 1.0000 (1.0000)
+[2018/11/01 18:55:28 __main__ INFO] - Epoch 128 Step 100/390 Loss 0.0016 (0.0028) Accuracy 1.0000 (0.9997)
+[2018/11/01 18:55:56 __main__ INFO] - Epoch 128 Step 200/390 Loss 0.0020 (0.0031) Accuracy 1.0000 (0.9997)
+[2018/11/01 18:56:24 __main__ INFO] - Epoch 128 Step 300/390 Loss 0.0036 (0.0033) Accuracy 1.0000 (0.9996)
+[2018/11/01 18:56:49 __main__ INFO] - Elapsed 110.12
+[2018/11/01 18:56:49 __main__ INFO] - Test 128
+[2018/11/01 18:56:57 __main__ INFO] - Epoch 128 Loss 0.1737 Accuracy 0.9555
+[2018/11/01 18:56:57 __main__ INFO] - Elapsed 7.55
+outdir 2:  /tigress/ruairidh/model_results/wrn_28_10
+[2018/11/01 18:56:57 __main__ INFO] - Train 129
+[2018/11/01 18:56:58 __main__ INFO] - Epoch 129 Step 0/390 Loss 0.0023 (0.0023) Accuracy 1.0000 (1.0000)
+[2018/11/01 18:57:26 __main__ INFO] - Epoch 129 Step 100/390 Loss 0.0053 (0.0029) Accuracy 1.0000 (0.9997)
+[2018/11/01 18:57:54 __main__ INFO] - Epoch 129 Step 200/390 Loss 0.0009 (0.0029) Accuracy 1.0000 (0.9997)
+[2018/11/01 18:58:22 __main__ INFO] - Epoch 129 Step 300/390 Loss 0.0220 (0.0027) Accuracy 0.9922 (0.9997)
+[2018/11/01 18:58:47 __main__ INFO] - Elapsed 109.96
+[2018/11/01 18:58:47 __main__ INFO] - Test 129
+[2018/11/01 18:58:55 __main__ INFO] - Epoch 129 Loss 0.1739 Accuracy 0.9552
+[2018/11/01 18:58:55 __main__ INFO] - Elapsed 7.54
+outdir 2:  /tigress/ruairidh/model_results/wrn_28_10
+[2018/11/01 18:58:56 __main__ INFO] - Train 130
+[2018/11/01 18:58:56 __main__ INFO] - Epoch 130 Step 0/390 Loss 0.0020 (0.0020) Accuracy 1.0000 (1.0000)
+[2018/11/01 18:59:24 __main__ INFO] - Epoch 130 Step 100/390 Loss 0.0033 (0.0031) Accuracy 1.0000 (0.9997)
+[2018/11/01 18:59:52 __main__ INFO] - Epoch 130 Step 200/390 Loss 0.0034 (0.0027) Accuracy 1.0000 (0.9998)
+[2018/11/01 19:00:21 __main__ INFO] - Epoch 130 Step 300/390 Loss 0.0013 (0.0026) Accuracy 1.0000 (0.9998)
+[2018/11/01 19:00:45 __main__ INFO] - Elapsed 109.97
+[2018/11/01 19:00:46 __main__ INFO] - Test 130
+[2018/11/01 19:00:53 __main__ INFO] - Epoch 130 Loss 0.1748 Accuracy 0.9568
+[2018/11/01 19:00:53 __main__ INFO] - Elapsed 7.56
+outdir 2:  /tigress/ruairidh/model_results/wrn_28_10
+[2018/11/01 19:00:54 __main__ INFO] - Train 131
+[2018/11/01 19:00:55 __main__ INFO] - Epoch 131 Step 0/390 Loss 0.0024 (0.0024) Accuracy 1.0000 (1.0000)
+[2018/11/01 19:01:23 __main__ INFO] - Epoch 131 Step 100/390 Loss 0.0020 (0.0028) Accuracy 1.0000 (0.9997)
+[2018/11/01 19:01:51 __main__ INFO] - Epoch 131 Step 200/390 Loss 0.0034 (0.0027) Accuracy 1.0000 (0.9998)
+[2018/11/01 19:02:19 __main__ INFO] - Epoch 131 Step 300/390 Loss 0.0014 (0.0026) Accuracy 1.0000 (0.9998)
+[2018/11/01 19:02:44 __main__ INFO] - Elapsed 109.97
+[2018/11/01 19:02:44 __main__ INFO] - Test 131
+[2018/11/01 19:02:52 __main__ INFO] - Epoch 131 Loss 0.1804 Accuracy 0.9555
+[2018/11/01 19:02:52 __main__ INFO] - Elapsed 7.66
+outdir 2:  /tigress/ruairidh/model_results/wrn_28_10
+[2018/11/01 19:02:52 __main__ INFO] - Train 132
+[2018/11/01 19:02:53 __main__ INFO] - Epoch 132 Step 0/390 Loss 0.0021 (0.0021) Accuracy 1.0000 (1.0000)
+[2018/11/01 19:03:21 __main__ INFO] - Epoch 132 Step 100/390 Loss 0.0014 (0.0025) Accuracy 1.0000 (0.9998)
+[2018/11/01 19:03:49 __main__ INFO] - Epoch 132 Step 200/390 Loss 0.0057 (0.0028) Accuracy 1.0000 (0.9997)
+[2018/11/01 19:04:17 __main__ INFO] - Epoch 132 Step 300/390 Loss 0.0016 (0.0026) Accuracy 1.0000 (0.9997)
+[2018/11/01 19:04:42 __main__ INFO] - Elapsed 110.02
+[2018/11/01 19:04:42 __main__ INFO] - Test 132
+[2018/11/01 19:04:50 __main__ INFO] - Epoch 132 Loss 0.1754 Accuracy 0.9561
+[2018/11/01 19:04:50 __main__ INFO] - Elapsed 7.46
+outdir 2:  /tigress/ruairidh/model_results/wrn_28_10
+[2018/11/01 19:04:50 __main__ INFO] - Train 133
+[2018/11/01 19:04:51 __main__ INFO] - Epoch 133 Step 0/390 Loss 0.0024 (0.0024) Accuracy 1.0000 (1.0000)
+[2018/11/01 19:05:19 __main__ INFO] - Epoch 133 Step 100/390 Loss 0.0010 (0.0023) Accuracy 1.0000 (0.9998)
+[2018/11/01 19:05:47 __main__ INFO] - Epoch 133 Step 200/390 Loss 0.0011 (0.0023) Accuracy 1.0000 (0.9999)
+[2018/11/01 19:06:15 __main__ INFO] - Epoch 133 Step 300/390 Loss 0.0015 (0.0022) Accuracy 1.0000 (0.9999)
+[2018/11/01 19:06:40 __main__ INFO] - Elapsed 110.03
+[2018/11/01 19:06:40 __main__ INFO] - Test 133
+[2018/11/01 19:06:48 __main__ INFO] - Epoch 133 Loss 0.1744 Accuracy 0.9563
+[2018/11/01 19:06:48 __main__ INFO] - Elapsed 7.47
+outdir 2:  /tigress/ruairidh/model_results/wrn_28_10
+[2018/11/01 19:06:48 __main__ INFO] - Train 134
+[2018/11/01 19:06:49 __main__ INFO] - Epoch 134 Step 0/390 Loss 0.0023 (0.0023) Accuracy 1.0000 (1.0000)
+[2018/11/01 19:07:17 __main__ INFO] - Epoch 134 Step 100/390 Loss 0.0017 (0.0020) Accuracy 1.0000 (1.0000)
+[2018/11/01 19:07:45 __main__ INFO] - Epoch 134 Step 200/390 Loss 0.0025 (0.0021) Accuracy 1.0000 (0.9999)
+[2018/11/01 19:08:14 __main__ INFO] - Epoch 134 Step 300/390 Loss 0.0012 (0.0023) Accuracy 1.0000 (0.9999)
+[2018/11/01 19:08:39 __main__ INFO] - Elapsed 110.13
+[2018/11/01 19:08:39 __main__ INFO] - Test 134
+[2018/11/01 19:08:46 __main__ INFO] - Epoch 134 Loss 0.1755 Accuracy 0.9550
+[2018/11/01 19:08:46 __main__ INFO] - Elapsed 7.65
+outdir 2:  /tigress/ruairidh/model_results/wrn_28_10
+[2018/11/01 19:08:47 __main__ INFO] - Train 135
+[2018/11/01 19:08:48 __main__ INFO] - Epoch 135 Step 0/390 Loss 0.0011 (0.0011) Accuracy 1.0000 (1.0000)
+[2018/11/01 19:09:16 __main__ INFO] - Epoch 135 Step 100/390 Loss 0.0016 (0.0018) Accuracy 1.0000 (1.0000)
+[2018/11/01 19:09:44 __main__ INFO] - Epoch 135 Step 200/390 Loss 0.0018 (0.0019) Accuracy 1.0000 (0.9999)
+[2018/11/01 19:10:12 __main__ INFO] - Epoch 135 Step 300/390 Loss 0.0198 (0.0020) Accuracy 0.9922 (0.9999)
+[2018/11/01 19:10:37 __main__ INFO] - Elapsed 110.21
+[2018/11/01 19:10:37 __main__ INFO] - Test 135
+[2018/11/01 19:10:44 __main__ INFO] - Epoch 135 Loss 0.1736 Accuracy 0.9553
+[2018/11/01 19:10:45 __main__ INFO] - Elapsed 7.38
+outdir 2:  /tigress/ruairidh/model_results/wrn_28_10
+[2018/11/01 19:10:45 __main__ INFO] - Train 136
+[2018/11/01 19:10:46 __main__ INFO] - Epoch 136 Step 0/390 Loss 0.0015 (0.0015) Accuracy 1.0000 (1.0000)
+[2018/11/01 19:11:14 __main__ INFO] - Epoch 136 Step 100/390 Loss 0.0015 (0.0021) Accuracy 1.0000 (0.9998)
+[2018/11/01 19:11:42 __main__ INFO] - Epoch 136 Step 200/390 Loss 0.0012 (0.0020) Accuracy 1.0000 (0.9999)
+[2018/11/01 19:12:10 __main__ INFO] - Epoch 136 Step 300/390 Loss 0.0016 (0.0020) Accuracy 1.0000 (0.9999)
+[2018/11/01 19:12:35 __main__ INFO] - Elapsed 109.99
+[2018/11/01 19:12:35 __main__ INFO] - Test 136
+[2018/11/01 19:12:43 __main__ INFO] - Epoch 136 Loss 0.1731 Accuracy 0.9560
+[2018/11/01 19:12:43 __main__ INFO] - Elapsed 7.54
+outdir 2:  /tigress/ruairidh/model_results/wrn_28_10
+[2018/11/01 19:12:43 __main__ INFO] - Train 137
+[2018/11/01 19:12:44 __main__ INFO] - Epoch 137 Step 0/390 Loss 0.0012 (0.0012) Accuracy 1.0000 (1.0000)
+[2018/11/01 19:13:12 __main__ INFO] - Epoch 137 Step 100/390 Loss 0.0013 (0.0020) Accuracy 1.0000 (1.0000)
+[2018/11/01 19:13:40 __main__ INFO] - Epoch 137 Step 200/390 Loss 0.0013 (0.0018) Accuracy 1.0000 (1.0000)
+[2018/11/01 19:14:08 __main__ INFO] - Epoch 137 Step 300/390 Loss 0.0017 (0.0019) Accuracy 1.0000 (0.9999)
+[2018/11/01 19:14:33 __main__ INFO] - Elapsed 109.95
+[2018/11/01 19:14:33 __main__ INFO] - Test 137
+[2018/11/01 19:14:41 __main__ INFO] - Epoch 137 Loss 0.1696 Accuracy 0.9565
+[2018/11/01 19:14:41 __main__ INFO] - Elapsed 7.42
+outdir 2:  /tigress/ruairidh/model_results/wrn_28_10
+[2018/11/01 19:14:42 __main__ INFO] - Train 138
+[2018/11/01 19:14:42 __main__ INFO] - Epoch 138 Step 0/390 Loss 0.0031 (0.0031) Accuracy 1.0000 (1.0000)
+[2018/11/01 19:15:10 __main__ INFO] - Epoch 138 Step 100/390 Loss 0.0017 (0.0018) Accuracy 1.0000 (0.9998)
+[2018/11/01 19:15:39 __main__ INFO] - Epoch 138 Step 200/390 Loss 0.0010 (0.0018) Accuracy 1.0000 (0.9999)
+[2018/11/01 19:16:07 __main__ INFO] - Epoch 138 Step 300/390 Loss 0.0011 (0.0018) Accuracy 1.0000 (0.9999)
+[2018/11/01 19:16:32 __main__ INFO] - Elapsed 110.07
+[2018/11/01 19:16:32 __main__ INFO] - Test 138
+[2018/11/01 19:16:39 __main__ INFO] - Epoch 138 Loss 0.1711 Accuracy 0.9569
+[2018/11/01 19:16:39 __main__ INFO] - Elapsed 7.50
+outdir 2:  /tigress/ruairidh/model_results/wrn_28_10
+[2018/11/01 19:16:40 __main__ INFO] - Train 139
+[2018/11/01 19:16:41 __main__ INFO] - Epoch 139 Step 0/390 Loss 0.0009 (0.0009) Accuracy 1.0000 (1.0000)
+[2018/11/01 19:17:09 __main__ INFO] - Epoch 139 Step 100/390 Loss 0.0009 (0.0018) Accuracy 1.0000 (1.0000)
+[2018/11/01 19:17:37 __main__ INFO] - Epoch 139 Step 200/390 Loss 0.0158 (0.0019) Accuracy 0.9922 (1.0000)
+[2018/11/01 19:18:05 __main__ INFO] - Epoch 139 Step 300/390 Loss 0.0013 (0.0020) Accuracy 1.0000 (0.9999)
+[2018/11/01 19:18:30 __main__ INFO] - Elapsed 109.97
+[2018/11/01 19:18:30 __main__ INFO] - Test 139
+[2018/11/01 19:18:38 __main__ INFO] - Epoch 139 Loss 0.1720 Accuracy 0.9567
+[2018/11/01 19:18:38 __main__ INFO] - Elapsed 7.55
+outdir 2:  /tigress/ruairidh/model_results/wrn_28_10
+[2018/11/01 19:18:39 __main__ INFO] - Train 140
+[2018/11/01 19:18:39 __main__ INFO] - Epoch 140 Step 0/390 Loss 0.0016 (0.0016) Accuracy 1.0000 (1.0000)
+[2018/11/01 19:19:07 __main__ INFO] - Epoch 140 Step 100/390 Loss 0.0009 (0.0020) Accuracy 1.0000 (0.9998)
+[2018/11/01 19:19:35 __main__ INFO] - Epoch 140 Step 200/390 Loss 0.0027 (0.0019) Accuracy 1.0000 (0.9999)
+[2018/11/01 19:20:04 __main__ INFO] - Epoch 140 Step 300/390 Loss 0.0012 (0.0019) Accuracy 1.0000 (0.9999)
+[2018/11/01 19:20:29 __main__ INFO] - Elapsed 110.02
+[2018/11/01 19:20:29 __main__ INFO] - Test 140
+[2018/11/01 19:20:36 __main__ INFO] - Epoch 140 Loss 0.1721 Accuracy 0.9560
+[2018/11/01 19:20:36 __main__ INFO] - Elapsed 7.44
+outdir 2:  /tigress/ruairidh/model_results/wrn_28_10
+[2018/11/01 19:20:37 __main__ INFO] - Train 141
+[2018/11/01 19:20:37 __main__ INFO] - Epoch 141 Step 0/390 Loss 0.0015 (0.0015) Accuracy 1.0000 (1.0000)
+[2018/11/01 19:21:05 __main__ INFO] - Epoch 141 Step 100/390 Loss 0.0014 (0.0019) Accuracy 1.0000 (1.0000)
+[2018/11/01 19:21:34 __main__ INFO] - Epoch 141 Step 200/390 Loss 0.0012 (0.0019) Accuracy 1.0000 (1.0000)
+[2018/11/01 19:22:02 __main__ INFO] - Epoch 141 Step 300/390 Loss 0.0011 (0.0019) Accuracy 1.0000 (0.9999)
+[2018/11/01 19:22:27 __main__ INFO] - Elapsed 110.15
+[2018/11/01 19:22:27 __main__ INFO] - Test 141
+[2018/11/01 19:22:34 __main__ INFO] - Epoch 141 Loss 0.1685 Accuracy 0.9574
+[2018/11/01 19:22:34 __main__ INFO] - Elapsed 7.61
+outdir 2:  /tigress/ruairidh/model_results/wrn_28_10
+[2018/11/01 19:22:36 __main__ INFO] - Train 142
+[2018/11/01 19:22:36 __main__ INFO] - Epoch 142 Step 0/390 Loss 0.0015 (0.0015) Accuracy 1.0000 (1.0000)
+[2018/11/01 19:23:04 __main__ INFO] - Epoch 142 Step 100/390 Loss 0.0018 (0.0018) Accuracy 1.0000 (1.0000)
+[2018/11/01 19:23:33 __main__ INFO] - Epoch 142 Step 200/390 Loss 0.0023 (0.0018) Accuracy 1.0000 (1.0000)
+[2018/11/01 19:24:01 __main__ INFO] - Epoch 142 Step 300/390 Loss 0.0014 (0.0019) Accuracy 1.0000 (0.9999)
+[2018/11/01 19:24:26 __main__ INFO] - Elapsed 109.97
+[2018/11/01 19:24:26 __main__ INFO] - Test 142
+[2018/11/01 19:24:33 __main__ INFO] - Epoch 142 Loss 0.1688 Accuracy 0.9580
+[2018/11/01 19:24:33 __main__ INFO] - Elapsed 7.51
+outdir 2:  /tigress/ruairidh/model_results/wrn_28_10
+[2018/11/01 19:24:34 __main__ INFO] - Train 143
+[2018/11/01 19:24:35 __main__ INFO] - Epoch 143 Step 0/390 Loss 0.0012 (0.0012) Accuracy 1.0000 (1.0000)
+[2018/11/01 19:25:03 __main__ INFO] - Epoch 143 Step 100/390 Loss 0.0017 (0.0019) Accuracy 1.0000 (0.9998)
+[2018/11/01 19:25:31 __main__ INFO] - Epoch 143 Step 200/390 Loss 0.0049 (0.0021) Accuracy 1.0000 (0.9998)
+[2018/11/01 19:26:00 __main__ INFO] - Epoch 143 Step 300/390 Loss 0.0018 (0.0021) Accuracy 1.0000 (0.9998)
+[2018/11/01 19:26:25 __main__ INFO] - Elapsed 110.25
+[2018/11/01 19:26:25 __main__ INFO] - Test 143
+[2018/11/01 19:26:32 __main__ INFO] - Epoch 143 Loss 0.1699 Accuracy 0.9573
+[2018/11/01 19:26:32 __main__ INFO] - Elapsed 7.57
+outdir 2:  /tigress/ruairidh/model_results/wrn_28_10
+[2018/11/01 19:26:33 __main__ INFO] - Train 144
+[2018/11/01 19:26:33 __main__ INFO] - Epoch 144 Step 0/390 Loss 0.0011 (0.0011) Accuracy 1.0000 (1.0000)
+[2018/11/01 19:27:01 __main__ INFO] - Epoch 144 Step 100/390 Loss 0.0022 (0.0017) Accuracy 1.0000 (1.0000)
+[2018/11/01 19:27:30 __main__ INFO] - Epoch 144 Step 200/390 Loss 0.0012 (0.0018) Accuracy 1.0000 (1.0000)
+[2018/11/01 19:27:58 __main__ INFO] - Epoch 144 Step 300/390 Loss 0.0009 (0.0019) Accuracy 1.0000 (0.9999)
+[2018/11/01 19:28:23 __main__ INFO] - Elapsed 110.01
+[2018/11/01 19:28:23 __main__ INFO] - Test 144
+[2018/11/01 19:28:30 __main__ INFO] - Epoch 144 Loss 0.1711 Accuracy 0.9578
+[2018/11/01 19:28:30 __main__ INFO] - Elapsed 7.47
+outdir 2:  /tigress/ruairidh/model_results/wrn_28_10
+[2018/11/01 19:28:31 __main__ INFO] - Train 145
+[2018/11/01 19:28:32 __main__ INFO] - Epoch 145 Step 0/390 Loss 0.0009 (0.0009) Accuracy 1.0000 (1.0000)
+[2018/11/01 19:29:00 __main__ INFO] - Epoch 145 Step 100/390 Loss 0.0013 (0.0017) Accuracy 1.0000 (1.0000)
+[2018/11/01 19:29:28 __main__ INFO] - Epoch 145 Step 200/390 Loss 0.0014 (0.0017) Accuracy 1.0000 (1.0000)
+[2018/11/01 19:29:56 __main__ INFO] - Epoch 145 Step 300/390 Loss 0.0019 (0.0017) Accuracy 1.0000 (1.0000)
+[2018/11/01 19:30:21 __main__ INFO] - Elapsed 109.76
+[2018/11/01 19:30:21 __main__ INFO] - Test 145
+[2018/11/01 19:30:28 __main__ INFO] - Epoch 145 Loss 0.1675 Accuracy 0.9566
+[2018/11/01 19:30:28 __main__ INFO] - Elapsed 7.55
+outdir 2:  /tigress/ruairidh/model_results/wrn_28_10
+[2018/11/01 19:30:29 __main__ INFO] - Train 146
+[2018/11/01 19:30:29 __main__ INFO] - Epoch 146 Step 0/390 Loss 0.0012 (0.0012) Accuracy 1.0000 (1.0000)
+[2018/11/01 19:30:58 __main__ INFO] - Epoch 146 Step 100/390 Loss 0.0056 (0.0018) Accuracy 1.0000 (0.9999)
+[2018/11/01 19:31:26 __main__ INFO] - Epoch 146 Step 200/390 Loss 0.0020 (0.0018) Accuracy 1.0000 (1.0000)
+[2018/11/01 19:31:54 __main__ INFO] - Epoch 146 Step 300/390 Loss 0.0013 (0.0018) Accuracy 1.0000 (0.9999)
+[2018/11/01 19:32:19 __main__ INFO] - Elapsed 110.08
+[2018/11/01 19:32:19 __main__ INFO] - Test 146
+[2018/11/01 19:32:26 __main__ INFO] - Epoch 146 Loss 0.1674 Accuracy 0.9578
+[2018/11/01 19:32:27 __main__ INFO] - Elapsed 7.56
+outdir 2:  /tigress/ruairidh/model_results/wrn_28_10
+[2018/11/01 19:32:27 __main__ INFO] - Train 147
+[2018/11/01 19:32:28 __main__ INFO] - Epoch 147 Step 0/390 Loss 0.0011 (0.0011) Accuracy 1.0000 (1.0000)
+[2018/11/01 19:32:56 __main__ INFO] - Epoch 147 Step 100/390 Loss 0.0010 (0.0018) Accuracy 1.0000 (0.9998)
+[2018/11/01 19:33:24 __main__ INFO] - Epoch 147 Step 200/390 Loss 0.0013 (0.0018) Accuracy 1.0000 (0.9999)
+[2018/11/01 19:33:52 __main__ INFO] - Epoch 147 Step 300/390 Loss 0.0021 (0.0018) Accuracy 1.0000 (0.9999)
+[2018/11/01 19:34:17 __main__ INFO] - Elapsed 109.92
+[2018/11/01 19:34:17 __main__ INFO] - Test 147
+[2018/11/01 19:34:25 __main__ INFO] - Epoch 147 Loss 0.1679 Accuracy 0.9579
+[2018/11/01 19:34:25 __main__ INFO] - Elapsed 7.47
+outdir 2:  /tigress/ruairidh/model_results/wrn_28_10
+[2018/11/01 19:34:25 __main__ INFO] - Train 148
+[2018/11/01 19:34:26 __main__ INFO] - Epoch 148 Step 0/390 Loss 0.0013 (0.0013) Accuracy 1.0000 (1.0000)
+[2018/11/01 19:34:54 __main__ INFO] - Epoch 148 Step 100/390 Loss 0.0009 (0.0017) Accuracy 1.0000 (1.0000)
+[2018/11/01 19:35:22 __main__ INFO] - Epoch 148 Step 200/390 Loss 0.0021 (0.0017) Accuracy 1.0000 (1.0000)
+[2018/11/01 19:35:50 __main__ INFO] - Epoch 148 Step 300/390 Loss 0.0013 (0.0017) Accuracy 1.0000 (1.0000)
+[2018/11/01 19:36:15 __main__ INFO] - Elapsed 110.15
+[2018/11/01 19:36:15 __main__ INFO] - Test 148
+[2018/11/01 19:36:23 __main__ INFO] - Epoch 148 Loss 0.1726 Accuracy 0.9565
+[2018/11/01 19:36:23 __main__ INFO] - Elapsed 7.58
+outdir 2:  /tigress/ruairidh/model_results/wrn_28_10
+[2018/11/01 19:36:23 __main__ INFO] - Train 149
+[2018/11/01 19:36:24 __main__ INFO] - Epoch 149 Step 0/390 Loss 0.0018 (0.0018) Accuracy 1.0000 (1.0000)
+[2018/11/01 19:36:52 __main__ INFO] - Epoch 149 Step 100/390 Loss 0.0013 (0.0018) Accuracy 1.0000 (1.0000)
+[2018/11/01 19:37:20 __main__ INFO] - Epoch 149 Step 200/390 Loss 0.0038 (0.0019) Accuracy 1.0000 (1.0000)
+[2018/11/01 19:37:49 __main__ INFO] - Epoch 149 Step 300/390 Loss 0.0011 (0.0019) Accuracy 1.0000 (1.0000)
+[2018/11/01 19:38:14 __main__ INFO] - Elapsed 110.25
+[2018/11/01 19:38:14 __main__ INFO] - Test 149
+[2018/11/01 19:38:21 __main__ INFO] - Epoch 149 Loss 0.1692 Accuracy 0.9573
+[2018/11/01 19:38:21 __main__ INFO] - Elapsed 7.44
+outdir 2:  /tigress/ruairidh/model_results/wrn_28_10
+[2018/11/01 19:38:22 __main__ INFO] - Train 150
+[2018/11/01 19:38:22 __main__ INFO] - Epoch 150 Step 0/390 Loss 0.0013 (0.0013) Accuracy 1.0000 (1.0000)
+[2018/11/01 19:38:51 __main__ INFO] - Epoch 150 Step 100/390 Loss 0.0019 (0.0016) Accuracy 1.0000 (1.0000)
+[2018/11/01 19:39:19 __main__ INFO] - Epoch 150 Step 200/390 Loss 0.0010 (0.0018) Accuracy 1.0000 (0.9999)
+[2018/11/01 19:39:47 __main__ INFO] - Epoch 150 Step 300/390 Loss 0.0012 (0.0018) Accuracy 1.0000 (0.9999)
+[2018/11/01 19:40:12 __main__ INFO] - Elapsed 110.13
+[2018/11/01 19:40:12 __main__ INFO] - Test 150
+[2018/11/01 19:40:19 __main__ INFO] - Epoch 150 Loss 0.1689 Accuracy 0.9571
+[2018/11/01 19:40:20 __main__ INFO] - Elapsed 7.55
+outdir 2:  /tigress/ruairidh/model_results/wrn_28_10
+[2018/11/01 19:40:20 __main__ INFO] - Train 151
+[2018/11/01 19:40:21 __main__ INFO] - Epoch 151 Step 0/390 Loss 0.0013 (0.0013) Accuracy 1.0000 (1.0000)
+[2018/11/01 19:40:49 __main__ INFO] - Epoch 151 Step 100/390 Loss 0.0010 (0.0018) Accuracy 1.0000 (1.0000)
+[2018/11/01 19:41:17 __main__ INFO] - Epoch 151 Step 200/390 Loss 0.0028 (0.0018) Accuracy 1.0000 (1.0000)
+[2018/11/01 19:41:45 __main__ INFO] - Epoch 151 Step 300/390 Loss 0.0013 (0.0018) Accuracy 1.0000 (1.0000)
+[2018/11/01 19:42:10 __main__ INFO] - Elapsed 110.02
+[2018/11/01 19:42:10 __main__ INFO] - Test 151
+[2018/11/01 19:42:18 __main__ INFO] - Epoch 151 Loss 0.1688 Accuracy 0.9577
+[2018/11/01 19:42:18 __main__ INFO] - Elapsed 7.47
+outdir 2:  /tigress/ruairidh/model_results/wrn_28_10
+[2018/11/01 19:42:19 __main__ INFO] - Train 152
+[2018/11/01 19:42:20 __main__ INFO] - Epoch 152 Step 0/390 Loss 0.0018 (0.0018) Accuracy 1.0000 (1.0000)
+[2018/11/01 19:42:48 __main__ INFO] - Epoch 152 Step 100/390 Loss 0.0012 (0.0018) Accuracy 1.0000 (1.0000)
+[2018/11/01 19:43:16 __main__ INFO] - Epoch 152 Step 200/390 Loss 0.0011 (0.0017) Accuracy 1.0000 (1.0000)
+[2018/11/01 19:43:45 __main__ INFO] - Epoch 152 Step 300/390 Loss 0.0017 (0.0017) Accuracy 1.0000 (1.0000)
+[2018/11/01 19:44:10 __main__ INFO] - Elapsed 110.06
+[2018/11/01 19:44:10 __main__ INFO] - Test 152
+[2018/11/01 19:44:17 __main__ INFO] - Epoch 152 Loss 0.1679 Accuracy 0.9589
+[2018/11/01 19:44:17 __main__ INFO] - Elapsed 7.54
+outdir 2:  /tigress/ruairidh/model_results/wrn_28_10
+[2018/11/01 19:44:18 __main__ INFO] - Train 153
+[2018/11/01 19:44:19 __main__ INFO] - Epoch 153 Step 0/390 Loss 0.0012 (0.0012) Accuracy 1.0000 (1.0000)
+[2018/11/01 19:44:47 __main__ INFO] - Epoch 153 Step 100/390 Loss 0.0014 (0.0019) Accuracy 1.0000 (0.9999)
+[2018/11/01 19:45:15 __main__ INFO] - Epoch 153 Step 200/390 Loss 0.0014 (0.0018) Accuracy 1.0000 (1.0000)
+[2018/11/01 19:45:43 __main__ INFO] - Epoch 153 Step 300/390 Loss 0.0012 (0.0018) Accuracy 1.0000 (0.9999)
+[2018/11/01 19:46:08 __main__ INFO] - Elapsed 110.19
+[2018/11/01 19:46:08 __main__ INFO] - Test 153
+[2018/11/01 19:46:16 __main__ INFO] - Epoch 153 Loss 0.1746 Accuracy 0.9579
+[2018/11/01 19:46:16 __main__ INFO] - Elapsed 7.47
+outdir 2:  /tigress/ruairidh/model_results/wrn_28_10
+[2018/11/01 19:46:17 __main__ INFO] - Train 154
+[2018/11/01 19:46:17 __main__ INFO] - Epoch 154 Step 0/390 Loss 0.0012 (0.0012) Accuracy 1.0000 (1.0000)
+[2018/11/01 19:46:46 __main__ INFO] - Epoch 154 Step 100/390 Loss 0.0018 (0.0021) Accuracy 1.0000 (1.0000)
+[2018/11/01 19:47:14 __main__ INFO] - Epoch 154 Step 200/390 Loss 0.0016 (0.0020) Accuracy 1.0000 (1.0000)
+[2018/11/01 19:47:42 __main__ INFO] - Epoch 154 Step 300/390 Loss 0.0014 (0.0019) Accuracy 1.0000 (1.0000)
+[2018/11/01 19:48:07 __main__ INFO] - Elapsed 109.91
+[2018/11/01 19:48:07 __main__ INFO] - Test 154
+[2018/11/01 19:48:14 __main__ INFO] - Epoch 154 Loss 0.1714 Accuracy 0.9568
+[2018/11/01 19:48:14 __main__ INFO] - Elapsed 7.50
+outdir 2:  /tigress/ruairidh/model_results/wrn_28_10
+[2018/11/01 19:48:15 __main__ INFO] - Train 155
+[2018/11/01 19:48:15 __main__ INFO] - Epoch 155 Step 0/390 Loss 0.0016 (0.0016) Accuracy 1.0000 (1.0000)
+[2018/11/01 19:48:44 __main__ INFO] - Epoch 155 Step 100/390 Loss 0.0014 (0.0018) Accuracy 1.0000 (0.9999)
+[2018/11/01 19:49:12 __main__ INFO] - Epoch 155 Step 200/390 Loss 0.0016 (0.0018) Accuracy 1.0000 (1.0000)
+[2018/11/01 19:49:40 __main__ INFO] - Epoch 155 Step 300/390 Loss 0.0013 (0.0018) Accuracy 1.0000 (1.0000)
+[2018/11/01 19:50:05 __main__ INFO] - Elapsed 110.19
+[2018/11/01 19:50:05 __main__ INFO] - Test 155
+[2018/11/01 19:50:12 __main__ INFO] - Epoch 155 Loss 0.1715 Accuracy 0.9574
+[2018/11/01 19:50:12 __main__ INFO] - Elapsed 7.39
+outdir 2:  /tigress/ruairidh/model_results/wrn_28_10
+[2018/11/01 19:50:13 __main__ INFO] - Train 156
+[2018/11/01 19:50:14 __main__ INFO] - Epoch 156 Step 0/390 Loss 0.0016 (0.0016) Accuracy 1.0000 (1.0000)
+[2018/11/01 19:50:42 __main__ INFO] - Epoch 156 Step 100/390 Loss 0.0022 (0.0018) Accuracy 1.0000 (1.0000)
+[2018/11/01 19:51:10 __main__ INFO] - Epoch 156 Step 200/390 Loss 0.0013 (0.0019) Accuracy 1.0000 (1.0000)
+[2018/11/01 19:51:38 __main__ INFO] - Epoch 156 Step 300/390 Loss 0.0016 (0.0019) Accuracy 1.0000 (1.0000)
+[2018/11/01 19:52:03 __main__ INFO] - Elapsed 110.00
+[2018/11/01 19:52:03 __main__ INFO] - Test 156
+[2018/11/01 19:52:10 __main__ INFO] - Epoch 156 Loss 0.1699 Accuracy 0.9574
+[2018/11/01 19:52:11 __main__ INFO] - Elapsed 7.51
+outdir 2:  /tigress/ruairidh/model_results/wrn_28_10
+[2018/11/01 19:52:12 __main__ INFO] - Train 157
+[2018/11/01 19:52:12 __main__ INFO] - Epoch 157 Step 0/390 Loss 0.0015 (0.0015) Accuracy 1.0000 (1.0000)
+[2018/11/01 19:52:40 __main__ INFO] - Epoch 157 Step 100/390 Loss 0.0021 (0.0018) Accuracy 1.0000 (0.9999)
+[2018/11/01 19:53:09 __main__ INFO] - Epoch 157 Step 200/390 Loss 0.0013 (0.0018) Accuracy 1.0000 (1.0000)
+[2018/11/01 19:53:37 __main__ INFO] - Epoch 157 Step 300/390 Loss 0.0015 (0.0018) Accuracy 1.0000 (1.0000)
+[2018/11/01 19:54:02 __main__ INFO] - Elapsed 110.13
+[2018/11/01 19:54:02 __main__ INFO] - Test 157
+[2018/11/01 19:54:09 __main__ INFO] - Epoch 157 Loss 0.1727 Accuracy 0.9586
+[2018/11/01 19:54:09 __main__ INFO] - Elapsed 7.49
+outdir 2:  /tigress/ruairidh/model_results/wrn_28_10
+[2018/11/01 19:54:10 __main__ INFO] - Train 158
+[2018/11/01 19:54:10 __main__ INFO] - Epoch 158 Step 0/390 Loss 0.0018 (0.0018) Accuracy 1.0000 (1.0000)
+[2018/11/01 19:54:38 __main__ INFO] - Epoch 158 Step 100/390 Loss 0.0016 (0.0018) Accuracy 1.0000 (0.9999)
+[2018/11/01 19:55:07 __main__ INFO] - Epoch 158 Step 200/390 Loss 0.0015 (0.0018) Accuracy 1.0000 (1.0000)
+[2018/11/01 19:55:35 __main__ INFO] - Epoch 158 Step 300/390 Loss 0.0013 (0.0018) Accuracy 1.0000 (1.0000)
+[2018/11/01 19:56:00 __main__ INFO] - Elapsed 109.97
+[2018/11/01 19:56:00 __main__ INFO] - Test 158
+[2018/11/01 19:56:07 __main__ INFO] - Epoch 158 Loss 0.1700 Accuracy 0.9579
+[2018/11/01 19:56:07 __main__ INFO] - Elapsed 7.52
+outdir 2:  /tigress/ruairidh/model_results/wrn_28_10
+[2018/11/01 19:56:08 __main__ INFO] - Train 159
+[2018/11/01 19:56:09 __main__ INFO] - Epoch 159 Step 0/390 Loss 0.0015 (0.0015) Accuracy 1.0000 (1.0000)
+[2018/11/01 19:56:37 __main__ INFO] - Epoch 159 Step 100/390 Loss 0.0017 (0.0018) Accuracy 1.0000 (0.9999)
+[2018/11/01 19:57:05 __main__ INFO] - Epoch 159 Step 200/390 Loss 0.0013 (0.0018) Accuracy 1.0000 (1.0000)
+[2018/11/01 19:57:33 __main__ INFO] - Epoch 159 Step 300/390 Loss 0.0026 (0.0018) Accuracy 1.0000 (1.0000)
+[2018/11/01 19:57:58 __main__ INFO] - Elapsed 110.00
+[2018/11/01 19:57:58 __main__ INFO] - Test 159
+[2018/11/01 19:58:05 __main__ INFO] - Epoch 159 Loss 0.1710 Accuracy 0.9580
+[2018/11/01 19:58:05 __main__ INFO] - Elapsed 7.51
+outdir 2:  /tigress/ruairidh/model_results/wrn_28_10
+[2018/11/01 19:58:06 __main__ INFO] - Train 160
+[2018/11/01 19:58:07 __main__ INFO] - Epoch 160 Step 0/390 Loss 0.0014 (0.0014) Accuracy 1.0000 (1.0000)
+[2018/11/01 19:58:35 __main__ INFO] - Epoch 160 Step 100/390 Loss 0.0017 (0.0020) Accuracy 1.0000 (0.9999)
+[2018/11/01 19:59:03 __main__ INFO] - Epoch 160 Step 200/390 Loss 0.0018 (0.0022) Accuracy 1.0000 (0.9998)
+[2018/11/01 19:59:31 __main__ INFO] - Epoch 160 Step 300/390 Loss 0.0015 (0.0023) Accuracy 1.0000 (0.9998)
+[2018/11/01 19:59:56 __main__ INFO] - Elapsed 110.00
+[2018/11/01 19:59:56 __main__ INFO] - Test 160
+[2018/11/01 20:00:04 __main__ INFO] - Epoch 160 Loss 0.1694 Accuracy 0.9585
+[2018/11/01 20:00:04 __main__ INFO] - Elapsed 7.60
+outdir 2:  /tigress/ruairidh/model_results/wrn_28_10
+[2018/11/01 20:00:04 __main__ INFO] - Train 161
+[2018/11/01 20:00:05 __main__ INFO] - Epoch 161 Step 0/390 Loss 0.0013 (0.0013) Accuracy 1.0000 (1.0000)
+[2018/11/01 20:00:33 __main__ INFO] - Epoch 161 Step 100/390 Loss 0.0019 (0.0018) Accuracy 1.0000 (0.9999)
+[2018/11/01 20:01:01 __main__ INFO] - Epoch 161 Step 200/390 Loss 0.0013 (0.0020) Accuracy 1.0000 (1.0000)
+[2018/11/01 20:01:29 __main__ INFO] - Epoch 161 Step 300/390 Loss 0.0015 (0.0020) Accuracy 1.0000 (0.9999)
+[2018/11/01 20:01:54 __main__ INFO] - Elapsed 110.06
+[2018/11/01 20:01:54 __main__ INFO] - Test 161
+[2018/11/01 20:02:02 __main__ INFO] - Epoch 161 Loss 0.1657 Accuracy 0.9582
+[2018/11/01 20:02:02 __main__ INFO] - Elapsed 7.54
+outdir 2:  /tigress/ruairidh/model_results/wrn_28_10
+[2018/11/01 20:02:03 __main__ INFO] - Train 162
+[2018/11/01 20:02:03 __main__ INFO] - Epoch 162 Step 0/390 Loss 0.0013 (0.0013) Accuracy 1.0000 (1.0000)
+[2018/11/01 20:02:31 __main__ INFO] - Epoch 162 Step 100/390 Loss 0.0017 (0.0020) Accuracy 1.0000 (0.9999)
+[2018/11/01 20:02:59 __main__ INFO] - Epoch 162 Step 200/390 Loss 0.0014 (0.0019) Accuracy 1.0000 (0.9999)
+[2018/11/01 20:03:28 __main__ INFO] - Epoch 162 Step 300/390 Loss 0.0019 (0.0019) Accuracy 1.0000 (0.9999)
+[2018/11/01 20:03:53 __main__ INFO] - Elapsed 109.98
+[2018/11/01 20:03:53 __main__ INFO] - Test 162
+[2018/11/01 20:04:00 __main__ INFO] - Epoch 162 Loss 0.1665 Accuracy 0.9582
+[2018/11/01 20:04:00 __main__ INFO] - Elapsed 7.57
+outdir 2:  /tigress/ruairidh/model_results/wrn_28_10
+[2018/11/01 20:04:01 __main__ INFO] - Train 163
+[2018/11/01 20:04:01 __main__ INFO] - Epoch 163 Step 0/390 Loss 0.0018 (0.0018) Accuracy 1.0000 (1.0000)
+[2018/11/01 20:04:29 __main__ INFO] - Epoch 163 Step 100/390 Loss 0.0023 (0.0018) Accuracy 1.0000 (1.0000)
+[2018/11/01 20:04:58 __main__ INFO] - Epoch 163 Step 200/390 Loss 0.0016 (0.0018) Accuracy 1.0000 (1.0000)
+[2018/11/01 20:05:26 __main__ INFO] - Epoch 163 Step 300/390 Loss 0.0022 (0.0018) Accuracy 1.0000 (1.0000)
+[2018/11/01 20:05:51 __main__ INFO] - Elapsed 110.18
+[2018/11/01 20:05:51 __main__ INFO] - Test 163
+[2018/11/01 20:05:58 __main__ INFO] - Epoch 163 Loss 0.1655 Accuracy 0.9594
+[2018/11/01 20:05:58 __main__ INFO] - Elapsed 7.43
+outdir 2:  /tigress/ruairidh/model_results/wrn_28_10
+[2018/11/01 20:06:00 __main__ INFO] - Train 164
+[2018/11/01 20:06:00 __main__ INFO] - Epoch 164 Step 0/390 Loss 0.0012 (0.0012) Accuracy 1.0000 (1.0000)
+[2018/11/01 20:06:29 __main__ INFO] - Epoch 164 Step 100/390 Loss 0.0018 (0.0019) Accuracy 1.0000 (0.9999)
+[2018/11/01 20:06:57 __main__ INFO] - Epoch 164 Step 200/390 Loss 0.0013 (0.0019) Accuracy 1.0000 (1.0000)
+[2018/11/01 20:07:25 __main__ INFO] - Epoch 164 Step 300/390 Loss 0.0012 (0.0018) Accuracy 1.0000 (1.0000)
+[2018/11/01 20:07:50 __main__ INFO] - Elapsed 109.94
+[2018/11/01 20:07:50 __main__ INFO] - Test 164
+[2018/11/01 20:07:57 __main__ INFO] - Epoch 164 Loss 0.1681 Accuracy 0.9588
+[2018/11/01 20:07:57 __main__ INFO] - Elapsed 7.50
+outdir 2:  /tigress/ruairidh/model_results/wrn_28_10
+[2018/11/01 20:07:58 __main__ INFO] - Train 165
+[2018/11/01 20:07:59 __main__ INFO] - Epoch 165 Step 0/390 Loss 0.0019 (0.0019) Accuracy 1.0000 (1.0000)
+[2018/11/01 20:08:27 __main__ INFO] - Epoch 165 Step 100/390 Loss 0.0011 (0.0017) Accuracy 1.0000 (0.9999)
+[2018/11/01 20:08:55 __main__ INFO] - Epoch 165 Step 200/390 Loss 0.0013 (0.0017) Accuracy 1.0000 (1.0000)
+[2018/11/01 20:09:23 __main__ INFO] - Epoch 165 Step 300/390 Loss 0.0018 (0.0018) Accuracy 1.0000 (1.0000)
+[2018/11/01 20:09:48 __main__ INFO] - Elapsed 110.03
+[2018/11/01 20:09:48 __main__ INFO] - Test 165
+[2018/11/01 20:09:56 __main__ INFO] - Epoch 165 Loss 0.1663 Accuracy 0.9580
+[2018/11/01 20:09:56 __main__ INFO] - Elapsed 7.58
+outdir 2:  /tigress/ruairidh/model_results/wrn_28_10
+[2018/11/01 20:09:57 __main__ INFO] - Train 166
+[2018/11/01 20:09:57 __main__ INFO] - Epoch 166 Step 0/390 Loss 0.0014 (0.0014) Accuracy 1.0000 (1.0000)
+[2018/11/01 20:10:25 __main__ INFO] - Epoch 166 Step 100/390 Loss 0.0015 (0.0018) Accuracy 1.0000 (1.0000)
+[2018/11/01 20:10:54 __main__ INFO] - Epoch 166 Step 200/390 Loss 0.0017 (0.0019) Accuracy 1.0000 (1.0000)
+[2018/11/01 20:11:22 __main__ INFO] - Epoch 166 Step 300/390 Loss 0.0013 (0.0019) Accuracy 1.0000 (0.9999)
+[2018/11/01 20:11:47 __main__ INFO] - Elapsed 110.11
+[2018/11/01 20:11:47 __main__ INFO] - Test 166
+[2018/11/01 20:11:54 __main__ INFO] - Epoch 166 Loss 0.1662 Accuracy 0.9581
+[2018/11/01 20:11:54 __main__ INFO] - Elapsed 7.56
+outdir 2:  /tigress/ruairidh/model_results/wrn_28_10
+[2018/11/01 20:11:55 __main__ INFO] - Train 167
+[2018/11/01 20:11:56 __main__ INFO] - Epoch 167 Step 0/390 Loss 0.0013 (0.0013) Accuracy 1.0000 (1.0000)
+[2018/11/01 20:12:24 __main__ INFO] - Epoch 167 Step 100/390 Loss 0.0022 (0.0017) Accuracy 1.0000 (1.0000)
+[2018/11/01 20:12:52 __main__ INFO] - Epoch 167 Step 200/390 Loss 0.0019 (0.0017) Accuracy 1.0000 (1.0000)
+[2018/11/01 20:13:20 __main__ INFO] - Epoch 167 Step 300/390 Loss 0.0013 (0.0017) Accuracy 1.0000 (1.0000)
+[2018/11/01 20:13:45 __main__ INFO] - Elapsed 110.15
+[2018/11/01 20:13:45 __main__ INFO] - Test 167
+[2018/11/01 20:13:53 __main__ INFO] - Epoch 167 Loss 0.1667 Accuracy 0.9594
+[2018/11/01 20:13:53 __main__ INFO] - Elapsed 7.48
+outdir 2:  /tigress/ruairidh/model_results/wrn_28_10
+[2018/11/01 20:13:54 __main__ INFO] - Train 168
+[2018/11/01 20:13:55 __main__ INFO] - Epoch 168 Step 0/390 Loss 0.0018 (0.0018) Accuracy 1.0000 (1.0000)
+[2018/11/01 20:14:23 __main__ INFO] - Epoch 168 Step 100/390 Loss 0.0015 (0.0016) Accuracy 1.0000 (1.0000)
+[2018/11/01 20:14:51 __main__ INFO] - Epoch 168 Step 200/390 Loss 0.0028 (0.0017) Accuracy 1.0000 (1.0000)
+[2018/11/01 20:15:19 __main__ INFO] - Epoch 168 Step 300/390 Loss 0.0016 (0.0017) Accuracy 1.0000 (1.0000)
+[2018/11/01 20:15:44 __main__ INFO] - Elapsed 110.06
+[2018/11/01 20:15:45 __main__ INFO] - Test 168
+[2018/11/01 20:15:52 __main__ INFO] - Epoch 168 Loss 0.1653 Accuracy 0.9592
+[2018/11/01 20:15:52 __main__ INFO] - Elapsed 7.54
+outdir 2:  /tigress/ruairidh/model_results/wrn_28_10
+[2018/11/01 20:15:53 __main__ INFO] - Train 169
+[2018/11/01 20:15:53 __main__ INFO] - Epoch 169 Step 0/390 Loss 0.0015 (0.0015) Accuracy 1.0000 (1.0000)
+[2018/11/01 20:16:21 __main__ INFO] - Epoch 169 Step 100/390 Loss 0.0020 (0.0020) Accuracy 1.0000 (1.0000)
+[2018/11/01 20:16:50 __main__ INFO] - Epoch 169 Step 200/390 Loss 0.0018 (0.0018) Accuracy 1.0000 (1.0000)
+[2018/11/01 20:17:18 __main__ INFO] - Epoch 169 Step 300/390 Loss 0.0019 (0.0019) Accuracy 1.0000 (1.0000)
+[2018/11/01 20:17:43 __main__ INFO] - Elapsed 110.00
+[2018/11/01 20:17:43 __main__ INFO] - Test 169
+[2018/11/01 20:17:50 __main__ INFO] - Epoch 169 Loss 0.1678 Accuracy 0.9592
+[2018/11/01 20:17:50 __main__ INFO] - Elapsed 7.49
+outdir 2:  /tigress/ruairidh/model_results/wrn_28_10
+[2018/11/01 20:17:52 __main__ INFO] - Train 170
+[2018/11/01 20:17:52 __main__ INFO] - Epoch 170 Step 0/390 Loss 0.0021 (0.0021) Accuracy 1.0000 (1.0000)
+[2018/11/01 20:18:20 __main__ INFO] - Epoch 170 Step 100/390 Loss 0.0015 (0.0017) Accuracy 1.0000 (1.0000)
+[2018/11/01 20:18:48 __main__ INFO] - Epoch 170 Step 200/390 Loss 0.0011 (0.0017) Accuracy 1.0000 (1.0000)
+[2018/11/01 20:19:17 __main__ INFO] - Epoch 170 Step 300/390 Loss 0.0014 (0.0017) Accuracy 1.0000 (1.0000)
+[2018/11/01 20:19:42 __main__ INFO] - Elapsed 110.06
+[2018/11/01 20:19:42 __main__ INFO] - Test 170
+[2018/11/01 20:19:49 __main__ INFO] - Epoch 170 Loss 0.1667 Accuracy 0.9593
+[2018/11/01 20:19:49 __main__ INFO] - Elapsed 7.60
+outdir 2:  /tigress/ruairidh/model_results/wrn_28_10
+[2018/11/01 20:19:50 __main__ INFO] - Train 171
+[2018/11/01 20:19:50 __main__ INFO] - Epoch 171 Step 0/390 Loss 0.0012 (0.0012) Accuracy 1.0000 (1.0000)
+[2018/11/01 20:20:19 __main__ INFO] - Epoch 171 Step 100/390 Loss 0.0010 (0.0017) Accuracy 1.0000 (1.0000)
+[2018/11/01 20:20:47 __main__ INFO] - Epoch 171 Step 200/390 Loss 0.0016 (0.0016) Accuracy 1.0000 (1.0000)
+[2018/11/01 20:21:15 __main__ INFO] - Epoch 171 Step 300/390 Loss 0.0020 (0.0017) Accuracy 1.0000 (1.0000)
+[2018/11/01 20:21:40 __main__ INFO] - Elapsed 109.79
+[2018/11/01 20:21:40 __main__ INFO] - Test 171
+[2018/11/01 20:21:47 __main__ INFO] - Epoch 171 Loss 0.1665 Accuracy 0.9593
+[2018/11/01 20:21:47 __main__ INFO] - Elapsed 7.48
+outdir 2:  /tigress/ruairidh/model_results/wrn_28_10
+[2018/11/01 20:21:48 __main__ INFO] - Train 172
+[2018/11/01 20:21:48 __main__ INFO] - Epoch 172 Step 0/390 Loss 0.0023 (0.0023) Accuracy 1.0000 (1.0000)
+[2018/11/01 20:22:17 __main__ INFO] - Epoch 172 Step 100/390 Loss 0.0011 (0.0018) Accuracy 1.0000 (1.0000)
+[2018/11/01 20:22:45 __main__ INFO] - Epoch 172 Step 200/390 Loss 0.0014 (0.0018) Accuracy 1.0000 (1.0000)
+[2018/11/01 20:23:13 __main__ INFO] - Epoch 172 Step 300/390 Loss 0.0015 (0.0018) Accuracy 1.0000 (1.0000)
+[2018/11/01 20:23:38 __main__ INFO] - Elapsed 110.05
+[2018/11/01 20:23:38 __main__ INFO] - Test 172
+[2018/11/01 20:23:45 __main__ INFO] - Epoch 172 Loss 0.1655 Accuracy 0.9593
+[2018/11/01 20:23:45 __main__ INFO] - Elapsed 7.54
+outdir 2:  /tigress/ruairidh/model_results/wrn_28_10
+[2018/11/01 20:23:46 __main__ INFO] - Train 173
+[2018/11/01 20:23:47 __main__ INFO] - Epoch 173 Step 0/390 Loss 0.0019 (0.0019) Accuracy 1.0000 (1.0000)
+[2018/11/01 20:24:15 __main__ INFO] - Epoch 173 Step 100/390 Loss 0.0017 (0.0018) Accuracy 1.0000 (0.9999)
+[2018/11/01 20:24:43 __main__ INFO] - Epoch 173 Step 200/390 Loss 0.0011 (0.0018) Accuracy 1.0000 (1.0000)
+[2018/11/01 20:25:11 __main__ INFO] - Epoch 173 Step 300/390 Loss 0.0059 (0.0017) Accuracy 1.0000 (1.0000)
+[2018/11/01 20:25:36 __main__ INFO] - Elapsed 110.07
+[2018/11/01 20:25:36 __main__ INFO] - Test 173
+[2018/11/01 20:25:43 __main__ INFO] - Epoch 173 Loss 0.1657 Accuracy 0.9595
+[2018/11/01 20:25:44 __main__ INFO] - Elapsed 7.49
+outdir 2:  /tigress/ruairidh/model_results/wrn_28_10
+[2018/11/01 20:25:45 __main__ INFO] - Train 174
+[2018/11/01 20:25:45 __main__ INFO] - Epoch 174 Step 0/390 Loss 0.0010 (0.0010) Accuracy 1.0000 (1.0000)
+[2018/11/01 20:26:13 __main__ INFO] - Epoch 174 Step 100/390 Loss 0.0012 (0.0017) Accuracy 1.0000 (1.0000)
+[2018/11/01 20:26:41 __main__ INFO] - Epoch 174 Step 200/390 Loss 0.0014 (0.0017) Accuracy 1.0000 (1.0000)
+[2018/11/01 20:27:10 __main__ INFO] - Epoch 174 Step 300/390 Loss 0.0016 (0.0017) Accuracy 1.0000 (1.0000)
+[2018/11/01 20:27:35 __main__ INFO] - Elapsed 110.05
+[2018/11/01 20:27:35 __main__ INFO] - Test 174
+[2018/11/01 20:27:42 __main__ INFO] - Epoch 174 Loss 0.1664 Accuracy 0.9598
+[2018/11/01 20:27:42 __main__ INFO] - Elapsed 7.45
+outdir 2:  /tigress/ruairidh/model_results/wrn_28_10
+[2018/11/01 20:27:44 __main__ INFO] - Train 175
+[2018/11/01 20:27:45 __main__ INFO] - Epoch 175 Step 0/390 Loss 0.0018 (0.0018) Accuracy 1.0000 (1.0000)
+[2018/11/01 20:28:13 __main__ INFO] - Epoch 175 Step 100/390 Loss 0.0012 (0.0019) Accuracy 1.0000 (0.9998)
+[2018/11/01 20:28:41 __main__ INFO] - Epoch 175 Step 200/390 Loss 0.0015 (0.0018) Accuracy 1.0000 (0.9999)
+[2018/11/01 20:29:09 __main__ INFO] - Epoch 175 Step 300/390 Loss 0.0022 (0.0018) Accuracy 1.0000 (0.9999)
+[2018/11/01 20:29:34 __main__ INFO] - Elapsed 110.04
+[2018/11/01 20:29:34 __main__ INFO] - Test 175
+[2018/11/01 20:29:42 __main__ INFO] - Epoch 175 Loss 0.1652 Accuracy 0.9597
+[2018/11/01 20:29:42 __main__ INFO] - Elapsed 7.50
+outdir 2:  /tigress/ruairidh/model_results/wrn_28_10
+[2018/11/01 20:29:42 __main__ INFO] - Train 176
+[2018/11/01 20:29:43 __main__ INFO] - Epoch 176 Step 0/390 Loss 0.0016 (0.0016) Accuracy 1.0000 (1.0000)
+[2018/11/01 20:30:11 __main__ INFO] - Epoch 176 Step 100/390 Loss 0.0015 (0.0018) Accuracy 1.0000 (0.9998)
+[2018/11/01 20:30:39 __main__ INFO] - Epoch 176 Step 200/390 Loss 0.0019 (0.0018) Accuracy 1.0000 (0.9999)
+[2018/11/01 20:31:08 __main__ INFO] - Epoch 176 Step 300/390 Loss 0.0017 (0.0018) Accuracy 1.0000 (0.9999)
+[2018/11/01 20:31:33 __main__ INFO] - Elapsed 110.13
+[2018/11/01 20:31:33 __main__ INFO] - Test 176
+[2018/11/01 20:31:40 __main__ INFO] - Epoch 176 Loss 0.1649 Accuracy 0.9598
+[2018/11/01 20:31:40 __main__ INFO] - Elapsed 7.60
+outdir 2:  /tigress/ruairidh/model_results/wrn_28_10
+[2018/11/01 20:31:41 __main__ INFO] - Train 177
+[2018/11/01 20:31:41 __main__ INFO] - Epoch 177 Step 0/390 Loss 0.0013 (0.0013) Accuracy 1.0000 (1.0000)
+[2018/11/01 20:32:10 __main__ INFO] - Epoch 177 Step 100/390 Loss 0.0021 (0.0017) Accuracy 1.0000 (1.0000)
+[2018/11/01 20:32:38 __main__ INFO] - Epoch 177 Step 200/390 Loss 0.0014 (0.0017) Accuracy 1.0000 (1.0000)
+[2018/11/01 20:33:06 __main__ INFO] - Epoch 177 Step 300/390 Loss 0.0038 (0.0017) Accuracy 1.0000 (1.0000)
+[2018/11/01 20:33:31 __main__ INFO] - Elapsed 110.02
+[2018/11/01 20:33:31 __main__ INFO] - Test 177
+[2018/11/01 20:33:38 __main__ INFO] - Epoch 177 Loss 0.1661 Accuracy 0.9598
+[2018/11/01 20:33:38 __main__ INFO] - Elapsed 7.46
+outdir 2:  /tigress/ruairidh/model_results/wrn_28_10
+[2018/11/01 20:33:39 __main__ INFO] - Train 178
+[2018/11/01 20:33:40 __main__ INFO] - Epoch 178 Step 0/390 Loss 0.0012 (0.0012) Accuracy 1.0000 (1.0000)
+[2018/11/01 20:34:08 __main__ INFO] - Epoch 178 Step 100/390 Loss 0.0013 (0.0017) Accuracy 1.0000 (1.0000)
+[2018/11/01 20:34:36 __main__ INFO] - Epoch 178 Step 200/390 Loss 0.0014 (0.0017) Accuracy 1.0000 (1.0000)
+[2018/11/01 20:35:04 __main__ INFO] - Epoch 178 Step 300/390 Loss 0.0016 (0.0017) Accuracy 1.0000 (1.0000)
+[2018/11/01 20:35:29 __main__ INFO] - Elapsed 109.94
+[2018/11/01 20:35:29 __main__ INFO] - Test 178
+[2018/11/01 20:35:37 __main__ INFO] - Epoch 178 Loss 0.1665 Accuracy 0.9592
+[2018/11/01 20:35:37 __main__ INFO] - Elapsed 7.53
+outdir 2:  /tigress/ruairidh/model_results/wrn_28_10
+[2018/11/01 20:35:37 __main__ INFO] - Train 179
+[2018/11/01 20:35:38 __main__ INFO] - Epoch 179 Step 0/390 Loss 0.0013 (0.0013) Accuracy 1.0000 (1.0000)
+[2018/11/01 20:36:06 __main__ INFO] - Epoch 179 Step 100/390 Loss 0.0015 (0.0018) Accuracy 1.0000 (0.9999)
+[2018/11/01 20:36:34 __main__ INFO] - Epoch 179 Step 200/390 Loss 0.0023 (0.0018) Accuracy 1.0000 (1.0000)
+[2018/11/01 20:37:02 __main__ INFO] - Epoch 179 Step 300/390 Loss 0.0011 (0.0018) Accuracy 1.0000 (1.0000)
+[2018/11/01 20:37:27 __main__ INFO] - Elapsed 110.08
+[2018/11/01 20:37:27 __main__ INFO] - Test 179
+[2018/11/01 20:37:35 __main__ INFO] - Epoch 179 Loss 0.1661 Accuracy 0.9595
+[2018/11/01 20:37:35 __main__ INFO] - Elapsed 7.57
+outdir 2:  /tigress/ruairidh/model_results/wrn_28_10
+[2018/11/01 20:37:35 __main__ INFO] - Train 180
+[2018/11/01 20:37:36 __main__ INFO] - Epoch 180 Step 0/390 Loss 0.0024 (0.0024) Accuracy 1.0000 (1.0000)
+[2018/11/01 20:38:04 __main__ INFO] - Epoch 180 Step 100/390 Loss 0.0014 (0.0018) Accuracy 1.0000 (0.9999)
+[2018/11/01 20:38:32 __main__ INFO] - Epoch 180 Step 200/390 Loss 0.0014 (0.0018) Accuracy 1.0000 (0.9999)
+[2018/11/01 20:39:01 __main__ INFO] - Epoch 180 Step 300/390 Loss 0.0013 (0.0018) Accuracy 1.0000 (0.9999)
+[2018/11/01 20:39:26 __main__ INFO] - Elapsed 110.20
+[2018/11/01 20:39:26 __main__ INFO] - Test 180
+[2018/11/01 20:39:33 __main__ INFO] - Epoch 180 Loss 0.1648 Accuracy 0.9597
+[2018/11/01 20:39:33 __main__ INFO] - Elapsed 7.55
+outdir 2:  /tigress/ruairidh/model_results/wrn_28_10
+[2018/11/01 20:39:34 __main__ INFO] - Train 181
+[2018/11/01 20:39:35 __main__ INFO] - Epoch 181 Step 0/390 Loss 0.0012 (0.0012) Accuracy 1.0000 (1.0000)
+[2018/11/01 20:40:03 __main__ INFO] - Epoch 181 Step 100/390 Loss 0.0014 (0.0017) Accuracy 1.0000 (1.0000)
+[2018/11/01 20:40:31 __main__ INFO] - Epoch 181 Step 200/390 Loss 0.0039 (0.0018) Accuracy 1.0000 (1.0000)
+[2018/11/01 20:40:59 __main__ INFO] - Epoch 181 Step 300/390 Loss 0.0012 (0.0018) Accuracy 1.0000 (1.0000)
+[2018/11/01 20:41:24 __main__ INFO] - Elapsed 109.73
+[2018/11/01 20:41:24 __main__ INFO] - Test 181
+[2018/11/01 20:41:32 __main__ INFO] - Epoch 181 Loss 0.1667 Accuracy 0.9593
+[2018/11/01 20:41:32 __main__ INFO] - Elapsed 7.59
+outdir 2:  /tigress/ruairidh/model_results/wrn_28_10
+[2018/11/01 20:41:32 __main__ INFO] - Train 182
+[2018/11/01 20:41:33 __main__ INFO] - Epoch 182 Step 0/390 Loss 0.0014 (0.0014) Accuracy 1.0000 (1.0000)
+[2018/11/01 20:42:01 __main__ INFO] - Epoch 182 Step 100/390 Loss 0.0021 (0.0018) Accuracy 1.0000 (1.0000)
+[2018/11/01 20:42:29 __main__ INFO] - Epoch 182 Step 200/390 Loss 0.0017 (0.0018) Accuracy 1.0000 (1.0000)
+[2018/11/01 20:42:57 __main__ INFO] - Epoch 182 Step 300/390 Loss 0.0017 (0.0018) Accuracy 1.0000 (1.0000)
+[2018/11/01 20:43:22 __main__ INFO] - Elapsed 110.02
+[2018/11/01 20:43:22 __main__ INFO] - Test 182
+[2018/11/01 20:43:30 __main__ INFO] - Epoch 182 Loss 0.1649 Accuracy 0.9596
+[2018/11/01 20:43:30 __main__ INFO] - Elapsed 7.57
+outdir 2:  /tigress/ruairidh/model_results/wrn_28_10
+[2018/11/01 20:43:30 __main__ INFO] - Train 183
+[2018/11/01 20:43:31 __main__ INFO] - Epoch 183 Step 0/390 Loss 0.0014 (0.0014) Accuracy 1.0000 (1.0000)
+[2018/11/01 20:43:59 __main__ INFO] - Epoch 183 Step 100/390 Loss 0.0012 (0.0017) Accuracy 1.0000 (1.0000)
+[2018/11/01 20:44:27 __main__ INFO] - Epoch 183 Step 200/390 Loss 0.0039 (0.0018) Accuracy 1.0000 (1.0000)
+[2018/11/01 20:44:56 __main__ INFO] - Epoch 183 Step 300/390 Loss 0.0012 (0.0018) Accuracy 1.0000 (1.0000)
+[2018/11/01 20:45:21 __main__ INFO] - Elapsed 110.20
+[2018/11/01 20:45:21 __main__ INFO] - Test 183
+[2018/11/01 20:45:28 __main__ INFO] - Epoch 183 Loss 0.1664 Accuracy 0.9589
+[2018/11/01 20:45:28 __main__ INFO] - Elapsed 7.52
+outdir 2:  /tigress/ruairidh/model_results/wrn_28_10
+[2018/11/01 20:45:29 __main__ INFO] - Train 184
+[2018/11/01 20:45:29 __main__ INFO] - Epoch 184 Step 0/390 Loss 0.0014 (0.0014) Accuracy 1.0000 (1.0000)
+[2018/11/01 20:45:57 __main__ INFO] - Epoch 184 Step 100/390 Loss 0.0015 (0.0017) Accuracy 1.0000 (1.0000)
+[2018/11/01 20:46:26 __main__ INFO] - Epoch 184 Step 200/390 Loss 0.0015 (0.0017) Accuracy 1.0000 (1.0000)
+[2018/11/01 20:46:54 __main__ INFO] - Epoch 184 Step 300/390 Loss 0.0014 (0.0017) Accuracy 1.0000 (1.0000)
+[2018/11/01 20:47:18 __main__ INFO] - Elapsed 109.72
+[2018/11/01 20:47:18 __main__ INFO] - Test 184
+[2018/11/01 20:47:26 __main__ INFO] - Epoch 184 Loss 0.1675 Accuracy 0.9590
+[2018/11/01 20:47:26 __main__ INFO] - Elapsed 7.64
+outdir 2:  /tigress/ruairidh/model_results/wrn_28_10
+[2018/11/01 20:47:27 __main__ INFO] - Train 185
+[2018/11/01 20:47:27 __main__ INFO] - Epoch 185 Step 0/390 Loss 0.0015 (0.0015) Accuracy 1.0000 (1.0000)
+[2018/11/01 20:47:55 __main__ INFO] - Epoch 185 Step 100/390 Loss 0.0023 (0.0017) Accuracy 1.0000 (1.0000)
+[2018/11/01 20:48:24 __main__ INFO] - Epoch 185 Step 200/390 Loss 0.0014 (0.0017) Accuracy 1.0000 (1.0000)
+[2018/11/01 20:48:52 __main__ INFO] - Epoch 185 Step 300/390 Loss 0.0016 (0.0018) Accuracy 1.0000 (1.0000)
+[2018/11/01 20:49:17 __main__ INFO] - Elapsed 110.02
+[2018/11/01 20:49:17 __main__ INFO] - Test 185
+[2018/11/01 20:49:24 __main__ INFO] - Epoch 185 Loss 0.1659 Accuracy 0.9588
+[2018/11/01 20:49:24 __main__ INFO] - Elapsed 7.50
+outdir 2:  /tigress/ruairidh/model_results/wrn_28_10
+[2018/11/01 20:49:25 __main__ INFO] - Train 186
+[2018/11/01 20:49:25 __main__ INFO] - Epoch 186 Step 0/390 Loss 0.0025 (0.0025) Accuracy 1.0000 (1.0000)
+[2018/11/01 20:49:53 __main__ INFO] - Epoch 186 Step 100/390 Loss 0.0011 (0.0017) Accuracy 1.0000 (1.0000)
+[2018/11/01 20:50:22 __main__ INFO] - Epoch 186 Step 200/390 Loss 0.0016 (0.0017) Accuracy 1.0000 (1.0000)
+[2018/11/01 20:50:50 __main__ INFO] - Epoch 186 Step 300/390 Loss 0.0011 (0.0017) Accuracy 1.0000 (1.0000)
+[2018/11/01 20:51:15 __main__ INFO] - Elapsed 109.98
+[2018/11/01 20:51:15 __main__ INFO] - Test 186
+[2018/11/01 20:51:22 __main__ INFO] - Epoch 186 Loss 0.1654 Accuracy 0.9597
+[2018/11/01 20:51:22 __main__ INFO] - Elapsed 7.55
+outdir 2:  /tigress/ruairidh/model_results/wrn_28_10
+[2018/11/01 20:51:24 __main__ INFO] - Train 187
+[2018/11/01 20:51:25 __main__ INFO] - Epoch 187 Step 0/390 Loss 0.0014 (0.0014) Accuracy 1.0000 (1.0000)
+[2018/11/01 20:51:53 __main__ INFO] - Epoch 187 Step 100/390 Loss 0.0013 (0.0017) Accuracy 1.0000 (1.0000)
+[2018/11/01 20:52:21 __main__ INFO] - Epoch 187 Step 200/390 Loss 0.0016 (0.0017) Accuracy 1.0000 (1.0000)
+[2018/11/01 20:52:49 __main__ INFO] - Epoch 187 Step 300/390 Loss 0.0014 (0.0017) Accuracy 1.0000 (1.0000)
+[2018/11/01 20:53:14 __main__ INFO] - Elapsed 109.81
+[2018/11/01 20:53:14 __main__ INFO] - Test 187
+[2018/11/01 20:53:22 __main__ INFO] - Epoch 187 Loss 0.1663 Accuracy 0.9596
+[2018/11/01 20:53:22 __main__ INFO] - Elapsed 7.61
+outdir 2:  /tigress/ruairidh/model_results/wrn_28_10
+[2018/11/01 20:53:22 __main__ INFO] - Train 188
+[2018/11/01 20:53:23 __main__ INFO] - Epoch 188 Step 0/390 Loss 0.0020 (0.0020) Accuracy 1.0000 (1.0000)
+[2018/11/01 20:53:51 __main__ INFO] - Epoch 188 Step 100/390 Loss 0.0015 (0.0016) Accuracy 1.0000 (1.0000)
+[2018/11/01 20:54:19 __main__ INFO] - Epoch 188 Step 200/390 Loss 0.0016 (0.0017) Accuracy 1.0000 (1.0000)
+[2018/11/01 20:54:47 __main__ INFO] - Epoch 188 Step 300/390 Loss 0.0013 (0.0017) Accuracy 1.0000 (1.0000)
+[2018/11/01 20:55:12 __main__ INFO] - Elapsed 109.91
+[2018/11/01 20:55:12 __main__ INFO] - Test 188
+[2018/11/01 20:55:20 __main__ INFO] - Epoch 188 Loss 0.1664 Accuracy 0.9594
+[2018/11/01 20:55:20 __main__ INFO] - Elapsed 7.55
+outdir 2:  /tigress/ruairidh/model_results/wrn_28_10
+[2018/11/01 20:55:20 __main__ INFO] - Train 189
+[2018/11/01 20:55:21 __main__ INFO] - Epoch 189 Step 0/390 Loss 0.0015 (0.0015) Accuracy 1.0000 (1.0000)
+[2018/11/01 20:55:49 __main__ INFO] - Epoch 189 Step 100/390 Loss 0.0018 (0.0018) Accuracy 1.0000 (0.9998)
+[2018/11/01 20:56:17 __main__ INFO] - Epoch 189 Step 200/390 Loss 0.0019 (0.0018) Accuracy 1.0000 (0.9999)
+[2018/11/01 20:56:45 __main__ INFO] - Epoch 189 Step 300/390 Loss 0.0018 (0.0018) Accuracy 1.0000 (0.9999)
+[2018/11/01 20:57:10 __main__ INFO] - Elapsed 109.69
+[2018/11/01 20:57:10 __main__ INFO] - Test 189
+[2018/11/01 20:57:18 __main__ INFO] - Epoch 189 Loss 0.1673 Accuracy 0.9591
+[2018/11/01 20:57:18 __main__ INFO] - Elapsed 7.52
+outdir 2:  /tigress/ruairidh/model_results/wrn_28_10
+[2018/11/01 20:57:18 __main__ INFO] - Train 190
+[2018/11/01 20:57:19 __main__ INFO] - Epoch 190 Step 0/390 Loss 0.0014 (0.0014) Accuracy 1.0000 (1.0000)
+[2018/11/01 20:57:47 __main__ INFO] - Epoch 190 Step 100/390 Loss 0.0023 (0.0016) Accuracy 1.0000 (1.0000)
+[2018/11/01 20:58:15 __main__ INFO] - Epoch 190 Step 200/390 Loss 0.0013 (0.0017) Accuracy 1.0000 (1.0000)
+[2018/11/01 20:58:43 __main__ INFO] - Epoch 190 Step 300/390 Loss 0.0014 (0.0017) Accuracy 1.0000 (1.0000)
+[2018/11/01 20:59:08 __main__ INFO] - Elapsed 110.00
+[2018/11/01 20:59:08 __main__ INFO] - Test 190
+[2018/11/01 20:59:16 __main__ INFO] - Epoch 190 Loss 0.1671 Accuracy 0.9592
+[2018/11/01 20:59:16 __main__ INFO] - Elapsed 7.47
+outdir 2:  /tigress/ruairidh/model_results/wrn_28_10
+[2018/11/01 20:59:16 __main__ INFO] - Train 191
+[2018/11/01 20:59:17 __main__ INFO] - Epoch 191 Step 0/390 Loss 0.0017 (0.0017) Accuracy 1.0000 (1.0000)
+[2018/11/01 20:59:45 __main__ INFO] - Epoch 191 Step 100/390 Loss 0.0018 (0.0017) Accuracy 1.0000 (1.0000)
+[2018/11/01 21:00:13 __main__ INFO] - Epoch 191 Step 200/390 Loss 0.0016 (0.0016) Accuracy 1.0000 (1.0000)
+[2018/11/01 21:00:42 __main__ INFO] - Epoch 191 Step 300/390 Loss 0.0017 (0.0017) Accuracy 1.0000 (1.0000)
+[2018/11/01 21:01:06 __main__ INFO] - Elapsed 110.01
+[2018/11/01 21:01:07 __main__ INFO] - Test 191
+[2018/11/01 21:01:14 __main__ INFO] - Epoch 191 Loss 0.1668 Accuracy 0.9594
+[2018/11/01 21:01:14 __main__ INFO] - Elapsed 7.58
+outdir 2:  /tigress/ruairidh/model_results/wrn_28_10
+[2018/11/01 21:01:15 __main__ INFO] - Train 192
+[2018/11/01 21:01:15 __main__ INFO] - Epoch 192 Step 0/390 Loss 0.0014 (0.0014) Accuracy 1.0000 (1.0000)
+[2018/11/01 21:01:44 __main__ INFO] - Epoch 192 Step 100/390 Loss 0.0013 (0.0017) Accuracy 1.0000 (1.0000)
+[2018/11/01 21:02:12 __main__ INFO] - Epoch 192 Step 200/390 Loss 0.0013 (0.0017) Accuracy 1.0000 (1.0000)
+[2018/11/01 21:02:40 __main__ INFO] - Epoch 192 Step 300/390 Loss 0.0020 (0.0017) Accuracy 1.0000 (1.0000)
+[2018/11/01 21:03:05 __main__ INFO] - Elapsed 109.98
+[2018/11/01 21:03:05 __main__ INFO] - Test 192
+[2018/11/01 21:03:12 __main__ INFO] - Epoch 192 Loss 0.1674 Accuracy 0.9595
+[2018/11/01 21:03:12 __main__ INFO] - Elapsed 7.54
+outdir 2:  /tigress/ruairidh/model_results/wrn_28_10
+[2018/11/01 21:03:13 __main__ INFO] - Train 193
+[2018/11/01 21:03:14 __main__ INFO] - Epoch 193 Step 0/390 Loss 0.0014 (0.0014) Accuracy 1.0000 (1.0000)
+[2018/11/01 21:03:42 __main__ INFO] - Epoch 193 Step 100/390 Loss 0.0015 (0.0017) Accuracy 1.0000 (1.0000)
+[2018/11/01 21:04:10 __main__ INFO] - Epoch 193 Step 200/390 Loss 0.0022 (0.0018) Accuracy 1.0000 (1.0000)
+[2018/11/01 21:04:39 __main__ INFO] - Epoch 193 Step 300/390 Loss 0.0016 (0.0017) Accuracy 1.0000 (1.0000)
+[2018/11/01 21:05:03 __main__ INFO] - Elapsed 110.16
+[2018/11/01 21:05:04 __main__ INFO] - Test 193
+[2018/11/01 21:05:11 __main__ INFO] - Epoch 193 Loss 0.1678 Accuracy 0.9595
+[2018/11/01 21:05:11 __main__ INFO] - Elapsed 7.54
+outdir 2:  /tigress/ruairidh/model_results/wrn_28_10
+[2018/11/01 21:05:12 __main__ INFO] - Train 194
+[2018/11/01 21:05:12 __main__ INFO] - Epoch 194 Step 0/390 Loss 0.0014 (0.0014) Accuracy 1.0000 (1.0000)
+[2018/11/01 21:05:40 __main__ INFO] - Epoch 194 Step 100/390 Loss 0.0014 (0.0017) Accuracy 1.0000 (1.0000)
+[2018/11/01 21:06:08 __main__ INFO] - Epoch 194 Step 200/390 Loss 0.0027 (0.0017) Accuracy 1.0000 (1.0000)
+[2018/11/01 21:06:37 __main__ INFO] - Epoch 194 Step 300/390 Loss 0.0013 (0.0017) Accuracy 1.0000 (1.0000)
+[2018/11/01 21:07:02 __main__ INFO] - Elapsed 109.94
+[2018/11/01 21:07:02 __main__ INFO] - Test 194
+[2018/11/01 21:07:09 __main__ INFO] - Epoch 194 Loss 0.1661 Accuracy 0.9600
+[2018/11/01 21:07:09 __main__ INFO] - Elapsed 7.42
+outdir 2:  /tigress/ruairidh/model_results/wrn_28_10
+[2018/11/01 21:07:10 __main__ INFO] - Train 195
+[2018/11/01 21:07:11 __main__ INFO] - Epoch 195 Step 0/390 Loss 0.0016 (0.0016) Accuracy 1.0000 (1.0000)
+[2018/11/01 21:07:39 __main__ INFO] - Epoch 195 Step 100/390 Loss 0.0014 (0.0017) Accuracy 1.0000 (1.0000)
+[2018/11/01 21:08:07 __main__ INFO] - Epoch 195 Step 200/390 Loss 0.0023 (0.0018) Accuracy 1.0000 (0.9999)
+[2018/11/01 21:08:35 __main__ INFO] - Epoch 195 Step 300/390 Loss 0.0013 (0.0018) Accuracy 1.0000 (0.9999)
+[2018/11/01 21:09:00 __main__ INFO] - Elapsed 109.96
+[2018/11/01 21:09:00 __main__ INFO] - Test 195
+[2018/11/01 21:09:07 __main__ INFO] - Epoch 195 Loss 0.1682 Accuracy 0.9598
+[2018/11/01 21:09:07 __main__ INFO] - Elapsed 7.50
+outdir 2:  /tigress/ruairidh/model_results/wrn_28_10
+[2018/11/01 21:09:08 __main__ INFO] - Train 196
+[2018/11/01 21:09:09 __main__ INFO] - Epoch 196 Step 0/390 Loss 0.0017 (0.0017) Accuracy 1.0000 (1.0000)
+[2018/11/01 21:09:37 __main__ INFO] - Epoch 196 Step 100/390 Loss 0.0013 (0.0017) Accuracy 1.0000 (1.0000)
+[2018/11/01 21:10:05 __main__ INFO] - Epoch 196 Step 200/390 Loss 0.0023 (0.0017) Accuracy 1.0000 (1.0000)
+[2018/11/01 21:10:33 __main__ INFO] - Epoch 196 Step 300/390 Loss 0.0017 (0.0018) Accuracy 1.0000 (1.0000)
+[2018/11/01 21:10:58 __main__ INFO] - Elapsed 110.05
+[2018/11/01 21:10:58 __main__ INFO] - Test 196
+[2018/11/01 21:11:06 __main__ INFO] - Epoch 196 Loss 0.1665 Accuracy 0.9593
+[2018/11/01 21:11:06 __main__ INFO] - Elapsed 7.55
+outdir 2:  /tigress/ruairidh/model_results/wrn_28_10
+[2018/11/01 21:11:06 __main__ INFO] - Train 197
+[2018/11/01 21:11:07 __main__ INFO] - Epoch 197 Step 0/390 Loss 0.0018 (0.0018) Accuracy 1.0000 (1.0000)
+[2018/11/01 21:11:35 __main__ INFO] - Epoch 197 Step 100/390 Loss 0.0015 (0.0017) Accuracy 1.0000 (1.0000)
+[2018/11/01 21:12:03 __main__ INFO] - Epoch 197 Step 200/390 Loss 0.0015 (0.0017) Accuracy 1.0000 (1.0000)
+[2018/11/01 21:12:31 __main__ INFO] - Epoch 197 Step 300/390 Loss 0.0018 (0.0017) Accuracy 1.0000 (1.0000)
+[2018/11/01 21:12:56 __main__ INFO] - Elapsed 109.84
+[2018/11/01 21:12:56 __main__ INFO] - Test 197
+[2018/11/01 21:13:04 __main__ INFO] - Epoch 197 Loss 0.1665 Accuracy 0.9593
+[2018/11/01 21:13:04 __main__ INFO] - Elapsed 7.61
+outdir 2:  /tigress/ruairidh/model_results/wrn_28_10
+[2018/11/01 21:13:05 __main__ INFO] - Train 198
+[2018/11/01 21:13:05 __main__ INFO] - Epoch 198 Step 0/390 Loss 0.0013 (0.0013) Accuracy 1.0000 (1.0000)
+[2018/11/01 21:13:33 __main__ INFO] - Epoch 198 Step 100/390 Loss 0.0015 (0.0016) Accuracy 1.0000 (1.0000)
+[2018/11/01 21:14:02 __main__ INFO] - Epoch 198 Step 200/390 Loss 0.0018 (0.0017) Accuracy 1.0000 (1.0000)
+[2018/11/01 21:14:30 __main__ INFO] - Epoch 198 Step 300/390 Loss 0.0017 (0.0017) Accuracy 1.0000 (1.0000)
+[2018/11/01 21:14:55 __main__ INFO] - Elapsed 110.03
+[2018/11/01 21:14:55 __main__ INFO] - Test 198
+[2018/11/01 21:15:02 __main__ INFO] - Epoch 198 Loss 0.1678 Accuracy 0.9591
+[2018/11/01 21:15:02 __main__ INFO] - Elapsed 7.56
+outdir 2:  /tigress/ruairidh/model_results/wrn_28_10
+[2018/11/01 21:15:04 __main__ INFO] - Train 199
+[2018/11/01 21:15:04 __main__ INFO] - Epoch 199 Step 0/390 Loss 0.0014 (0.0014) Accuracy 1.0000 (1.0000)
+[2018/11/01 21:15:32 __main__ INFO] - Epoch 199 Step 100/390 Loss 0.0015 (0.0017) Accuracy 1.0000 (1.0000)
+[2018/11/01 21:16:00 __main__ INFO] - Epoch 199 Step 200/390 Loss 0.0020 (0.0017) Accuracy 1.0000 (1.0000)
+[2018/11/01 21:16:29 __main__ INFO] - Epoch 199 Step 300/390 Loss 0.0014 (0.0017) Accuracy 1.0000 (1.0000)
+[2018/11/01 21:16:54 __main__ INFO] - Elapsed 109.95
+[2018/11/01 21:16:54 __main__ INFO] - Test 199
+[2018/11/01 21:17:01 __main__ INFO] - Epoch 199 Loss 0.1692 Accuracy 0.9592
+[2018/11/01 21:17:01 __main__ INFO] - Elapsed 7.61
+outdir 2:  /tigress/ruairidh/model_results/wrn_28_10
+[2018/11/01 21:17:02 __main__ INFO] - Train 200
+[2018/11/01 21:17:03 __main__ INFO] - Epoch 200 Step 0/390 Loss 0.0054 (0.0054) Accuracy 1.0000 (1.0000)
+[2018/11/01 21:17:31 __main__ INFO] - Epoch 200 Step 100/390 Loss 0.0013 (0.0018) Accuracy 1.0000 (1.0000)
+[2018/11/01 21:17:59 __main__ INFO] - Epoch 200 Step 200/390 Loss 0.0019 (0.0017) Accuracy 1.0000 (1.0000)
+[2018/11/01 21:18:27 __main__ INFO] - Epoch 200 Step 300/390 Loss 0.0015 (0.0017) Accuracy 1.0000 (1.0000)
+[2018/11/01 21:18:52 __main__ INFO] - Elapsed 110.03
+[2018/11/01 21:18:52 __main__ INFO] - Test 200
+[2018/11/01 21:19:00 __main__ INFO] - Epoch 200 Loss 0.1653 Accuracy 0.9599
+[2018/11/01 21:19:00 __main__ INFO] - Elapsed 7.53
+outdir 2:  /tigress/ruairidh/model_results/wrn_28_10
+done

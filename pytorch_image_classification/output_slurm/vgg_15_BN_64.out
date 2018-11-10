@@ -6,4 +6,10 @@ Files already downloaded and verified
 /home/ruairidh/miniconda3/envs/pytorch_env/lib/python3.6/site-packages/torch/nn/functional.py:52: UserWarning: size_average and reduce args will be deprecated, please use reduction='elementwise_mean' instead.
   warnings.warn(warning.format(ret))
 (10000,)
+Files already downloaded and verified
+Files already downloaded and verified
+=> no checkpoint found at '/tigress/ruairidh/model_results/run_1/saves/vgg_15_BN_64/model_state_100.pth'
+/home/ruairidh/miniconda3/envs/pytorch_env/lib/python3.6/site-packages/torch/nn/functional.py:52: UserWarning: size_average and reduce args will be deprecated, please use reduction='elementwise_mean' instead.
+  warnings.warn(warning.format(ret))
+(10000,)
 inner done
