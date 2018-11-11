@@ -13,7 +13,8 @@ echo 'activating virtual env'
 source activate pytorch_env
 
 SDIR='/tigress/ruairidh/model_results'
-O_DIR='basic_tuning_run_1'
+JDIR='/tigress/joshuacp'
+O_DIR='model_results_sampling'
 L_DIR='optimal_training_run'
 echo ${model}
 echo 'identifier: '${identifier}
@@ -21,14 +22,14 @@ echo ${python_args}
 echo ${logfile}
 echo 'entering python script'
 resume="${SDIR}/${L_DIR}/${model}/model_best_state.pth"
-SV_DIR="${SDIR}/${O_DIR}/${model}/${identifier}"
+SV_DIR="${JDIR}/${O_DIR}/${model}/${identifier}"
 config="${SDIR}/${L_DIR}/${model}/config.json"
 echo ${resume}
 echo ${SV_DIR}
 
-python -u ./tune_with_cifar10h.py ${python_args} --resume=${resume} --c10h_scores_outdir=${SV_DIR} --config=${config}
+python -u ./tune_with_cifar10h_250_epochs.py ${python_args} --resume=${resume} --c10h_scores_outdir=${SV_DIR} --config=${config}
 
-cp ./${logfile} ${SDIR}/${O_DIR}/${model}/.
+cp ./${logfile} ${JDIR}/${O_DIR}/${model}/.
 
 echo 'inner done'
 
