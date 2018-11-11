@@ -8,7 +8,7 @@ declare -A archs=([vgg_15_BN_64]=vgg [resnet_basic_110]=resnet [resnet_preact_bo
 
 declare -a control=(True False)
 
-declare -a lr=(0.1 0.01 0.001 0.0001, 0.00001)
+declare -a lr=(0.1 0.01 0.001 0.0001 0.00001)
 
 declare -a seeds=(0 1 2)
 
