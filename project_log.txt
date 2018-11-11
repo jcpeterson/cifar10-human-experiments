@@ -1,17 +1,41 @@
 
-11/11/18: We decided we probably don't need epoch-by-epoch weights anymore since we have the
-csv files with all scores for all training (tuning) and  validation sets. Before we turn off
-non-best weight saving though, we need to implement code to save the best model for each 
-validation set in case it's need later for adversarial attack analyses. 
+11/11/18 -----------------------------------------------------------------------------------
+We decided we probably don't need epoch-by-epoch weights anymore since we have the
+csv files with all scores for all training (tuning) and validation sets. In it's place, Josh
+implemented new code in 'tune_with_cifar10h_v2.py' to save the current/best model for each 
+dataset in case it's needed later for adversarial attack analyses. In this file, update_state 
+behaves identically when given a single numeric score. When given a dictionary, it processes
+all scores. save_checkpoints_for_all_datasets is the new saving function, separate from the 
+old function which still exists, but called only for human_tune.
 
-11/11/18: I found a comma in the learning rate list in the bash file. The models seem to have
+NOTE: It hasn't been tested yet.
+
+NOTE: The issue in the last entry below is still present in the old files and should be fixed.
+
+
+11/11/18 -----------------------------------------------------------------------------------
+Today and yesterday we had been running tuning with a "fix" for saving the best
+model based on -c1h_val_loss (negative loss) instead of c1h_val_acc (accuracy), because
+accuracy isn't what we optimize in our human tuning models (top 1 is already maxed). We
+just found a bug where 'accuracy' in state was initialized at 0, so -loss is never 
+registered as better than the first model that's loaded before tuning. This isn't fixed
+yet and needs to be implemented in all tuning scripts. state['accuracy'] = -9999999? 
+
+
+11/11/18 -----------------------------------------------------------------------------------
+I found a comma in the learning rate list in the bash file. The models seem to have
 trained fine, but it would be a good idea to check the table generation code to make sure the
 comma in the folder names doesn't mess up the parsing
 
-11/10/18: For the ICLR draft, we realized wide resnet (wrn) with cutout was just another run of
+
+11/10/18 -----------------------------------------------------------------------------------
+For the ICLR draft, we realized wide resnet (wrn) with cutout was just another run of
 wrn without cutout, so we decided to just not include the cutout version since it 
 we don't do more than one model for other architecture types anyway. We did decide to
 put resnext back in since we reran the training for all models and it should now be
 performing find (didn't check yet)
 
---- POST ICLR reviews ---
+
+--------------------------------------------------------------------------------------------
+--- POST ICLR reviews / CVPR VERSION -------------------------------------------------------
+--------------------------------------------------------------------------------------------
