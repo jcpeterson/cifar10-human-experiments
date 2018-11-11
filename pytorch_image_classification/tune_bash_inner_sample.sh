@@ -27,7 +27,7 @@ config="${SDIR}/${L_DIR}/${model}/config.json"
 echo ${resume}
 echo ${SV_DIR}
 
-python -u ./tune_with_cifar10h_250_epochs.py ${python_args} --resume=${resume} --c10h_scores_outdir=${SV_DIR} --config=${config}
+python -u ./tune_with_cifar10h_250_epochs.py ${python_args} --resume=${resume} --c10h_sample --c10h_scores_outdir=${SV_DIR} --config=${config}
 
 cp ./${logfile} ${JDIR}/${O_DIR}/${model}/.
 
