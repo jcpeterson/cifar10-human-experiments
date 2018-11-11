@@ -582,7 +582,7 @@ def main():
 
     save_counter = 0
 
-    #optim_config['epochs']=100
+    optim_config['epochs']=200
 
     for epoch in range(0, optim_config['epochs'] + 1):
 
@@ -601,7 +601,7 @@ def main():
                 # print(scores)
                 human_tune_scores.append(scores)
                 # update state dictionary
-                state = update_state(state, epoch, scores['c10h_val_acc'], model, optimizer)
+                state = update_state(state, epoch, -scores['c10h_val_loss'], model, optimizer)
             else:           
                 accuracy = test(epoch, model, test_criterion, test_loader,
                                 run_config, writer, human_tune=human_tune)

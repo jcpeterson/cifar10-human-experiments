@@ -637,7 +637,7 @@ def main():
                 # print(scores)
                 human_tune_scores.append(scores)
                 # update state dictionary
-                state = update_state(state, epoch, scores['c10h_val_acc'], model, optimizer)
+                state = update_state(state, epoch, -scores['c10h_val_loss'], model, optimizer)
             else:           
                 accuracy = test(epoch, model, test_criterion, test_loader,
                                 run_config, writer, human_tune=human_tune)
