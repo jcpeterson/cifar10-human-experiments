@@ -1,8 +1,0 @@
---- POST ICLR reviews ---
-
-For the ICLR draft, we realized wide resnet (wrn) with cutout was just another run of
-wrn without cutout, so we decided to just not include the cutout version since it 
-we don't do more than one model for other architecture types anyway. We did decide to
-put resnext back in since we reran the training for all models and it should now be
-performing find (didn't check yet)
-

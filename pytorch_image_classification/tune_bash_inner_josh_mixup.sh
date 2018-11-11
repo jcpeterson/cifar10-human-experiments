@@ -14,21 +14,22 @@ echo 'activating virtual env'
 
 SDIR='/tigress/ruairidh/model_results'
 JDIR='/tigress/joshuacp/model_results'
+ODIR='mixup_250_run1'
 echo ${model}
 echo 'identifier: '${identifier}
 echo ${python_args}
 echo ${logfile}
 echo 'entering python script'
-resume="${SDIR}/optimal_training_run_1/${model}/model_best_state.pth"
-SV_DIR="${JDIR}/mixup_200_epochs/${model}/${identifier}"
-config="${SDIR}/optimal_training_run_1/${model}/config.json"
+resume="${SDIR}/optimal_training_run/${model}/model_best_state.pth"
+SV_DIR="${JDIR}/${ODIR}/${model}/${identifier}"
+config="${SDIR}/optimal_training_run/${model}/config.json"
 echo ${resume}
 echo ${SV_DIR}
 
 
 python -u ./mixup_tune_with_cifar10h.py ${python_args} --resume=${resume} --c10h_scores_outdir=${SV_DIR} --config=${config}
 
-cp ./${logfile} ${JDIR}/mixup_200_epochs/${model}/.
+cp ./${logfile} ${JDIR}/${ODIR}/${model}/.
 
 echo 'inner done'
 

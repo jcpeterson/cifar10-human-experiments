@@ -1,0 +1,17 @@
+
+11/11/18: We decided we probably don't need epoch-by-epoch weights anymore since we have the
+csv files with all scores for all training (tuning) and  validation sets. Before we turn off
+non-best weight saving though, we need to implement code to save the best model for each 
+validation set in case it's need later for adversarial attack analyses. 
+
+11/11/18: I found a comma in the learning rate list in the bash file. The models seem to have
+trained fine, but it would be a good idea to check the table generation code to make sure the
+comma in the folder names doesn't mess up the parsing
+
+11/10/18: For the ICLR draft, we realized wide resnet (wrn) with cutout was just another run of
+wrn without cutout, so we decided to just not include the cutout version since it 
+we don't do more than one model for other architecture types anyway. We did decide to
+put resnext back in since we reran the training for all models and it should now be
+performing find (didn't check yet)
+
+--- POST ICLR reviews ---
