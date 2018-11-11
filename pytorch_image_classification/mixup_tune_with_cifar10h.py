@@ -206,7 +206,7 @@ def train(epoch, model, optimizer, scheduler, criterion, train_loader, config,
                 data, targets, _ = batch_data
 
             # apply mixup!
-            data, targets = mixup_human(data, targets, 
+            data, targets = mixup_human(data, targets,
                                         float(data_config['mixup_alpha']),
                                         data_config['n_classes'])
         else:
@@ -246,7 +246,7 @@ def train(epoch, model, optimizer, scheduler, criterion, train_loader, config,
 
         optimizer.step()
 
-def test(epoch, model, criterion, test_loaders, run_config, writer, 
+def test(epoch, model, criterion, test_loaders, run_config, writer,
         human_tune=False):
 
     if human_tune:
@@ -296,7 +296,7 @@ def test(epoch, model, criterion, test_loaders, run_config, writer,
         if run_config['use_gpu']:
             data = data.cuda()
             targets = targets.cuda()
-            if human_tune: 
+            if human_tune:
                 c10h_val_c10_targets = c10h_val_c10_targets.cuda()
 
         with torch.no_grad():
@@ -317,7 +317,7 @@ def test(epoch, model, criterion, test_loaders, run_config, writer,
         # turn the NN probs into classifications ("predictions")
         _, preds = torch.max(outputs, dim=1)
 
-        if human_tune: 
+        if human_tune:
             _, targets = targets.max(dim=1)
             _, c10h_val_c10_targets = c10h_val_c10_targets.max(dim=1)
 
@@ -410,9 +410,9 @@ def test(epoch, model, criterion, test_loaders, run_config, writer,
 
     if human_tune:
         logger.info('- epoch {}    c10h_train    : {:.4f} (acc: {:.4f}) | c10h_val    : {:.4f} (acc: {:.4f})'.format(
-            epoch, train_loss_meter.avg, train_accuracy, loss_meter.avg, accuracy))     
+            epoch, train_loss_meter.avg, train_accuracy, loss_meter.avg, accuracy))
         logger.info('-            c10h_train_c10: {:.4f} (acc: {:.4f}) | c10h_val_c10: {:.4f} (acc: {:.4f})'.format(
-            c10h_train_c10_loss_meter.avg, c10h_train_c10_accuracy, c10h_val_c10_loss_meter.avg, c10h_val_c10_accuracy))  
+            c10h_train_c10_loss_meter.avg, c10h_train_c10_accuracy, c10h_val_c10_loss_meter.avg, c10h_val_c10_accuracy))
         logger.info('-            v4            : {:.4f} (acc: {:.4f}) |           v6: {:.4f} (acc: {:.4f})'.format(
             v4_loss_meter.avg, v4_accuracy, v6_loss_meter.avg, v6_accuracy))
         logger.info('-            c10_50k       : {:.4f} (acc: {:.4f})'.format(
@@ -456,7 +456,7 @@ def test(epoch, model, criterion, test_loaders, run_config, writer,
                 'v6_acc' : v6_accuracy,
 
                 'c10_50k_loss': _50k_loss_meter.avg,
-                'c10_50k_acc' : _50k_accuracy,                 
+                'c10_50k_acc' : _50k_accuracy,
         }
     else:
         return accuracy
@@ -554,17 +554,17 @@ def main():
             print("=> no checkpoint found at '{}'".format(run_config['resume']))
 
     # # run test before we start training
-    # if run_config['resume']: 
+    # if run_config['resume']:
     #     print('Test accuracy of pretrained model --------------------')
     # else:
     #     print('Test accuracy of untrained model ---------------------')
     # if run_config['test_first']:
     #     if human_tune:
-    #         test(0, model, test_criterion, 
-    #             (train_loader, test_loader, _50k_loader, v4_loader, v6_loader), 
+    #         test(0, model, test_criterion,
+    #             (train_loader, test_loader, _50k_loader, v4_loader, v6_loader),
     #             run_config, writer,
     #             human_tune=human_tune)
-    #     else:           
+    #     else:
     #         test(0, model, test_criterion, test_loader,
     #             run_config, writer, human_tune=human_tune)
 
@@ -576,7 +576,7 @@ def main():
         'optimizer': None,
         'epoch': 0,
         'accuracy': 0,
-        'best_accuracy': 0,
+        'best_accuracy': -99999999,
         'best_epoch': 0,
     }
 
@@ -594,15 +594,15 @@ def main():
         if (run_config['test_first'] and epoch == 0) or epoch > 0:
             # test
             if human_tune:
-                scores = test(epoch, model, test_criterion, 
-                    (train_loader, test_loader, _50k_loader, v4_loader, v6_loader), 
+                scores = test(epoch, model, test_criterion,
+                    (train_loader, test_loader, _50k_loader, v4_loader, v6_loader),
                     run_config, writer,
                     human_tune=human_tune)
                 # print(scores)
                 human_tune_scores.append(scores)
                 # update state dictionary
                 state = update_state(state, epoch, -scores['c10h_val_loss'], model, optimizer)
-            else:           
+            else:
                 accuracy = test(epoch, model, test_criterion, test_loader,
                                 run_config, writer, human_tune=human_tune)
                 # update state dictionary
@@ -612,7 +612,7 @@ def main():
 
             # # update state dictionary
             # state = update_state(state, epoch, accuracy, model, optimizer)
-            
+
             if not run_config['no_output']:
                 # save model
                 save_checkpoint(state, outdir)

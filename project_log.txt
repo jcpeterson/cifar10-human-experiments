@@ -5,21 +5,21 @@ csv files with all scores for all training (tuning) and validation sets. In it's
 implemented new code in 'tune_with_cifar10h_v2.py' to save the current/best model for each 
 dataset in case it's needed later for adversarial attack analyses. In this file, update_state 
 behaves identically when given a single numeric score. When given a dictionary, it processes
-all scores. save_checkpoints_for_all_datasets is the new saving function, separate from the 
-old function which still exists, but called only for human_tune.
+all scores. The only difference is that in both cases best_score values don't have to be 
+initialized anymore (more robustly dealing with the issue fix in the last entry in this log).
+save_checkpoints_for_all_datasets is the new saving function, separate from the old function 
+which still exists, but called only for human_tune.
 
 NOTE: It hasn't been tested yet.
-
-NOTE: The issue in the last entry below is still present in the old files and should be fixed.
 
 
 11/11/18 -----------------------------------------------------------------------------------
 Today and yesterday we had been running tuning with a "fix" for saving the best
 model based on -c1h_val_loss (negative loss) instead of c1h_val_acc (accuracy), because
 accuracy isn't what we optimize in our human tuning models (top 1 is already maxed). We
-just found a bug where 'accuracy' in state was initialized at 0, so -loss is never 
-registered as better than the first model that's loaded before tuning. This isn't fixed
-yet and needs to be implemented in all tuning scripts. state['accuracy'] = -9999999? 
+just found a bug where 'best_accuracy' in state was initialized at 0, so -loss is never 
+registered as better than the first model that's loaded before tuning. This was fixed in
+all tuning scripts by initializing state['best_accuracy'] to -99999999.
 
 
 11/11/18 -----------------------------------------------------------------------------------
