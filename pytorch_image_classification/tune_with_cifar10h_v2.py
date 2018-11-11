@@ -11,7 +11,7 @@
 # python tune_with_cifar10h.py --human_tune --dataset CIFAR10H --arch shake_shake --config tmp_reference_model/config.json --resume tmp_reference_model/model_best_state.pth --gpu 0 --no_output --base_lr 0.01 --nonhuman_control
 
 
-import os, time, random, json, logging, argparse, csv
+import os, time, random, json, logging, argparse, csv, shutil
 import numpy as np
 
 import torch

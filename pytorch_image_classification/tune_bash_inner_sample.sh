@@ -13,8 +13,8 @@ echo 'activating virtual env'
 source activate pytorch_env
 
 SDIR='/tigress/ruairidh/model_results'
-JDIR='/tigress/joshuacp'
-O_DIR='model_results_sampling'
+JDIR='/tigress/joshuacp/model_results'
+O_DIR='sampling_run1'
 L_DIR='optimal_training_run'
 echo ${model}
 echo 'identifier: '${identifier}
@@ -27,7 +27,7 @@ config="${SDIR}/${L_DIR}/${model}/config.json"
 echo ${resume}
 echo ${SV_DIR}
 
-python -u ./tune_with_cifar10h_250_epochs.py ${python_args} --resume=${resume} --c10h_sample --c10h_scores_outdir=${SV_DIR} --config=${config}
+python -u ./tune_with_cifar10h_v2_250_epochs.py ${python_args} --resume=${resume} --c10h_sample --c10h_scores_outdir=${SV_DIR} --config=${config}
 
 cp ./${logfile} ${JDIR}/${O_DIR}/${model}/.
 

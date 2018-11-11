@@ -11,7 +11,7 @@
 # python tune_with_cifar10h.py --human_tune --dataset CIFAR10H --arch shake_shake --config tmp_reference_model/config.json --resume tmp_reference_model/model_best_state.pth --gpu 0 --no_output --base_lr 0.01 --nonhuman_control
 
 
-import os, time, random, json, logging, argparse, csv
+import os, time, random, json, logging, argparse, csv, shutil
 import numpy as np
 
 import torch
@@ -97,7 +97,7 @@ def parse_args():
     parser.add_argument('--tensorboard_model_params', action='store_true')
 
     # configuration of optimizer
-    parser.add_argument('--epochs', type=int, default = 150)
+    parser.add_argument('--epochs', type=int, default = 250)
     parser.add_argument('--batch_size', type=int)
     parser.add_argument('--optimizer', type=str, choices=['sgd', 'adam'])
     parser.add_argument('--base_lr', type=float)
@@ -496,18 +496,52 @@ def test(epoch, model, criterion, test_loaders, run_config, writer,
         return accuracy
 
 
-def update_state(state, epoch, accuracy, model, optimizer):
+def update_state(state, epoch, score_or_scores, model, optimizer):
+
     state['state_dict'] = model.state_dict()
     state['optimizer'] = optimizer.state_dict()
     state['epoch'] = epoch
-    state['accuracy'] = accuracy
 
-    # update best accuracy
-    if accuracy > state['best_accuracy']:
-        state['best_accuracy'] = accuracy
-        state['best_epoch'] = epoch
+    if type(score_or_scores) is not dict:
+        # runs as the original function normally did
+        score = score_or_scores
+        state['score'] = score
+        # update best accuracy
+        if 'best_score' not in state.keys():
+            # the first is the best; keys now created
+            state['best_score'] = score
+            state['best_epoch'] = epoch
+        else:
+            if score > state['best_score']:
+                state['best_score'] = score
+                state['best_epoch'] = epoch
+    else:
+        # update best epoch and score for EACH dataset
+        scores = score_or_scores
+        score_keys = [x for x in scores.keys() if (('loss' in x) or ('acc' in x))]
+        for key in score_keys:
+            score = scores[key]
+            if (key+'_best_score') not in state.keys():
+                state[key+'_best_score'] = score
+                state[key+'_best_epoch'] = epoch
+            else:
+                sign = -1 if ('loss' in key) else 1
+                if (sign * score) > (sign * state[key+'_best_score']):
+                    state[key+'_best_score'] = score
+                    state[key+'_best_epoch'] = epoch
 
     return state
+
+
+def save_checkpoints_for_all_datasets(state, score_keys, outdir):
+    for key in score_keys:
+        model_path = os.path.join(outdir,
+                                  'model_state_'+key+'.pth')
+        best_model_path = os.path.join(outdir,
+                                       'model_best_state_'+key+'.pth')
+        torch.save(state, model_path)
+        if state[key+'_best_epoch'] == state['epoch']:
+            shutil.copy(model_path, best_model_path)
 
 
 def main():
@@ -608,19 +642,24 @@ def main():
 
     state = {
         'config': config,
-        'state_dict': None,
-        'optimizer': None,
-        'epoch': 0,
-        'accuracy': 0,
-        'best_accuracy': -99999999,
-        'best_epoch': 0,
+        # 'state_dict': None,
+        # 'optimizer': None,
+        # 'epoch': 0,
+        # 'accuracy': 0,
+        # 'best_accuracy': 0,
+        # 'best_epoch': 0,
     }
 
     save_counter = 0
 
-    optim_config['epochs']=250
+    optim_config['epochs'] = 250
 
-    for epoch in range(0, optim_config['epochs'] + 1):
+    if run_config['test_first']:
+        total_epochs = optim_config['epochs'] + 1 # + 1 for the test run
+    else:
+        total_epochs = optim_config['epochs']
+
+    for epoch in range(0, total_epochs):
 
         if epoch > 0:
             train(epoch, model, optimizer, scheduler, train_criterion,
@@ -636,8 +675,14 @@ def main():
                     human_tune=human_tune)
                 # print(scores)
                 human_tune_scores.append(scores)
+                if epoch == 0:
+                    keys = human_tune_scores[0].keys()
+                    score_keys = [x for x in keys if (('loss' in x) or ('acc' in x))]
                 # update state dictionary
-                state = update_state(state, epoch, -scores['c10h_val_loss'], model, optimizer)
+                # state = update_state(state, epoch, -scores['c10h_val_loss'], model, optimizer)
+                # this function now knows how to deal with loss and acc being
+                # inversely indicative of performance
+                state = update_state(state, epoch, scores, model, optimizer)
             else:
                 accuracy = test(epoch, model, test_criterion, test_loader,
                                 run_config, writer, human_tune=human_tune)
@@ -654,34 +699,37 @@ def main():
                 save_checkpoint(state, outdir)
                 # make dir and save score if requested
 
+            # the idea with this block is to save:
+            # (1) an updated log of the validation scores for every epoch
+            # (2) the current and best weights for each dataset
+            # note: maybe we should merge this with the normal output stuff
+            if human_tune and run_config['c10h_scores_outdir']:
+                # create output directory
+                c10h_outdir = run_config['c10h_scores_outdir']
+                if not os.path.exists(c10h_outdir):
+                    os.makedirs(c10h_outdir)
+                # resave (overwrite) scores file with latest entries
+                with open(os.path.join(c10h_outdir, 'scores.csv'), 'w') as output_file:
+                    dict_writer = csv.DictWriter(output_file, keys)
+                    dict_writer.writeheader()
+                    dict_writer.writerows(human_tune_scores)
+
+                # overwrite current weight save and save best if they are better
+                save_checkpoints_for_all_datasets(state, score_keys, c10h_outdir)
+
             #set save interval manually
-            run_config['c10h_save_interval'] = 2
+            # run_config['c10h_save_interval'] = 2
 
-            if (human_tune and save_counter == int(run_config['c10h_save_interval'])) or \
-                (human_tune and run_config['test_first']):
-                save_counter = 0
-                # note: maybe we should merge this with the normal output stuff
-                if run_config['c10h_scores_outdir']:
-
-                    # create output directory
-                    c10h_outdir = run_config['c10h_scores_outdir']
-                    if not os.path.exists(c10h_outdir):
-                        os.makedirs(c10h_outdir)
-
-                    # resave (overwrite) scores file with latest entries
-                    keys = human_tune_scores[0].keys()
-
-                    print('keys: ', keys, '\n c10h_outdir: ', c10h_outdir)
-
-#                    with open(os.path.join(c10h_outdir, 'scores.csv'), 'wb') as output_file:
-                    with open(os.path.join(c10h_outdir, 'scores.csv'), 'w') as output_file:  #changed from above
-                        dict_writer = csv.DictWriter(output_file, keys)
-                        dict_writer.writeheader()
-                        dict_writer.writerows(human_tune_scores)
-
-                    # save model
-                    save_checkpoint(state, c10h_outdir)
-                    save_checkpoint_epoch(state, epoch, c10h_outdir)
+            # this version was either a bug or meant to save the test run models
+            # if (human_tune and save_counter == int(run_config['c10h_save_interval'])) or \
+            #     (human_tune and run_config['test_first']):
+            # if (human_tune and save_counter == int(run_config['c10h_save_interval'])):
+            #     save_counter = 0
+            #     # note: maybe we should merge this with the normal output stuff
+            #     if run_config['c10h_scores_outdir']:
+            #         # save model
+            #         save_checkpoint(state, c10h_outdir)
+            #         save_checkpoint_epoch(state, epoch, c10h_outdir)
 
     if not run_config['no_output'] and run_config['tensorboard']:
         outpath = os.path.join(outdir, 'all_scalars.json')
