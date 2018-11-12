@@ -1,4 +1,5 @@
 
+
 11/11/18 -----------------------------------------------------------------------------------
 We decided we probably don't need epoch-by-epoch weights anymore since we have the
 csv files with all scores for all training (tuning) and validation sets. In it's place, Josh
@@ -8,9 +9,11 @@ behaves identically when given a single numeric score. When given a dictionary, 
 all scores. The only difference is that in both cases best_score values don't have to be 
 initialized anymore (more robustly dealing with the issue fix in the last entry in this log).
 save_checkpoints_for_all_datasets is the new saving function, separate from the old function 
-which still exists, but called only for human_tune.
+which still exists, but called only for human_tune. Tested and the code and seems to work.
 
-NOTE: It hasn't been tested yet.
+
+11/11/18 -----------------------------------------------------------------------------------
+mixup_250_run1 has the problem described below, so don't used the weights, only the CSVs.
 
 
 11/11/18 -----------------------------------------------------------------------------------
