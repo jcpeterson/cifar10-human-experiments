@@ -40,6 +40,7 @@ for model_folder in model_folders:
         if df.epoch.max() % 10 != 0:
             epochs_mod_10 = False
         print('   ', param_folder, 'EPOCHS DONE:', df.epoch.max())
+    del last_epoch
 
     if not epochs_consistent:
         print('    WARNING: NOT ALL MODELS HAVE SAME # OF EPOCHS')
