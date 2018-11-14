@@ -11,7 +11,7 @@ args = parser.parse_args()
 out_path = getattr(args, 'path')
 
 def list_folders_only(path):
-    return [x for x in listdir(path) if isdir(join(path, x))]
+    return [x for x in listdir(path) if isdir(join(path, x)) and 'csv' not in x]
 
 model_folders = sorted(list_folders_only(out_path))
 for model_folder in model_folders:
