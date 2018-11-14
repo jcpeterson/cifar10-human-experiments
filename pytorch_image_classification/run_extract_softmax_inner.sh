@@ -13,6 +13,4 @@ echo ${model}
 
 python extract_softmax.py --dataset CIFAR10 --arch ${token} --config /tigress/ruairidh/model_results/optimal_training_run/${model}/config.json --resume /tigress/ruairidh/model_results/optimal_training_run/${model}/model_best_state.pth --outdir /home/ruairidh/superman/cifar10-human-experiments/predictions --gpu 0
 
-#uncomment below for post
-#python extract_softmax.py --dataset CIFAR10 --arch ${token} --config /tigress/ruairidh/model_results/run_1/${model}/config.json --resume /tigress/ruairidh/model_results/run_1/saves/${model}/model_state_100.pth --outdir /home/ruairidh/superman/cifar10-human-experiments/confusion_matrices/post --gpu 0
 echo 'inner done'
