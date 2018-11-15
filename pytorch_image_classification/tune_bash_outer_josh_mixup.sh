@@ -1,18 +1,20 @@
 #!/usr/bin/env bash
 echo 'outer tuning script'
 
-models='shake_shake_26_2x64d_SSI_cutout16 resnext_29_8x64d'
+#models='shake_shake_26_2x64d_SSI_cutout16 resnext_29_8x64d'
+models='vgg_15_BN_64 resnet_basic_110 resnet_preact_bottleneck_164 wrn_28_10 densenet_BC_100_12 pyramidnet_basic_110_270 resnext_29_8x64d shake_shake_26_2x64d_SSI_cutout16'
 
 declare -A archs=([vgg_15_BN_64]=vgg [resnet_basic_110]=resnet [resnet_preact_bottleneck_164]=resnet_preact [wrn_28_10]=wrn [densenet_BC_100_12]=densenet [pyramidnet_basic_110_270]=pyramidnet [resnext_29_8x64d]=resnext [wrn_28_10_cutout16]=wrn [shake_shake_26_2x64d_SSI_cutout16]=shake_shake)
 
-declare -a control=(True False)
+declare -a control=(True)
 
 #declare -a lr=(0.1 0.01 0.001)
 declare -a lr=(0.01 0.001 0.0001)
 
-declare -a alphas=(0.25 0.5 1.0)
+#declare -a alphas=(0.25 0.5 1.0)
+declare -a alphas=(0.1 0.2 0.3)
 
-declare -a seeds=(0)
+declare -a seeds=(0 1 2)
 # for every model
 #for model in "${!archs[@]}"
 for model in $models
