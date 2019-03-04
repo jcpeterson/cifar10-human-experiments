@@ -25,7 +25,7 @@ try:
 except Exception:
     is_tensorboard_available = False
 
-from dataloader import get_loader
+from dataloader_extract_softmax import get_loader
 
 from utils import (str2bool, load_model, save_checkpoint, create_optimizer,
                    AverageMeter, mixup, CrossEntropyLoss, onehot)
@@ -179,22 +179,19 @@ def parse_args():
     return config
 
 
-def test(model, criterion, test_loader, run_config):
+def test(model, test_loader, run_config):
 
     model.eval()
-
-    loss_meter = AverageMeter()
-    correct_meter = AverageMeter()
 
     target_list = []
 
     output_list = []
 
+    probs_list = []
+
     for step, batch_data in enumerate(test_loader):
 
         data, targets = batch_data
-
-#        print('targets at step ', step, targets)
 
         if run_config['use_gpu']:
             data = data.cuda()
@@ -202,31 +199,43 @@ def test(model, criterion, test_loader, run_config):
 
         with torch.no_grad():
             outputs = model(data)
+            sft = nn.Softmax()
+            probs = sft(outputs)
 
-#        print('outputs at step ', step, outputs)
-
-        n_obs = data.size(0)
-
-        # compute loss for each test set
-        loss = criterion(outputs, targets)
-
-        # save losses
-        loss_meter.update(loss.item(), n_obs)
-
-        # turn the NN probs into classifications ("predictions")
-        _, preds = torch.max(outputs, dim=1)
-
-        correct_ = preds.eq(targets).sum().item()
-        correct_meter.update(correct_, 1)
- 
         target_list.append(targets.cpu().numpy()) #var.data.numpy()
         output_list.append(outputs.cpu().numpy())
+        probs_list.append(probs.cpu().numpy())
+        
+    return np.concatenate(target_list), np.vstack(output_list), np.vstack(probs_list)
 
-#        print('\n target \n', target_list[-1], '\n output \n', output_list[-1])
+def train(model, train_loader, run_config):
+    # NB, in special version of dataloader, train shuffle turned off
+    model.eval()
 
-    accuracy = correct_meter.sum / float(len(test_loader.dataset))
+    target_list = []
 
-    return np.concatenate(target_list), np.vstack(output_list), np.array(accuracy)
+    output_list = []
+
+    probs_list = []
+    
+    for step, batch_data in enumerate(train_loader):
+
+        data, targets = batch_data
+
+        if run_config['use_gpu']:
+            data = data.cuda()
+            targets = targets.cuda()
+
+        with torch.no_grad():
+            outputs = model(data)
+            sft = nn.Softmax()
+            probs = sft(outputs)
+
+        target_list.append(targets.cpu().numpy()) #var.data.numpy()
+        output_list.append(outputs.cpu().numpy())
+        probs_list.append(probs.cpu().numpy())
+
+    return np.concatenate(target_list), np.vstack(output_list), np.vstack(probs_list)
 
 def main():
     # parse command line argument and generate config dictionary
@@ -260,15 +269,21 @@ def main():
             print("=> no checkpoint found at '{}'".format(run_config['resume']))
 
     # get labels
-    labels, outputs, accuracy = test(model, test_criterion, 
-            test_loader, 
-            run_config)
+    labels_test, outputs_test, probs_test = test(model, test_loader, run_config)
+
+    labels_train, outputs_train, probs_train = train(model, train_loader, run_config)
 
     outdir = run_config['outdir'] # add outdir to call
     
-    print(labels.shape)
+    print('test_labels shape', labels_test.shape)
+    print('train_labels shape', labels_train.shape)
 
-    np.savez(os.path.join(str(outdir), str(run_config['resume'].split('/')[-2])), labels=labels, outputs=outputs, accuracy=accuracy)
+    np.savez(os.path.join(str(outdir), str(run_config['resume'].split('/')[-2])) + '_test', labels=labels_test, 
+                                                                                            logits=outputs_test,
+                                                                                            probs=probs_test)
+    np.savez(os.path.join(str(outdir), str(run_config['resume'].split('/')[-2])) + '_train', labels=labels_train, 
+                                                                                             logits=outputs_train,
+                                                                                             probs=probs_train)
 
 if __name__ == '__main__':
     # main_tune()
