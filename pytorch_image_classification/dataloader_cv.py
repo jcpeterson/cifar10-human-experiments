@@ -82,12 +82,17 @@ class CIFAR10(data.Dataset):
         # else:
         #     downloaded_list = self.test_list
 
-        self.all_list =  self.train_list +  self.test_list
+        print('train?', self.train)
+        self.all_list =  self.train_list + self.test_list
+        print(self.train_list, len(self.train_list))
+        print(self.test_list, len(self.test_list))
+        print(self.all_list, len(self.all_list))
 
         if self.train:
             downloaded_list = self.all_list[:self.cv_index] + self.all_list[self.cv_index+1:]
         else:
             downloaded_list = self.all_list[self.cv_index]
+        print(downloaded_list)
 
 
         self.data = []
