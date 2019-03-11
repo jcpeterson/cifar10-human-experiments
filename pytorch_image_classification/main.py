@@ -267,7 +267,9 @@ def test(epoch, model, criterion, test_loader, run_config, writer):
     loss_meter = AverageMeter()
     correct_meter = AverageMeter()
     start = time.time()
+
     for step, (data, targets) in enumerate(test_loader):
+        
         if run_config['tensorboard_test_images']:
             if epoch == 0 and step == 0:
                 image = torchvision.utils.make_grid(

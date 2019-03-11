@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 # coding: utf-8
-
+print(' in main_CV.py')
 import os
 import time
 import json
@@ -22,6 +22,7 @@ except Exception:
     is_tensorboard_available = False
 
 from dataloader_cv import get_loader
+print('loaded dataloader cv')
 from utils import (str2bool, load_model, save_checkpoint, create_optimizer,
                    AverageMeter, mixup, CrossEntropyLoss)
 
@@ -156,7 +157,7 @@ def parse_args():
     # to test the loaded model and don't train
     parser.add_argument('--test_only', action='store_true', default=False)
 
-    parser.add_argument('--held_out', type=str, required=True)
+    parser.add_argument('--held_out', type=int, required=False)
 
     args = parser.parse_args()
     if not is_tensorboard_available:
@@ -191,7 +192,7 @@ def train(epoch, model, optimizer, scheduler, criterion, train_loader, config,
                                   data_config['n_classes'])
 
         if run_config['tensorboard_train_images']:
-            if step == 0:
+            if epoch == 0 and step == 0:
                 image = torchvision.utils.make_grid(
                     data, normalize=True, scale_each=True)
                 writer.add_image('Train/Image', image, epoch)
@@ -267,7 +268,17 @@ def test(epoch, model, criterion, test_loader, run_config, writer):
     loss_meter = AverageMeter()
     correct_meter = AverageMeter()
     start = time.time()
+
     for step, (data, targets) in enumerate(test_loader):
+        if step <= 1:
+            print('step ', step)
+            print('printing hash of first data row[:5]')
+            d = data.cpu().numpy()[0, :5] # maybe this step not needed
+            print(d.shape)
+            print(hash(d.data))
+            # remove below
+            exit()
+
         if run_config['tensorboard_test_images']:
             if epoch == 0 and step == 0:
                 image = torchvision.utils.make_grid(

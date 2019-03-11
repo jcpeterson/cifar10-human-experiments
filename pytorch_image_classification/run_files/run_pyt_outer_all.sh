@@ -21,8 +21,8 @@ declare -A params=([vgg_15_BN_64]="--arch=vgg"
 [resnext_29_8x64d]="--arch=resnext --depth 29 --cardinality=8 --base_channels=64 --batch_size=64 --base_lr=0.05"
 [wrn_28_10_cutout16]="--arch=wrn --depth 28 --epochs=200 --scheduler=cosine --base_lr=0.1 --batch_size=64 --seed 17 --use_cutout --cutout_size 16" 
 [shake_shake_26_2x64d_SSI_cutout16]="--arch=shake_shake --depth=26 --base_channels=64 --epochs=300 --scheduler=cosine --base_lr=0.1 --seed 17 --batch_size=64 --use_cutout --cutout_size=16")
-
-declare -A times=([vgg_15_BN_64]=360 
+# change vgg back to 360
+declare -A times=([vgg_15_BN_64]=60 
 [resnet_basic_110]=360 
 [resnet_preact_bottleneck_164]=1440 
 [wrn_28_10]=1440 
@@ -33,8 +33,8 @@ declare -A times=([vgg_15_BN_64]=360
 [shake_shake_26_2x64d_SSI_cutout16]=4320)
 echo 'declared dicts'
 
-option=''
-held_outs='6'
+option='_CV'
+held_outs='1 2 3 4 5'
 
 for model in $models
   do
