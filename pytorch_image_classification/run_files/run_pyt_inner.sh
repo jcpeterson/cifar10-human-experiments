@@ -13,11 +13,13 @@ SDIR='/tigress/ruairidh/model_results'
 echo ${SDIR}
 echo ${python_args}
 echo ${log_file}
+echo 'held out'
+echo ${held_out}
 echo 'option'
 echo ${option}
 echo 'entering python script'
 
-python -u "../main${option}.py" ${python_args} --seed 7 --outdir ${SDIR}/${out_dir} 
+python -u "../main${option}.py" ${python_args} --seed 7 --outdir ${SDIR}/${out_dir} --held_out ${held_out}
 
 cp ./${log_file} ${SDIR}/.
 
