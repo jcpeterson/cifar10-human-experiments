@@ -4,7 +4,6 @@
 #SBATCH --ntasks-per-node=1
 #SBATCH --gres=gpu:1
 #SBATCH --mail-type=end
-#SBATCH --mail-user=battleday@princeton.edu
 #SBATCH --mem=16000
 
 # activate conda environment
@@ -14,6 +13,7 @@ SDIR='/tigress/ruairidh/model_results'
 echo ${SDIR}
 echo ${python_args}
 echo ${log_file}
+echo 'option'
 echo ${option}
 echo 'entering python script'
 
