@@ -156,8 +156,6 @@ def parse_args():
     # to test the loaded model and don't train
     parser.add_argument('--test_only', action='store_true', default=False)
 
-    parser.add_argument('--held_out', type=str, required=True)
-
     args = parser.parse_args()
     if not is_tensorboard_available:
         args.tensorboard = False
@@ -436,7 +434,7 @@ def main():
         print('outdir 2: ', outdir)
         # save model
         save_checkpoint(state, outdir)
-#        save_checkpoint_epoch(state, epoch, outdir)
+        save_checkpoint_epoch(state, epoch, outdir)
 
     if run_config['tensorboard']:
         outpath = os.path.join(outdir, 'all_scalars.json')

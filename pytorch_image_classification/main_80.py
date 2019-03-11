@@ -256,6 +256,7 @@ def train(epoch, model, optimizer, scheduler, criterion, train_loader, config,
         writer.add_scalar('Train/Accuracy', accuracy_meter.avg, epoch)
         writer.add_scalar('Train/Time', elapsed, epoch)
 
+    return accuracy
 
 def test(epoch, model, criterion, test_loader, run_config, writer):
     logger.info('Test {}'.format(epoch))
@@ -422,22 +423,23 @@ def main():
     }
     for epoch in range(start_epoch, optim_config['epochs'] + 1):
         # train
-        train(epoch, model, optimizer, scheduler, train_criterion,
+        t_accuracy = train(epoch, model, optimizer, scheduler, train_criterion,
               train_loader, config, writer)
 
+        print('t_accuracy is : ', t_accuracy)
         # test
         accuracy = test(epoch, model, test_criterion, test_loader, run_config,
                         writer)
-        print('accuracy is : ', accuracy, accuracy.dtype)
+        print('accuracy is : ', accuracy)
         # update state dictionary
         state = update_state(state, epoch, accuracy, model, optimizer)
-#        print('outdir 2: ', outdir)
+
         # save model
         save_checkpoint(state, outdir)
-#        save_checkpoint_epoch(state, epoch, outdir)
-        if accuracy > 0.8:
 
+        if t_accuracy > 0.8:
             break
+
     if run_config['tensorboard']:
         outpath = os.path.join(outdir, 'all_scalars.json')
         writer.export_scalars_to_json(outpath)

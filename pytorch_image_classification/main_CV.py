@@ -21,7 +21,7 @@ try:
 except Exception:
     is_tensorboard_available = False
 
-from dataloader import get_loader
+from dataloader_cv import get_loader
 from utils import (str2bool, load_model, save_checkpoint, create_optimizer,
                    AverageMeter, mixup, CrossEntropyLoss)
 
@@ -360,7 +360,9 @@ def main():
         json.dump(config, fout, indent=2)
 
     # load data loaders
-    train_loader, test_loader = get_loader(config['data_config'])
+    # add argument here
+    held_out = run_config['held_out']
+    train_loader, test_loader = get_loader(config['data_config'], held_out)
 
     # load model
     logger.info('Loading model...')

@@ -1,15 +1,15 @@
 #!/usr/bin/env bash
 echo 'outer script'
 
-models='vgg_15_BN_64
-resnet_basic_110
-resnet_preact_bottleneck_164
-densenet_BC_100_12
-wrn_28_10
-pyramidnet_basic_110_270
-resnext_29_8x64d
-wrn_28_10_cutout16
-shake_shake_26_2x64d_SSI_cutout16' # no commas!
+models='vgg_15_BN_64'
+#resnet_basic_110
+#resnet_preact_bottleneck_164
+#densenet_BC_100_12
+#wrn_28_10
+#pyramidnet_basic_110_270
+#resnext_29_8x64d
+#wrn_28_10_cutout16
+#shake_shake_26_2x64d_SSI_cutout16' # no commas!
 # maybe no quotes needed below?
 
 declare -A params=([vgg_15_BN_64]="--arch=vgg" 
@@ -34,6 +34,7 @@ declare -A times=([vgg_15_BN_64]=360
 echo 'declared dicts'
 
 option=''
+held_outs='6'
 
 for model in $models
   do
@@ -43,8 +44,13 @@ for model in $models
   python_args=${params[$model]}
   echo $time
   echo $python_args
-  log_file="${model}${option}".out
-  out_dir="${model}${option}"
-  sbatch --time=${time} --job-name=${model} --output=${log_file} --export=out_dir=${out_dir},python_args="${python_args}",log_file=${log_file},option=$option run_pyt_inner.sh
+  for held_out in $held_outs
+  do
+    echo 'held out'
+    echo $held_out
+    log_file="${model}${option}_${held_out}".out
+    out_dir="${model}${option}_${held_out}"
+    sbatch --time=${time} --job-name=${model} --output=${log_file} --export=held_out=${held_out},out_dir=${out_dir},python_args="${python_args}",log_file=${log_file},option=$option run_pyt_inner.sh
+  done
   echo 'done outer'
   done
