@@ -5,6 +5,7 @@ import numpy as np
 
 import torch
 import torch.utils.data
+import torch.utils.data as data
 
 import torchvision
 import torchvision.models
@@ -205,7 +206,7 @@ class Dataset(object):
     #     return train_dataset, test_dataset
 
     def get_datasets(self, cv_index=6):
-        
+
         if self.config['dataset'] == 'CIFAR10':
             train_dataset = CIFAR10(
                 self.dataset_dir,
