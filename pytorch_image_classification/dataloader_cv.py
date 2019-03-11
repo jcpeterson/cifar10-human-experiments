@@ -205,20 +205,28 @@ class Dataset(object):
     #     return train_dataset, test_dataset
 
     def get_datasets(self, cv_index=6):
-        train_dataset = CIFAR10(
-            self.dataset_dir,
-            train=True,
-            transform=self.train_transform,
-            download=True,
-            cv_index=cv_index
-            )
-        test_dataset = CIFAR10(
-            self.dataset_dir,
-            train=False,
-            transform=self.test_transform,
-            download=True,
-            cv_index=cv_index
-            )
+        
+        if self.config['dataset'] == 'CIFAR10':
+            train_dataset = CIFAR10(
+                self.dataset_dir,
+                train=True,
+                transform=self.train_transform,
+                download=True,
+                cv_index=cv_index
+                )
+            test_dataset = CIFAR10(
+                self.dataset_dir,
+                train=False,
+                transform=self.test_transform,
+                download=True,
+                cv_index=cv_index
+                )
+        else:
+            train_dataset = getattr(torchvision.datasets, self.config['dataset'])(
+                self.dataset_dir, train=True, transform=self.train_transform, download=True)
+            test_dataset = getattr(torchvision.datasets, self.config['dataset'])(
+                self.dataset_dir, train=False, transform=self.test_transform, download=True)
+
         return train_dataset, test_dataset
 
     def _get_random_erasing_train_transform(self):
