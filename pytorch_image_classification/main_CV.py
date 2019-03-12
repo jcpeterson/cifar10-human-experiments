@@ -8,7 +8,7 @@ import logging
 import argparse
 import numpy as np
 import random
-
+import hashlib
 import torch
 import torch.nn as nn
 import torch.optim
@@ -271,13 +271,20 @@ def test(epoch, model, criterion, test_loader, run_config, writer):
 
     for step, (data, targets) in enumerate(test_loader):
         if step == 0:
+            h = hashlib.sha256()
             print('step ', step)
             print('printing hash of first data row[:5]')
             d = data.cpu().numpy() # maybe this step not needed
             print(d.shape)
             d = d[0, 0, 0, :5]
             print(d.shape)
-            print(hash(bytes(d.data)))
+            print(d)
+            d = (d.tostring())
+            print(d)
+            h.update(d)
+            h.hexdigest()
+#                          print(hash(bytes(d)))
+
             # remove below
             exit()
 

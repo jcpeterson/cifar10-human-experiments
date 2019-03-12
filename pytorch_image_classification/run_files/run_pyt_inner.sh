@@ -3,7 +3,6 @@
 #SBATCH -N 1 # node count
 #SBATCH --ntasks-per-node=1
 #SBATCH --gres=gpu:1
-#SBATCH --mail-type=end
 #SBATCH --mem=16000
 
 # activate conda environment
