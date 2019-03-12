@@ -270,12 +270,14 @@ def test(epoch, model, criterion, test_loader, run_config, writer):
     start = time.time()
 
     for step, (data, targets) in enumerate(test_loader):
-        if step <= 1:
+        if step == 0:
             print('step ', step)
             print('printing hash of first data row[:5]')
-            d = data.cpu().numpy()[0, :5] # maybe this step not needed
+            d = data.cpu().numpy() # maybe this step not needed
             print(d.shape)
-            print(hash(d.data))
+            d = d[0, 0, 0, :5]
+            print(d.shape)
+            print(hash(bytes(d.data)))
             # remove below
             exit()
 
