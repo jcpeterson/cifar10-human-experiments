@@ -5,6 +5,7 @@
 # python extract.py --human_tune --dataset CIFAR10H --arch vgg --config tmp_reference_model/config.json --resume tmp_reference_model/best_model_state.pth --gpu 0 --no_output --test_only
 
 import os
+import hashlib
 import time
 import json
 import logging
@@ -28,7 +29,7 @@ except Exception:
 #from dataloader_extract_softmax import get_loader
 # add in
 from dataloader_cv_extract_softmax import get_loader
-print('loaded dataloader cv extract)
+print('loaded dataloader cv extract')
 from utils import (str2bool, load_model, save_checkpoint, create_optimizer,
                    AverageMeter, mixup, CrossEntropyLoss, onehot)
 
@@ -186,7 +187,8 @@ def test(model, test_loader, run_config):
     probs_list = []
 
     for step, batch_data in enumerate(test_loader):
-       if step == 0:
+        data, targets = batch_data
+        if step == 0:
             h = hashlib.sha256()
             print('printing hash of first data row[:5]')
             d = data.cpu().numpy() # maybe this step not needed
@@ -200,7 +202,6 @@ def test(model, test_loader, run_config):
             h.hexdigest()
 
 
-        data, targets = batch_data
 
         if run_config['use_gpu']:
             data = data.cuda()
