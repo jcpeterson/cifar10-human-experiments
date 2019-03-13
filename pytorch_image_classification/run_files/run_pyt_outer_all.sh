@@ -22,7 +22,7 @@ declare -A params=([vgg_15_BN_64]="--arch=vgg"
 [wrn_28_10_cutout16]="--arch=wrn --depth 28 --epochs=200 --scheduler=cosine --base_lr=0.1 --batch_size=64 --seed 17 --use_cutout --cutout_size 16" 
 [shake_shake_26_2x64d_SSI_cutout16]="--arch=shake_shake --depth=26 --base_channels=64 --epochs=300 --scheduler=cosine --base_lr=0.1 --seed 17 --batch_size=64 --use_cutout --cutout_size=16")
 
-declare -A times=([vgg_15_BN_64]=360 
+declare -A times=([vgg_15_BN_64]=60 
 [resnet_basic_110]=360 
 [resnet_preact_bottleneck_164]=1440 
 [wrn_28_10]=1440 

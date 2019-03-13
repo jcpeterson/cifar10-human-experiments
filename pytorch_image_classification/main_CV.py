@@ -270,9 +270,9 @@ def test(epoch, model, criterion, test_loader, run_config, writer):
     start = time.time()
 
     for step, (data, targets) in enumerate(test_loader):
-        if step == 0:
+        if epoch == 0 and step == 0:
             h = hashlib.sha256()
-            print('step ', step)
+            print('epoch ', epoch)
             print('printing hash of first data row[:5]')
             d = data.cpu().numpy() # maybe this step not needed
             print(d.shape)
@@ -283,10 +283,8 @@ def test(epoch, model, criterion, test_loader, run_config, writer):
             print(d)
             h.update(d)
             h.hexdigest()
-#                          print(hash(bytes(d)))
 
             # remove below
-            exit()
 
         if run_config['tensorboard_test_images']:
             if epoch == 0 and step == 0:
@@ -459,11 +457,12 @@ def main():
         # save model
         save_checkpoint(state, outdir)
 #        save_checkpoint_epoch(state, epoch, outdir)
-
+    
     if run_config['tensorboard']:
         outpath = os.path.join(outdir, 'all_scalars.json')
         writer.export_scalars_to_json(outpath)
 
+    print('completed')
 
 if __name__ == '__main__':
     main()

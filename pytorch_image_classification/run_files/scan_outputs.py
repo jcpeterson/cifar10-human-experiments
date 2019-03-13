@@ -16,6 +16,6 @@ for file in files:
         with open(file) as f:
             data = f.readlines()
 
-        for ri in np.arange(10):
+        for ri in np.arange(10)[::-1]:
             print(data[-ri])
 #            print('\n')
