@@ -1,12 +1,12 @@
 #!/usr/bin/env bash
 
 # activate conda environment
-raw_models='pyramidnet_basic_110_270 
-shake_shake_26_2x64d_SSI_cutout16 
-resnext_29_8x64d 
-densenet_BC_100_12 
-wrn_28_10 
-resnet_preact_bottleneck_164 
+#raw_models='pyramidnet_basic_110_270 
+#shake_shake_26_2x64d_SSI_cutout16 
+#resnext_29_8x64d 
+#densenet_BC_100_12 
+#wrn_28_10 
+raw_models='resnet_preact_bottleneck_164 
 resnet_basic_110 
 vgg_15_BN_64'
 

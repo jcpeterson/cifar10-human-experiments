@@ -10,7 +10,7 @@
 echo 'inner: activating env'
 source activate pytorch_env
 echo ${model}
-
-python extract_softmax.py --dataset CIFAR10 --arch ${token} --config /tigress/ruairidh/model_results/optimal_training_run/${model}/config.json --resume /tigress/ruairidh/model_results/optimal_basic_tuning/${model}/model_best_state_c10h_val_loss.pth --outdir /home/ruairidh/superman/cifar10-human-experiments/predictions/post --gpu 0
+echo ${token}
+python ../extract_softmax.py --dataset CIFAR10 --arch ${token} --config /tigress/ruairidh/model_results/optimal_training_run/${model}/config.json --resume /tigress/ruairidh/model_results/optimal_basic_tuning/${model}/model_best_state_c10h_val_loss.pth --outdir /home/ruairidh/superman/cifar10-human-experiments/predictions/post --gpu 0
 
 echo 'inner done'

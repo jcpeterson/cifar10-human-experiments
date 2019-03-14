@@ -170,6 +170,9 @@ def parse_args():
     parser.add_argument('--test_only', action='store_true', default=False)
 
 
+    parser.add_argument('--held_out', type=int, required=False)
+
+
     args = parser.parse_args()
     if not is_tensorboard_available:
         args.tensorboard = False
