@@ -3,7 +3,7 @@
 """ 
     This version is post planning with Olga. We're adding a new test datset that
     consists of resized ImageNet images for cifar-like categories. We're also 
-    adding cross-validation so our folders don't overlap as before.
+        adding cross-validation so our folders don't overlap as before.
 """
 
 import os
@@ -515,17 +515,13 @@ def get_loader(config):
     elif dataset_name == 'CIFAR10H':
         dataset = CIFARH(config)
 
-    train_dataset,
-    test_dataset,
-    _50k_dataset,
-    v4_dataset,
-    v6_dataset = \
-    dataset.get_datasets(
-        c10h_sample=c10h_sample, 
-        c10h_testsplit_percent=c10h_testsplit_percent,
-        c10h_datasplit_seed=c10h_datasplit_seed,
-        cv_index=cv_index
-    )
+    train_dataset, test_dataset, _50k_dataset, v4_dataset, v6_dataset = \
+        dataset.get_datasets(
+            c10h_sample=c10h_sample, 
+            c10h_testsplit_percent=c10h_testsplit_percent,
+            c10h_datasplit_seed=c10h_datasplit_seed,
+            cv_index=cv_index
+        )
     # imagenet32x32_dataset = \
 
     train_loader = torch.utils.data.DataLoader(
