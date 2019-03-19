@@ -163,7 +163,7 @@ def parse_args():
     # to test the loaded model and don't train
     parser.add_argument('--test_only', action='store_true', default=False)
 
-    parser.add_argument('--held_out', type=int, required=False)
+    parser.add_argument('--cv_index', type=int, required=False)
 
 
 
