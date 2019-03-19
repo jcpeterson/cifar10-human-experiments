@@ -143,7 +143,7 @@ class CIFAR10H(data.Dataset):
             fold_size = int(c10h_testsplit_percent * self.c10h_data.shape[0])
 
             start = fold_size * cv_index
-            end = fold_start + fold_size
+            end = start + fold_size
 
             if self.set == 'train':
                 idx_keep = list(range(0, start)) + list(range(end, self.c10h_data.shape[0]))
