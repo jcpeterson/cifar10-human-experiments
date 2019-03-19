@@ -198,7 +198,7 @@ class CIFAR10H(data.Dataset):
             self.v6_targets = self.v6_targets.reshape(-1).astype('int64')
 
         elif self.set == 'imagenet32x32':
-            imagenet_path = '/data/imagenet32x32'
+            imagenet_path = '../data/imagenet32x32'
             ordered_class_names = [
                 'airplane',
                 'automobile',
