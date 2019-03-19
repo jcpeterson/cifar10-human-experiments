@@ -150,12 +150,12 @@ class CIFAR10H(data.Dataset):
                 idx_keep = np.array(idx_keep)
                 self.c10h_data = self.c10h_data[idx_keep]
                 self.c10h_targets = self.c10h_targets[idx_keep]
-                self.c10h_c10_targets =  self.c10h_c10_targets[idx_keep]
+                self.c10h_c10_targets = list(np.array(self.c10h_c10_targets)[idx_keep])
                 print('Training data has shape {}'.format(self.c10h_data.shape))
             elif self.set == 'test':
                 self.c10h_data = self.c10h_data[start:end]
                 self.c10h_targets = self.c10h_targets[start:end]
-                self.c10h_c10_targets =  self.c10h_c10_targets[start:end]
+                self.c10h_c10_targets = list(np.array(self.c10h_c10_targets)[start:end])
                 print('Test data has shape {}'.format(self.c10h_data.shape))
 
         elif self.set == '50k':
