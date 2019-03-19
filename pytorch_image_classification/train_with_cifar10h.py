@@ -307,12 +307,12 @@ def test(epoch, model, criterion, test_loaders, run_config, writer,
         c10h_train_c10_correct_meter = AverageMeter()
         train_loss_meter = AverageMeter()
         train_correct_meter = AverageMeter()
-        _50k_loss_meter = AverageMeter()
-        _50k_correct_meter = AverageMeter()
-        v4_loss_meter = AverageMeter()
-        v4_correct_meter = AverageMeter()
-        v6_loss_meter = AverageMeter()
-        v6_correct_meter = AverageMeter()
+        # _50k_loss_meter = AverageMeter()
+        # _50k_correct_meter = AverageMeter()
+        # v4_loss_meter = AverageMeter()
+        # v4_correct_meter = AverageMeter()
+        # v6_loss_meter = AverageMeter()
+        # v6_correct_meter = AverageMeter()
     start = time.time()
 
     for step, batch_data in enumerate(test_loader):
@@ -389,49 +389,49 @@ def test(epoch, model, criterion, test_loaders, run_config, writer,
             train_correct_meter.update(train_correct_, 1)
             c10h_train_c10_correct_meter.update(c10h_train_c10_correct_, 1)
 
-        # TEST 50k cifar10 training to make sure it sustains
-        for step, (data, targets) in enumerate(_50k_loader):
-            targets = onehot(targets, 10)
-            if run_config['use_gpu']:
-                data = data.cuda()
-                targets = targets.cuda()
-            with torch.no_grad(): outputs = model(data)
-            n_obs = data.size(0)
-            _50k_loss = criterion(outputs, targets)
-            _50k_loss_meter.update(_50k_loss.item(), n_obs)
-            _, preds = torch.max(outputs, dim=1)
-            _, targets = targets.max(dim=1)
-            _50k_correct_ = preds.eq(targets).sum().item()
-            _50k_correct_meter.update(_50k_correct_, 1)
+        # # TEST 50k cifar10 training to make sure it sustains
+        # for step, (data, targets) in enumerate(_50k_loader):
+        #     targets = onehot(targets, 10)
+        #     if run_config['use_gpu']:
+        #         data = data.cuda()
+        #         targets = targets.cuda()
+        #     with torch.no_grad(): outputs = model(data)
+        #     n_obs = data.size(0)
+        #     _50k_loss = criterion(outputs, targets)
+        #     _50k_loss_meter.update(_50k_loss.item(), n_obs)
+        #     _, preds = torch.max(outputs, dim=1)
+        #     _, targets = targets.max(dim=1)
+        #     _50k_correct_ = preds.eq(targets).sum().item()
+        #     _50k_correct_meter.update(_50k_correct_, 1)
 
-        # TEST v4/v6 CIFAR 10.1
-        for step, (data, targets) in enumerate(v4_loader):
-            targets = onehot(targets, 10)
-            if run_config['use_gpu']:
-                data = data.cuda()
-                targets = targets.cuda()
-            with torch.no_grad(): outputs = model(data)
-            n_obs = data.size(0)
-            v4_loss = criterion(outputs, targets)
-            v4_loss_meter.update(v4_loss.item(), n_obs)
-            _, preds = torch.max(outputs, dim=1)
-            _, targets = targets.max(dim=1)
-            v4_correct_ = preds.eq(targets).sum().item()
-            v4_correct_meter.update(v4_correct_, 1)
+        # # TEST v4/v6 CIFAR 10.1
+        # for step, (data, targets) in enumerate(v4_loader):
+        #     targets = onehot(targets, 10)
+        #     if run_config['use_gpu']:
+        #         data = data.cuda()
+        #         targets = targets.cuda()
+        #     with torch.no_grad(): outputs = model(data)
+        #     n_obs = data.size(0)
+        #     v4_loss = criterion(outputs, targets)
+        #     v4_loss_meter.update(v4_loss.item(), n_obs)
+        #     _, preds = torch.max(outputs, dim=1)
+        #     _, targets = targets.max(dim=1)
+        #     v4_correct_ = preds.eq(targets).sum().item()
+        #     v4_correct_meter.update(v4_correct_, 1)
 
-        for step, (data, targets) in enumerate(v6_loader):
-            targets = onehot(targets, 10)
-            if run_config['use_gpu']:
-                data = data.cuda()
-                targets = targets.cuda()
-            with torch.no_grad(): outputs = model(data)
-            n_obs = data.size(0)
-            v6_loss = criterion(outputs, targets)
-            v6_loss_meter.update(v6_loss.item(), n_obs)
-            _, preds = torch.max(outputs, dim=1)
-            _, targets = targets.max(dim=1)
-            v6_correct_ = preds.eq(targets).sum().item()
-            v6_correct_meter.update(v6_correct_, 1)
+        # for step, (data, targets) in enumerate(v6_loader):
+        #     targets = onehot(targets, 10)
+        #     if run_config['use_gpu']:
+        #         data = data.cuda()
+        #         targets = targets.cuda()
+        #     with torch.no_grad(): outputs = model(data)
+        #     n_obs = data.size(0)
+        #     v6_loss = criterion(outputs, targets)
+        #     v6_loss_meter.update(v6_loss.item(), n_obs)
+        #     _, preds = torch.max(outputs, dim=1)
+        #     _, targets = targets.max(dim=1)
+        #     v6_correct_ = preds.eq(targets).sum().item()
+        #     v6_correct_meter.update(v6_correct_, 1)
 
     accuracy = correct_meter.sum / float(len(test_loader.dataset))
     if human_tune:
@@ -440,19 +440,19 @@ def test(epoch, model, criterion, test_loaders, run_config, writer,
         c10h_train_c10_accuracy = \
             c10h_train_c10_correct_meter.sum / float(len(train_loader.dataset))
         train_accuracy = train_correct_meter.sum / float(len(train_loader.dataset))
-        _50k_accuracy = _50k_correct_meter.sum / float(len(_50k_loader.dataset))
-        v4_accuracy = v4_correct_meter.sum / float(len(v4_loader.dataset))
-        v6_accuracy = v6_correct_meter.sum / float(len(v6_loader.dataset))
+        # _50k_accuracy = _50k_correct_meter.sum / float(len(_50k_loader.dataset))
+        # v4_accuracy = v4_correct_meter.sum / float(len(v4_loader.dataset))
+        # v6_accuracy = v6_correct_meter.sum / float(len(v6_loader.dataset))
 
     if human_tune:
         logger.info('- epoch {}    c10h_train    : {:.4f} (acc: {:.4f}) | c10h_val    : {:.4f} (acc: {:.4f})'.format(
             epoch, train_loss_meter.avg, train_accuracy, loss_meter.avg, accuracy))
         logger.info('-            c10h_train_c10: {:.4f} (acc: {:.4f}) | c10h_val_c10: {:.4f} (acc: {:.4f})'.format(
             c10h_train_c10_loss_meter.avg, c10h_train_c10_accuracy, c10h_val_c10_loss_meter.avg, c10h_val_c10_accuracy))
-        logger.info('-            v4            : {:.4f} (acc: {:.4f}) |           v6: {:.4f} (acc: {:.4f})'.format(
-            v4_loss_meter.avg, v4_accuracy, v6_loss_meter.avg, v6_accuracy))
-        logger.info('-            c10_50k       : {:.4f} (acc: {:.4f})'.format(
-            _50k_loss_meter.avg, _50k_accuracy))
+        # logger.info('-            v4            : {:.4f} (acc: {:.4f}) |           v6: {:.4f} (acc: {:.4f})'.format(
+        #     v4_loss_meter.avg, v4_accuracy, v6_loss_meter.avg, v6_accuracy))
+        # logger.info('-            c10_50k       : {:.4f} (acc: {:.4f})'.format(
+        #     _50k_loss_meter.avg, _50k_accuracy))
     else:
         logger.info('Epoch {} Loss {:.4f} Accuracy {:.4f}'.format(
             epoch, loss_meter.avg, accuracy))
@@ -485,14 +485,14 @@ def test(epoch, model, criterion, test_loaders, run_config, writer,
                 'c10h_val_c10_loss': c10h_val_c10_loss_meter.avg,
                 'c10h_val_c10_acc' : c10h_val_c10_accuracy,
 
-                'v4_loss': v4_loss_meter.avg,
-                'v4_acc' : v4_accuracy,
+                # 'v4_loss': v4_loss_meter.avg,
+                # 'v4_acc' : v4_accuracy,
 
-                'v6_loss': v6_loss_meter.avg,
-                'v6_acc' : v6_accuracy,
+                # 'v6_loss': v6_loss_meter.avg,
+                # 'v6_acc' : v6_accuracy,
 
-                'c10_50k_loss': _50k_loss_meter.avg,
-                'c10_50k_acc' : _50k_accuracy,
+                # 'c10_50k_loss': _50k_loss_meter.avg,
+                # 'c10_50k_acc' : _50k_accuracy,
         }
     else:
         return accuracy
