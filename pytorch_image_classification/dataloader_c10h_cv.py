@@ -1,8 +1,9 @@
 # coding: utf-8
 
 """ 
-    This version is post planning with Olga. We're adding .
-    We're also adding cross-validation so our folders don't overlap as before.
+    This version is post planning with Olga. We're adding a new test datset that
+    consists of resized ImageNet images for cifar-like categories. We're also 
+    adding cross-validation so our folders don't overlap as before.
 """
 
 import os
