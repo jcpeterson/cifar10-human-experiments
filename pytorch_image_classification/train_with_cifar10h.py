@@ -97,7 +97,7 @@ def parse_args():
     parser.add_argument('--tensorboard_model_params', action='store_true')
 
     # configuration of optimizer
-    parser.add_argument('--epochs', type=int, default = 250)
+    parser.add_argument('--epochs', type=int, default = 150)
     parser.add_argument('--batch_size', type=int)
     parser.add_argument('--optimizer', type=str, choices=['sgd', 'adam'])
     parser.add_argument('--base_lr', type=float)
@@ -142,7 +142,7 @@ def parse_args():
     parser.add_argument('--mixup_alpha', type=float, default=1)
 
     # previous model weights to load if any
-    parser.add_argument('--resume', type=str)
+    parser.add_argument('--resume', type=str, default='')
     # whether to tune to human labels
     parser.add_argument('--human_tune', action='store_true', default=False)
     # where to save the loss/accuracy for c10h to a csv file
@@ -161,6 +161,8 @@ def parse_args():
     parser.add_argument('--no_output', action='store_true', default=False)
     # to test the loaded model and don't train
     parser.add_argument('--test_only', action='store_true', default=False)
+
+    parser.add_argument('--cv_index', type=int)
 
     args = parser.parse_args()
     if not is_tensorboard_available:
@@ -610,7 +612,7 @@ def main():
     optimizer, scheduler = create_optimizer(model.parameters(), optim_config)
 
     # load pretrained weights if given
-    if run_config['resume']:
+    if run_config['resume'] != '':
         if os.path.isfile(run_config['resume']):
             print("=> loading checkpoint '{}'".format(run_config['resume']))
             checkpoint = torch.load(run_config['resume'])
@@ -652,7 +654,7 @@ def main():
 
     save_counter = 0
 
-    optim_config['epochs'] = 250
+    optim_config['epochs'] = 150
 
     if run_config['test_first']:
         total_epochs = optim_config['epochs'] + 1 # + 1 for the test run

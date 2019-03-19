@@ -133,7 +133,8 @@ def _get_data_config(args):
         'mixup_alpha',
         'c10h_sample',
         'c10h_testsplit_percent',
-        'c10h_datasplit_seed'
+        'c10h_datasplit_seed',
+        'cv_index'
     ]
     json_keys = ['random_erasing_area_ratio_range']
     config = _args2config(args, keys, json_keys)

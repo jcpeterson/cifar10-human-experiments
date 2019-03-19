@@ -13,7 +13,7 @@ echo 'activating virtual env'
 source activate pytorch_env
 
 SDIR='/tigress/ruairidh/model_results'
-O_DIR='basic_tuning_run_1'
+O_DIR='9k_tuning_run_1'
 L_DIR='optimal_training_run'
 echo ${model}
 echo 'identifier: '${identifier}

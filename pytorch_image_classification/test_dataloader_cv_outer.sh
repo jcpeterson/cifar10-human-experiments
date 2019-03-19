@@ -36,8 +36,6 @@ echo 'declared dicts'
 option='_test_dataloader'
 cv_indexs='1'
 
-cd ..
-
 for model in $models
   do
   echo $model
@@ -52,7 +50,7 @@ for model in $models
     echo $cv_index
     log_file="${model}${option}_${cv_index}".out
     out_dir="${model}${option}_${cv_index}"
-    sbatch --time=${time} --job-name=${model}.${cv_index} --output=${log_file} --export=cv_index=${cv_index},out_dir=${out_dir},python_args="${python_args}",log_file=${log_file},option=$option run_files/run_pyt_inner.sh
+    sbatch --time=${time} --job-name=${model}.${cv_index} --output=${log_file} --export=cv_index=${cv_index},out_dir=${out_dir},python_args="${python_args}",log_file=${log_file},option=$option test_dataloader_cv_inner.sh
   done
   echo 'done outer'
   done

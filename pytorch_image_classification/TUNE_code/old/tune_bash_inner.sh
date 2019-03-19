@@ -4,7 +4,7 @@
 #SBATCH --ntasks-per-node=1
 #SBATCH --gres=gpu:1
 #SBATCH --mem=16000
-#SBATCH --time=1440 # 24 hours
+#SBATCH --time=1440
 
 
 echo 'entering inner script'
@@ -13,8 +13,7 @@ echo 'activating virtual env'
 source activate pytorch_env
 
 SDIR='/tigress/ruairidh/model_results'
-JDIR='/tigress/joshuacp/model_results'
-O_DIR='sampling_run1'
+O_DIR='9k_tuning_run_1'
 L_DIR='optimal_training_run'
 echo ${model}
 echo 'identifier: '${identifier}
@@ -22,14 +21,14 @@ echo ${python_args}
 echo ${logfile}
 echo 'entering python script'
 resume="${SDIR}/${L_DIR}/${model}/model_best_state.pth"
-SV_DIR="${JDIR}/${O_DIR}/${model}/${identifier}"
+SV_DIR="${SDIR}/${O_DIR}/${model}/${identifier}"
 config="${SDIR}/${L_DIR}/${model}/config.json"
 echo ${resume}
 echo ${SV_DIR}
 
-python -u ./tune_with_cifar10h_v2_250_epochs.py ${python_args} --resume=${resume} --c10h_sample --c10h_scores_outdir=${SV_DIR} --config=${config}
+python -u ./tune_with_cifar10h.py ${python_args} --resume=${resume} --c10h_scores_outdir=${SV_DIR} --config=${config}
 
-cp ./${logfile} ${JDIR}/${O_DIR}/${model}/.
+cp ./${logfile} ${SDIR}/${O_DIR}/${model}/.
 
 echo 'inner done'
 

@@ -12,8 +12,9 @@ declare -a lr=(0.1 0.01 0.001 0.0001 0.00001)
 
 declare -a seeds=(0 1 2)
 
+declare -a folds=(0 1 2 3 4 5 6 7 8 9)
+
 # for every model
-#for model in "${!archs[@]}"
 for model in $models
     do
     echo $model
@@ -31,12 +32,17 @@ for model in $models
             # use different seeds
             for s in "${seeds[@]}"
                 do
-                identifier=con_${con}_lr_${l}_seed_${s} 
-                logfile=${model}_control:${con}_lr:${l}_seed:${s}.out
-                interval=1
-                python_args="--arch=${arch} --c10h_save_interval=${interval} --dataset=CIFAR10H --no_output --c10h_datasplit_seed=${s} --human_tune --nonhuman_control=${con} --base_lr=${l}"
-                echo 'python args: '"${python_args}"
-                sbatch --output=${logfile} --export=model=$model,identifier=${identifier},python_args="${python_args}",logfile=${logfile} tune_bash_inner.sh
+                for fold in "${folds[@]}"
+                    do
+                    identifier=con_${con}_lr_${l}_seed_${s}_fold_${fold}
+                    echo 'identifier'
+                    echo ${identifier} 
+                    logfile=${model}_control:${con}_lr:${l}_seed:${s}_fold:${fold}.out
+                    interval=1
+                    python_args="--arch=${arch} --c10h_save_interval=${interval} --dataset=CIFAR10H --no_output --c10h_datasplit_seed=${s} --human_tune --nonhuman_control=${con} --base_lr=${l} --cv_index=${fold}"
+                    echo 'python args: '"${python_args}"
+#                    sbatch --output=${logfile} --export=model=$model,identifier=${identifier},python_args="${python_args}",logfile=${logfile} tune_bash_inner.sh
+                    done
                 done
             done
 
