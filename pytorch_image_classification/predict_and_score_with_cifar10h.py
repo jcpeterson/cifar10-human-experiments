@@ -522,6 +522,11 @@ def main():
             master_outputs.append(outputs_test)
             master_probs.append(probs_test)
 
+#            master_scores.append('1')
+#            master_labels.append([2])
+#            master_outputs.append([2, 2])
+#            master_probs.append([2, 2])
+
     master_labels = np.concatenate(master_labels)
     print('master labels shape: ', master_labels.shape)
     if human_tune: 
@@ -537,9 +542,9 @@ def main():
     if not os.path.exists(c10h_outdir):
         os.makedirs(c10h_outdir)
 
-    identifier = run_config['resume'].split('/')[-2]
+    identifier = run_config['resume'].split('/')[-1] + '_' + run_config['resume'].split('/')[-2]
     print('identifier reduction: {0} to {1}'.format(str(run_config['resume']), identifier))
-    s_dir = os.path.join(str(c10h_outdir), str(run_config['resume'].split('/')[-2])) + '_test'
+    s_dir = os.path.join(str(c10h_outdir), identifier) 
     print('saving weights in: ', s_dir)
     np.savez(s_dir, labels=master_labels, logits=master_outputs, probs=master_probs)
 
@@ -547,7 +552,7 @@ def main():
     keys = master_scores[0].keys()
     print('keys: ', keys)
 
-    with open(os.path.join(s_dir, 'master_scores.csv'.format(identifier)), 'w') as output_file:    # changed from above
+    with open(os.path.join(s_dir + '_master_scores.csv'), 'w') as output_file:    # changed from above
         dict_writer = csv.DictWriter(output_file, keys)
         dict_writer.writeheader()
         dict_writer.writerows(master_scores)

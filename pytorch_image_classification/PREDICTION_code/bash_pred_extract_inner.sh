@@ -20,7 +20,7 @@ echo 'change config path when proper run done'
 config_path="${d_path}/optimal_training_run/${model}/config.json"
 cd ..
 echo $PWD
-python predict_and_score_with_cifar10h.py ${python_args} --config ${config_path} --resume ${resume_path} --outdir s_path --gpu 0
+python predict_and_score_with_cifar10h.py ${python_args} --config ${config_path} --resume ${resume_path} --outdir ${s_path} --c10h_scores_outdir ${s_path} --gpu 0
 cd .
 echo $PWD
 echo 'inner done'
