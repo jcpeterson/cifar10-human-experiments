@@ -226,6 +226,10 @@ class CIFAR10H(data.Dataset):
             # print('Final ImageNet data shape is {}'.format(self.imagenet_data.shape))
             # print('Final ImageNet label count is {}'.format(len(self.imagenet_targets)))
 
+        elif self.set == 'cinic':
+            cinic_npz = np.load('../data/cinic-10/cinic-10-no-cifar.npz')
+            self.cinic_data = cinic_npz['data']
+            self.cinic_targets = cinic_npz['labels'].copy()
 
     def __getitem__(self, index):
         """
@@ -276,6 +280,9 @@ class CIFAR10H(data.Dataset):
             elif self.set == 'imagenet32x32':
                 img, target = self.imagenet_data[index], self.imagenet_targets[index]
 
+            elif self.set == 'cinic':
+                img, target = self.cinic_data[index], self.cinic_targets[index]
+
             img = Image.fromarray(img)
             if self.transform is not None:
                 img = self.transform(img)
@@ -295,6 +302,8 @@ class CIFAR10H(data.Dataset):
             return len(self.v6_data)
         elif self.set == 'imagenet32x32':
             return len(self.imagenet_data)
+        elif self.set == 'cinic':
+            return len(self.cinic_data)
 
     def _check_integrity(self):
         root = self.root
@@ -409,7 +418,14 @@ class Dataset(object):
                 transform=self.test_transform, 
             )
 
-            return train_dataset, test_dataset, _50k_dataset, v4_dataset, v6_dataset, imagenet32x32_dataset
+            # cinic-10 with cifar10 images removed
+            cinic_dataset = CIFAR10H(
+                self.dataset_dir,
+                which_set='cinic',
+                transform=self.test_transform, 
+            )
+
+            return train_dataset, test_dataset, _50k_dataset, v4_dataset, v6_dataset, imagenet32x32_dataset, cinic_dataset
 
     def _get_random_erasing_train_transform(self):
         raise NotImplementedError
@@ -557,7 +573,7 @@ def get_loader(config):
     elif dataset_name == 'CIFAR10H':
         dataset = CIFARH(config)
 
-    train_dataset, test_dataset, _50k_dataset, v4_dataset, v6_dataset, imagenet32x32_dataset = \
+    train_dataset, test_dataset, _50k_dataset, v4_dataset, v6_dataset, imagenet32x32_dataset, cinic_dataset = \
         dataset.get_datasets(
             c10h_sample=c10h_sample, 
             c10h_testsplit_percent=c10h_testsplit_percent,
@@ -613,5 +629,13 @@ def get_loader(config):
         pin_memory=use_gpu,
         drop_last=False,
     )
+    cinic_loader = torch.utils.data.DataLoader(
+        cinic_dataset,
+        batch_size=batch_size,
+        num_workers=num_workers,
+        shuffle=False,
+        pin_memory=use_gpu,
+        drop_last=False,
+    )
 
-    return train_loader, test_loader, _50k_loader, v4_loader, v6_loader, imagenet32x32_loader
+    return train_loader, test_loader, _50k_loader, v4_loader, v6_loader, imagenet32x32_loader, cinic_loader
