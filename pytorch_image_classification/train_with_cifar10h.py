@@ -317,6 +317,12 @@ def test(epoch, model, criterion, test_loaders, run_config, writer,
 
     for step, batch_data in enumerate(test_loader):
 
+        if human_tune:
+            data, targets, c10h_val_c10_targets = batch_data
+            c10h_val_c10_targets = onehot(c10h_val_c10_targets, 10)
+        else:
+            data, targets = batch_data
+
         if step == 0 and epoch == 0:
             h = hashlib.sha256()
             print('printing hash of first data row[:5]')
@@ -329,13 +335,6 @@ def test(epoch, model, criterion, test_loaders, run_config, writer,
             print(d)
             h.update(d)
             h.hexdigest()
-
-
-        if human_tune:
-            data, targets, c10h_val_c10_targets = batch_data
-            c10h_val_c10_targets = onehot(c10h_val_c10_targets, 10)
-        else:
-            data, targets = batch_data
 
         if run_config['tensorboard_test_images']:
             if epoch == 0 and step == 0:
