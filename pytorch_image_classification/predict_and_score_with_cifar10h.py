@@ -542,7 +542,7 @@ def main():
     if not os.path.exists(c10h_outdir):
         os.makedirs(c10h_outdir)
 
-    identifier = run_config['resume'].split('/')[-1] + '_' + run_config['resume'].split('/')[-2]
+    identifier = run_config['resume'].split('/')[-3] + '_' + run_config['resume'].split('/')[-4]
     print('identifier reduction: {0} to {1}'.format(str(run_config['resume']), identifier))
     s_dir = os.path.join(str(c10h_outdir), identifier) 
     print('saving weights in: ', s_dir)
