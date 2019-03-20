@@ -215,16 +215,16 @@ class CIFAR10H(data.Dataset):
             self.imagenet_targets = []
 
             for c, class_name in enumerate(ordered_class_names):
-                print('Loading ImageNet class {} with label {}'.format(class_name, c))
+                # print('Loading ImageNet class {} with label {}'.format(class_name, c))
                 image_data = np.load(os.path.join(imagenet_path, class_name+'.npy'))
-                print(' -- data shape for this class is {}'.format(image_data.shape))
+                # print(' -- data shape for this class is {}'.format(image_data.shape))
                 self.imagenet_targets += [c] * image_data.shape[0]
-                print(' -- label count for this class is {}'.format(len([c] * image_data.shape[0])))
+                # print(' -- label count for this class is {}'.format(len([c] * image_data.shape[0])))
                 self.imagenet_data.append(image_data)
             self.imagenet_data = np.concatenate(self.imagenet_data, axis=0)
 
-            print('Final ImageNet data shape is {}'.format(self.imagenet_data.shape))
-            print('Final ImageNet label count is {}'.format(len(self.imagenet_targets)))
+            # print('Final ImageNet data shape is {}'.format(self.imagenet_data.shape))
+            # print('Final ImageNet label count is {}'.format(len(self.imagenet_targets)))
 
 
     def __getitem__(self, index):
