@@ -84,6 +84,7 @@ def parse_args():
 
     parser.add_argument('--outdir', type=str, required=False)
     parser.add_argument('--seed', type=int, default=17)
+
     parser.add_argument('--test_first', type=str2bool, default=True)
     parser.add_argument('--gpu', type=str, default='0') # -1 for CPU
 
@@ -211,9 +212,7 @@ run_config, human_tune=False):
 
 
     target_list = []
-
     output_list = []
-
     probs_list = []
 
     for step, batch_data in enumerate(test_loader):
@@ -385,10 +384,10 @@ run_config, human_tune=False):
             epoch, train_loss_meter.avg, train_accuracy, loss_meter.avg, accuracy))
         logger.info('-            c10h_train_c10: {:.4f} (acc: {:.4f}) | c10h_val_c10: {:.4f} (acc: {:.4f})'.format(
             c10h_train_c10_loss_meter.avg, c10h_train_c10_accuracy, c10h_val_c10_loss_meter.avg, c10h_val_c10_accuracy))
-        logger.info('-            v4            : {:.4f} (acc: {:.4f}) |           v6: {:.4f} (acc: {:.4f})'.format(
-            v4_loss_meter.avg, v4_accuracy, v6_loss_meter.avg, v6_accuracy))
         logger.info('-            c10_50k	: {:.4f} (acc: {:.4f})'.format(
             _50k_loss_meter.avg, _50k_accuracy))
+        logger.info('-            v4            : {:.4f} (acc: {:.4f}) |           v6: {:.4f} (acc: {:.4f})'.format(
+            v4_loss_meter.avg, v4_accuracy, v6_loss_meter.avg, v6_accuracy))
         logger.info('-            imagenet32x32	: {:.4f} (acc: {:.4f})'.format(
             imagenet32x32_loss_meter.avg, imagenet32x32_accuracy))
     else:
@@ -436,13 +435,16 @@ def main():
 
     run_config = config['run_config']
     optim_config = config['optim_config']
-
+    data_config = config['data_config']
     human_tune = run_config['human_tune']
     print('human tune type: ', type(human_tune), human_tune)
 #    if human_tune: human_tune_scores = []
 
    # set random seed
     seed = run_config['seed']
+    print('seed is: ', seed)
+    print('datasplit seed is: ', data_config['c10h_datasplit_seed'])
+    print('cv index is: ', data_config['cv_index'])
     torch.manual_seed(seed)
     np.random.seed(seed)
     random.seed(seed)
@@ -460,6 +462,7 @@ def main():
 
     # load data loaders
     if human_tune:
+        print('loading human tune test loaders')
         test_loaders = \
             get_loader(config['data_config'])
     else:
@@ -471,9 +474,6 @@ def main():
     n_params = sum([param.view(-1).size()[0] for param in model.parameters()])
     logger.info('n_params: {}'.format(n_params))
 
-
-#    print('exiting after loading model')
-    # exit()
 
     if run_config['use_gpu']:
         model = nn.DataParallel(model)
@@ -501,6 +501,13 @@ def main():
     scores_test, labels_test, outputs_test, probs_test = test(checkpoint['epoch'], model, test_criterion, test_loaders, 
 run_config, human_tune)
 
+#def test(epoch, model, criterion, test_loaders,  
+#run_config, human_tune=False):
+
+#    if human_tune:
+#        train_loader, test_loader, _50k_loader, v4_loader, v6_loader, imagenet32x32_loader  = test_loaders
+#    else:
+#        train_loader, test_loader = test_loaders
     print('test_labels shape', labels_test.shape)
 
 
@@ -516,7 +523,6 @@ run_config, human_tune)
     keys = scores_test.keys()
     print('keys: ', keys)
 
-#    with open(os.path.join(c10h_outdir, 'test_scores.csv'), 'wb') as output_file:
     with open(os.path.join(c10h_outdir, 'test_scores.csv'), 'w') as output_file:    # changed from above
         dict_writer = csv.DictWriter(output_file, keys)
         dict_writer.writeheader()

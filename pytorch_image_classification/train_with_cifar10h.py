@@ -13,7 +13,7 @@
 
 import os, time, random, json, logging, argparse, csv, shutil
 import numpy as np
-
+import hashlib
 import torch
 import torch.nn as nn
 import torch.optim
@@ -316,6 +316,20 @@ def test(epoch, model, criterion, test_loaders, run_config, writer,
     start = time.time()
 
     for step, batch_data in enumerate(test_loader):
+
+        if step == 0 and epoch == 0:
+            h = hashlib.sha256()
+            print('printing hash of first data row[:5]')
+            d = data.cpu().numpy() # maybe this step not needed
+            print(d.shape)
+            d = d[0, 0, 0, :5]
+            print(d.shape)
+            print(d)
+            d = (d.tostring())
+            print(d)
+            h.update(d)
+            h.hexdigest()
+
 
         if human_tune:
             data, targets, c10h_val_c10_targets = batch_data
