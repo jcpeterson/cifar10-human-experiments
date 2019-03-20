@@ -572,9 +572,11 @@ def main():
     np.random.seed(seed)
     random.seed(seed)
 
-#    if not run_config['no_output']:
-        # create output directory
-    outdir = run_config['outdir']
+    # if not run_config['no_output']:
+
+    outdir = run_config['c10h_scores_outdir']
+    # create output directory
+    # outdir = run_config['outdir']
     if not os.path.exists(outdir):
         os.makedirs(outdir)
 
