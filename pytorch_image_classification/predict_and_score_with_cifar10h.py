@@ -179,7 +179,7 @@ def test(epoch, model, criterion, test_loaders,
 run_config, human_tune=False):
 
     if human_tune:
-        train_loader, test_loader, _50k_loader, v4_loader, v6_loader, imagenet32x32_loader  = test_loaders
+        train_loader, test_loader, _50k_loader, v4_loader, v6_loader, imagenet32x32_loader, cinic_loader  = test_loaders
     else:
         train_loader, test_loader = test_loaders
     
@@ -206,6 +206,8 @@ run_config, human_tune=False):
         v6_correct_meter = AverageMeter()
         imagenet32x32_loss_meter = AverageMeter()
         imagenet32x32_correct_meter = AverageMeter()
+        cinic_loss_meter = AverageMeter()
+        cinic_correct_meter = AverageMeter()
 
     start = time.time()
 
@@ -350,8 +352,6 @@ run_config, human_tune=False):
             _50k_correct_ = preds.eq(targets).sum().item()
             _50k_correct_meter.update(_50k_correct_, 1)
 
-
-
         for step, (data, targets) in enumerate(imagenet32x32_loader):
             targets = onehot(targets, 10)
             if run_config['use_gpu']:
@@ -366,6 +366,20 @@ run_config, human_tune=False):
             imagenet32x32_correct_ = preds.eq(targets).sum().item()
             imagenet32x32_correct_meter.update(imagenet32x32_correct_, 1)
 
+        for step, (data, targets) in enumerate(cinic_loader):
+            targets = onehot(targets, 10)
+            if run_config['use_gpu']:
+                data = data.cuda()
+                targets = targets.cuda()
+            with torch.no_grad(): outputs = model(data)
+            n_obs = data.size(0)
+            cinic_loss = criterion(outputs, targets)
+            cinic_loss_meter.update(cinic_loss.item(), n_obs)
+            _, preds = torch.max(outputs, dim=1)
+            _, targets = targets.max(dim=1)
+            cinic_correct_ = preds.eq(targets).sum().item()
+            cinic_correct_meter.update(cinic_correct_, 1)
+
 
     accuracy = correct_meter.sum / float(len(test_loader.dataset))
     if human_tune:
@@ -378,6 +392,7 @@ run_config, human_tune=False):
         v4_accuracy = v4_correct_meter.sum / float(len(v4_loader.dataset))
         v6_accuracy = v6_correct_meter.sum / float(len(v6_loader.dataset))
         imagenet32x32_accuracy = imagenet32x32_correct_meter.sum / float(len(imagenet32x32_loader.dataset))
+        cinic_accuracy = cinic_correct_meter.sum / float(len(cinic_loader.dataset))
 
     if human_tune:
         logger.info('- epoch {}    c10h_train    : {:.4f} (acc: {:.4f}) | c10h_val    : {:.4f} (acc: {:.4f})'.format(
@@ -390,6 +405,8 @@ run_config, human_tune=False):
             v4_loss_meter.avg, v4_accuracy, v6_loss_meter.avg, v6_accuracy))
         logger.info('-            imagenet32x32	: {:.4f} (acc: {:.4f})'.format(
             imagenet32x32_loss_meter.avg, imagenet32x32_accuracy))
+        logger.info('-            cinic	: {:.4f} (acc: {:.4f})'.format(
+            cinic_loss_meter.avg, cinic_accuracy))
     else:
         logger.info('Epoch {} Loss {:.4f} Accuracy {:.4f}'.format(
             epoch, loss_meter.avg, accuracy))
@@ -420,7 +437,10 @@ run_config, human_tune=False):
                 'v6_acc' : v6_accuracy,
 
                 'imagenet32x32_loss': imagenet32x32_loss_meter.avg,
-                'imagenet32x32_acc' : imagenet32x32_accuracy
+                'imagenet32x32_acc' : imagenet32x32_accuracy,
+
+                'cinic_loss': cinic_loss_meter.avg,
+                'cinic_acc' : cinic_accuracy
 
         }, np.concatenate(target_list), np.vstack(output_list), np.vstack(probs_list)
     else:
