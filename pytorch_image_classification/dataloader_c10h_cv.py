@@ -41,7 +41,7 @@ from keras.datasets.cifar10 import load_data as load_cifar10
 
 from jutils import load_cifar10h_labels, load_cifar10_1
 
-
+print('in dataloader_c10h_cv')
 SEED = 999
 
 

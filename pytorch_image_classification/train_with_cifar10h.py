@@ -27,8 +27,8 @@ except Exception:
     is_tensorboard_available = False
 
 # from dataloader import get_loader
-from dataloader_c10h import get_loader
-
+from dataloader_c10h_cv import get_loader
+print('loaded dataloader c10h cv')
 from utils import (str2bool, load_model, save_checkpoint, create_optimizer,
                    AverageMeter, mixup, CrossEntropyLoss, onehot)
 
