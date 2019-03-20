@@ -524,7 +524,10 @@ def main():
 
     master_labels = np.concatenate(master_labels)
     print('master labels shape: ', master_labels.shape)
-    print('master labels[:5]: {0}, \n master labels[-5:]: {1}'.format(master_labels[:5], master_labels[-5:]))
+    if human_tune: 
+        print('master labels argmax[:5]: {0}, \n master argmax labels[-5:]: {1}'.format(np.argmax(master_labels[:5], axis = 1), np.argmax(master_labels[-5:], axis = 1)))
+    else:
+        print('master labels [:5]: {0}, \n master labels[-5:]: {1}'.format(master_labels[:5], master_labels[-5:]))
     master_outputs = np.vstack(master_outputs)
     print('master outputs shape: ', master_outputs.shape)
     master_probs = np.vstack(master_probs)
@@ -535,15 +538,16 @@ def main():
         os.makedirs(c10h_outdir)
 
     identifier = run_config['resume'].split('/')[-2]
-    print('identifier reduction: {0} to {1}'.format(str(run_config['resume'].split('/')), identifier))
-    np.savez(os.path.join(str(c10h_outdir), str(run_config['resume'].split('/')[-2])) + '_test', labels=master_labels, 
-                                                                                            logits=master_outputs, probs=master_probs)
+    print('identifier reduction: {0} to {1}'.format(str(run_config['resume']), identifier))
+    s_dir = os.path.join(str(c10h_outdir), str(run_config['resume'].split('/')[-2])) + '_test'
+    print('saving weights in: ', s_dir)
+    np.savez(s_dir, labels=master_labels, logits=master_outputs, probs=master_probs)
 
     # resave (overwrite) scores file with latest entries
     keys = master_scores[0].keys()
     print('keys: ', keys)
 
-    with open(os.path.join(c10h_outdir, '{0}_master_scores.csv'.format(identifier)), 'w') as output_file:    # changed from above
+    with open(os.path.join(s_dir, 'master_scores.csv'.format(identifier)), 'w') as output_file:    # changed from above
         dict_writer = csv.DictWriter(output_file, keys)
         dict_writer.writeheader()
         dict_writer.writerows(master_scores)
