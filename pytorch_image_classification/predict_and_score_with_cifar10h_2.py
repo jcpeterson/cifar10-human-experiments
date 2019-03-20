@@ -28,7 +28,7 @@ except Exception:
 
 # from dataloader import get_loader
 from dataloader_c10h_cv_with_imagenet import get_loader
-
+print('v2')
 from utils import (str2bool, load_model, save_checkpoint, create_optimizer,
                    AverageMeter, mixup, CrossEntropyLoss, onehot)
 

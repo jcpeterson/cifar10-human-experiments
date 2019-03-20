@@ -18,7 +18,7 @@ resume_path="${d_path}/optimal_9k/${con}/${model}/fold_${fold}/model_best_state_
 config_path="${d_path}/optimal_training_run/${model}/config.json"
 cd ..
 echo $PWD
-python predict_and_score_with_cifar10h_2.py ${python_args} --config ${config_path} --resume ${resume_path} --outdir /home/ruairidh/superman/cifar10-human-experiments/predictions/post --gpu 0
+python predict_and_score_with_cifar10h.py ${python_args} --config ${config_path} --resume ${resume_path} --outdir /home/ruairidh/superman/cifar10-human-experiments/predictions/post --gpu 0
 cd .
 echo $PWD
 echo 'inner done'

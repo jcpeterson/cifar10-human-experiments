@@ -29,7 +29,7 @@ except Exception:
 # add in
 from dataloader_c10h_cv_with_imagenet import get_loader
 print('loaded dataloader c10h cv imagenet')
-
+print('v1')
 from utils import (str2bool, load_model, save_checkpoint, create_optimizer,
                    AverageMeter, mixup, CrossEntropyLoss, onehot)
 
@@ -411,6 +411,9 @@ run_config, human_tune=False):
                 'c10h_val_c10_loss': c10h_val_c10_loss_meter.avg,
                 'c10h_val_c10_acc' : c10h_val_c10_accuracy,
 
+                'c10_50k_loss': _50k_loss_meter.avg,
+                'c10_50k_acc' : _50k_accuracy,
+
                 'v4_loss': v4_loss_meter.avg,
                 'v4_acc' : v4_accuracy,
 
@@ -418,10 +421,8 @@ run_config, human_tune=False):
                 'v6_acc' : v6_accuracy,
 
                 'imagenet32x32_loss': imagenet32x32_loss_meter.avg,
-                'imagenet32x32_acc' : imagenet32x32_accuracy,
+                'imagenet32x32_acc' : imagenet32x32_accuracy
 
-                'c10_50k_loss': _50k_loss_meter.avg,
-                'c10_50k_acc' : _50k_accuracy,
         }, np.concatenate(target_list), np.vstack(output_list), np.vstack(probs_list)
     else:
         return accuracy, np.concatenate(target_list), np.vstack(output_list), np.vstack(probs_list)
