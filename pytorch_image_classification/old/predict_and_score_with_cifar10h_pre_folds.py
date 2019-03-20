@@ -442,6 +442,9 @@ def main():
 
    # set random seed
     seed = run_config['seed']
+    print('seed is: ', seed)
+    print('datasplit seed is: ', data_config['c10h_datasplit_seed'])
+    print('cv index is: ', data_config['cv_index'])
     torch.manual_seed(seed)
     np.random.seed(seed)
     random.seed(seed)
@@ -457,6 +460,13 @@ def main():
         with open(outpath, 'w') as fout:
             json.dump(config, fout, indent=2)
 
+    # load data loaders
+    if human_tune:
+        print('loading human tune test loaders')
+        test_loaders = \
+            get_loader(config['data_config'])
+    else:
+        test_loaders = get_loader(config['data_config'])
 
     # load model
     logger.info('Loading model...')
@@ -475,78 +485,48 @@ def main():
     else:
         test_criterion = nn.CrossEntropyLoss(size_average=True)
 
-    master_scores = [] 
-    master_labels = []
-    master_outputs = [] 
-    master_probs = []
+
    # load pretrained weights if given
     if run_config['resume']:
-        master_resume = run_config['resume']
-        print('master directory is: ', master_resume)
-        
-        for fold in np.arange(10):
-            data_config['cv_index'] = fold
+        if os.path.isfile(run_config['resume']):
+            print("=> loading checkpoint '{}'".format(run_config['resume']))
+            checkpoint = torch.load(run_config['resume'])
+            model.load_state_dict(checkpoint['state_dict'])
+            print("=> loaded checkpoint '{}' (epoch {})"
+                  .format(run_config['resume'], checkpoint['epoch']))
+        else:
+            print("=> no checkpoint found at '{}'".format(run_config['resume']))
 
-            print('fold: ', fold)            
-            print('seed is: ', seed)
-            print('datasplit seed is: ', data_config['c10h_datasplit_seed'])
-            print('cv index is: ', data_config['cv_index'])
+    # get labels
+    scores_test, labels_test, outputs_test, probs_test = test(checkpoint['epoch'], model, test_criterion, test_loaders, 
+run_config, human_tune)
 
-            # load data loaders
-            print('loading data loaders')
-            if human_tune:
-                print('loading human tune test loaders')
-                test_loaders = \
-                    get_loader(config['data_config'])
-            else:
-                test_loaders = get_loader(config['data_config'])
-        
+#def test(epoch, model, criterion, test_loaders,  
+#run_config, human_tune=False):
 
-            run_config['resume'] = '{0}/fold_{1}/model_best_state_c10h_val_c10_acc.pth'.format(master_resume, fold)
+#    if human_tune:
+#        train_loader, test_loader, _50k_loader, v4_loader, v6_loader, imagenet32x32_loader  = test_loaders
+#    else:
+#        train_loader, test_loader = test_loaders
+    print('test_labels shape', labels_test.shape)
 
-            if os.path.isfile(run_config['resume']):
-                print("=> loading checkpoint '{}'".format(run_config['resume']))
-                checkpoint = torch.load(run_config['resume'])
-                model.load_state_dict(checkpoint['state_dict'])
-                print("=> loaded checkpoint '{}' (epoch {})"
-                      .format(run_config['resume'], checkpoint['epoch']))
-            else:
-                print("=> no checkpoint found at '{}'".format(run_config['resume']))
-    
-            print('cv index is: ', data_config['cv_index'])
-        # get labels
-            scores_test, labels_test, outputs_test, probs_test = test(checkpoint['epoch'], model, test_criterion, test_loaders, 
-    run_config, human_tune)
-            master_scores.append(scores_test)
-            master_labels.append(labels_test)
-            master_outputs.append(outputs_test)
-            master_probs.append(probs_test)
-
-    master_labels = np.concatenate(master_labels)
-    print('master labels shape: ', master_labels.shape)
-    print('master labels[:5]: {0}, \n master labels[-5:]: {1}'.format(master_labels[:5], master_labels[-5:]))
-    master_outputs = np.vstack(master_outputs)
-    print('master outputs shape: ', master_outputs.shape)
-    master_probs = np.vstack(master_probs)
-    print('master probs shape: ', master_probs.shape)
 
     c10h_outdir = run_config['c10h_scores_outdir']
     if not os.path.exists(c10h_outdir):
         os.makedirs(c10h_outdir)
 
-    identifier = run_config['resume'].split('/')[-2]
-    print('identifier reduction: {0} to {1}'.format(str(run_config['resume'].split('/')), identifier))
-    np.savez(os.path.join(str(c10h_outdir), str(run_config['resume'].split('/')[-2])) + '_test', labels=master_labels, 
-                                                                                            logits=master_outputs, probs=master_probs)
+    np.savez(os.path.join(str(c10h_outdir), str(run_config['resume'].split('/')[-2])) + '_test', labels=labels_test, 
+                                                                                            logits=outputs_test,
+                                                                                            probs=probs_test)
 
     # resave (overwrite) scores file with latest entries
-    keys = master_scores[0].keys()
+    keys = scores_test.keys()
     print('keys: ', keys)
 
-    with open(os.path.join(c10h_outdir, '{0}_master_scores.csv'.format(identifier)), 'w') as output_file:    # changed from above
+    with open(os.path.join(c10h_outdir, 'test_scores.csv'), 'w') as output_file:    # changed from above
         dict_writer = csv.DictWriter(output_file, keys)
         dict_writer.writeheader()
-        dict_writer.writerows(master_scores)
+        dict_writer.writerows(scores_test)
 
 if __name__ == '__main__':
     # main_tune()

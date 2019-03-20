@@ -13,7 +13,7 @@ models='resnet_basic_110'
 # maybe no quotes needed below?
 
 #declare -a control=(True False)
-declare -a control=(True)
+declare -a control=(True False)
 
 #declare -a folds=(0 1 2 3 4 5 6 7 8 9)
 declare -a folds=(0)
@@ -43,7 +43,7 @@ for model in $models
       python_args="--arch=${arch} --dataset=CIFAR10H --no_output --c10h_datasplit_seed=0 --human_tune --nonhuman_control=${con} --cv_index=${fold}"
       echo 'python args: '"${python_args}"
 
-      sbatch --output=pred_extract.${model}.con.${con}.fold.${fold}post.out --export=python_args="${python_args}",model=${model},con=${con},fold=${fold} bash_pred_extract_inner.sh
+      sbatch --output=pred_extract.${model}.con.${con}.post.out --export=python_args="${python_args}",model=${model},con=${con} bash_pred_extract_inner.sh
 
       done
 
