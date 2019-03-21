@@ -504,6 +504,15 @@ def main():
         master_resume = run_config['resume']
         print('master directory is: ', master_resume)
         
+        if os.path.isfile(run_config['resume']):
+            print("=> loading checkpoint '{}'".format(run_config['resume']))
+            checkpoint = torch.load(run_config['resume'])
+            model.load_state_dict(checkpoint['state_dict'])
+            print("=> loaded checkpoint '{}' (epoch {})"
+                  .format(run_config['resume'], checkpoint['epoch']))
+        else:
+            print("=> no checkpoint found at '{}'".format(run_config['resume']))
+
         for fold in np.arange(10):
             data_config['cv_index'] = fold
 
@@ -522,16 +531,6 @@ def main():
                 test_loaders = get_loader(config['data_config'])
         
 
-            run_config['resume'] = '{0}/fold_{1}/model_best_state_c10h_val_c10_acc.pth'.format(master_resume, fold)
-
-            if os.path.isfile(run_config['resume']):
-                print("=> loading checkpoint '{}'".format(run_config['resume']))
-                checkpoint = torch.load(run_config['resume'])
-                model.load_state_dict(checkpoint['state_dict'])
-                print("=> loaded checkpoint '{}' (epoch {})"
-                      .format(run_config['resume'], checkpoint['epoch']))
-            else:
-                print("=> no checkpoint found at '{}'".format(run_config['resume']))
     
             print('cv index is: ', data_config['cv_index'])
         # get labels
@@ -562,7 +561,7 @@ def main():
     if not os.path.exists(c10h_outdir):
         os.makedirs(c10h_outdir)
 
-    identifier = run_config['resume'].split('/')[-3] + '_' + run_config['resume'].split('/')[-4]
+    identifier = run_config['resume'].split('/')[-2] 
     print('identifier reduction: {0} to {1}'.format(str(run_config['resume']), identifier))
     s_dir = os.path.join(str(c10h_outdir), identifier) 
     print('saving weights in: ', s_dir)
