@@ -11,7 +11,7 @@ resnext_29_8x64d
 shake_shake_26_2x64d_SSI_cutout16' # no commas!
 # maybe no quotes needed below?
 
-temp=5
+temps='2 5 10'
 
 #declare -a control=(True False)
 declare -a control=(False)
@@ -35,19 +35,20 @@ for model in $models
 
     for fold in "${folds[@]}"
     do
-
-      echo ${model}
-      echo ${arch}
-      echo ${con}
-      echo ${fold}
-      echo 'running sbatch'
-      python_args="--arch=${arch} --dataset=CIFAR10H --no_output --c10h_datasplit_seed=0 --human_tune --nonhuman_control=${con} --cv_index=${fold}"
-      echo 'python args: '"${python_args}"
-
-      sbatch --output=smoothed.pred_extract.${model}.con.${con}.post.out --export=python_args="${python_args}",model=${model},con=${con},temp=${temp} smoothed_bash_pred_extract_inner.sh
-
-      done
-
+        for temp in $temps
+          do
+          echo ${model}
+          echo ${arch}
+          echo ${con}
+          echo ${fold}
+          echo 'running sbatch'
+          python_args="--arch=${arch} --dataset=CIFAR10H --no_output --c10h_datasplit_seed=0 --human_tune --nonhuman_control=${con} --cv_index=${fold}"
+          echo 'python args: '"${python_args}"
+    
+          sbatch --output=smoothed.pred_extract.${model}.con.${con}.post.out --export=python_args="${python_args}",model=${model},con=${con},temp=${temp} smoothed_bash_pred_extract_inner.sh
+    
+          done
+        done
     done
 
   done
