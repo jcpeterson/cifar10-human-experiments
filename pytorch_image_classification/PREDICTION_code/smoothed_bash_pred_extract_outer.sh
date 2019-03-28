@@ -11,7 +11,7 @@ resnext_29_8x64d
 shake_shake_26_2x64d_SSI_cutout16' # no commas!
 # maybe no quotes needed below?
 
-temps='2 5 10'
+temps='025 05 075 2 3 4 5 6 7 8 9 10'
 
 #declare -a control=(True False)
 declare -a control=(False)
