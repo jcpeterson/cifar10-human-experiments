@@ -274,19 +274,19 @@ def main():
     # get labels
     labels_test, outputs_test, probs_test = test(model, test_loader, run_config)
 
-    labels_train, outputs_train, probs_train = train(model, train_loader, run_config)
+#    labels_train, outputs_train, probs_train = train(model, train_loader, run_config)
 
     outdir = run_config['outdir'] # add outdir to call
     
     print('test_labels shape', labels_test.shape)
-    print('train_labels shape', labels_train.shape)
+#    print('train_labels shape', labels_train.shape)
 
-    np.savez(os.path.join(str(outdir), str(run_config['resume'].split('/')[-2])) + '_test', labels=labels_test, 
+    np.savez(os.path.join(str(outdir), str(run_config['resume'].split('/')[-2])) + '_cifar_test_set', labels=labels_test, 
                                                                                             logits=outputs_test,
                                                                                             probs=probs_test)
-    np.savez(os.path.join(str(outdir), str(run_config['resume'].split('/')[-2])) + '_train', labels=labels_train, 
-                                                                                             logits=outputs_train,
-                                                                                             probs=probs_train)
+#    np.savez(os.path.join(str(outdir), str(run_config['resume'].split('/')[-2])) + '_train', labels=labels_train, 
+#                                                                                             logits=outputs_train,
+#                                                                                             probs=probs_train)
 
 if __name__ == '__main__':
     # main_tune()
